@@ -1,5 +1,4 @@
-#!/bin/bash
-set -euo pipefail
-course_root=$(cd "$(dirname "$0")/.." && pwd)
-export UV_CACHE_DIR="${TMPDIR:-/tmp}/algorithms-course-uv-cache"
-exec /opt/homebrew/bin/uv run --offline --no-project --python "$(cat "$course_root/.python-version")" python "$course_root/scripts/course.py" "$@"
+#!/bin/sh
+set -eu
+root=$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)
+exec /bin/sh "$root/scripts/course" "$@" --course algorithms

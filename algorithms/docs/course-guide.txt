@@ -5,6 +5,7 @@ Text and link destinations extracted without changing the source.
 
 === PAGE 1 ===
 
+Algorithms Mastery Course | 1
 ALGORITHMS
 MASTERY
 A self-paced course for algorithmic reasoning and implementation
@@ -15,42 +16,96 @@ Go first | Selected C++ and Rust practice
 COURSE PHILOSOPHY
 Model. Derive. Implement. Test. Explain.
 Advance by demonstrated skill, without stage deadlines.
-Algorithms Mastery Course | 1
 
 === PAGE 2 ===
 
-Contents
-1 Mission and target learner 3
-2 How the curriculum works 3
-3 Curriculum map 5
-4 Stage 0 - Baseline and setup 5
-5 Stage 1 - Reasoning, complexity and correctness 6
-6 Stage 2 - Arrays, hashing and prefix information 7
-7 Stage 3 - Two pointers and sliding windows 8
-8 Stage 4 - Binary search and divide and conquer 8
-9 Stage 5 - Stacks, deques, heaps and amortization 9
-10 Stage 6 - Trees and recursive summaries 10
-11 Stage 7 - Graph modeling, BFS and DFS 10
-12 Stage 8 - Weighted paths and graph optimization 11
-13 Stage 9 - Greedy reasoning, intervals and sweeps 12
-14 Stage 10 - Backtracking and exponential search 12
-15 Stage 11 - Dynamic programming: deriving states 13
-16 Stage 12 - Dynamic programming: structural variants 14
-17 Stage 13 - Strings, tries and pattern matching 14
-18 Stage 14 - Range queries and ordered information 15
-19 Stage 15 - Advanced graphs and reductions 16
-20 Stage 16 - Counting, number theory and geometry 17
-21 Stage 17 - Composition and the expanding frontier 18
-22 Stage gates and mastery criteria 18
-23 The 45-minute Hard benchmark 19
-24 Language practice: Go, C++ and Rust 20
-25 Session planning 21
-26 Recommended resource stack 22
-27 Selected references 23
 Algorithms Mastery Course | 2
+Contents
+1
+Mission and target learner
+3
+2
+How the curriculum works
+3
+3
+Curriculum map
+5
+4
+Stage 0 - Baseline and setup
+5
+5
+Stage 1 - Reasoning, complexity and correctness
+6
+6
+Stage 2 - Arrays, hashing and prefix information
+7
+7
+Stage 3 - Two pointers and sliding windows
+8
+8
+Stage 4 - Binary search and divide and conquer
+8
+9
+Stage 5 - Stacks, deques, heaps and amortization
+9
+10
+Stage 6 - Trees and recursive summaries
+10
+11
+Stage 7 - Graph modeling, BFS and DFS
+10
+12
+Stage 8 - Weighted paths and graph optimization
+11
+13
+Stage 9 - Greedy reasoning, intervals and sweeps
+12
+14
+Stage 10 - Backtracking and exponential search
+12
+15
+Stage 11 - Dynamic programming: deriving states
+13
+16
+Stage 12 - Dynamic programming: structural variants
+14
+17
+Stage 13 - Strings, tries and pattern matching
+14
+18
+Stage 14 - Range queries and ordered information
+15
+19
+Stage 15 - Advanced graphs and reductions
+16
+20
+Stage 16 - Counting, number theory and geometry
+17
+21
+Stage 17 - Composition and the expanding frontier
+18
+22
+Stage gates and mastery criteria
+18
+23
+The 45-minute Hard benchmark
+19
+24
+Language practice: Go, C++ and Rust
+20
+25
+Session planning
+21
+26
+Recommended resource stack
+22
+27
+Selected references
+23
 
 === PAGE 3 ===
 
+Algorithms Mastery Course | 3
 1. Mission and target learner
 Target: solve unfamiliar LeetCode Hard problems correctly in 45 minutes or less. Use Go first, with
 selected C++ and Rust practice. Choose your session duration. Advance by skill, without stage deadlines.
@@ -61,12 +116,18 @@ finite benchmark can certify every problem.
 Tell the tutor your available study minutes before each session. The tutor asks if you omit the duration.
 Split ordinary study into retrieval, focused work, and feedback using section 25. Timed assessments keep
 their stated limits and a separate review period.
-Day Main work
-Monday Study one small idea and explain a worked example.
-Tuesday Close the resource; reconstruct, implement and test.
-Wednesday Solve a related problem with help only when needed.
-Thursday Change a constraint or solve another application.
-Friday Revisit older material and attempt mixed, unlabeled problems.
+Day
+Main work
+Monday
+Study one small idea and explain a worked example.
+Tuesday
+Close the resource; reconstruct, implement and test.
+Wednesday
+Solve a related problem with help only when needed.
+Thursday
+Change a constraint or solve another application.
+Friday
+Revisit older material and attempt mixed, unlabeled problems.
 The problem-solving loop
 Model: restate constraints, try tiny cases and write a brute-force baseline.
 Derive: identify useful structure; define state and why each step is safe.
@@ -88,21 +149,26 @@ This is a teaching safeguard, not a research-derived threshold.
 Feedback identifies a missing premise, invalid inference, failing case, or implementation defect in the
 whole work. During independent ordinary practice, request a small hint after 15-25 minutes without
 progress. Use about half the focused block when it is shorter. Request help earlier when needed.
-Algorithms Mastery Course | 3
 
 === PAGE 4 ===
 
+Algorithms Mastery Course | 4
 You write the reasoning and implementation. Use tests, proofs, and reliable references to make sure that
 claims are correct. Record assistance separately. Timed assessments remain unaided, and generated
 tasks need a known correct solution before assessment.
 After each major block, send code, reasoning and test evidence to an experienced engineer or tutor for
 asynchronous review. Ask them to check the proof, complexity and boundary cases.
 Make it stick
-Return after Retrieve without notes
-About 2 days State the invariant or recurrence; trace a new example.
-About 1 week Reimplement the idea or solve a related problem.
-About 3 weeks Solve a new application without its topic label.
-About 6 weeks Include it in mixed, timed practice.
+Return after
+Retrieve without notes
+About 2 days
+State the invariant or recurrence; trace a new example.
+About 1 week
+Reimplement the idea or solve a related problem.
+About 3 weeks
+Solve a new application without its topic label.
+About 6 weeks
+Include it in mixed, timed practice.
 Keep spaced retrieval near 15-25 percent of study time. Select useful reviews within that budget. A due
 date does not require the original exercise. Use short, varied prompts and bounded repairs.
 Retire an overused prompt while preserving its history. Retirement does not establish mastery of the skill.
@@ -114,30 +180,68 @@ teaching sessions on a repair, compare independent output and help required. If 
 the instruction or task scope.
 The learning loop uses worked examples, retrieval, spacing, interleaving and feedback. Supporting research and its limits
 are on section 27.
-Algorithms Mastery Course | 4
 
 === PAGE 5 ===
 
+Algorithms Mastery Course | 5
 3. Curriculum map
-Stage Focus Page
-0 Baseline and setup 5
-1 Reasoning, complexity and correctness 6
-2 Arrays, hashing and prefix information 7
-3 Two pointers and sliding windows 8
-4 Binary search and divide and conquer 8
-5 Stacks, deques, heaps and amortization 9
-6 Trees and recursive summaries 10
-7 Graph modeling, BFS and DFS 10
-8 Weighted paths and graph optimization 11
-9 Greedy reasoning, intervals and sweeps 12
-10 Backtracking and exponential search 12
-11 Dynamic programming: deriving states 13
-12 Dynamic programming: structural variants 14
-13 Strings, tries and pattern matching 14
-14 Range queries and ordered information 15
-15 Advanced graph structure and reductions 16
-16 Counting, number theory and geometry 17
-17 Composition and the expanding frontier 18
+Stage
+Focus
+Page
+0
+Baseline and setup
+5
+1
+Reasoning, complexity and correctness
+6
+2
+Arrays, hashing and prefix information
+7
+3
+Two pointers and sliding windows
+8
+4
+Binary search and divide and conquer
+8
+5
+Stacks, deques, heaps and amortization
+9
+6
+Trees and recursive summaries
+10
+7
+Graph modeling, BFS and DFS
+10
+8
+Weighted paths and graph optimization
+11
+9
+Greedy reasoning, intervals and sweeps
+12
+10
+Backtracking and exponential search
+12
+11
+Dynamic programming: deriving states
+13
+12
+Dynamic programming: structural variants
+14
+13
+Strings, tries and pattern matching
+14
+14
+Range queries and ordered information
+15
+15
+Advanced graph structure and reductions
+16
+16
+Counting, number theory and geometry
+17
+17
+Composition and the expanding frontier
+18
 Stages 1-7 build foundations; 8-12 develop algorithm selection; 13-16 broaden coverage. Stage 17 combines techniques and
 remains open for new gaps.
 Practice links use E / M / H for LeetCode difficulty. CSES problems are labeled separately. Named exercises are training
@@ -152,11 +256,11 @@ heaps, queue indices, bytes/runes, recursion depth and integer bounds. Build cor
 use permitted library tools.
 For selected exercises, compare the efficient algorithm against a simple brute-force solver on small
 generated inputs. Go fuzzing is optional. Tests complement the correctness argument.
-Algorithms Mastery Course | 5
 LINK: https://go.dev/doc/tutorial/fuzz
 
 === PAGE 6 ===
 
+Algorithms Mastery Course | 6
 Baseline tasks
 1. Attempt selected MIT 6.006 Problem Set 0 questions before reading solutions. Separate unfamiliar
 Python/notation from conceptual gaps; translate programming tasks into Go.
@@ -164,13 +268,19 @@ Python/notation from conceptual gaps; translate programming tasks into Go.
 3. Implement a queue and graph traversal if you already know them.
 4. Attempt one unfamiliar Easy and one unfamiliar Medium problem.
 Choose the next action
-Observed gap Response
-Syntax or standard-library friction Use drills in the exercise language before adding a new algorithm.
-Cannot justify correctness Start Stage 1; practice invariants and induction.
-Understands solutions but cannot Practice modeling and mixed, unlabeled tasks.
+Observed gap
+Response
+Syntax or standard-library friction
+Use drills in the exercise language before adding a new algorithm.
+Cannot justify correctness
+Start Stage 1; practice invariants and induction.
+Understands solutions but cannot
 choose
-Finds the idea but code fails Build smaller pieces; test boundaries and compare with brute force.
-Correct but slow Separate modeling, coding and debugging time; work on the bottleneck.
+Practice modeling and mixed, unlabeled tasks.
+Finds the idea but code fails
+Build smaller pieces; test boundaries and compare with brute force.
+Correct but slow
+Separate modeling, coding and debugging time; work on the bottleneck.
 Start the first learning cycle
 Read a short explanation of your weakest foundational idea. Trace one example, close the material,
 implement it and solve a related problem. Return after a delay and reconstruct it without notes.
@@ -191,17 +301,19 @@ Asymptotic bounds; worst-case and amortized cost; sums/recurrences; invariants; 
 input size versus numeric value.
 Recommended study
 MIT: Introduction. ADM: algorithm design and analysis.
-Algorithms Mastery Course | 6
 LINK: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/assignments/
 
 === PAGE 7 ===
 
+Algorithms Mastery Course | 7
 Build task
 Implement linear search and merge sort. Prove each correct; analyze five loop/recursion snippets and
 compare predicted growth with measurements.
 Practice ladder
-• Two Sum (E)
-• Valid Parentheses (E)
+•
+Two Sum (E)
+•
+Valid Parentheses (E)
 Variation
 Explain why brackets need a stack; give a counterexample to counting alone.
 Exit gate
@@ -220,14 +332,16 @@ Build task
 Implement prefix sums and a frequency-based subarray counter. Compare with brute force on small
 inputs, including zeros, duplicates and negatives.
 Practice ladder
-• Group Anagrams (M)
-• Subarray Sum Equals K (M)
-• First Missing Positive (H)
+•
+Group Anagrams (M)
+•
+Subarray Sum Equals K (M)
+•
+First Missing Positive (H)
 Variation
 Change existence to counting, then to recovering indices. Decide whether the same state suffices.
 Exit gate
 Derive map keys/values from the query; justify update order, duplicate handling and space cost.
-Algorithms Mastery Course | 7
 LINK: https://leetcode.com/problems/two-sum/
 LINK: https://leetcode.com/problems/valid-parentheses/
 LINK: https://leetcode.com/problems/group-anagrams/
@@ -236,6 +350,7 @@ LINK: https://leetcode.com/problems/first-missing-positive/
 
 === PAGE 8 ===
 
+Algorithms Mastery Course | 8
 7. Stage 3 - Two pointers and sliding windows
 Prerequisites: 2
 Objective
@@ -249,8 +364,10 @@ Build task
 Implement longest-valid and minimum-cover windows. Test repeated requirements and empty cases;
 explain why each element is processed O(1) times.
 Practice ladder
-• Longest Substring Without Repeating Characters (M)
-• Minimum Window Substring (H)
+•
+Longest Substring Without Repeating Characters (M)
+•
+Minimum Window Substring (H)
 Variation
 Replace uniqueness with a repetition cap. Derive exactly-k counts from at-most counts.
 Exit gate
@@ -268,17 +385,21 @@ MIT: Sorting. Handbook: sorting and binary search.
 Build task
 Implement lower_bound and upper_bound from memory. Test empty, singleton, duplicate and all-equal
 inputs; separately prove an answer-search feasibility check.
-Algorithms Mastery Course | 8
 LINK: https://leetcode.com/problems/longest-substring-without-repeating-characters/
 LINK: https://leetcode.com/problems/minimum-window-substring/
 
 === PAGE 9 ===
 
+Algorithms Mastery Course | 9
 Practice ladder
-• Binary Search (E)
-• Search in Rotated Sorted Array (M)
-• Split Array Largest Sum (H)
-• Median of Two Sorted Arrays (H, stretch)
+•
+Binary Search (E)
+•
+Search in Rotated Sorted Array (M)
+•
+Split Array Largest Sum (H)
+•
+Median of Two Sorted Arrays (H, stretch)
 Variation
 Search for the first feasible capacity; identify a change that breaks monotonicity.
 Exit gate
@@ -297,17 +418,21 @@ Build task
 Build a binary heap, then use the exercise language's library heap (section 24). Implement a monotonic
 deque and justify each removal.
 Practice ladder
-• Daily Temperatures (M)
-• Largest Rectangle in Histogram (H)
-• Sliding Window Maximum (H)
-• Merge k Sorted Lists (H)
-• Find Median from Data Stream (H)
+•
+Daily Temperatures (M)
+•
+Largest Rectangle in Histogram (H)
+•
+Sliding Window Maximum (H)
+•
+Merge k Sorted Lists (H)
+•
+Find Median from Data Stream (H)
 Variation
 Solve Shortest Subarray with Sum at Least K (H); explain why a deque handles signed data.
 Exit gate
 Prove O(n) aggregate deque work and preserve heap order/balance. Count total pushes/pops, not loop
 nesting.
-Algorithms Mastery Course | 9
 LINK: https://leetcode.com/problems/binary-search/
 LINK: https://leetcode.com/problems/search-in-rotated-sorted-array/
 LINK: https://leetcode.com/problems/split-array-largest-sum/
@@ -321,6 +446,7 @@ LINK: https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/
 
 === PAGE 10 ===
 
+Algorithms Mastery Course | 10
 10. Stage 6 - Trees and recursive summaries
 Prerequisites: 1, 5
 Objective
@@ -334,10 +460,14 @@ Build task
 Write recursive/iterative traversals and state each recursive contract. Build a serializer/deserializer with
 round-trip tests.
 Practice ladder
-• Validate Binary Search Tree (M)
-• Lowest Common Ancestor of a Binary Tree (M)
-• Binary Tree Maximum Path Sum (H)
-• Serialize and Deserialize Binary Tree (H)
+•
+Validate Binary Search Tree (M)
+•
+Lowest Common Ancestor of a Binary Tree (M)
+•
+Binary Tree Maximum Path Sum (H)
+•
+Serialize and Deserialize Binary Tree (H)
 Variation
 Sketch the extra parent-to-child information needed to answer for every root; implement rerooting in
 Stage 12.
@@ -353,7 +483,6 @@ Adjacency lists; directed/undirected edges; visited states; BFS layers; DFS colo
 topological order; implicit graphs.
 Recommended study
 MIT: BFS and DFS. ADM: graph traversal.
-Algorithms Mastery Course | 10
 LINK: https://leetcode.com/problems/validate-binary-search-tree/
 LINK: https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 LINK: https://leetcode.com/problems/binary-tree-maximum-path-sum/
@@ -361,13 +490,17 @@ LINK: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
 
 === PAGE 11 ===
 
+Algorithms Mastery Course | 11
 Build task
 Implement BFS with path recovery and DFS/topological sorting. Model a grid and a dependency
 workflow; test cycles and unreachable/isolated vertices.
 Practice ladder
-• Number of Islands (M)
-• Course Schedule II (M)
-• Word Ladder (H)
+•
+Number of Islands (M)
+•
+Course Schedule II (M)
+•
+Word Ladder (H)
 Variation
 Add parity, a resource budget or collected keys. Decide whether visited[vertex] still works.
 Exit gate
@@ -385,14 +518,16 @@ Build task
 Implement Dijkstra with path recovery and 0-1 BFS. Check Dijkstra against Bellman-Ford on random
 nonnegative graphs.
 Practice ladder
-• Network Delay Time (M)
-• Cheapest Flights Within K Stops (M)
-• Minimum Cost to Make at Least One Valid Path in a Grid (H)
+•
+Network Delay Time (M)
+•
+Cheapest Flights Within K Stops (M)
+•
+Minimum Cost to Make at Least One Valid Path in a Grid (H)
 Variation
 Add a stop budget and a limited-use discount; explain why one cost per vertex may be insufficient.
 Exit gate
 State each algorithm's assumptions, handle stale work, justify state and bound its expanded cost.
-Algorithms Mastery Course | 11
 LINK: https://leetcode.com/problems/number-of-islands/
 LINK: https://leetcode.com/problems/course-schedule-ii/
 LINK: https://leetcode.com/problems/word-ladder/
@@ -402,6 +537,7 @@ LINK: https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path
 
 === PAGE 12 ===
 
+Algorithms Mastery Course | 12
 13. Stage 9 - Greedy reasoning, intervals and sweeps
 Prerequisites: 4-5
 Objective
@@ -415,9 +551,12 @@ Build task
 Implement interval scheduling and an event sweep. Check small cases by enumerating subsets; find
 counterexamples to alternative sort orders.
 Practice ladder
-• Non-overlapping Intervals (M)
-• Gas Station (M)
-• Candy (H)
+•
+Non-overlapping Intervals (M)
+•
+Gas Station (M)
+•
+Candy (H)
 Variation
 Add interval weights. Explain why the greedy proof fails and derive a DP after Stage 11.
 Exit gate
@@ -434,18 +573,22 @@ ADM: combinatorial search. Erickson: Backtracking. Handbook: bit manipulation.
 Build task
 Implement subsets, permutations and a constraint solver. Compare pruned search with exhaustive
 enumeration on small inputs.
-Algorithms Mastery Course | 12
 LINK: https://leetcode.com/problems/non-overlapping-intervals/
 LINK: https://leetcode.com/problems/gas-station/
 LINK: https://leetcode.com/problems/candy/
 
 === PAGE 13 ===
 
+Algorithms Mastery Course | 13
 Practice ladder
-• Subsets (M)
-• Combination Sum (M)
-• N-Queens (H)
-• Sudoku Solver (H)
+•
+Subsets (M)
+•
+Combination Sum (M)
+•
+N-Queens (H)
+•
+Sudoku Solver (H)
 Variation
 Add duplicates or ask only for counts; justify which symmetry rules preserve every distinct answer.
 Exit gate
@@ -464,17 +607,20 @@ Build task
 Write state, recurrence, bases, order and cost before coding. Implement memoized and bottom-up
 versions; compare with brute force.
 Practice ladder
-• House Robber (M)
-• Coin Change (M)
-• Edit Distance (M)
-• Distinct Subsequences (H)
+•
+House Robber (M)
+•
+Coin Change (M)
+•
+Edit Distance (M)
+•
+Distinct Subsequences (H)
 Variation
 Change optimization to counting or reconstruction; check base values and whether order creates distinct
 outcomes.
 Exit gate
 Prove state preserves all relevant history and derive the recurrence independently. Check numeric
 capacities in bounds such as O(nW).
-Algorithms Mastery Course | 13
 LINK: https://leetcode.com/problems/subsets/
 LINK: https://leetcode.com/problems/combination-sum/
 LINK: https://leetcode.com/problems/n-queens/
@@ -486,6 +632,7 @@ LINK: https://leetcode.com/problems/distinct-subsequences/
 
 === PAGE 14 ===
 
+Algorithms Mastery Course | 14
 16. Stage 12 - Dynamic programming: structural variants
 Prerequisites: 6, 8-11
 Objective
@@ -499,10 +646,14 @@ Build task
 Build interval, subset and tree DPs. Derive interval DP from the last decision; count states times transitions
 and check small cases exhaustively.
 Practice ladder
-• Longest Increasing Subsequence (M)
-• Burst Balloons (H)
-• Regular Expression Matching (H)
-• Elevator Rides (CSES)
+•
+Longest Increasing Subsequence (M)
+•
+Burst Balloons (H)
+•
+Regular Expression Matching (H)
+•
+Elevator Rides (CSES)
 Variation
 Compare O(n^2) LIS with a faster frontier; explain its meaning. Implement the rerooting sketched in Stage
 6.
@@ -518,7 +669,6 @@ Tries; KMP/prefix function or Z-function; exact matching; rolling-hash collision
 versus Unicode.
 Recommended study
 Handbook: strings. CP-Algorithms: prefix function or Z-function.
-Algorithms Mastery Course | 14
 LINK: https://leetcode.com/problems/longest-increasing-subsequence/
 LINK: https://leetcode.com/problems/burst-balloons/
 LINK: https://leetcode.com/problems/regular-expression-matching/
@@ -526,14 +676,19 @@ LINK: https://cses.fi/problemset/task/1653
 
 === PAGE 15 ===
 
+Algorithms Mastery Course | 15
 Build task
 Build a trie and a linear-time matcher. Compare with naive matching on short random strings; test
 repetition, overlaps and empty patterns where supported.
 Practice ladder
-• Implement Trie (Prefix Tree) (M)
-• Find the Index of the First Occurrence in a String (E, use linear-time matching)
-• Word Search II (H)
-• Shortest Palindrome (H)
+•
+Implement Trie (Prefix Tree) (M)
+•
+Find the Index of the First Occurrence in a String (E, use linear-time matching)
+•
+Word Search II (H)
+•
+Shortest Palindrome (H)
 Variation
 Move from one pattern to many. Explain trie reuse; explore Aho-Corasick in Stage 17.
 Exit gate
@@ -552,13 +707,16 @@ Build task
 Build Fenwick and segment trees. Compare random updates/queries with a plain array; then add one lazy
 range-update variant.
 Practice ladder
-• Static Range Sum Queries (CSES)
-• Range Sum Query - Mutable (M)
-• Count of Smaller Numbers After Self (H)
-• Count of Range Sum (H)
+•
+Static Range Sum Queries (CSES)
+•
+Range Sum Query - Mutable (M)
+•
+Count of Smaller Numbers After Self (H)
+•
+Count of Range Sum (H)
 Variation
 Switch static data to online updates or sums to minima; reassess the required algebraic properties.
-Algorithms Mastery Course | 15
 LINK: https://leetcode.com/problems/implement-trie-prefix-tree/
 LINK: https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
 LINK: https://leetcode.com/problems/word-search-ii/
@@ -570,6 +728,7 @@ LINK: https://leetcode.com/problems/count-of-range-sum/
 
 === PAGE 16 ===
 
+Algorithms Mastery Course | 16
 Exit gate
 Define boundaries and merge/identity; prove query decomposition. Compression preserves order, not
 geometric distance.
@@ -583,7 +742,8 @@ Disjoint sets, Kruskal, binary lifting and ancestor queries.
 Build task
 Implement DSU and binary lifting. Check small connectivity and ancestor queries against simple traversal.
 Practice ladder
-• Redundant Connection (M); Company Queries II (CSES).
+•
+Redundant Connection (M); Company Queries II (CSES).
 B. Graph decomposition
 Core topics
 Bridges/low-link values; strongly connected components (SCCs); condensation DAGs; Euler trails.
@@ -591,15 +751,16 @@ Build task
 Implement one SCC algorithm; verify components on small graphs. For undirected bridge code, track
 edge identity so parallel edges are handled correctly.
 Practice ladder
-• Critical Connections in a Network (H); Reconstruct Itinerary (H); Coin Collector (CSES).
+•
+Critical Connections in a Network (H); Reconstruct Itinerary (H); Coin Collector (CSES).
 C. Flow and matching
 Core topics
 Residual networks; maximum flow; bipartite matching; reductions.
 Build task
 Implement a residual-flow solver. Check tiny cases by enumeration and verify a flow/cut certificate.
 Practice ladder
-• Download Speed and School Dance (CSES).
-Algorithms Mastery Course | 16
+•
+Download Speed and School Dance (CSES).
 LINK: https://leetcode.com/problems/redundant-connection/
 LINK: https://cses.fi/problemset/task/1688
 LINK: https://leetcode.com/problems/critical-connections-in-a-network/
@@ -610,6 +771,7 @@ LINK: https://cses.fi/problemset/task/1696
 
 === PAGE 17 ===
 
+Algorithms Mastery Course | 17
 Variation
 Model resource assignment as matching. Show both directions: every feasible assignment gives a graph
 solution, and every graph solution gives a valid assignment.
@@ -632,19 +794,21 @@ Build task
 Implement gcd, modular exponentiation and integer orientation. Check counting formulas by enumeration;
 normalize slopes and handle duplicate points.
 Practice ladder
-• Number of Digit One (H)
-• Max Points on a Line (H)
+•
+Number of Digit One (H)
+•
+Max Points on a Line (H)
 Variation
 Change a digit/base/range constraint. Extend collinearity to segment intersection.
 Exit gate
 Derive the counting argument, state inverse conditions and bound intermediate integers. Avoid
 floating-point equality for exact geometry.
-Algorithms Mastery Course | 17
 LINK: https://leetcode.com/problems/number-of-digit-one/
 LINK: https://leetcode.com/problems/max-points-on-a-line/
 
 === PAGE 18 ===
 
+Algorithms Mastery Course | 18
 21. Stage 17 - Composition and the expanding frontier
 Prerequisites: 1-16
 Objective
@@ -658,7 +822,8 @@ Build task
 Combine two techniques, such as a sweep and a range structure. Learn one new specialist technique,
 state its preconditions and implement it with an independent checker.
 Practice ladder
-• CSES Advanced Techniques or USACO Guide problems selected from your gaps.
+•
+CSES Advanced Techniques or USACO Guide problems selected from your gaps.
 Variation
 Solve a fresh task, change one structural assumption and determine whether the method survives.
 Exit gate
@@ -676,22 +841,34 @@ next compatible stage while this check is pending.
 A 90-minute task can span planned study sessions. Count total active time and do not study its solution
 between sessions. Agree on each block before starting or resuming. Stage 17 adds combination tasks, a
 specialist implementation, and the Hard benchmark.
-Algorithms Mastery Course | 18
 LINK: https://cses.fi/problemset/
 LINK: https://usaco.guide/
 
 === PAGE 19 ===
 
+Algorithms Mastery Course | 19
 Score independent attempts
-Dimension 2 - Sound 3 - Strong
-Model and approach Finds a valid approach independently. Chooses an efficient approach; explains
+Dimension
+2 - Sound
+3 - Strong
+Model and approach
+Finds a valid approach independently.
+Chooses an efficient approach; explains
 alternatives.
-Correctness Gives a coherent invariant, induction or case Handles assumptions and difficult boundaries
-argument. convincingly.
-Implementation Working code with minor self-corrected issues. Correct code, useful tests, no unresolved
+Correctness
+Gives a coherent invariant, induction or case
+argument.
+Handles assumptions and difficult boundaries
+convincingly.
+Implementation
+Working code with minor self-corrected issues.
+Correct code, useful tests, no unresolved
 defects.
-Complexity and limits Correct time/space bounds and key Accounts for hidden work, expanded state and
-assumptions. tradeoffs.
+Complexity and limits
+Correct time/space bounds and key
+assumptions.
+Accounts for hidden work, expanded state and
+tradeoffs.
 Score 0-1 when the work falls below "Sound." Pass at 10/12 or higher, no dimension below 2, and
 implementation at 3. Check against reliable tests/solutions; seek outside review when a proof is
 uncertain.
@@ -714,17 +891,24 @@ Begin after broad topic coverage and reliable Medium performance.
 Have a reviewer or selector choose published Hard problems you have never attempted and whose
 solution ideas you have not studied. Use two problems from each family; assign each problem one
 primary family.
-Families 1-5 Families 6-10
-Arrays / windows Graph structure / reductions
-Search / greedy Basic / sequence DP
-Stacks / heaps Advanced DP
-Algorithms Mastery Course | 19
+Families 1-5
+Families 6-10
+Arrays / windows
+Graph structure / reductions
+Search / greedy
+Basic / sequence DP
+Stacks / heaps
+Advanced DP
 
 === PAGE 20 ===
 
-Families 1-5 Families 6-10
-Trees Strings
-Graph paths / traversal Range queries / counting / math / geometry
+Algorithms Mastery Course | 20
+Families 1-5
+Families 6-10
+Trees
+Strings
+Graph paths / traversal
+Range queries / counting / math / geometry
 Hide tags, acceptance rates, editorials and technique names added by the selector. Replace accidental
 prior exposure before starting; keep valid selections even if they look difficult.
 2. Run each attempt
@@ -759,10 +943,10 @@ appropriate use of the language and its standard library.
 Before Rust algorithm work, learn basic syntax, tests, collections and ownership rules for memory
 management. Study borrowing, which allows access without transferring ownership. Then implement
 small algorithms that you already understand.
-Algorithms Mastery Course | 20
 
 === PAGE 21 ===
 
+Algorithms Mastery Course | 21
 Practice without tripling the course
 Choose one language per exercise. Revisit selected algorithms in another language after a delay. Close
 the original implementation and reconstruct the solution. Use the same expected results to test each
@@ -790,16 +974,36 @@ Calculate the ordinary study split
 Retrieval means recalling prior learning without notes. Reserve one-sixth each for retrieval and feedback.
 Round each to whole minutes, with halves rounded up and a minimum of one minute. Assign the rest to
 focused work. Use at least three active minutes.
-Available Retrieval Focused work Feedback
-20 min 3 min 14 min 3 min
-30 min 5 min 20 min 5 min
-45 min 8 min 29 min 8 min
-60 min 10 min 40 min 10 min
-90 min 15 min 60 min 15 min
-120 min 20 min 80 min 20 min
+Available
+Retrieval
+Focused work
+Feedback
+20 min
+3 min
+14 min
+3 min
+30 min
+5 min
+20 min
+5 min
+45 min
+8 min
+29 min
+8 min
+60 min
+10 min
+40 min
+10 min
+90 min
+15 min
+60 min
+15 min
+120 min
+20 min
+80 min
+20 min
 Choose work that fits
 Retrieval: select due reviews that fit, starting with weak skills. If none are due, use a baseline prompt.
-Algorithms Mastery Course | 21
 LINK: https://doc.rust-lang.org/book/
 LINK: https://pkg.go.dev/container/heap
 LINK: https://eel.is/c++draft/priority.queue
@@ -807,6 +1011,7 @@ LINK: https://doc.rust-lang.org/std/collections/struct.BinaryHeap.html
 
 === PAGE 22 ===
 
+Algorithms Mastery Course | 22
 Focused work: follow the weekday theme, prerequisites, and unfinished work. With 20-30 minutes total,
 target one model, trace, proof step, or repair. With 45-60 minutes, attempt a small exercise or a larger
 task segment. With 90-120 minutes, plan smaller work blocks, with a related application if progress
@@ -847,7 +1052,6 @@ Algorithms - Jeff Erickson. Design, proofs, DP, graph algorithms and flows.
 Competitive Programmer's Handbook. The "Handbook" cited in stages: concise techniques for graphs,
 strings, mathematics and range queries. Use examples in the exercise language.
 CP-Algorithms. Reference for a specific technique or implementation detail.
-Algorithms Mastery Course | 22
 LINK: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/
 LINK: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/lecture-notes/
 LINK: https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/assignments/
@@ -862,6 +1066,7 @@ LINK: https://cp-algorithms.com/
 
 === PAGE 23 ===
 
+Algorithms Mastery Course | 23
 USACO Guide. Optional advanced explanations and problem selection. Use the modules that address a
 demonstrated gap.
 27. Selected references
@@ -877,7 +1082,6 @@ Karpicke & Bauernschmidt (2011) - spaced retrieval and the limits of prescribing
 IES practice guide (2007) - spacing, worked examples with problem-solving, retrieval, and explanatory questions.
 Updated 27 October 2026 for lesson planning, proof instruction, independent application, and selective review. Practice
 links and assessment standards remain unchanged. Problem statements and solutions remain with their original publishers.
-Algorithms Mastery Course | 23
 LINK: https://usaco.guide/
 LINK: https://acs.ist.psu.edu/ist521/dunloskyRMNW13.pdf
 LINK: https://pubmed.ncbi.nlm.nih.gov/21252317/
