@@ -29,29 +29,29 @@ You therefore already possess:
 
 \begin{topics}
 
-\item strong modern C++
+\item strong modern C++.
 
-\item concurrency and memory-model knowledge
+\item concurrency and memory-model knowledge.
 
-\item CPU/cache/memory knowledge
+\item CPU/cache/memory knowledge.
 
-\item Linux systems competence
+\item Linux systems competence.
 
-\item TCP/UDP and low-latency networking
+\item TCP/UDP and low-latency networking.
 
-\item performance profiling
+\item performance profiling.
 
-\item latency measurement
+\item latency measurement.
 
-\item distributed-systems experience
+\item distributed-systems experience.
 
-\item significant systems programming practice
+\item significant systems programming practice.
 
-\item a substantial trading-system project
+\item a substantial trading-system project.
 
-\item experience reading serious systems code
+\item experience reading serious systems code.
 
-\item algorithm/interview preparation
+\item algorithm/interview preparation.
 
 \end{topics}
 
@@ -89,7 +89,7 @@ You build the thing, instrument the thing, break the thing, understand why it br
 
 \section{How the curriculum works}\label{sec:2}
 
-The course is mastery-gated rather than time-gated. Follow the required path in section 3.
+The course is mastery-gated rather than time-gated. Follow the required path in the \hyperref[sec:3]{Curriculum map}.
 
 There are no calendar deadlines, but there is also no requirement that every topic be understood at research depth. Exit gates exist to prevent endless studying.
 
@@ -98,9 +98,7 @@ There are no calendar deadlines, but there is also no requirement that every top
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.1200\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
-\midrule
 0 & Oxide architecture and laboratory & \pageref{stage:0} \\
 1 & Rust systems mastery & \pageref{stage:1} \\
 2 & illumos, Helios, DTrace and MDB & \pageref{stage:2} \\
@@ -114,7 +112,6 @@ There are no calendar deadlines, but there is also no requirement that every top
 10 & Minirack flagship system & \pageref{stage:10} \\
 11 & Open-source engineering & \pageref{stage:11} \\
 12 & Oxide application portfolio & \pageref{stage:12} \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -129,16 +126,13 @@ Build a mental model of Oxide's system before attempting to specialize in it.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Component} & \textbf{Role} \\
-\midrule
 Helios & Host operating system built from illumos. \\
 Propolis & Rust userspace VMM built around bhyve. \\
 Omicron & Rust control plane. \\
 Crucible & Distributed network-replicated block storage. \\
 Hubris & Embedded Rust operating environment. \\
 Dendrite / OPTE / networking stack & Rack and host networking components. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -146,15 +140,15 @@ Dendrite / OPTE / networking stack & Rack and host networking components. \\
 
 \begin{itemize}
 
-\item RFD 3 - Hiring Process
+\item RFD 3 - Hiring Process.
 
-\item RFD 26 - Host Operating System \& Hypervisor
+\item RFD 26 - Host Operating System \& Hypervisor.
 
-\item RFD 60 - Storage Architecture
+\item RFD 60 - Storage Architecture.
 
-\item RFD 63 - Network Architecture
+\item RFD 63 - Network Architecture.
 
-\item RFD 177 - Crucible implementation
+\item RFD 177 - Crucible implementation.
 
 \end{itemize}
 
@@ -196,19 +190,19 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \begin{topics}
 
-\item ownership and borrowing
+\item ownership and borrowing.
 
-\item lifetimes
+\item lifetimes.
 
-\item enums and pattern matching
+\item enums and pattern matching.
 
-\item traits and generics
+\item traits and generics.
 
-\item iterators and closures
+\item iterators and closures.
 
-\item Result and error propagation
+\item Result and error propagation.
 
-\item modules and crates
+\item modules and crates.
 
 \end{topics}
 
@@ -216,17 +210,17 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \begin{topics}
 
-\item Box, Arc, Rc
+\item Box, Arc, Rc.
 
-\item Cell and RefCell
+\item Cell and RefCell.
 
-\item pinning
+\item pinning.
 
-\item object representation and alignment
+\item object representation and alignment.
 
-\item FFI
+\item FFI.
 
-\item raw pointers
+\item raw pointers.
 
 \end{topics}
 
@@ -234,19 +228,19 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \begin{topics}
 
-\item Send and Sync
+\item Send and Sync.
 
-\item atomics
+\item atomics.
 
-\item mutexes
+\item mutexes.
 
-\item channels
+\item channels.
 
-\item scoped threads
+\item scoped threads.
 
-\item async/await
+\item async/await.
 
-\item futures
+\item futures.
 
 \end{topics}
 
@@ -254,19 +248,19 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \begin{topics}
 
-\item raw pointer invariants
+\item raw pointer invariants.
 
-\item aliasing
+\item aliasing.
 
-\item UnsafeCell
+\item UnsafeCell.
 
-\item uninitialized memory
+\item uninitialized memory.
 
-\item FFI boundaries
+\item FFI boundaries.
 
-\item unsafe traits
+\item unsafe traits.
 
-\item safe abstractions over unsafe implementations
+\item safe abstractions over unsafe implementations.
 
 \end{topics}
 
@@ -288,23 +282,23 @@ Implement a substantial concurrent component. Stress test it and use property-ba
 
 \begin{itemize}
 
-\item work comfortably in a large Cargo workspace
+\item work comfortably in a large Cargo workspace.
 
-\item diagnose borrow/lifetime problems instead of randomly appeasing the compiler
+\item diagnose borrow/lifetime problems instead of randomly appeasing the compiler.
 
-\item design ownership intentionally
+\item design ownership intentionally.
 
-\item reason about Send and Sync
+\item reason about Send and Sync.
 
-\item write asynchronous services
+\item write asynchronous services.
 
-\item interface Rust with C
+\item interface Rust with C.
 
-\item review unsafe Rust
+\item review unsafe Rust.
 
-\item profile Rust applications
+\item profile Rust applications.
 
-\item explain where Rust safety guarantees stop
+\item explain where Rust safety guarantees stop.
 
 \end{itemize}
 
@@ -320,19 +314,19 @@ Create a dedicated VM or physical system. Install an illumos-derived environment
 
 \begin{topics}
 
-\item processes and threads
+\item processes and threads.
 
-\item zones
+\item zones.
 
-\item SMF
+\item SMF.
 
-\item ZFS
+\item ZFS.
 
-\item device trees
+\item device trees.
 
-\item /dev
+\item /dev.
 
-\item illumos observability facilities
+\item illumos observability facilities.
 
 \end{topics}
 
@@ -342,23 +336,23 @@ Compare each with the Linux equivalents you already know.
 
 \begin{topics}
 
-\item probes and providers
+\item probes and providers.
 
-\item predicates
+\item predicates.
 
-\item aggregations
+\item aggregations.
 
-\item stack traces
+\item stack traces.
 
-\item syscall tracing
+\item syscall tracing.
 
-\item scheduler tracing
+\item scheduler tracing.
 
-\item I/O tracing
+\item I/O tracing.
 
-\item network tracing
+\item network tracing.
 
-\item latency distributions
+\item latency distributions.
 
 \end{topics}
 
@@ -368,17 +362,17 @@ Add your own instrumentation to a program. Your target skill is: something stran
 
 \begin{topics}
 
-\item process inspection
+\item process inspection.
 
-\item kernel inspection
+\item kernel inspection.
 
-\item stack examination
+\item stack examination.
 
-\item structures
+\item structures.
 
-\item postmortem analysis
+\item postmortem analysis.
 
-\item crash dumps
+\item crash dumps.
 
 \end{topics}
 
@@ -388,17 +382,17 @@ Create several intentional bugs, randomize which one is active, and diagnose the
 
 \begin{topics}
 
-\item CPU saturation
+\item CPU saturation.
 
-\item lock contention
+\item lock contention.
 
-\item memory leak
+\item memory leak.
 
-\item blocked I/O
+\item blocked I/O.
 
-\item network latency
+\item network latency.
 
-\item runaway syscall rate
+\item runaway syscall rate.
 
 \end{topics}
 
@@ -416,29 +410,29 @@ This stage transforms you from someone who understands an OS into someone who ha
 
 \begin{topics}
 
-\item syscall implementation
+\item syscall implementation.
 
-\item virtual memory and page tables
+\item virtual memory and page tables.
 
-\item scheduling
+\item scheduling.
 
-\item synchronization
+\item synchronization.
 
-\item kernel allocators
+\item kernel allocators.
 
-\item interrupts and timers
+\item interrupts and timers.
 
-\item device discovery
+\item device discovery.
 
-\item driver architecture
+\item driver architecture.
 
-\item kernel/user transitions
+\item kernel/user transitions.
 
-\item IPC
+\item IPC.
 
-\item filesystems
+\item filesystems.
 
-\item security boundaries
+\item security boundaries.
 
 \end{topics}
 
@@ -450,21 +444,21 @@ Learn enough assembly to follow calling conventions, register use, stack frames,
 
 \begin{topics}
 
-\item page-table translation
+\item page-table translation.
 
-\item TLBs
+\item TLBs.
 
-\item MSRs
+\item MSRs.
 
-\item APIC
+\item APIC.
 
-\item privilege rings
+\item privilege rings.
 
-\item exceptions
+\item exceptions.
 
-\item atomic instructions
+\item atomic instructions.
 
-\item memory ordering
+\item memory ordering.
 
 \end{topics}
 
@@ -474,25 +468,25 @@ Use processor manuals selectively. The skill is learning to navigate imperfect h
 
 \begin{topics}
 
-\item PCIe
+\item PCIe.
 
-\item MMIO
+\item MMIO.
 
-\item DMA
+\item DMA.
 
-\item IOMMU
+\item IOMMU.
 
-\item device registers
+\item device registers.
 
-\item interrupts / MSI-X
+\item interrupts / MSI-X.
 
-\item firmware
+\item firmware.
 
-\item device discovery
+\item device discovery.
 
-\item NIC queues
+\item NIC queues.
 
-\item NVMe architecture
+\item NVMe architecture.
 
 \end{topics}
 
@@ -530,35 +524,35 @@ You should be able to follow application -> syscall -> kernel -> driver -> devic
 
 \begin{topics}
 
-\item privileged execution
+\item privileged execution.
 
-\item VM exits
+\item VM exits.
 
-\item hardware virtualization
+\item hardware virtualization.
 
-\item guest/host transitions
+\item guest/host transitions.
 
-\item nested page tables
+\item nested page tables.
 
-\item virtual interrupts
+\item virtual interrupts.
 
-\item vCPUs
+\item vCPUs.
 
-\item device emulation
+\item device emulation.
 
-\item paravirtualization
+\item paravirtualization.
 
-\item virtio
+\item virtio.
 
-\item IOMMUs
+\item IOMMUs.
 
-\item memory ballooning conceptually
+\item memory ballooning conceptually.
 
-\item VM lifecycle
+\item VM lifecycle.
 
-\item live migration
+\item live migration.
 
-\item time virtualization
+\item time virtualization.
 
 \end{topics}
 
@@ -572,21 +566,21 @@ Implement a virtual device such as a simple virtio device, entropy device, virtu
 
 \begin{topics}
 
-\item design specification
+\item design specification.
 
-\item implementation
+\item implementation.
 
-\item guest interaction
+\item guest interaction.
 
-\item tracing
+\item tracing.
 
-\item tests
+\item tests.
 
-\item failure behavior
+\item failure behavior.
 
-\item benchmark
+\item benchmark.
 
-\item debugging guide
+\item debugging guide.
 
 \end{topics}
 
@@ -606,25 +600,25 @@ The trading curriculum already established sockets, TCP/UDP, multicast and perfo
 
 \begin{topics}
 
-\item NIC descriptors
+\item NIC descriptors.
 
-\item RX/TX rings
+\item RX/TX rings.
 
-\item DMA
+\item DMA.
 
-\item checksumming
+\item checksumming.
 
-\item TSO/GSO concepts
+\item TSO/GSO concepts.
 
-\item RSS
+\item RSS.
 
-\item interrupt moderation
+\item interrupt moderation.
 
-\item packet steering
+\item packet steering.
 
-\item hardware offloads
+\item hardware offloads.
 
-\item driver interaction
+\item driver interaction.
 
 \end{topics}
 
@@ -634,39 +628,39 @@ Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket
 
 \begin{topics}
 
-\item longest-prefix matching
+\item longest-prefix matching.
 
-\item ARP / NDP
+\item ARP / NDP.
 
-\item IPv4 / IPv6
+\item IPv4 / IPv6.
 
-\item routing tables
+\item routing tables.
 
-\item ECMP
+\item ECMP.
 
-\item BGP
+\item BGP.
 
-\item route advertisement
+\item route advertisement.
 
-\item convergence
+\item convergence.
 
-\item overlays
+\item overlays.
 
-\item tunneling
+\item tunneling.
 
-\item NAT
+\item NAT.
 
-\item firewalls
+\item firewalls.
 
-\item load balancing
+\item load balancing.
 
-\item VXLAN-style overlays
+\item VXLAN-style overlays.
 
-\item underlay vs overlay
+\item underlay vs overlay.
 
-\item virtual networking
+\item virtual networking.
 
-\item east-west traffic
+\item east-west traffic.
 
 \end{topics}
 
@@ -674,17 +668,17 @@ Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket
 
 \begin{topics}
 
-\item ESP
+\item ESP.
 
-\item security associations
+\item security associations.
 
-\item key-management concepts
+\item key-management concepts.
 
-\item tunnel vs transport mode
+\item tunnel vs transport mode.
 
-\item replay protection
+\item replay protection.
 
-\item performance implications
+\item performance implications.
 
 \end{topics}
 
@@ -698,19 +692,19 @@ Build a Rust network dataplane with:
 
 \begin{topics}
 
-\item L2/L3 forwarding
+\item L2/L3 forwarding.
 
-\item routing table
+\item routing table.
 
-\item ACL/firewall rules
+\item ACL/firewall rules.
 
-\item NAT
+\item NAT.
 
-\item simple overlay
+\item simple overlay.
 
-\item metrics
+\item metrics.
 
-\item packet tracing
+\item packet tracing.
 
 \end{topics}
 
@@ -730,27 +724,27 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \begin{topics}
 
-\item block devices
+\item block devices.
 
-\item sectors and alignment
+\item sectors and alignment.
 
-\item NVMe
+\item NVMe.
 
-\item queues
+\item queues.
 
-\item fsync / flush semantics
+\item fsync / flush semantics.
 
-\item write ordering
+\item write ordering.
 
-\item durability
+\item durability.
 
-\item checksums
+\item checksums.
 
-\item crash consistency
+\item crash consistency.
 
-\item snapshots
+\item snapshots.
 
-\item copy-on-write
+\item copy-on-write.
 
 \end{topics}
 
@@ -758,19 +752,19 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \begin{topics}
 
-\item pools
+\item pools.
 
-\item vdevs
+\item vdevs.
 
-\item ARC
+\item ARC.
 
-\item transaction groups
+\item transaction groups.
 
-\item checksums
+\item checksums.
 
-\item copy-on-write
+\item copy-on-write.
 
-\item snapshots
+\item snapshots.
 
 \end{topics}
 
@@ -778,25 +772,25 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \begin{topics}
 
-\item replication
+\item replication.
 
-\item quorum concepts
+\item quorum concepts.
 
-\item ordering
+\item ordering.
 
-\item degraded operation
+\item degraded operation.
 
-\item repair
+\item repair.
 
-\item reconciliation
+\item reconciliation.
 
-\item split brain
+\item split brain.
 
-\item failure detection
+\item failure detection.
 
-\item durability vs availability
+\item durability vs availability.
 
-\item consistency
+\item consistency.
 
 \end{topics}
 
@@ -832,31 +826,31 @@ This stage builds directly on your backend/distributed-systems experience and sh
 
 \begin{topics}
 
-\item reconciliation
+\item reconciliation.
 
-\item desired vs observed state
+\item desired vs observed state.
 
-\item state machines
+\item state machines.
 
-\item sagas/workflows
+\item sagas/workflows.
 
-\item idempotency
+\item idempotency.
 
-\item rolling software update
+\item rolling software update.
 
-\item schema evolution
+\item schema evolution.
 
-\item partial failure
+\item partial failure.
 
-\item distributed debugging
+\item distributed debugging.
 
-\item API evolution
+\item API evolution.
 
-\item resource allocation
+\item resource allocation.
 
-\item inventory
+\item inventory.
 
-\item authentication/attestation concepts
+\item authentication/attestation concepts.
 
 \end{topics}
 
@@ -880,27 +874,27 @@ You do not need to become an electrical engineer. You do need to understand that
 
 \begin{topics}
 
-\item microcontrollers
+\item microcontrollers.
 
-\item memory-mapped peripherals
+\item memory-mapped peripherals.
 
-\item interrupts
+\item interrupts.
 
-\item GPIO
+\item GPIO.
 
-\item SPI
+\item SPI.
 
-\item I2C
+\item I2C.
 
-\item UART
+\item UART.
 
-\item timers
+\item timers.
 
-\item watchdogs
+\item watchdogs.
 
-\item firmware updates
+\item firmware updates.
 
-\item bootloaders
+\item bootloaders.
 
 \end{topics}
 
@@ -927,16 +921,13 @@ The quant curriculum gave you a performance-engineering advantage. This stage tu
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Layer} & \textbf{Example concerns} \\
-\midrule
 CPU & cache misses, branch behavior, contention, instruction count \\
 Kernel & scheduling, interrupts, system calls, memory pressure \\
 Virtualization & VM exits, virtual I/O, scheduling \\
 Networking & packet path, drops, queueing, offload behavior \\
 Storage & queue depth, flush latency, replication latency \\
 Distributed system & request fan-out, tail latency, retry storms, lockstep behavior \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -972,17 +963,17 @@ At completion: Rust API/control plane -> node agent -> VM manager -> virtual net
 
 \begin{topics}
 
-\item manage VM lifecycle
+\item manage VM lifecycle.
 
-\item create
+\item create.
 
-\item start
+\item start.
 
-\item stop
+\item stop.
 
-\item destroy
+\item destroy.
 
-\item query
+\item query.
 
 \end{topics}
 
@@ -992,13 +983,13 @@ Initially use an existing hypervisor. Later integrate your virtualization work w
 
 \begin{itemize}
 
-\item create volume
+\item create volume.
 
-\item attach
+\item attach.
 
-\item detach
+\item detach.
 
-\item failure/recovery
+\item failure/recovery.
 
 \end{itemize}
 
@@ -1006,15 +997,15 @@ Initially use an existing hypervisor. Later integrate your virtualization work w
 
 \begin{itemize}
 
-\item isolated virtual networks
+\item isolated virtual networks.
 
-\item addressing
+\item addressing.
 
-\item routing
+\item routing.
 
-\item firewalling
+\item firewalling.
 
-\item overlay networking
+\item overlay networking.
 
 \end{itemize}
 
@@ -1026,22 +1017,21 @@ Expose a clean API. Maintain desired state versus observed state. Recover from a
 
 Every subsystem should expose structured logs, metrics, and traces, plus diagnostic commands.
 
-\clearpage
 \subsection*{Failure injection}
 
 \begin{topics}
 
-\item kill storage replica
+\item kill storage replica.
 
-\item kill VM agent
+\item kill VM agent.
 
-\item drop packets
+\item drop packets.
 
-\item delay packets
+\item delay packets.
 
-\item corrupt a disk block
+\item corrupt a disk block.
 
-\item crash during resource creation
+\item crash during resource creation.
 
 \end{topics}
 
@@ -1059,21 +1049,21 @@ Eventually run Minirack on multiple physical machines. Three inexpensive x86 mac
 
 \begin{topics}
 
-\item architecture - what exists and why
+\item architecture - what exists and why.
 
-\item failure model - what can fail
+\item failure model - what can fail.
 
-\item consistency model - what guarantees exist
+\item consistency model - what guarantees exist.
 
-\item security boundaries - who trusts whom
+\item security boundaries - who trusts whom.
 
-\item update model - how software changes
+\item update model - how software changes.
 
-\item performance model - expected bottlenecks
+\item performance model - expected bottlenecks.
 
-\item debugging guide - how failures are investigated
+\item debugging guide - how failures are investigated.
 
-\item RFD history - major architectural decisions
+\item RFD history - major architectural decisions.
 
 \end{topics}
 
@@ -1091,21 +1081,21 @@ Open-source work is mandatory, but do not contribute performatively to Oxide rep
 
 \begin{itemize}
 
-\item illumos
+\item illumos.
 
-\item rust-vmm
+\item rust-vmm.
 
-\item Rust systems libraries
+\item Rust systems libraries.
 
-\item networking tools
+\item networking tools.
 
-\item DTrace ecosystem
+\item DTrace ecosystem.
 
-\item virtualization tools
+\item virtualization tools.
 
-\item storage tools
+\item storage tools.
 
-\item selected Oxide projects where contribution guidance permits
+\item selected Oxide projects where contribution guidance permits.
 
 \end{itemize}
 
@@ -1129,21 +1119,21 @@ The target is evidence that experienced systems maintainers trusted your reasoni
 
 \begin{topics}
 
-\item identify maintainer priorities
+\item identify maintainer priorities.
 
-\item reproduce bugs rigorously
+\item reproduce bugs rigorously.
 
-\item reduce test cases
+\item reduce test cases.
 
-\item write useful commit messages
+\item write useful commit messages.
 
-\item accept review
+\item accept review.
 
-\item revise designs
+\item revise designs.
 
-\item avoid unnecessary cleverness
+\item avoid unnecessary cleverness.
 
-\item support your changes
+\item support your changes.
 
 \end{topics}
 
@@ -1171,11 +1161,11 @@ Shows unfamiliar-codebase navigation, collaboration, code review, and production
 
 \begin{itemize}
 
-\item cross-stack performance pathology
+\item cross-stack performance pathology.
 
-\item kernel or VMM failure investigation
+\item kernel or VMM failure investigation.
 
-\item networking pathology or storage corruption/recovery analysis
+\item networking pathology or storage corruption/recovery analysis.
 
 \end{itemize}
 
@@ -1187,17 +1177,17 @@ Produce one serious RFD-style document. Good topics include live migration for M
 
 \begin{topics}
 
-\item problem definition
+\item problem definition.
 
-\item constraints
+\item constraints.
 
-\item alternatives
+\item alternatives.
 
-\item tradeoffs
+\item tradeoffs.
 
-\item decision
+\item decision.
 
-\item unresolved questions
+\item unresolved questions.
 
 \end{topics}
 
@@ -1208,15 +1198,12 @@ Do not create 40 toy repositories. Aim for:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Artifact} & \textbf{Purpose} \\
-\midrule
 minirack & Integrated flagship system. \\
 systems-lab & Kernel, virtualization, embedded and diagnostic experiments. \\
 one deep subsystem & Networking dataplane, VMM work, or kernel project. \\
 open-source work & External contributions with review history. \\
 engineering notebook/site & Polished technical investigations and RFD-style writing. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1245,9 +1232,7 @@ Do not apply simply because you have read all the material. For Oxide, wait unti
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Area} & \textbf{Minimum application threshold} \\
-\midrule
 Rust & Ship and debug significant Rust systems code. \\
 illumos & Comfortable working in an illumos environment. \\
 DTrace/MDB & Use them for real investigations. \\
@@ -1263,7 +1248,6 @@ Open source & Meaningful third-party-reviewed systems work. \\
 Writing & At least one excellent design document. \\
 Analysis & At least one excellent technical investigation suitable for submission. \\
 Oxide knowledge & Intelligently discuss Helios, Propolis, Omicron, Crucible, Hubris, networking architecture, and architectural choices. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1275,31 +1259,31 @@ At this point: apply. Do not wait until you become a kernel veteran; that is not
 
 \begin{itemize}
 
-\item multiple nontrivial open-source contributions
+\item multiple nontrivial open-source contributions.
 
-\item deep Rust competence
+\item deep Rust competence.
 
-\item substantial real illumos experience
+\item substantial real illumos experience.
 
-\item a functioning kernel or driver artifact
+\item a functioning kernel or driver artifact.
 
-\item a meaningful virtualization artifact
+\item a meaningful virtualization artifact.
 
-\item substantial networking software
+\item substantial networking software.
 
-\item three-node Minirack deployment
+\item three-node Minirack deployment.
 
-\item rigorous failure testing
+\item rigorous failure testing.
 
-\item custom diagnostic tooling
+\item custom diagnostic tooling.
 
-\item multiple performance analyses
+\item multiple performance analyses.
 
-\item RFD-quality writing
+\item RFD-quality writing.
 
-\item repository history showing months of disciplined engineering
+\item repository history showing months of disciplined engineering.
 
-\item ability to explain failures as clearly as successes
+\item ability to explain failures as clearly as successes.
 
 \end{itemize}
 
@@ -1310,9 +1294,7 @@ At this point your narrative becomes: "I deliberately spent years becoming a who
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Step} & \textbf{Action} \\
-\midrule
 Study & Learn enough theory to form a model. \\
 Close the material & Remove the reference. \\
 Reconstruct from memory & Explain the system yourself. \\
@@ -1322,7 +1304,6 @@ Break & Create failure intentionally. \\
 Debug & Find the real cause. \\
 Explain & Write down the reasoning. \\
 Revisit later & Recover the model after time has passed. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1336,25 +1317,25 @@ Most students build projects whose happy path works. This course should delibera
 
 \begin{topics}
 
-\item process crash
+\item process crash.
 
-\item power-loss approximation
+\item power-loss approximation.
 
-\item packet loss
+\item packet loss.
 
-\item corruption
+\item corruption.
 
-\item latency
+\item latency.
 
-\item partial state
+\item partial state.
 
-\item version mismatch
+\item version mismatch.
 
-\item stale data
+\item stale data.
 
-\item overload
+\item overload.
 
-\item concurrent operations
+\item concurrent operations.
 
 \end{topics}
 
@@ -1366,17 +1347,17 @@ Writing is not a final polish step. Every major system should produce:
 
 \begin{topics}
 
-\item design note - before implementation
+\item design note - before implementation.
 
-\item decision record - when architecture changes
+\item decision record - when architecture changes.
 
-\item debugging note - when something surprising happens
+\item debugging note - when something surprising happens.
 
-\item postmortem - after a serious failure
+\item postmortem - after a serious failure.
 
-\item performance analysis - after optimization
+\item performance analysis - after optimization.
 
-\item final architecture document - when complete
+\item final architecture document - when complete.
 
 \end{topics}
 
@@ -1389,14 +1370,11 @@ Do not read every RFD, listen to every podcast episode, or memorize company triv
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{When studying...} & \textbf{Use...} \\
-\midrule
 Virtualization & RFD 26 and Propolis material \\
 Storage & RFD 60 and RFD 177 \\
 Networking & RFD 63 \\
 Performance mysteries & Relevant Oxide performance investigations \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1434,31 +1412,31 @@ Do not delay applying because you have not:
 
 \begin{topics}
 
-\item written a complete kernel
+\item written a complete kernel.
 
-\item written a complete hypervisor
+\item written a complete hypervisor.
 
-\item designed a CPU
+\item designed a CPU.
 
-\item become an electrical engineer
+\item become an electrical engineer.
 
-\item designed a motherboard
+\item designed a motherboard.
 
-\item mastered every network protocol
+\item mastered every network protocol.
 
-\item implemented BGP from scratch
+\item implemented BGP from scratch.
 
-\item implemented a production filesystem
+\item implemented a production filesystem.
 
-\item learned all of illumos
+\item learned all of illumos.
 
-\item learned every Rust feature
+\item learned every Rust feature.
 
-\item read every Oxide RFD
+\item read every Oxide RFD.
 
-\item contributed directly to Oxide
+\item contributed directly to Oxide.
 
-\item built an actual rack-scale computer
+\item built an actual rack-scale computer.
 
 \end{topics}
 
@@ -1469,9 +1447,7 @@ These are rabbit holes. The goal is credible direct experience with the importan
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Area} & \textbf{Core resources} \\
-\midrule
 Rust & Programming Rust; official Rust docs; Rustonomicon when required; existing Rust systems code. \\
 Operating systems & Operating Systems: Three Easy Pieces; selected CS:APP material; illumos source/docs; Helios source. \\
 Observability & DTrace docs; MDB docs; Brendan Gregg systems- performance material. \\
@@ -1481,7 +1457,6 @@ Networking & TCP/IP Illustrated selectively; relevant RFCs; real implementations
 Storage & ZFS docs; Oxide RFD 60; RFD 177; Crucible source. \\
 Embedded & Embedded Rust material; Hubris docs/source. \\
 Distributed systems & Use Omicron architecture as the primary learning object rather than restarting a generic textbook. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1492,9 +1467,7 @@ The ultimate output of this course is not knowledge. It is a body of evidence.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Claim} & \textbf{Evidence} \\
-\midrule
 I understand Rust. & Here is the code. \\
 I understand operating systems. & Here is the kernel work. \\
 I understand virtualization. & Here is the VMM work. \\
@@ -1506,7 +1479,6 @@ I understand performance. & Here are the investigations. \\
 I can debug. & Here are the postmortems. \\
 I can communicate. & Here are the design documents. \\
 I can work with other engineers. & Here are the upstream contributions and review discussions. \\
-\bottomrule
 \end{tabular}
 \end{center}
 

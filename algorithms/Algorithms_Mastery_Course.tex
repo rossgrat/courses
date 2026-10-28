@@ -21,7 +21,7 @@
 
 \section{Mission and target learner}\label{sec:1}
 
-Target: solve unfamiliar LeetCode Hard problems correctly in 45 minutes or less. Use Go first, with selected C++ and Rust practice. Choose your session duration. Advance by skill, without stage deadlines. See sections 24-25 for languages and session planning.
+Target: solve unfamiliar LeetCode Hard problems correctly in 45 minutes or less. Use Go first, with selected C++ and Rust practice. Choose your session duration. Advance by skill, without stage deadlines. See \hyperref[sec:24]{Language practice} and \hyperref[sec:25]{Session planning}.
 
 \begin{quote}
 "Any Hard" is the long-term ambition. The course measures progress on broad, unseen samples; no finite benchmark can certify every problem.
@@ -29,34 +29,35 @@ Target: solve unfamiliar LeetCode Hard problems correctly in 45 minutes or less.
 
 \section{How the curriculum works}\label{sec:2}
 
-Tell the tutor your available study minutes before each session. The tutor asks if you omit the duration. Split ordinary study into retrieval, focused work, and feedback using section 25. Timed assessments keep their stated limits and a separate review period.
+Tell the tutor your available study minutes before each session. The tutor asks if you omit the duration. Split ordinary study into retrieval, focused work, and feedback using \hyperref[sec:25]{Session planning}. Timed assessments keep their stated limits and a separate review period.
 
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3202\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6798\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Day} & \textbf{Main work} \\
-\midrule
 Monday & Study one small idea and explain a worked example. \\
 Tuesday & Close the resource; reconstruct, implement and test. \\
 Wednesday & Solve a related problem with help only when needed. \\
 Thursday & Change a constraint or solve another application. \\
 Friday & Revisit older material and attempt mixed, unlabeled problems. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
 \subsection*{The problem-solving loop}
 
-Model: restate constraints, try tiny cases and write a brute-force baseline.
+\begin{itemize}
 
-Derive: identify useful structure; define state and why each step is safe.
+\item \textbf{Model:} restate constraints, try tiny cases and write a brute-force baseline.
 
-Implement: write the solution yourself.
+\item \textbf{Derive:} identify useful structure; define state and why each step is safe.
 
-Verify: test boundaries and compare with a simple independent solver where feasible.
+\item \textbf{Implement:} write the solution yourself.
 
-Explain: give the correctness argument, time/space cost and key assumptions.
+\item \textbf{Verify:} test boundaries and compare with a simple independent solver where feasible.
+
+\item \textbf{Explain:} give the correctness argument, time/space cost and key assumptions.
+
+\end{itemize}
 
 \subsection*{Teaching and feedback}
 
@@ -79,14 +80,11 @@ After each major block, send code, reasoning and test evidence to an experienced
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Return after} & \textbf{Retrieve without notes} \\
-\midrule
 About 2 days & State the invariant or recurrence; trace a new example. \\
 About 1 week & Reimplement the idea or solve a related problem. \\
 About 3 weeks & Solve a new application without its topic label. \\
 About 6 weeks & Include it in mixed, timed practice. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -96,16 +94,14 @@ Retire an overused prompt while preserving its history. Retirement does not esta
 
 Judge progress through whole arguments, working code, meaningful tests, and correct cost analysis. Prompted agreement and repeated paraphrases do not establish independent construction. After two teaching sessions on a repair, compare independent output and help required. If progress stalls, change the instruction or task scope.
 
-The learning loop uses worked examples, retrieval, spacing, interleaving and feedback. Supporting research and its limits are on section 27.
+The learning loop uses worked examples, retrieval, spacing, interleaving and feedback. Supporting research and its limits are in \hyperref[sec:27]{Selected references}.
 
 \section{Curriculum map}\label{sec:3}
 
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.1200\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
-\midrule
 0 & Baseline and setup & \pageref{stage:0} \\
 1 & Reasoning, complexity and correctness & \pageref{stage:1} \\
 2 & Arrays, hashing and prefix information & \pageref{stage:2} \\
@@ -124,7 +120,6 @@ The learning loop uses worked examples, retrieval, spacing, interleaving and fee
 15 & Advanced graph structure and reductions & \pageref{stage:15} \\
 16 & Counting, number theory and geometry & \pageref{stage:16} \\
 17 & Composition and the expanding frontier & \pageref{stage:17} \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -136,7 +131,7 @@ Practice links use E / M / H for LeetCode difficulty. CSES problems are labeled 
 
 \label{stage:0}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 identify whether your main gaps are mathematical reasoning, algorithm selection, implementation or speed.
 
@@ -165,15 +160,12 @@ For selected exercises, compare the efficient algorithm against a simple brute-f
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Observed gap} & \textbf{Response} \\
-\midrule
 Syntax or standard-library friction & Use drills in the exercise language before adding a new algorithm. \\
 Cannot justify correctness & Start Stage 1; practice invariants and induction. \\
 Understands solutions but cannot choose & Practice modeling and mixed, unlabeled tasks. \\
 Finds the idea but code fails & Build smaller pieces; test boundaries and compare with brute force. \\
 Correct but slow & Separate modeling, coding and debugging time; work on the bottleneck. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -185,31 +177,35 @@ Use one explanation source at a time. MIT supplies foundations; The Algorithm De
 
 \subsection*{Progression rules}
 
-Complete the build task, practice ladder and exit criteria for each stage, then use the shared gate on section 22. Split broad stages into smaller units. Skip familiar material only after an independent check.
+Complete the build task, practice ladder and exit criteria for each stage, then use the shared gate in \hyperref[sec:22]{Stage gates and mastery criteria}. Split broad stages into smaller units. Skip familiar material only after an independent check.
 
 A Hard exercise early in the course is a learning target. Learn to derive and implement it before demanding a 45-minute solve. Keep sessions bounded; resume tomorrow when necessary.
 
-Keep the baseline in Go. Add C++ and Rust through selected practice, as described on section 24.
+Keep the baseline in Go. Add C++ and Rust through selected practice, as described in \hyperref[sec:24]{Language practice}.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 1 - Reasoning, complexity and correctness}\label{sec:5}
 
 \label{stage:1}
 
-Prerequisites: Stage 0
+\prerequisites{Stage 0}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Explain correctness and estimate whether an algorithm fits the constraints.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Asymptotic bounds; worst-case and amortized cost; sums/recurrences; invariants; induction; recursion; input size versus numeric value.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Introduction. ADM: algorithm design and analysis.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement linear search and merge sort. Prove each correct; analyze five loop/recursion snippets and compare predicted growth with measurements.
 
@@ -217,39 +213,43 @@ Implement linear search and merge sort. Prove each correct; analyze five loop/re
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/two-sum/}{Two Sum} (E)
+\item \href{https://leetcode.com/problems/two-sum/}{Two Sum} (E).
 
-\item \href{https://leetcode.com/problems/valid-parentheses/}{Valid Parentheses} (E)
+\item \href{https://leetcode.com/problems/valid-parentheses/}{Valid Parentheses} (E).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Explain why brackets need a stack; give a counterexample to counting alone.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Correct code, valid invariant/induction arguments, and correct time/auxiliary-space bounds. Measurements support analysis; they do not prove it.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 2 - Arrays, hashing and prefix information}\label{sec:6}
 
 \label{stage:2}
 
-Prerequisites: 1
+\prerequisites{Stage 1}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Replace repeated work with useful stored information.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Array/slice costs; sets; frequency maps; prefix sums; in-place placement; expected hash-table cost; coordinates versus values.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Data Structures and Hashing. ADM: data structures.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement prefix sums and a frequency-based subarray counter. Compare with brute force on small inputs, including zeros, duplicates and negatives.
 
@@ -257,41 +257,45 @@ Implement prefix sums and a frequency-based subarray counter. Compare with brute
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/group-anagrams/}{Group Anagrams} (M)
+\item \href{https://leetcode.com/problems/group-anagrams/}{Group Anagrams} (M).
 
-\item \href{https://leetcode.com/problems/subarray-sum-equals-k/}{Subarray Sum Equals K} (M)
+\item \href{https://leetcode.com/problems/subarray-sum-equals-k/}{Subarray Sum Equals K} (M).
 
-\item \href{https://leetcode.com/problems/first-missing-positive/}{First Missing Positive} (H)
+\item \href{https://leetcode.com/problems/first-missing-positive/}{First Missing Positive} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Change existence to counting, then to recovering indices. Decide whether the same state suffices.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Derive map keys/values from the query; justify update order, duplicate handling and space cost.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 3 - Two pointers and sliding windows}\label{sec:7}
 
 \label{stage:3}
 
-Prerequisites: 2
+\prerequisites{Stage 2}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Move pointers only when the discarded possibilities cannot improve the answer.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Sorted scans; fixed/variable windows; validity predicates; frequency bookkeeping; signed-data limitations.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Handbook: two pointers. ADM: sorting/searching as needed.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement longest-valid and minimum-cover windows. Test repeated requirements and empty cases; explain why each element is processed O(1) times.
 
@@ -299,39 +303,43 @@ Implement longest-valid and minimum-cover windows. Test repeated requirements an
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/longest-substring-without-repeating-characters/}{Longest Substring Without Repeating Characters} (M)
+\item \href{https://leetcode.com/problems/longest-substring-without-repeating-characters/}{Longest Substring Without Repeating Characters} (M).
 
-\item \href{https://leetcode.com/problems/minimum-window-substring/}{Minimum Window Substring} (H)
+\item \href{https://leetcode.com/problems/minimum-window-substring/}{Minimum Window Substring} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Replace uniqueness with a repetition cap. Derive exactly-k counts from at-most counts.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 State a valid invariant and justify every endpoint move. Explain when negatives invalidate a sum-window argument.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 4 - Binary search and divide and conquer}\label{sec:8}
 
 \label{stage:4}
 
-Prerequisites: 1-3
+\prerequisites{Stages 1-3}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Prove which part of a search space can be discarded.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Half-open intervals; lower/upper bounds; monotone predicates; answer-space search; merge sort; partitioning; recurrence analysis.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Sorting. Handbook: sorting and binary search.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement lower\_bound and upper\_bound from memory. Test empty, singleton, duplicate and all-equal inputs; separately prove an answer-search feasibility check.
 
@@ -339,89 +347,97 @@ Implement lower\_bound and upper\_bound from memory. Test empty, singleton, dupl
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/binary-search/}{Binary Search} (E)
+\item \href{https://leetcode.com/problems/binary-search/}{Binary Search} (E).
 
-\item \href{https://leetcode.com/problems/search-in-rotated-sorted-array/}{Search in Rotated Sorted Array} (M)
+\item \href{https://leetcode.com/problems/search-in-rotated-sorted-array/}{Search in Rotated Sorted Array} (M).
 
-\item \href{https://leetcode.com/problems/split-array-largest-sum/}{Split Array Largest Sum} (H)
+\item \href{https://leetcode.com/problems/split-array-largest-sum/}{Split Array Largest Sum} (H).
 
-\item \href{https://leetcode.com/problems/median-of-two-sorted-arrays/}{Median of Two Sorted Arrays} (H, stretch)
+\item \href{https://leetcode.com/problems/median-of-two-sorted-arrays/}{Median of Two Sorted Arrays} (H, stretch).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Search for the first feasible capacity; identify a change that breaks monotonicity.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Prove termination and interval preservation. Include feasibility-check work in the complexity bound. The median problem is a later stretch.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 5 - Stacks, deques, heaps and amortization}\label{sec:9}
 
 \label{stage:5}
 
-Prerequisites: 2-4
+\prerequisites{Stages 2-4}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Maintain useful candidates and discard those that cannot matter again.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Monotonic stacks/deques; dominance; stale indices; heaps; streaming selection; two-heap invariants; amortized analysis.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Binary Heaps. Handbook: amortized analysis. ADM: priority queues.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
-Build a binary heap, then use the exercise language's library heap (section 24). Implement a monotonic deque and justify each removal.
+Build a binary heap, then use the exercise language's library heap (\hyperref[sec:24]{Language practice}). Implement a monotonic deque and justify each removal.
 
 \subsection*{Practice ladder}
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/daily-temperatures/}{Daily Temperatures} (M)
+\item \href{https://leetcode.com/problems/daily-temperatures/}{Daily Temperatures} (M).
 
-\item \href{https://leetcode.com/problems/largest-rectangle-in-histogram/}{Largest Rectangle in Histogram} (H)
+\item \href{https://leetcode.com/problems/largest-rectangle-in-histogram/}{Largest Rectangle in Histogram} (H).
 
-\item \href{https://leetcode.com/problems/sliding-window-maximum/}{Sliding Window Maximum} (H)
+\item \href{https://leetcode.com/problems/sliding-window-maximum/}{Sliding Window Maximum} (H).
 
-\item \href{https://leetcode.com/problems/merge-k-sorted-lists/}{Merge k Sorted Lists} (H)
+\item \href{https://leetcode.com/problems/merge-k-sorted-lists/}{Merge k Sorted Lists} (H).
 
-\item \href{https://leetcode.com/problems/find-median-from-data-stream/}{Find Median from Data Stream} (H)
+\item \href{https://leetcode.com/problems/find-median-from-data-stream/}{Find Median from Data Stream} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Solve \href{https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/}{Shortest Subarray with Sum at Least K} (H); explain why a deque handles signed data.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Prove O(n) aggregate deque work and preserve heap order/balance. Count total pushes/pops, not loop nesting.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 6 - Trees and recursive summaries}\label{sec:10}
 
 \label{stage:6}
 
-Prerequisites: 1, 5
+\prerequisites{Stages 1, 5}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Return exactly the information a subtree's parent needs.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Traversals; explicit stacks; BST ordering; ancestors; serialization; subtree DP; local returns versus global optima.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Binary Trees. ADM: trees; study AVL invariants conceptually.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Write recursive/iterative traversals and state each recursive contract. Build a serializer/deserializer with round-trip tests.
 
@@ -429,43 +445,47 @@ Write recursive/iterative traversals and state each recursive contract. Build a 
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/validate-binary-search-tree/}{Validate Binary Search Tree} (M)
+\item \href{https://leetcode.com/problems/validate-binary-search-tree/}{Validate Binary Search Tree} (M).
 
-\item \href{https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/}{Lowest Common Ancestor of a Binary Tree} (M)
+\item \href{https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/}{Lowest Common Ancestor of a Binary Tree} (M).
 
-\item \href{https://leetcode.com/problems/binary-tree-maximum-path-sum/}{Binary Tree Maximum Path Sum} (H)
+\item \href{https://leetcode.com/problems/binary-tree-maximum-path-sum/}{Binary Tree Maximum Path Sum} (H).
 
-\item \href{https://leetcode.com/problems/serialize-and-deserialize-binary-tree/}{Serialize and Deserialize Binary Tree} (H)
+\item \href{https://leetcode.com/problems/serialize-and-deserialize-binary-tree/}{Serialize and Deserialize Binary Tree} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Sketch the extra parent-to-child information needed to answer for every root; implement rerooting in Stage 12.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Handle skewed and all-negative trees. Distinguish an extendable path from an optimum completed inside a subtree.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 7 - Graph modeling, BFS and DFS}\label{sec:11}
 
 \label{stage:7}
 
-Prerequisites: 5-6
+\prerequisites{Stages 5-6}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Find the graph hidden inside a problem.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Adjacency lists; directed/undirected edges; visited states; BFS layers; DFS colors; components; cycles; topological order; implicit graphs.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: BFS and DFS. ADM: graph traversal.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement BFS with path recovery and DFS/topological sorting. Model a grid and a dependency workflow; test cycles and unreachable/isolated vertices.
 
@@ -473,41 +493,45 @@ Implement BFS with path recovery and DFS/topological sorting. Model a grid and a
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/number-of-islands/}{Number of Islands} (M)
+\item \href{https://leetcode.com/problems/number-of-islands/}{Number of Islands} (M).
 
-\item \href{https://leetcode.com/problems/course-schedule-ii/}{Course Schedule II} (M)
+\item \href{https://leetcode.com/problems/course-schedule-ii/}{Course Schedule II} (M).
 
-\item \href{https://leetcode.com/problems/word-ladder/}{Word Ladder} (H)
+\item \href{https://leetcode.com/problems/word-ladder/}{Word Ladder} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Add parity, a resource budget or collected keys. Decide whether visited[vertex] still works.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Choose sufficient state, bound V and E including generated neighbors, recover paths and detect cycles.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 8 - Weighted paths and graph optimization}\label{sec:12}
 
 \label{stage:8}
 
-Prerequisites: 5, 7
+\prerequisites{Stages 5, 7}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Choose a shortest-path algorithm from the edge and state constraints.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Relaxation; Dijkstra; stale heap entries; Bellman-Ford; DAG paths; 0-1 BFS; negative cycles; expanded states; MST versus shortest paths.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Weighted Shortest Paths, Bellman-Ford, Dijkstra. ADM: weighted graphs.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement Dijkstra with path recovery and 0-1 BFS. Check Dijkstra against Bellman-Ford on random nonnegative graphs.
 
@@ -515,41 +539,45 @@ Implement Dijkstra with path recovery and 0-1 BFS. Check Dijkstra against Bellma
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/network-delay-time/}{Network Delay Time} (M)
+\item \href{https://leetcode.com/problems/network-delay-time/}{Network Delay Time} (M).
 
-\item \href{https://leetcode.com/problems/cheapest-flights-within-k-stops/}{Cheapest Flights Within K Stops} (M)
+\item \href{https://leetcode.com/problems/cheapest-flights-within-k-stops/}{Cheapest Flights Within K Stops} (M).
 
-\item \href{https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/}{Minimum Cost to Make at Least One Valid Path in a Grid} (H)
+\item \href{https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/}{Minimum Cost to Make at Least One Valid Path in a Grid} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Add a stop budget and a limited-use discount; explain why one cost per vertex may be insufficient.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 State each algorithm's assumptions, handle stale work, justify state and bound its expanded cost.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 9 - Greedy reasoning, intervals and sweeps}\label{sec:13}
 
 \label{stage:9}
 
-Prerequisites: 4-5
+\prerequisites{Stages 4-5}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Prove a local choice preserves an optimal answer.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Exchange/staying-ahead arguments; interval ordering; selection versus scheduling; sweeps; boundary conventions; tie handling.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Erickson: Greedy Algorithms. ADM: greedy design and sorting.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement interval scheduling and an event sweep. Check small cases by enumerating subsets; find counterexamples to alternative sort orders.
 
@@ -557,41 +585,45 @@ Implement interval scheduling and an event sweep. Check small cases by enumerati
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/non-overlapping-intervals/}{Non-overlapping Intervals} (M)
+\item \href{https://leetcode.com/problems/non-overlapping-intervals/}{Non-overlapping Intervals} (M).
 
-\item \href{https://leetcode.com/problems/gas-station/}{Gas Station} (M)
+\item \href{https://leetcode.com/problems/gas-station/}{Gas Station} (M).
 
-\item \href{https://leetcode.com/problems/candy/}{Candy} (H)
+\item \href{https://leetcode.com/problems/candy/}{Candy} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Add interval weights. Explain why the greedy proof fails and derive a DP after Stage 11.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Give a valid argument for the actual decision and a counterexample to an invalid alternative.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 10 - Backtracking and exponential search}\label{sec:14}
 
 \label{stage:10}
 
-Prerequisites: 1, 6-7
+\prerequisites{Stages 1, 6-7}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Search completely without duplicate work or unsafe pruning.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Choice/state definitions; recursion trees; rollback; symmetry; bitmasks; branch ordering; pruning; output-sensitive complexity.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 ADM: combinatorial search. Erickson: Backtracking. Handbook: bit manipulation.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement subsets, permutations and a constraint solver. Compare pruned search with exhaustive enumeration on small inputs.
 
@@ -599,43 +631,47 @@ Implement subsets, permutations and a constraint solver. Compare pruned search w
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/subsets/}{Subsets} (M)
+\item \href{https://leetcode.com/problems/subsets/}{Subsets} (M).
 
-\item \href{https://leetcode.com/problems/combination-sum/}{Combination Sum} (M)
+\item \href{https://leetcode.com/problems/combination-sum/}{Combination Sum} (M).
 
-\item \href{https://leetcode.com/problems/n-queens/}{N-Queens} (H)
+\item \href{https://leetcode.com/problems/n-queens/}{N-Queens} (H).
 
-\item \href{https://leetcode.com/problems/sudoku-solver/}{Sudoku Solver} (H)
+\item \href{https://leetcode.com/problems/sudoku-solver/}{Sudoku Solver} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Add duplicates or ask only for counts; justify which symmetry rules preserve every distinct answer.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Enumerate answers exactly once, restore state, justify every prune and bound work by branching, depth and output.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 11 - Dynamic programming: deriving states}\label{sec:15}
 
 \label{stage:11}
 
-Prerequisites: 1, 7, 10
+\prerequisites{Stages 1, 7, 10}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Derive reusable subproblems and their dependencies.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 State; recurrence; base cases; evaluation order; memoization; optimal substructure; overlapping work; reconstruction; pseudo-polynomial cost.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 MIT: Dynamic Programming. Erickson: introductory DP examples.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Write state, recurrence, bases, order and cost before coding. Implement memoized and bottom-up versions; compare with brute force.
 
@@ -643,43 +679,47 @@ Write state, recurrence, bases, order and cost before coding. Implement memoized
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/house-robber/}{House Robber} (M)
+\item \href{https://leetcode.com/problems/house-robber/}{House Robber} (M).
 
-\item \href{https://leetcode.com/problems/coin-change/}{Coin Change} (M)
+\item \href{https://leetcode.com/problems/coin-change/}{Coin Change} (M).
 
-\item \href{https://leetcode.com/problems/edit-distance/}{Edit Distance} (M)
+\item \href{https://leetcode.com/problems/edit-distance/}{Edit Distance} (M).
 
-\item \href{https://leetcode.com/problems/distinct-subsequences/}{Distinct Subsequences} (H)
+\item \href{https://leetcode.com/problems/distinct-subsequences/}{Distinct Subsequences} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Change optimization to counting or reconstruction; check base values and whether order creates distinct outcomes.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Prove state preserves all relevant history and derive the recurrence independently. Check numeric capacities in bounds such as O(nW).
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 12 - Dynamic programming: structural variants}\label{sec:16}
 
 \label{stage:12}
 
-Prerequisites: 6, 8-11
+\prerequisites{Stages 6, 8-11}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Choose a decomposition when a simple prefix state is insufficient.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Interval, tree/rerooting, DAG, subsequence, subset/bitmask and digit DP; state compression; safe space optimization.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Erickson: Dynamic Programming. Handbook: DP, trees and bit techniques.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Build interval, subset and tree DPs. Derive interval DP from the last decision; count states times transitions and check small cases exhaustively.
 
@@ -687,43 +727,47 @@ Build interval, subset and tree DPs. Derive interval DP from the last decision; 
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/longest-increasing-subsequence/}{Longest Increasing Subsequence} (M)
+\item \href{https://leetcode.com/problems/longest-increasing-subsequence/}{Longest Increasing Subsequence} (M).
 
-\item \href{https://leetcode.com/problems/burst-balloons/}{Burst Balloons} (H)
+\item \href{https://leetcode.com/problems/burst-balloons/}{Burst Balloons} (H).
 
-\item \href{https://leetcode.com/problems/regular-expression-matching/}{Regular Expression Matching} (H)
+\item \href{https://leetcode.com/problems/regular-expression-matching/}{Regular Expression Matching} (H).
 
-\item \href{https://cses.fi/problemset/task/1653}{Elevator Rides} (CSES)
+\item \href{https://cses.fi/problemset/task/1653}{Elevator Rides} (CSES).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Compare O(n\textasciicircum{}2) LIS with a faster frontier; explain its meaning. Implement the rerooting sketched in Stage 6.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Derive three different DP structures, including interval and subset/tree. Prove dependencies before compressing storage.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 13 - Strings, tries and pattern matching}\label{sec:17}
 
 \label{stage:13}
 
-Prerequisites: 2, 7, 10-12
+\prerequisites{Stages 2, 7, 10-12}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Represent shared prefixes and repeated structure precisely.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Tries; KMP/prefix function or Z-function; exact matching; rolling-hash collisions; palindromes; bytes versus Unicode.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Handbook: strings. CP-Algorithms: prefix function or Z-function.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Build a trie and a linear-time matcher. Compare with naive matching on short random strings; test repetition, overlaps and empty patterns where supported.
 
@@ -731,43 +775,47 @@ Build a trie and a linear-time matcher. Compare with naive matching on short ran
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/implement-trie-prefix-tree/}{Implement Trie (Prefix Tree)} (M)
+\item \href{https://leetcode.com/problems/implement-trie-prefix-tree/}{Implement Trie (Prefix Tree)} (M).
 
-\item \href{https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/}{Find the Index of the First Occurrence in a String} (E, use linear-time matching)
+\item \href{https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/}{Find the Index of the First Occurrence in a String} (E, use linear-time matching).
 
-\item \href{https://leetcode.com/problems/word-search-ii/}{Word Search II} (H)
+\item \href{https://leetcode.com/problems/word-search-ii/}{Word Search II} (H).
 
-\item \href{https://leetcode.com/problems/shortest-palindrome/}{Shortest Palindrome} (H)
+\item \href{https://leetcode.com/problems/shortest-palindrome/}{Shortest Palindrome} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Move from one pattern to many. Explain trie reuse; explore Aho-Corasick in Stage 17.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Explain fallback/overlap handling, preserve traversal state and bound total input work. Specify alphabet assumptions; hashing needs a collision argument.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 14 - Range queries and ordered information}\label{sec:18}
 
 \label{stage:14}
 
-Prerequisites: 2, 4-6
+\prerequisites{Stages 2, 4-6}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Maintain summaries that support efficient updates and queries.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Coordinate compression; Fenwick/segment trees; associative merge and identity; offline sweeps; lazy propagation; order statistics; sparse-table conditions.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Handbook: range queries. CP-Algorithms: Fenwick and segment trees.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Build Fenwick and segment trees. Compare random updates/queries with a plain array; then add one lazy range-update variant.
 
@@ -775,41 +823,45 @@ Build Fenwick and segment trees. Compare random updates/queries with a plain arr
 
 \begin{itemize}
 
-\item \href{https://cses.fi/problemset/task/1646}{Static Range Sum Queries} (CSES)
+\item \href{https://cses.fi/problemset/task/1646}{Static Range Sum Queries} (CSES).
 
-\item \href{https://leetcode.com/problems/range-sum-query-mutable/}{Range Sum Query - Mutable} (M)
+\item \href{https://leetcode.com/problems/range-sum-query-mutable/}{Range Sum Query - Mutable} (M).
 
-\item \href{https://leetcode.com/problems/count-of-smaller-numbers-after-self/}{Count of Smaller Numbers After Self} (H)
+\item \href{https://leetcode.com/problems/count-of-smaller-numbers-after-self/}{Count of Smaller Numbers After Self} (H).
 
-\item \href{https://leetcode.com/problems/count-of-range-sum/}{Count of Range Sum} (H)
+\item \href{https://leetcode.com/problems/count-of-range-sum/}{Count of Range Sum} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Switch static data to online updates or sums to minima; reassess the required algebraic properties.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Define boundaries and merge/identity; prove query decomposition. Compression preserves order, not geometric distance.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 15 - Advanced graphs and reductions}\label{sec:19}
 
 \label{stage:15}
 
-Prerequisites: 6-8, 12
+\prerequisites{Stages 6-8, 12}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Turn a difficult graph problem into a known structure or optimization problem.
 
+\end{samepage}
+
 \subsection*{A. Connectivity and tree queries}
 
-\subsection*{Core topics}
+\paragraph*{Core topics}
 
 Disjoint sets, Kruskal, binary lifting and ancestor queries.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement DSU and binary lifting. Check small connectivity and ancestor queries against simple traversal.
 
@@ -823,11 +875,11 @@ Implement DSU and binary lifting. Check small connectivity and ancestor queries 
 
 \subsection*{B. Graph decomposition}
 
-\subsection*{Core topics}
+\paragraph*{Core topics}
 
 Bridges/low-link values; strongly connected components (SCCs); condensation DAGs; Euler trails.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement one SCC algorithm; verify components on small graphs. For undirected bridge code, track edge identity so parallel edges are handled correctly.
 
@@ -841,11 +893,11 @@ Implement one SCC algorithm; verify components on small graphs. For undirected b
 
 \subsection*{C. Flow and matching}
 
-\subsection*{Core topics}
+\paragraph*{Core topics}
 
 Residual networks; maximum flow; bipartite matching; reductions.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement a residual-flow solver. Check tiny cases by enumeration and verify a flow/cut certificate.
 
@@ -857,37 +909,41 @@ Implement a residual-flow solver. Check tiny cases by enumeration and verify a f
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Model resource assignment as matching. Show both directions: every feasible assignment gives a graph solution, and every graph solution gives a valid assignment.
 
-\subsection*{Exit criteria}
+\paragraph*{Exit criteria}
 
 For each subunit, justify the invariant, validate an implementation and solve a fresh application. Include both graph decomposition and a flow/matching reduction in the stage assessment.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Erickson: graphs and flows. Handbook: spanning trees, connectivity and flows. Use CP-Algorithms for implementation details after deriving the invariants.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 16 - Counting, number theory and geometry}\label{sec:20}
 
 \label{stage:16}
 
-Prerequisites: 1, 4, 10-12
+\prerequisites{Stages 1, 4, 10-12}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Solve problems whose main difficulty is mathematical structure.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 GCD; modular arithmetic/inverses; counting; inclusion-exclusion; digit DP; bit operations; cross products; rational slopes.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 Handbook: mathematics and geometry. CP-Algorithms: targeted references.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Implement gcd, modular exponentiation and integer orientation. Check counting formulas by enumeration; normalize slopes and handle duplicate points.
 
@@ -895,39 +951,43 @@ Implement gcd, modular exponentiation and integer orientation. Check counting fo
 
 \begin{itemize}
 
-\item \href{https://leetcode.com/problems/number-of-digit-one/}{Number of Digit One} (H)
+\item \href{https://leetcode.com/problems/number-of-digit-one/}{Number of Digit One} (H).
 
-\item \href{https://leetcode.com/problems/max-points-on-a-line/}{Max Points on a Line} (H)
+\item \href{https://leetcode.com/problems/max-points-on-a-line/}{Max Points on a Line} (H).
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Change a digit/base/range constraint. Extend collinearity to segment intersection.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Derive the counting argument, state inverse conditions and bound intermediate integers. Avoid floating-point equality for exact geometry.
 
+\par\addpenalty{-300}
+\begin{samepage}
 \section{Stage 17 - Composition and the expanding frontier}\label{sec:21}
 
 \label{stage:17}
 
-Prerequisites: 1-16
+\prerequisites{Stages 1-16}
 
-\subsection*{Objective}
+\paragraph*{Objective}
 
 Combine techniques and fill specialist gaps revealed by unfamiliar problems.
 
-\subsection*{Core topics}
+\end{samepage}
+
+\paragraph*{Core topics}
 
 Meet in the middle; DP optimization conditions; advanced tree/range operations; automata; suffix structures; game DP; computational limits.
 
-\subsection*{Recommended study}
+\paragraph*{Recommended study}
 
 USACO Guide, CP-Algorithms and CSES Advanced Techniques, selected by need.
 
-\subsection*{Build task}
+\paragraph*{Build task}
 
 Combine two techniques, such as a sweep and a range structure. Learn one new specialist technique, state its preconditions and implement it with an independent checker.
 
@@ -939,11 +999,11 @@ Combine two techniques, such as a sweep and a range structure. Learn one new spe
 
 \end{itemize}
 
-\subsection*{Variation}
+\paragraph*{Variation}
 
 Solve a fresh task, change one structural assumption and determine whether the method survives.
 
-\subsection*{Exit gate}
+\paragraph*{Exit gate}
 
 Solve two new combination problems, complete the specialist implementation and pass the Hard benchmark. Revisit this stage when new gaps appear.
 
@@ -970,14 +1030,11 @@ A 90-minute task can span planned study sessions. Count total active time and do
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3850\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3850\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Dimension} & \textbf{2 - Sound} & \textbf{3 - Strong} \\
-\midrule
 Model and approach & Finds a valid approach independently. & Chooses an efficient approach; explains alternatives. \\
 Correctness & Gives a coherent invariant, induction or case argument. & Handles assumptions and difficult boundaries convincingly. \\
 Implementation & Working code with minor self-corrected issues. & Correct code, useful tests, no unresolved defects. \\
 Complexity and limits & Correct time/space bounds and key assumptions. & Accounts for hidden work, expanded state and tradeoffs. \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -993,7 +1050,7 @@ Independent Medium: solve 8 of 10 fresh mixed Medium problems within 45 minutes 
 
 Hard development: solve fresh Hard problems with sound reasoning in up to 90 minutes.
 
-Advanced Hard: pass the benchmark on section 23.
+Advanced Hard: pass the benchmark in \hyperref[sec:23]{The 45-minute Hard benchmark}.
 
 \subsection*{If you miss a gate}
 
@@ -1012,15 +1069,12 @@ Have a reviewer or selector choose published Hard problems you have never attemp
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Families 1-5} & \textbf{Families 6-10} \\
-\midrule
 Arrays / windows & Graph structure / reductions \\
 Search / greedy & Basic / sequence DP \\
 Stacks / heaps & Advanced DP \\
 Trees & Strings \\
 Graph paths / traversal & Range queries / counting / math / geometry \\
-\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1028,7 +1082,7 @@ Hide tags, acceptance rates, editorials and technique names added by the selecto
 
 \subsection*{2. Run each attempt}
 
-Start on first reading. Use Go initially (see section 24), an editor, compiler, statement and judge. Do not use AI, web search, conceptual hints, editorials or solution templates. Ordinary syntax completion is allowed. Generative completion is forbidden.
+Start on first reading. Use Go initially (see \hyperref[sec:24]{Language practice}), an editor, compiler, statement and judge. Do not use AI, web search, conceptual hints, editorials or solution templates. Ordinary syntax completion is allowed. Generative completion is forbidden.
 
 All coding, testing, debugging, explanation, and resubmissions count within 45 minutes. Pause only for genuine infrastructure failure. Reserve another 15 minutes for review.
 
@@ -1036,7 +1090,7 @@ Suggested checkpoints: 0-7 model; 7-15 derive and justify; 15-35 implement; 35-4
 
 \subsection*{3. Count a success}
 
-A pass requires a correct/accepted solution within 45 minutes, an approach that meets the constraints, and a sound correctness/complexity explanation. Apply the section 22 rubric. A timed-out problem remains a failure in that block even if solved later.
+A pass requires a correct/accepted solution within 45 minutes, an approach that meets the constraints, and a sound correctness/complexity explanation. Apply the rubric in \hyperref[sec:22]{Stage gates and mastery criteria}. A timed-out problem remains a failure in that block even if solved later.
 
 \subsection*{4. Repeat the result}
 
@@ -1050,7 +1104,7 @@ After an interview cycle, continue weekly practice with a duration chosen before
 
 \section{Language practice: Go, C++ and Rust}\label{sec:24}
 
-Starting point: Go is familiar, C++ is partly familiar, and Rust is new. Algorithm mastery remains the main goal. Language practice fits within the study time chosen for each session. See section 25 for session planning.
+Starting point: Go is familiar, C++ is partly familiar, and Rust is new. Algorithm mastery remains the main goal. Language practice fits within the study time chosen for each session. See \hyperref[sec:25]{Session planning}.
 
 \subsection*{Choose the exercise language}
 
@@ -1091,19 +1145,17 @@ Retrieval means recalling prior learning without notes. Reserve one-sixth each f
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3000\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2500\linewidth-2\tabcolsep\relax}}
-\toprule
 \textbf{Available} & \textbf{Retrieval} & \textbf{Focused work} & \textbf{Feedback} \\
-\midrule
 20 min & 3 min & 14 min & 3 min \\
 30 min & 5 min & 20 min & 5 min \\
 45 min & 8 min & 29 min & 8 min \\
 60 min & 10 min & 40 min & 10 min \\
 90 min & 15 min & 60 min & 15 min \\
 120 min & 20 min & 80 min & 20 min \\
-\bottomrule
 \end{tabular}
 \end{center}
 
+\clearpage
 \subsection*{Choose work that fits}
 
 Retrieval: select due reviews that fit, starting with weak skills. If none are due, use a baseline prompt.
@@ -1122,8 +1174,9 @@ At close, record the whole attempt, assistance, first substantive gap, learner f
 
 Reserve 60 minutes for a 45-minute benchmark plus review, or 75 minutes for a 60-minute stage task plus review. A 90-minute task needs 105 active minutes including review and can span agreed study blocks. Give no feedback or solution study before the attempt ends. If an uninterrupted assessment and review do not fit, choose ordinary study or schedule the assessment later. Extra time can fund separate work after review. It never extends the assessment deadline.
 
-These splits are planning rules, not measured optimal learning intervals. The research and its limits remain on section 27. The timer tracks active time and reported pauses. It does not send deadline alerts.
+These splits are planning rules, not measured optimal learning intervals. The research and its limits remain in \hyperref[sec:27]{Selected references}. The timer tracks active time and reported pauses. It does not send deadline alerts.
 
+\clearpage
 \section{Recommended resource stack}\label{sec:26}
 
 Choose one explanation source for the current topic. Read only what supports the next exercise; use topic names because book chapter numbers vary by edition.
