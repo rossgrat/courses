@@ -5,18 +5,13 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage{lmodern}
 \RequirePackage[default,semibold]{sourcesans}
-\RequirePackage[table]{xcolor}
+\RequirePackage{xcolor}
 \RequirePackage{array,booktabs,enumitem,titlesec,titletoc,fancyhdr,ragged2e,multicol}
 \RequirePackage[hyphens]{url}
 \RequirePackage{hyperref}
 
-\definecolor{ink}{HTML}{243444}
-\definecolor{accent}{HTML}{276F7D}
-\definecolor{muted}{HTML}{63717D}
-\definecolor{rule}{HTML}{CAD4DB}
-\definecolor{pale}{HTML}{F0F5F6}
-\color{ink}
-\hypersetup{colorlinks=true,linkcolor=ink,urlcolor=accent,bookmarksopen=true}
+\definecolor{muted}{gray}{0.4}
+\hypersetup{hidelinks,bookmarksopen=true}
 \urlstyle{same}
 \linespread{1.05}
 \setlength{\parindent}{0pt}
@@ -27,22 +22,21 @@
 \setlength{\multicolsep}{4pt}
 \setlength{\premulticols}{0pt}
 \renewcommand{\arraystretch}{1.15}
-\arrayrulecolor{rule}
 \clubpenalty=10000
 \widowpenalty=10000
 \raggedbottom
 \AtBeginDocument{\RaggedRight}
 
 \setlist{leftmargin=1.4em,topsep=4pt,itemsep=2pt,parsep=0pt,partopsep=0pt}
-\setlist[itemize]{label=\textcolor{accent}{\textbullet}}
+\setlist[itemize]{label=\textbullet}
 \newenvironment{topics}{\par\noindent\begin{minipage}{\linewidth}\RaggedRight\begin{multicols}{2}\begin{itemize}}{\end{itemize}\end{multicols}\end{minipage}\par}
-\titleformat{\section}{\fontsize{20}{24}\selectfont\bfseries\raggedright}{\color{accent}\normalsize\thesection}{12pt}{}
+\titleformat{\section}{\fontsize{17}{21}\selectfont\bfseries\raggedright}{\thesection}{0.6em}{}
 \titlespacing*{\section}{0pt}{22pt}{12pt}
-\titleformat{\subsection}{\large\bfseries\color{accent}}{\thesubsection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.7em}{}
 \titlespacing*{\subsection}{0pt}{11pt}{5pt}
 \titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.7em}{}
 \titlespacing*{\subsubsection}{0pt}{10pt}{3pt}
-\titleformat{\paragraph}[block]{\normalsize\bfseries\color{accent}}{}{0pt}{}
+\titleformat{\paragraph}[block]{\normalsize\bfseries}{}{0pt}{}
 \titlespacing*{\paragraph}{0pt}{10pt}{3pt}
 
 \setcounter{tocdepth}{1}
@@ -56,32 +50,27 @@
 
 \newcommand{\coursecover}[7]{%
   \thispagestyle{empty}
-  {\color{accent}\rule{\linewidth}{3pt}}\par
-  \vspace{18pt}
-  {\small\bfseries\color{muted} COURSE CURRICULUM\par}
-  \vspace{32pt}
-  {\fontsize{40}{44}\selectfont\bfseries #1\par}
-  \vspace{14pt}
-  {\Large\color{muted} #2\par}
-  \vfill
+  \vspace*{0.7in}
+  \begin{center}
+  {\fontsize{30}{35}\selectfont\bfseries #1\par}
+  \vspace{16pt}
+  {\large #2\par}
+  \end{center}
+  \vspace{48pt}
   \paragraph*{Primary path} #3\par
   \paragraph*{#4} #5\par
-  \vspace{26pt}
-  {\color{rule}\rule{\linewidth}{0.5pt}}\par
+  \vspace{16pt}
   \paragraph*{Course philosophy}
-  {\Large\bfseries #6\par}
-  \vspace{10pt}
+  {\large\itshape #6\par}
+  \vfill
   #7\par
   \vspace{20pt}
   \clearpage
 }
 
-\newsavebox{\coursequote}
 \renewenvironment{quote}{%
-  \par\addvspace{6pt}\begingroup\setlength{\fboxsep}{10pt}
-  \begin{lrbox}{\coursequote}\begin{minipage}{\dimexpr\linewidth-20pt\relax}
-  \small\RaggedRight
+  \begin{list}{}{\setlength{\leftmargin}{18pt}\setlength{\rightmargin}{18pt}}
+  \item\relax\small\itshape\RaggedRight
 }{%
-  \end{minipage}\end{lrbox}
-  \noindent\colorbox{pale}{\usebox{\coursequote}}\par\endgroup\addvspace{6pt}
+  \end{list}
 }
