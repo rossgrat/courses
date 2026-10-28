@@ -1,0 +1,2039 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{latex/course}
+
+\newcommand{\coursename}{Low-Latency Trading Engineering Course}
+
+\hypersetup{pdftitle={Low-Latency Trading Engineering Course}}
+
+\begin{document}
+
+\vspace*{1.2in}
+
+{\color{navy}\fontsize{30}{38}\selectfont\bfseries LOW-LATENCY\\TRADING ENGINEERING\par}
+
+\medskip
+{\color{muted}\fontsize{15}{20}\selectfont A mastery-gated course plan for breaking into quantitative trading engineering\par}
+
+\bigskip
+
+{\color{accent}\bfseries Primary path\par}
+
+Low-latency C++ / execution engineering\par
+
+\bigskip
+
+{\color{accent}\bfseries Secondary paths\par}
+
+Trading strategy  |  Infrastructure \& platform  |  Performance  |  Acceleration\par
+
+\bigskip
+
+{\color{accent}\bfseries COURSE PHILOSOPHY\par}
+
+\medskip
+{\color{navy}\fontsize{16}{20}\selectfont \bfseries Build. Measure. Explain. Interview. Iterate.\par}
+
+\bigskip
+
+Prepared October 2026\par
+
+\clearpage
+
+{\setlength{\parskip}{0pt}\small\tableofcontents}
+
+\begin{quote}\itshape This is not a calendar-based bootcamp. Advance when you can demonstrate the exit criteria. Begin applying before the curriculum is complete.\end{quote}
+
+\clearpage
+
+\section{Mission and target candidate}\label{sec:1}
+
+The primary goal is to become an exceptionally strong candidate for low-latency C++ / execution engineering roles at quantitative trading firms.
+
+Secondary paths remain deliberately open:
+
+\begin{itemize}
+
+\item Trading strategy engineering
+
+\item Trading infrastructure
+
+\item Platform engineering
+
+\item Performance engineering
+
+\item Market-data engineering
+
+\item Hardware/software acceleration
+
+\end{itemize}
+
+The curriculum is asynchronous and mastery-gated. There are no arbitrary week counts. You advance when you can demonstrate the skill.
+
+\begin{quote}\raggedright\itshape
+The course also contains explicit application gates so studying cannot expand indefinitely and prevent you from actually interviewing.
+\end{quote}
+
+\subsection*{The target candidate}
+
+At the end, your profile should read approximately like this:
+
+\begin{quote}\raggedright\itshape
+Senior backend/distributed-systems engineer with strong C++ systems-programming skills, practical knowledge of Linux internals, networking, concurrency and computer architecture, and demonstrated ability to measure and optimize latency-sensitive systems. Built a realistic electronic-trading system in C++ and contributed to production-quality open-source systems software.
+\end{quote}
+
+That is much stronger than:
+
+\begin{quote}\raggedright\itshape
+Backend engineer who studied some C++ and did LeetCode.
+\end{quote}
+
+You do not need to pretend you already have professional HFT experience. A credible story is:
+
+\begin{quote}\raggedright\itshape
+I have spent my career building backend and distributed systems. I became increasingly interested in performance-sensitive systems, so I deliberately developed much deeper C++/Linux/performance expertise and built real systems demonstrating it.
+\end{quote}
+
+\section{How the curriculum works}\label{sec:2}
+
+Every stage combines four forms of work:
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Component} & \textbf{Purpose} \\
+\midrule
+Knowledge & Understand the underlying systems. \\
+Implementation & Prove you can actually build them. \\
+Measurement & Prove that you understand performance. \\
+Interview practice & Convert knowledge into interview performance. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+For every major concept you study, produce something executable, measurable, explainable, or interviewable.
+\end{quote}
+
+Reading about caches is not sufficient; demonstrate cache effects with a benchmark. Reading about atomics is not sufficient; implement and explain a concurrent queue. Reading about networking is not sufficient; write socket code. Reading about market making is not sufficient; run a strategy against your exchange simulator.
+
+\section{Curriculum map}\label{sec:3}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Stage} & \textbf{Focus} & \textbf{Outcome} \\
+\midrule
+Stage 0 & Baseline and environment & Establish tools and starting point \\
+Stage 1 & Modern C++ fluency & Language and resource-management competence \\
+Stage 2 & Concurrency and memory model & Reason correctly across CPU cores \\
+Stage 3 & Architecture and performance & Measure, profile and optimize \\
+Stage 4 & Linux and networking & Understand the machine and network stack \\
+Stage 5 & Low-latency engineering & Build for predictability and latency \\
+Stage 6 & Electronic trading systems & Learn the domain by implementing it \\
+Stage 7 & Mercury flagship project & Integrate the entire skill stack \\
+Stage 8 & Specialization & Execution, strategy, platform or acceleration \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Throughout the entire program, three tracks continue in parallel:
+
+\begin{itemize}
+
+\item Interview practice and DSA
+
+\item Open-source contribution work
+
+\item Applications once the first gate is crossed
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+The critical path ends before acceleration or FPGA specialization. You should be applying before you have mastered every advanced topic.
+\end{quote}
+
+\section{Stage 0 - Baseline and engineering environment}\label{sec:4}
+
+\label{stage:0}
+
+\subsection*{Objective}
+
+Establish your starting point and create the environment you will use for the rest of the curriculum. This is not a learn-programming phase.
+
+\subsection*{Environment}
+
+Eventually you want access to bare-metal x86-64 Linux. Early exercises can run elsewhere, but serious latency measurements should not be performed primarily inside a noisy cloud VM.
+
+Install and become comfortable with:
+
+\begin{itemize}
+
+\item GCC
+
+\item Clang
+
+\item CMake
+
+\item Ninja
+
+\item GDB
+
+\item Git
+
+\item AddressSanitizer
+
+\item UndefinedBehaviorSanitizer
+
+\item ThreadSanitizer
+
+\item perf
+
+\item strace
+
+\item taskset
+
+\item numactl
+
+\item lscpu
+
+\item Google Benchmark
+
+\end{itemize}
+
+\subsection*{Baseline assessment}
+
+Without substantial preparation, attempt the following. Save the results; this is a baseline, not an exam.
+
+\subsubsection*{C++}
+
+\begin{itemize}
+
+\item Dynamic array
+
+\item Hash map
+
+\item Thread pool
+
+\item TCP echo server
+
+\end{itemize}
+
+\subsubsection*{Algorithms}
+
+\begin{itemize}
+
+\item Graph traversal
+
+\item Heap / top-K
+
+\item Binary search
+
+\item Sliding window
+
+\item Interval problem
+
+\item Basic dynamic programming
+
+\end{itemize}
+
+\subsubsection*{Systems}
+
+\begin{itemize}
+
+\item Explain process vs thread
+
+\item Explain virtual memory
+
+\item Explain context switching
+
+\item Explain TCP vs UDP
+
+\item Explain mutex vs atomic
+
+\item Explain a cache line
+
+\item Explain a race condition
+
+\end{itemize}
+
+\subsubsection*{Performance}
+
+Take a simple C++ program and answer: Where is the program spending its CPU time? Use an actual profiling tool rather than guessing.
+
+\section{Stage 1 - Modern C++ for systems programming}\label{sec:5}
+
+\label{stage:1}
+
+\subsection*{Goal}
+
+Become comfortable enough with C++ that the language no longer consumes most of your mental bandwidth. The objective is production C++ fluency, not encyclopedic language-lawyer knowledge. Target C++20 as your working language and recognize useful C++23 features.
+
+\subsection*{Core topics}
+
+\subsubsection*{Object lifetime}
+
+\begin{itemize}
+
+\item Automatic and dynamic storage
+
+\item RAII
+
+\item Destructors
+
+\item Ownership
+
+\item References and pointers
+
+\item Dangling references
+
+\item Object lifetime
+
+\item Initialization
+
+\end{itemize}
+
+\subsubsection*{Value semantics}
+
+\begin{itemize}
+
+\item Copy construction
+
+\item Move construction
+
+\item Copy assignment
+
+\item Move assignment
+
+\item Perfect forwarding conceptually
+
+\item Rule of Zero
+
+\item Rule of Five
+
+\end{itemize}
+
+\subsubsection*{Standard library}
+
+\begin{itemize}
+
+\item vector
+
+\item array
+
+\item span
+
+\item string
+
+\item string\_view
+
+\item unordered\_map
+
+\item map
+
+\item optional
+
+\item variant
+
+\item unique\_ptr
+
+\item shared\_ptr
+
+\item Algorithms
+
+\item Ranges at a practical level
+
+\end{itemize}
+
+\subsubsection*{Templates}
+
+\begin{itemize}
+
+\item Function templates
+
+\item Class templates
+
+\item Concepts
+
+\item Type traits
+
+\item Generic algorithms
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+Do not disappear into template metaprogramming.
+\end{quote}
+
+\subsubsection*{Error handling}
+
+\begin{itemize}
+
+\item Exceptions
+
+\item Error codes
+
+\item optional
+
+\item expected-style results
+
+\item Assertions
+
+\end{itemize}
+
+\subsubsection*{Memory}
+
+\begin{itemize}
+
+\item Stack vs heap
+
+\item Allocations
+
+\item Alignment
+
+\item Contiguous memory
+
+\item Object layout
+
+\item Padding
+
+\end{itemize}
+
+\subsection*{Exercises: cpp-systems-lab}
+
+Build a repository called cpp-systems-lab. Each experiment should include an implementation, test, benchmark where relevant, short explanation, and observations.
+
+\subsubsection*{Allocation experiment}
+
+\begin{itemize}
+
+\item Allocate one million objects individually
+
+\item Store them contiguously
+
+\item Preallocate
+
+\item Measure the differences
+
+\end{itemize}
+
+\subsubsection*{String experiment}
+
+\begin{itemize}
+
+\item Copies
+
+\item Moves
+
+\item string\_view
+
+\end{itemize}
+
+\subsubsection*{Container experiment}
+
+\begin{itemize}
+
+\item vector
+
+\item Linked structures
+
+\item Hash maps
+
+\item Different access patterns
+
+\end{itemize}
+
+\subsubsection*{Virtual dispatch experiment}
+
+\begin{itemize}
+
+\item Direct calls
+
+\item Polymorphic calls
+
+\item Measure rather than assume
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+The habit matters more than the number: hypothesis -> measurement -> explanation.
+\end{quote}
+
+\subsection*{Stage 1 exit gate}
+
+\begin{itemize}
+
+\item Implement normal programs without fighting C++
+
+\item Explain RAII naturally
+
+\item Identify ownership in unfamiliar code
+
+\item Explain copy vs move
+
+\item Debug lifetime bugs
+
+\item Reason about allocations
+
+\item Use STL containers appropriately
+
+\item Write tests and benchmarks
+
+\item Read moderately complicated C++ code
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+Do not wait until you know every corner of C++. Proceed once the exit gate is solid.
+\end{quote}
+
+\section{Stage 2 - Concurrency and the C++ memory model}\label{sec:6}
+
+\label{stage:2}
+
+\subsection*{Goal}
+
+Move from "I know threads" to "I can reason about communication between CPU cores." This is one of the most important stages in the program.
+
+\subsection*{Ordinary concurrency first}
+
+\begin{itemize}
+
+\item Threads
+
+\item Mutexes
+
+\item Condition variables
+
+\item Semaphores
+
+\item Producer/consumer
+
+\item Thread pools
+
+\item Deadlock
+
+\item Starvation
+
+\item Contention
+
+\end{itemize}
+
+Implement conventional synchronization before reaching for atomics.
+
+\subsection*{Atomics and memory ordering}
+
+\begin{itemize}
+
+\item Atomic load/store
+
+\item Compare-and-swap
+
+\item fetch\_add
+
+\item Memory visibility
+
+\item Happens-before
+
+\item Synchronization relationships
+
+\item relaxed
+
+\item acquire
+
+\item release
+
+\item acquire-release
+
+\item sequential consistency
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+Do not memorize the standard. Learn to reason about concrete examples and explain why the ordering is sufficient.
+\end{quote}
+
+\subsection*{Concurrency project progression}
+
+\subsubsection*{Project A - Blocking queue}
+
+\begin{itemize}
+
+\item Implement BlockingQueue<T>
+
+\item Use mutex + condition variable
+
+\item Test shutdown and edge cases heavily
+
+\end{itemize}
+
+\subsubsection*{Project B - Thread pool}
+
+\begin{itemize}
+
+\item Shutdown semantics
+
+\item Task ownership
+
+\item Task exceptions
+
+\item Queue contention
+
+\item Work distribution
+
+\end{itemize}
+
+\subsubsection*{Project C - SPSC ring buffer}
+
+\begin{itemize}
+
+\item Single producer / single consumer
+
+\item Lock-free steady-state path
+
+\item Compare against an established implementation afterward
+
+\end{itemize}
+
+\subsubsection*{Benchmark at minimum:}
+
+\begin{itemize}
+
+\item Mutex queue
+
+\item Condition-variable queue
+
+\item SPSC ring
+
+\item Throughput
+
+\item Median latency
+
+\item p99 latency
+
+\end{itemize}
+
+\subsubsection*{Then investigate:}
+
+\begin{itemize}
+
+\item Padding
+
+\item False sharing
+
+\item Memory ordering
+
+\item Busy spinning
+
+\end{itemize}
+
+\subsection*{Stage 2 interview capability}
+
+\begin{itemize}
+
+\item When would you use a mutex rather than atomics?
+
+\item What is false sharing?
+
+\item Why does this queue need acquire/release?
+
+\item What happens if producer and consumer counters share a cache line?
+
+\item Why can lock-free code still be slow?
+
+\item What does wait-free mean?
+
+\end{itemize}
+
+\section{Stage 3 - Computer architecture and performance engineering}\label{sec:7}
+
+\label{stage:3}
+
+\subsection*{Core mental model}
+
+You need to understand the path: C++ source -> compiler -> assembly -> CPU pipeline -> cache hierarchy -> memory.
+
+\subsection*{CPU architecture}
+
+\begin{itemize}
+
+\item Instructions
+
+\item Registers
+
+\item Pipelines
+
+\item Superscalar execution
+
+\item Out-of-order execution
+
+\item Branch prediction
+
+\end{itemize}
+
+\subsection*{Memory hierarchy}
+
+\begin{itemize}
+
+\item Registers
+
+\item L1
+
+\item L2
+
+\item L3
+
+\item DRAM
+
+\item Why memory latency can dominate arithmetic
+
+\end{itemize}
+
+\subsection*{Cache behavior}
+
+\begin{itemize}
+
+\item Cache lines
+
+\item Locality
+
+\item False sharing
+
+\item Cache misses
+
+\item Prefetching
+
+\end{itemize}
+
+\subsection*{Layout}
+
+\begin{itemize}
+
+\item Array of Structures
+
+\item Structure of Arrays
+
+\item Choosing layout from access patterns
+
+\end{itemize}
+
+\subsection*{SIMD and compiler behavior}
+
+\begin{itemize}
+
+\item Vector instructions
+
+\item Auto-vectorization
+
+\item Basic intrinsics
+
+\item Generated assembly
+
+\item Optimization levels
+
+\item Inlining
+
+\item Constant propagation
+
+\item Loop transformations
+
+\end{itemize}
+
+\subsection*{Primary asynchronous course}
+
+Use selected portions of MIT 6.172, Performance Engineering of Software Systems, as a performance-engineering spine. Prioritize measurement, caching, storage allocation, parallelism, synchronization, and tuning. Do not feel obligated to complete every assignment sequentially.
+
+\subsection*{Performance laboratory}
+
+\begin{itemize}
+
+\item Cache locality: random traversal vs sequential traversal
+
+\item Cache lines: demonstrate false sharing
+
+\item Branch prediction: predictable vs unpredictable branches
+
+\item Allocation: hot-loop heap allocation vs preallocation
+
+\item Layout: AoS vs SoA
+
+\item SIMD: scalar vs vectorized implementation
+
+\item Compiler optimization: inspect generated assembly
+
+\end{itemize}
+
+\subsection*{Measurement discipline}
+
+Latency numbers are easy to lie with accidentally. Learn to control or at least understand:
+
+\begin{itemize}
+
+\item Warmup
+
+\item CPU frequency
+
+\item Scheduler interference
+
+\item CPU affinity
+
+\item Background tasks
+
+\item Compiler optimization
+
+\item Dead-code elimination
+
+\item Clock sources
+
+\item Sample distributions
+
+\end{itemize}
+
+Stop reporting only averages. Prefer median, p95, p99, p99.9, and maximum when useful.
+
+\subsection*{Stage 3 exit gate}
+
+\begin{enumerate}
+
+\item Measure a slow program.
+
+\item Profile it.
+
+\item Form a hypothesis.
+
+\item Alter one thing.
+
+\item Benchmark again.
+
+\item Explain why performance changed.
+
+\end{enumerate}
+
+\begin{quote}\raggedright\itshape
+That workflow is more important than memorizing fast-C++ tricks.
+\end{quote}
+
+\section{Stage 4 - Linux systems and networking}\label{sec:8}
+
+\label{stage:4}
+
+\subsection*{Goal}
+
+Become comfortable reasoning about the machine beneath your process.
+
+\subsection*{Linux}
+
+\begin{itemize}
+
+\item Processes
+
+\item Threads
+
+\item Scheduling
+
+\item Syscalls
+
+\item File descriptors
+
+\item Signals
+
+\item Virtual memory
+
+\item Page faults
+
+\item Memory mapping
+
+\item Shared memory
+
+\item CPU affinity
+
+\item NUMA
+
+\item Huge pages
+
+\item Interrupt behavior
+
+\item Context switches
+
+\end{itemize}
+
+\subsubsection*{Regularly use:}
+
+{\ttfamily\raggedright perf stat\par}
+
+{\ttfamily\raggedright perf record\par}
+
+{\ttfamily\raggedright perf report\par}
+
+{\ttfamily\raggedright strace\par}
+
+{\ttfamily\raggedright taskset\par}
+
+{\ttfamily\raggedright numactl\par}
+
+\subsection*{Networking}
+
+Start from sockets and build rather than only reading.
+
+\begin{itemize}
+
+\item TCP server
+
+\item UDP server
+
+\item Binary protocol
+
+\item Multicast receiver
+
+\end{itemize}
+
+\subsubsection*{Learn:}
+
+\begin{itemize}
+
+\item Sockets
+
+\item TCP
+
+\item UDP
+
+\item Multicast
+
+\item Packet loss
+
+\item Sequence numbers
+
+\item Buffering
+
+\item Kernel networking
+
+\item Serialization
+
+\end{itemize}
+
+Understand the tradeoff: TCP provides reliability and ordering; UDP minimizes protocol overhead and gives the application more control over recovery.
+
+\subsection*{Networking project - toy market-data feed}
+
+Publisher emits:
+
+\begin{itemize}
+
+\item Instrument ID
+
+\item Sequence number
+
+\item Bid
+
+\item Ask
+
+\item Quantity
+
+\item Timestamp
+
+\end{itemize}
+
+Subscriber:
+
+\begin{itemize}
+
+\item Receives packets
+
+\item Parses them
+
+\item Detects sequence gaps
+
+\item Updates market state
+
+\item Measures end-to-end latency
+
+\end{itemize}
+
+This becomes part of the eventual trading-system project.
+
+\section{Stage 5 - Low-latency engineering}\label{sec:9}
+
+\label{stage:5}
+
+The question now changes from "How do I make C++ fast?" to "How do I make the entire system predictable?"
+
+\subsection*{Allocation avoidance}
+
+\begin{itemize}
+
+\item Avoid allocations on the critical path
+
+\item Preallocation
+
+\item Object pools when justified
+
+\item Fixed-capacity containers where appropriate
+
+\end{itemize}
+
+\subsection*{Data-oriented design}
+
+Organize memory based on how it is accessed, not only object-oriented abstractions.
+
+\subsection*{CPU pinning and busy spinning}
+
+\begin{itemize}
+
+\item Understand why critical threads may be pinned to cores
+
+\item Understand why a system may intentionally consume a CPU core instead of blocking
+
+\item Measure the latency/CPU tradeoff
+
+\end{itemize}
+
+\subsection*{Lock avoidance and queue design}
+
+\begin{itemize}
+
+\item Single-writer designs
+
+\item SPSC
+
+\item MPSC
+
+\item MPMC
+
+\item Why lock-free does not automatically mean faster
+
+\end{itemize}
+
+\subsection*{Batching, syscalls and jitter}
+
+\begin{itemize}
+
+\item Latency/throughput tradeoff
+
+\item Why entering the kernel matters
+
+\item Tail latency and variance
+
+\item Sources of scheduling jitter
+
+\end{itemize}
+
+\subsection*{Kernel bypass}
+
+Study DPDK only after normal networking. Understand the architecture and why poll-mode drivers can bypass the traditional kernel networking path. Eventually build a basic DPDK application if the hardware and environment permit.
+
+\begin{quote}\raggedright\itshape
+Do not make DPDK expertise a prerequisite for applying. Understand why it exists before trying to master it.
+\end{quote}
+
+\subsection*{io\_uring}
+
+Learn the model and experiment with liburing, while remembering that asynchronous I/O and ultra-low-latency trading solve related but distinct problems.
+
+\section{Stage 6 - Electronic trading systems}\label{sec:10}
+
+\label{stage:6}
+
+Only now introduce significant trading-specific material. You do not need a finance degree; you need to understand the environment your software operates in.
+
+\subsection*{Market microstructure}
+
+\begin{itemize}
+
+\item Exchanges
+
+\item Securities
+
+\item Futures
+
+\item Options at a conceptual level
+
+\item Bids and asks
+
+\item Spread
+
+\item Liquidity
+
+\item Makers and takers
+
+\item Market orders
+
+\item Limit orders
+
+\item Order books
+
+\item Price/time priority
+
+\item Fills
+
+\item Cancellations
+
+\item Partial fills
+
+\end{itemize}
+
+\subsubsection*{Then understand:}
+
+\begin{itemize}
+
+\item Market data
+
+\item Order entry
+
+\item Execution acknowledgements
+
+\item Drop copy
+
+\item Risk checks
+
+\item Position
+
+\item P\&L
+
+\end{itemize}
+
+\subsection*{Order book implementation}
+
+Implement one. Represent levels and process add, modify, cancel, and trade messages. Start simple and correct, then benchmark different structures.
+
+\begin{quote}\raggedright\itshape
+This is a perfect place to demonstrate that the theoretically elegant data structure is not always the fastest structure for the real access pattern.
+\end{quote}
+
+\subsection*{Exchange simulator}
+
+Build a small exchange that accepts new orders and cancellations, generates acknowledgements and fills, publishes market-data updates, and supports price/time priority.
+
+\subsection*{FIX}
+
+Understand FIX conceptually and study a mature implementation such as QuickFIX. If useful, build an external gateway around QuickFIX, but do not make FIX the hot-path protocol in your simulated HFT stack. Compare it conceptually against compact binary exchange protocols.
+
+\section{Stage 7 - Flagship project: Mercury}\label{sec:11}
+
+\label{stage:7}
+
+This is the most important differentiator in the curriculum. Rather than ten toy repositories, build one unusually good system.
+
+\subsection*{Mercury}
+
+\begin{quote}\raggedright\itshape
+A simulated low-latency electronic trading platform that looks like something an experienced engineer built, not a bootcamp portfolio project.
+\end{quote}
+
+\subsection*{Conceptual architecture}
+
+{\ttfamily\raggedright Market-data generator / exchange  ->  network receiver  ->  market-data parser  ->  order book  ->  strategy  ->  risk  ->  order gateway  ->  exchange simulator\par}
+
+Cross-cutting capabilities: telemetry, deterministic replay, tests, and benchmark harness.
+
+\subsection*{Milestone 1 - Exchange}
+
+\begin{itemize}
+
+\item Order entry
+
+\item Cancellations
+
+\item Price/time matching
+
+\item Fills
+
+\item Correctness tests first
+
+\end{itemize}
+
+\subsection*{Milestone 2 - Market data}
+
+\begin{itemize}
+
+\item Book updates
+
+\item Sequence numbers
+
+\item Trades
+
+\item Binary protocol
+
+\end{itemize}
+
+\subsection*{Milestone 3 - Client market-data handler}
+
+\begin{itemize}
+
+\item Receive and parse updates
+
+\item Detect gaps
+
+\item Maintain a local order book
+
+\end{itemize}
+
+\subsection*{Milestone 4 - Strategy}
+
+\begin{itemize}
+
+\item Toy market maker, spread strategy, or imbalance signal
+
+\item Use the strategy to exercise the system
+
+\item Do not make unrealistic profitability claims
+
+\end{itemize}
+
+\subsection*{Milestone 5 - Execution}
+
+\begin{itemize}
+
+\item Strategy generates orders
+
+\item Risk validates them
+
+\item Gateway sends them
+
+\item Receive fills
+
+\item Track position
+
+\end{itemize}
+
+\subsection*{Milestone 6 - Multithreading}
+
+\begin{itemize}
+
+\item Separate network, strategy, and execution
+
+\item Use queues between components
+
+\item Reuse your SPSC queue where appropriate
+
+\end{itemize}
+
+\subsection*{Milestone 7 - Hot-path constraints}
+
+\begin{itemize}
+
+\item No dynamic allocations during steady-state processing
+
+\item Predictable memory layout
+
+\item Minimal copies
+
+\item Bounded queues
+
+\item CPU affinity where appropriate
+
+\item Document each design choice
+
+\end{itemize}
+
+\subsection*{Milestone 8 - Benchmarking}
+
+\begin{itemize}
+
+\item Market-data pipeline: packet -> parse -> book update -> strategy decision
+
+\item Execution pipeline: strategy decision -> risk -> order transmission
+
+\item Report p50, p95, p99, and p99.9
+
+\end{itemize}
+
+\subsection*{Milestone 9 - Profiling}
+
+\begin{itemize}
+
+\item Use perf
+
+\item Publish hotspot analysis
+
+\item Examine cache behavior
+
+\item Examine branch behavior
+
+\item Inspect context switches where relevant
+
+\item Show before/after optimization results and explanation
+
+\end{itemize}
+
+\subsection*{Milestone 10 - Replay}
+
+\begin{itemize}
+
+\item Record market events
+
+\item Allow deterministic replay
+
+\item Use replay for debugging, testing, simulation, and strategy research
+
+\end{itemize}
+
+\subsection*{The README matters}
+
+The repository should be able to support a 30-minute technical discussion. Document:
+
+\begin{itemize}
+
+\item Problem: what system did you build?
+
+\item Architecture: include a diagram
+
+\item Design decisions: why threads are partitioned this way
+
+\item Performance methodology: how measurements were performed
+
+\item Results: distributions and benchmarks
+
+\item Profiling discoveries: what actually mattered
+
+\item Tradeoffs: what did you intentionally not optimize?
+
+\item Future work: show awareness without pretending everything is complete
+
+\end{itemize}
+
+\section{Stage 8 - Specialization branches}\label{sec:12}
+
+\label{stage:8}
+
+Low-latency execution remains the default branch. Choose additional depth based on real job targets rather than curiosity alone.
+
+\subsection*{Branch A - Low-latency execution}
+
+\begin{itemize}
+
+\item C++ object layout
+
+\item Allocators
+
+\item Lock-free structures
+
+\item Memory ordering
+
+\item Linux scheduling
+
+\item NUMA
+
+\item CPU isolation
+
+\item NIC queues
+
+\item Multicast
+
+\item Packet processing
+
+\item Kernel bypass
+
+\item Timestamping
+
+\item PTP concepts
+
+\item Exchange binary protocols
+
+\end{itemize}
+
+Study real high-performance messaging systems such as Aeron and compare their design ideas against your own transport.
+
+\subsection*{Branch B - Trading strategy engineering}
+
+\begin{itemize}
+
+\item Market microstructure
+
+\item Event-driven simulation
+
+\item Backtesting
+
+\item Transaction costs
+
+\item Slippage
+
+\item Queue position
+
+\item Strategy evaluation
+
+\end{itemize}
+
+Enhance Mercury with historical or synthetic replay, a strategy plug-in interface, and performance analytics. The engineering challenge matters more than inventing alpha.
+
+\subsection*{Branch C - Infrastructure / platform}
+
+\begin{itemize}
+
+\item Distributed systems
+
+\item Market-data storage
+
+\item Research computation
+
+\item Data pipelines
+
+\item Experiment reproducibility
+
+\item Scheduling
+
+\item Observability
+
+\item Fault tolerance
+
+\item Deployment
+
+\end{itemize}
+
+Enhance Mercury with a persistent event log, distributed replay workers, strategy experiment runner, metrics, tracing, and failure recovery. This path maps especially well to existing backend/distributed-systems experience.
+
+\subsection*{Branch D - Acceleration}
+
+Do this after Stage 5, not before.
+
+\subsubsection*{Level 1 - SIMD}
+
+\begin{itemize}
+
+\item Compiler auto-vectorization
+
+\item SIMD intrinsics
+
+\item Vector-friendly data layout
+
+\end{itemize}
+
+\subsubsection*{Level 2 - Networking acceleration}
+
+\begin{itemize}
+
+\item RSS
+
+\item Kernel bypass
+
+\item DPDK
+
+\item NIC queues
+
+\item Polling
+
+\end{itemize}
+
+\subsubsection*{Level 3 - FPGA concepts}
+
+\begin{itemize}
+
+\item RTL
+
+\item Pipelines
+
+\item Clock cycles
+
+\item Fixed-width arithmetic
+
+\item Verilog/SystemVerilog basics
+
+\item Implement something narrow such as a binary market-data parser or simple risk check
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+FPGA competence is a later differentiator, not a prerequisite for applying to C++ roles.
+\end{quote}
+
+\section{Open-source contribution track}\label{sec:13}
+
+The goal is not to collect GitHub activity. The goal is to have another experienced engineer accept technical work you contributed to a real systems project.
+
+\subsection*{Contribution ladder}
+
+\begin{enumerate}
+
+\item Build the project from source.
+
+\item Run its tests.
+
+\item Understand one subsystem.
+
+\item Find a reproducible problem.
+
+\item Add a test or benchmark.
+
+\item Submit a technically meaningful fix.
+
+\item Respond well to review.
+
+\end{enumerate}
+
+\subsection*{Good candidate projects}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Project} & \textbf{Why it fits} & \textbf{Difficulty} \\
+\midrule
+QuickFIX & Trading-domain C++ code; parsing, sessions, tests, performance & Moderate \\
+Aeron & High-performance messaging and transport & Advanced \\
+Google Benchmark & Directly supports performance engineering & Moderate \\
+Boost.Asio & Networking credibility & Advanced \\
+liburing & Linux async-I/O credibility & Advanced \\
+DPDK & Extremely relevant to packet-path performance & Very advanced \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{What counts as impressive?}
+
+\begin{itemize}
+
+\item Fixed a concurrency bug and added a regression test.
+
+\item Added benchmark coverage and improved parser latency.
+
+\item Diagnosed a Linux-specific performance regression and submitted a fix.
+
+\end{itemize}
+
+Documentation work is legitimate, but it does not create the same technical signal for this particular goal.
+
+\section{Interview training track}\label{sec:14}
+
+Begin early and increase intensity over time. Do not wait for the course to be finished.
+
+\subsection*{Phase I - During Stages 1-2}
+
+\begin{itemize}
+
+\item Basic DSA
+
+\item C++ coding
+
+\item Explaining code clearly
+
+\end{itemize}
+
+\subsection*{Phase II - During Stages 3-4}
+
+\begin{itemize}
+
+\item Operating systems
+
+\item Networking
+
+\item Concurrency
+
+\item C++ internals
+
+\item Performance
+
+\end{itemize}
+
+\subsection*{Phase III - During Stages 5-7}
+
+\begin{itemize}
+
+\item System design
+
+\item Low-latency design
+
+\item Market-data systems
+
+\item Trading-system design
+
+\item Project deep dives
+
+\end{itemize}
+
+\subsection*{Algorithm expectations}
+
+\begin{itemize}
+
+\item Arrays
+
+\item Strings
+
+\item Hashing
+
+\item Stacks
+
+\item Queues
+
+\item Heaps
+
+\item Trees
+
+\item Graphs
+
+\item Binary search
+
+\item Two pointers
+
+\item Sliding windows
+
+\item BFS
+
+\item DFS
+
+\item Basic dynamic programming
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+Do not optimize for solving 500 problems. A stronger target is: given an unfamiliar medium problem, reason toward a correct solution, implement it cleanly in C++, test it, and discuss complexity.
+\end{quote}
+
+\subsection*{Asynchronous mock interviews}
+
+Set up a 45-60 minute session, use an unseen problem, record yourself, and speak continuously. Review:
+
+\begin{itemize}
+
+\item Did I clarify the problem?
+
+\item Did I formulate an approach before coding?
+
+\item Did I communicate complexity?
+
+\item Did I test edge cases?
+
+\item Did I get stuck silently?
+
+\item Was my C++ clean?
+
+\end{itemize}
+
+Do the same for system design. Explain a prompt such as "Design a market-data distribution system" to a camera, then critique yourself. External mock interviews are useful occasionally but the curriculum does not depend on synchronous participation.
+
+\section{Application gates}\label{sec:15}
+
+\subsection*{First application gate}
+
+Start applying once all of the following are true:
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Area} & \textbf{Minimum threshold} \\
+\midrule
+C++ & Comfortable writing normal C++20 without constant reference lookup \\
+DSA & Most common medium patterns are familiar \\
+Concurrency & Can implement and explain an SPSC queue plus ordinary synchronization \\
+Operating systems & Comfortable with processes, threads, virtual memory and scheduling \\
+Networking & Have written TCP and UDP socket programs \\
+Performance & Can profile with perf and interpret results \\
+Architecture & Understand cache/locality/allocation/false sharing \\
+Trading & Understand order books and basic market structure \\
+Portfolio & Mercury has a working exchange, market data and basic execution \\
+Interviewing & Can complete realistic 45-minute practice interviews \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+At this point: START APPLYING. Mercury does not need to be finished. You do not need deep DPDK knowledge. You do not need FPGA. There will still be difficult LeetCode problems you cannot solve.
+\end{quote}
+
+\subsection*{Strong-candidate gate}
+
+Before heavily targeting the firms and teams you most want, aim for:
+
+\subsubsection*{C++}
+
+\begin{itemize}
+
+\item Lifetime
+
+\item Allocation
+
+\item Move semantics
+
+\item STL behavior
+
+\item Memory layout
+
+\item Templates
+
+\item Atomics
+
+\item Concurrency
+
+\end{itemize}
+
+\subsubsection*{Performance}
+
+\begin{itemize}
+
+\item Explain at least three real optimizations you personally measured
+
+\end{itemize}
+
+\subsubsection*{Linux}
+
+\begin{itemize}
+
+\item Diagnose performance using system tools
+
+\end{itemize}
+
+\subsubsection*{Networking}
+
+\begin{itemize}
+
+\item Have implemented real socket systems
+
+\end{itemize}
+
+\subsubsection*{Trading}
+
+\begin{itemize}
+
+\item Explain exchange packet -> market data -> book -> strategy -> risk -> order -> execution
+
+\end{itemize}
+
+\subsubsection*{Portfolio}
+
+\begin{itemize}
+
+\item Realistic architecture
+
+\item Tests
+
+\item Benchmarks
+
+\item Latency distributions
+
+\item Profiling
+
+\item Clear documentation
+
+\end{itemize}
+
+\subsubsection*{Open source}
+
+\begin{itemize}
+
+\item Preferably at least one merged technical contribution
+
+\end{itemize}
+
+\subsubsection*{Interviews}
+
+\begin{itemize}
+
+\item Repeatedly perform well in coding, systems, C++, performance and design under interview conditions
+
+\end{itemize}
+
+\section{Application strategy}\label{sec:16}
+
+Do not divide employers into qualified and unqualified. Apply across several role types.
+
+\subsection*{Search titles such as:}
+
+\begin{itemize}
+
+\item Low-Latency Software Engineer
+
+\item C++ Software Engineer
+
+\item Trading Systems Engineer
+
+\item Execution Engineer
+
+\item Market Data Engineer
+
+\item Trading Platform Engineer
+
+\item Trading Strategy Engineer
+
+\item Quantitative Developer
+
+\item Research Engineer
+
+\item Performance Engineer
+
+\item Infrastructure Engineer
+
+\end{itemize}
+
+\subsection*{Application priority}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Tier} & \textbf{Target} & \textbf{Reason} \\
+\midrule
+A & Low-latency C++ / execution & Direct aspiration \\
+B & Trading strategy / market-data engineering & Highly desirable adjacent path \\
+C & Trading infrastructure / platform & Excellent entry path using existing strengths \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Getting into a trading firm as a strong platform engineer does not trap you permanently outside execution. It gets you inside the domain while you continue deepening C++ and performance skills.
+
+\section{Anti-rabbit-hole rules}\label{sec:17}
+
+\begin{enumerate}
+
+\item \textbf{Do not learn advanced material merely because it exists.} Learn it when your project or target job demands it.
+
+\item \textbf{Never read three books before building something.} Study enough to build. Build. Then return to theory.
+
+\item \textbf{Measurement before optimization.} Never optimize Mercury because HFT systems probably do this. Profile it.
+
+\item \textbf{Correct before lock-free.} A mutex-based implementation is often the correct first implementation.
+
+\item \textbf{Do not postpone applications for FPGA.} FPGA is optional specialization.
+
+\item \textbf{Do not postpone applications for quantitative finance.} You are applying as an engineer.
+
+\item \textbf{Do not chase obscure C++ trivia.} Deep fundamentals beat trivia.
+
+\item \textbf{Do not solve LeetCode forever.} Interview problems are a means to an end.
+
+\item \textbf{Every deep dive must justify itself.} Will this improve interview performance, the project, an open-source contribution, or ability to do the job? If not, defer it.
+
+\end{enumerate}
+
+\subsection*{Topics deliberately excluded from the critical path}
+
+\begin{itemize}
+
+\item Stochastic calculus
+
+\item Advanced derivatives pricing
+
+\item Quantitative-research mathematics
+
+\item CUDA
+
+\item FPGA development
+
+\item Compiler construction
+
+\item Linux kernel development
+
+\item Advanced template metaprogramming
+
+\item Exotic lock-free algorithms
+
+\item Formal verification
+
+\item Writing custom allocators from scratch
+
+\item Advanced networking hardware internals
+
+\end{itemize}
+
+These can all become useful later. None should block applications.
+
+\section{Recommended resource stack}\label{sec:18}
+
+Keep the stack deliberately small. Avoid turning resource collection into study.
+
+\subsection*{C++}
+
+\begin{itemize}
+
+\item C++ Core Guidelines
+
+\item cppreference
+
+\item One practical modern C++ book - one is enough
+
+\end{itemize}
+
+\subsection*{Concurrency}
+
+\begin{itemize}
+
+\item C++ Concurrency in Action
+
+\item cppreference atomics and memory model
+
+\item Established queue implementations such as Folly for comparison
+
+\end{itemize}
+
+\subsection*{Systems}
+
+\begin{itemize}
+
+\item Computer Systems: A Programmer's Perspective
+
+\item Linux man pages
+
+\end{itemize}
+
+\subsection*{Performance}
+
+\begin{itemize}
+
+\item MIT 6.172
+
+\item Systems Performance by Brendan Gregg
+
+\item Google Benchmark
+
+\item Linux perf
+
+\end{itemize}
+
+\subsection*{Networking}
+
+\begin{itemize}
+
+\item Beej's Guide to Network Programming
+
+\item Linux socket documentation
+
+\item Your own socket implementations
+
+\end{itemize}
+
+\subsection*{Trading}
+
+\begin{itemize}
+
+\item Trading and Exchanges by Larry Harris
+
+\item One serious microstructure text is enough initially
+
+\end{itemize}
+
+\subsection*{Advanced systems}
+
+\begin{itemize}
+
+\item Aeron
+
+\item QuickFIX
+
+\item DPDK
+
+\item liburing
+
+\end{itemize}
+
+\section{Asynchronous study loop}\label{sec:19}
+
+Use a repeatable learning cycle that produces retrieval, transfer and evidence of competence:
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Step} & \textbf{Action} \\
+\midrule
+Discover & Study the concept. \\
+Retrieve & Close the resource and explain it yourself. \\
+Implement & Write something that exercises it. \\
+Break & Test edge cases and failure modes. \\
+Measure & Benchmark it where relevant. \\
+Explain & Write a short engineering note. \\
+Revisit & Return later without notes and reconstruct the idea. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This supports asynchronous learning without relying on deadlines or synchronous lectures, while preventing passive familiarity from masquerading as mastery.
+
+\section{Portfolio structure}\label{sec:20}
+
+Do not build dozens of repositories. Aim for approximately:
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Artifact} & \textbf{Purpose} \\
+\midrule
+cpp-systems-lab & Small performance, concurrency, memory and networking experiments. \\
+mercury & Flagship low-latency trading-system project. \\
+Open-source profile & A small number of real contributions to external systems projects. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+Quality and technical depth matter dramatically more than repository count.
+\end{quote}
+
+\section{What exceptionally strong means}\label{sec:21}
+
+You will not differentiate yourself merely because you know C++ syntax.
+
+\begin{quote}\raggedright\itshape
+The differentiator is: I can explain what the hardware is doing, write the C++ that interacts with it, measure the resulting system, identify the bottleneck, improve it, and defend the tradeoffs.
+\end{quote}
+
+Combined with existing backend/distributed-systems experience, this creates a valuable hybrid:
+
+{\ttfamily\raggedright distributed-systems maturity  +  low-level systems competence  +  performance engineering +  trading-domain experience from substantial personal work\par}
+
+That is a much stronger positioning than attempting to compete with new graduates solely on algorithm puzzles.
+
+\section{Definition of done}\label{sec:22}
+
+There is intentionally no final point where you "know low latency." The course succeeds when:
+
+\begin{enumerate}
+
+\item You have crossed the application gate.
+
+\item You are actively interviewing.
+
+\item Interview failures become input for further study.
+
+\item You continue improving Mercury.
+
+\item You make meaningful open-source contributions.
+
+\item Your study becomes driven increasingly by real interview feedback.
+
+\end{enumerate}
+
+\subsection*{At that point the loop changes from:}
+
+{\ttfamily\raggedright study -> study -> study -> maybe apply\par}
+
+\subsection*{to:}
+
+{\ttfamily\raggedright study -> build -> apply -> interview -> identify weakness -> study -> improve -> interview again\par}
+
+\begin{quote}\raggedright\itshape
+That is the intended steady state.
+\end{quote}
+
+\clearpage
+
+\section{Selected references}\label{sec:23}
+
+\textbf{C++ Core Guidelines:}\newline \url{https://github.com/isocpp/CppCoreGuidelines}
+
+\textbf{cppreference: std::memory\_order:}\newline \url{https://en.cppreference.com/w/cpp/atomic/memory\_order}
+
+\textbf{MIT 6.172 - Performance Engineering of Software Systems:}\newline \url{https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/}
+
+\textbf{Beej's Guide to Network Programming:}\newline \url{https://beej.us/guide/bgnet/}
+
+\textbf{Google Benchmark:}\newline \url{https://github.com/google/benchmark}
+
+\textbf{Folly ProducerConsumerQueue:}\newline \url{https://github.com/facebook/folly/blob/main/folly/docs/ProducerConsumerQueue.md}
+
+\textbf{DPDK Programmer's Guide:}\newline \url{https://doc.dpdk.org/guides/prog\_guide/}
+
+\textbf{liburing:}\newline \url{https://github.com/axboe/liburing}
+
+\textbf{QuickFIX:}\newline \url{https://github.com/quickfix/quickfix}
+
+\textbf{Aeron C++ Programming Guide:}\newline \url{https://github.com/aeron-io/aeron/wiki/Cpp-Programming-Guide}
+
+\textbf{Boost.Asio:}\newline \url{https://github.com/boostorg/asio}
+
+\subsection*{Reference note}
+
+The resources above are intentionally selective. The course is designed to prevent resource sprawl: use the smallest set that supports the current mastery gate, project milestone, interview weakness, or open-source contribution.
+
+\end{document}

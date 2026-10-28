@@ -2,7 +2,7 @@
 
 ## Sources and continuity
 
-- Follow `docs/course-guide.txt`, derived from `Algorithms_Mastery_Course.pdf`.
+- Follow `Algorithms_Mastery_Course.tex`. Use the compiled PDF for viewing.
 - Read `state.json`, including the teaching feedback, lesson plan, and next task, before teaching.
 - Preserve the separate, ignored `algorithm-design-manual` repository.
 - The parent instructions define shared teaching, timing, records, and tool commands.
@@ -23,9 +23,10 @@
 
 ## Reasoning and feedback
 
-- Start proof instruction from the exact claim. Identify the required facts, explain their selection, and connect the whole argument.
-- Keep the active claim visible. Gradually require the learner to choose supporting claims.
-- Ask for the model, tiny examples, and brute-force baseline before directing independent practice toward an efficient solution.
+- In a professor block, start from the exact target. Demonstrate how to choose supporting facts and connect the whole argument.
+- In tutor practice, give the algorithm and target only. Let the learner choose supporting claims and write an argument before help.
+- Keep the target visible without supplying an invariant, proof outline, or sequence of leading questions.
+- Let the learner choose the model, examples, and baseline approach. Offer a targeted prompt only when help is requested.
 - Require exact operation counts before asymptotic notation. Separate iterations, work per iteration, total work, and storage.
 - Use a concrete trace before asking for an exact counting formula.
 - Do not use the sum-of-cubes identity as the default induction review. Preserve its retired history.

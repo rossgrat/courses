@@ -1,0 +1,58 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{latex/course}[2026/10/28 Course layout]
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[sfdefault]{inter}
+\RequirePackage[margin=0.78in,footskip=0.3in]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{microtype}
+\RequirePackage{enumitem}
+\RequirePackage{titlesec}
+\RequirePackage{booktabs,array}
+\RequirePackage{fancyhdr}
+\PassOptionsToPackage{hyphens}{url}
+\RequirePackage{hyperref}
+
+\definecolor{navy}{HTML}{162B49}
+\definecolor{accent}{HTML}{2D5B84}
+\definecolor{muted}{HTML}{464E58}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,bookmarksnumbered=true}
+\urlstyle{same}
+\Urlmuskip=0mu plus 1mu\relax
+\setcounter{tocdepth}{1}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\baselinestretch}{1.12}
+\setlist{leftmargin=1.5em,itemsep=1pt,parsep=0pt,topsep=4pt}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\titleformat{\section}{\color{navy}\fontsize{15}{18}\selectfont\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\color{accent}\fontsize{11}{14}\selectfont\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\color{navy}\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{7pt}
+\titlespacing*{\subsection}{0pt}{9pt}{3pt}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
+\newcommand{\headingroom}[1]{%
+  \par\begingroup
+  \dimen0=#1\relax
+  \vskip0pt plus\dimen0
+  \penalty-100
+  \vskip0pt plus-\dimen0
+  \vskip\dimen0
+  \penalty9999
+  \vskip-\dimen0
+  \vskip0pt
+  \endgroup
+}
+\AddToHook{cmd/section/before}{\headingroom{9\baselineskip}}
+\AddToHook{cmd/subsection/before}{\headingroom{5\baselineskip}}
+\AddToHook{cmd/subsubsection/before}{\headingroom{4\baselineskip}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\footnotesize\color{muted}\coursename\enspace |\enspace\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\footnotesize\color{muted}\coursename\enspace |\enspace\thepage}}
+\raggedbottom
+\clubpenalty=10000
+\widowpenalty=10000

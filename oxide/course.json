@@ -1,8 +1,7 @@
 {
   "id": "oxide",
   "name": "Oxide Systems Engineering",
-  "source": "Oxide_Systems_Engineering_Mastery_Curriculum.pdf",
-  "guide": "docs/course-guide.txt",
+  "source": "Oxide_Systems_Engineering_Mastery_Curriculum.tex",
   "language": "Rust",
   "unit": "Prerequisites and starting point",
   "next_task": "Review evidence for the Trading Engineering prerequisite before selecting an Oxide baseline task."

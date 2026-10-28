@@ -1,8 +1,7 @@
 {
   "id": "algorithms",
   "name": "Algorithms Mastery",
-  "source": "Algorithms_Mastery_Course.pdf",
-  "guide": "docs/course-guide.txt",
+  "source": "Algorithms_Mastery_Course.tex",
   "language": "Go",
   "unit": "Baseline and setup",
   "next_task": "Attempt selected MIT 6.006 Problem Set 0 questions before solutions.",

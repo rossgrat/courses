@@ -158,9 +158,12 @@ func courseContext(s state, c *course, o options, now time.Time, exists bool) (o
 	result := object{
 		"course": c.Name, "course_id": c.ID, "local_time": local.Format(time.RFC3339), "timezone": zone.String(),
 		"weekday": local.Weekday().String(), "thread_id": o.thread, "state_file": o.statePath, "state_exists": exists,
-		"guide": filepath.Join(c.dir, c.Guide), "stage": s.Progress["stage"], "unit": s.Progress["unit"],
+		"source": filepath.Join(c.dir, c.Source), "stage": s.Progress["stage"], "unit": s.Progress["unit"],
 		"language": s.Progress["language"], "next_task": s.Progress["next_task"],
 		"reviews_due": len(due), "due_review_ids": due[:min(len(due), 10)], "session": "inactive",
+	}
+	if contract := text(s.Progress, "teaching_contract"); contract != "" {
+		result["teaching_contract"] = contract
 	}
 	if len(c.WeekdayWork) == 7 {
 		result["weekday_work"] = c.WeekdayWork[(int(local.Weekday())+6)%7]
@@ -206,7 +209,7 @@ func courseContext(s state, c *course, o options, now time.Time, exists bool) (o
 	result["language"] = s.Session["language"]
 	if assessment {
 		summary["assessment_remaining_seconds"] = max(0, number(s.Session, "assessment_minutes")*60-active)
-		for _, key := range []string{"next_task", "unit", "weekday_work", "due_review_ids"} {
+		for _, key := range []string{"next_task", "unit", "weekday_work", "due_review_ids", "teaching_contract"} {
 			delete(result, key)
 		}
 	}

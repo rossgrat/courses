@@ -1,0 +1,1579 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{latex/course}
+
+\newcommand{\coursename}{Oxide Systems Engineering Course}
+
+\hypersetup{pdftitle={Oxide Systems Engineering Course}}
+
+\begin{document}
+
+\vspace*{1.2in}
+
+{\color{navy}\fontsize{30}{38}\selectfont\bfseries OXIDE\\SYSTEMS ENGINEERING\par}
+
+\medskip
+{\color{muted}\fontsize{15}{20}\selectfont A mastery-gated course plan for whole-computer engineering\par}
+
+\bigskip
+
+{\color{accent}\bfseries Primary path\par}
+
+Systems engineering at Oxide Computer Company\par
+
+\bigskip
+
+{\color{accent}\bfseries Core areas\par}
+
+\bigskip
+
+Operating systems | Virtualization | Networking | Performance\par
+
+\bigskip
+
+{\color{accent}\bfseries COURSE PHILOSOPHY\par}
+
+\medskip
+{\color{navy}\fontsize{16}{20}\selectfont \bfseries Build. Instrument. Break. Debug. Explain.\par}
+
+\bigskip
+
+Course II: From low-latency systems engineer to whole-computer engineer.\par
+
+\bigskip
+
+Prerequisite: complete the Low-Latency Trading Engineering curriculum.\par
+
+\clearpage
+
+{\setlength{\parskip}{0pt}\small\tableofcontents}
+
+\clearpage
+
+\section{Mission and target candidate}\label{sec:1}
+
+This asynchronous program builds a public body of systems work for Oxide Computer Company software engineering roles. Advance through mastery gates.
+
+Assume the Low-Latency Trading Engineering curriculum has been completed in full.
+
+You therefore already possess:
+
+\begin{itemize}
+
+\item strong modern C++
+
+\item concurrency and memory-model knowledge
+
+\item CPU/cache/memory knowledge
+
+\item Linux systems competence
+
+\item TCP/UDP and low-latency networking
+
+\item performance profiling
+
+\item latency measurement
+
+\item distributed-systems experience
+
+\item significant systems programming practice
+
+\item a substantial trading-system project
+
+\item experience reading serious systems code
+
+\item algorithm/interview preparation
+
+\end{itemize}
+
+This course does not repeat those subjects.
+
+\begin{quote}\raggedright\itshape
+Primary goal: become an unusually compelling candidate for systems engineering at Oxide Computer Company, with enough breadth to credibly pursue operating-system, virtualization, networking, performance, and control-plane work - and enough public technical work to offset a relatively short professional career.
+\end{quote}
+
+The target is not merely: "I could probably do this job."
+
+The target is: "This engineer is early in their career, but they have built, debugged, measured, documented, and contributed to an unusual amount of serious systems software."
+
+\subsection*{What Oxide rewards}
+
+Oxide's current software roles point toward an unusually broad whole-system engineering profile. Kernel engineers work in C, Rust, and sometimes assembly and interact directly with processors and hardware. Virtualization engineers work across the illumos kernel, bhyve, Rust-based Propolis, virtual hardware, processors, and firmware. Networking engineers span Rust, C, P4, host networking, NICs, switches, drivers, BGP, overlays, IPsec, load balancing, and diagnosis. Performance engineers investigate from hardware through kernel and hypervisor into guests and applications, often creating new observability tooling. Control-plane engineers build distributed Rust systems connecting compute, storage, networking, telemetry, updates, and debugging infrastructure.
+
+\begin{quote}\raggedright\itshape
+Central principle: learn to understand a computer vertically, not merely one software layer horizontally.
+\end{quote}
+
+\subsection*{The target candidate}
+
+At completion, your profile should approximately read:
+
+\begin{quote}\raggedright\itshape
+Systems engineer experienced in high-performance software, Rust and C/C++, operating systems, virtualization, networking, distributed systems, and computer architecture. Has built an integrated miniature cloud-computing platform, implemented low-level OS/network/VMM components, conducted rigorous cross-stack performance investigations, and made meaningful contributions to production open-source systems projects. Strong technical writer comfortable documenting architecture, experiments, failures, and design decisions.
+\end{quote}
+
+Your distinguishing characteristic should become:
+
+\begin{quote}\raggedright\itshape
+You build the thing, instrument the thing, break the thing, understand why it broke, fix it, and write down what you learned.
+\end{quote}
+
+\section{How the curriculum works}\label{sec:2}
+
+The course is mastery-gated rather than time-gated. Follow the required path in section 3.
+
+There are no calendar deadlines, but there is also no requirement that every topic be understood at research depth. Exit gates exist to prevent endless studying.
+
+\section{Curriculum map}\label{sec:3}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1100\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.8100\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.0800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
+\midrule
+0 & Oxide architecture and laboratory & \pageref{stage:0} \\
+1 & Rust systems mastery & \pageref{stage:1} \\
+2 & illumos, Helios, DTrace and MDB & \pageref{stage:2} \\
+3 & Kernel engineering and the hardware boundary & \pageref{stage:3} \\
+4 & Virtualization and VMM engineering & \pageref{stage:4} \\
+5 & Networking from wire to control plane & \pageref{stage:5} \\
+6 & Storage systems & \pageref{stage:6} \\
+7 & Control-plane and distributed-system engineering & \pageref{stage:7} \\
+8 & Embedded systems and hardware/software co-design & \pageref{stage:8} \\
+9 & Cross-stack performance and pathology & \pageref{stage:9} \\
+10 & Minirack flagship system & \pageref{stage:10} \\
+11 & Open-source engineering & \pageref{stage:11} \\
+12 & Oxide application portfolio & \pageref{stage:12} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Stage 0 - Understand the computer you are targeting}\label{sec:4}
+
+\label{stage:0}
+
+Build a mental model of Oxide's system before attempting to specialize in it.
+
+\subsection*{Core components}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Component} & \textbf{Role} \\
+\midrule
+Helios & Host operating system built from illumos. \\
+Propolis & Rust userspace VMM built around bhyve. \\
+Omicron & Rust control plane. \\
+Crucible & Distributed network-replicated block storage. \\
+Hubris & Embedded Rust operating environment. \\
+Dendrite / OPTE / networking stack & Rack and host networking components. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Required reading}
+
+\begin{itemize}
+
+\item RFD 3 - Hiring Process
+
+\item RFD 26 - Host Operating System \& Hypervisor
+
+\item RFD 60 - Storage Architecture
+
+\item RFD 63 - Network Architecture
+
+\item RFD 177 - Crucible implementation
+
+\end{itemize}
+
+\subsection*{Repository reconnaissance}
+
+Clone and explore Helios, Propolis, Crucible, Omicron, and Hubris. Do not try to understand all of them. For each repository answer:
+
+\begin{enumerate}
+
+\item What problem does this component solve?
+
+\item Where does it sit in the system?
+
+\item What communicates with it?
+
+\item What language is it written in?
+
+\item What happens if it fails?
+
+\item How is it tested?
+
+\item How is it observed?
+
+\item Where would I begin debugging it?
+
+\end{enumerate}
+
+\begin{quote}\raggedright\itshape
+Deliverable: a concise architecture map of the Oxide software stack.
+\end{quote}
+
+\section{Stage 1 - Rust systems mastery}\label{sec:5}
+
+\label{stage:1}
+
+C++ is already one of your systems languages. Now Rust must become another. The goal is not to finish a book; it is to design and debug substantial systems software in Rust without translating C++ into Rust syntax.
+
+\subsection*{Core Rust}
+
+\begin{itemize}
+
+\item ownership and borrowing
+
+\item lifetimes
+
+\item enums and pattern matching
+
+\item traits and generics
+
+\item iterators and closures
+
+\item Result and error propagation
+
+\item modules and crates
+
+\end{itemize}
+
+\subsection*{Memory and representation}
+
+\begin{itemize}
+
+\item Box, Arc, Rc
+
+\item Cell and RefCell
+
+\item pinning
+
+\item object representation and alignment
+
+\item FFI
+
+\item raw pointers
+
+\end{itemize}
+
+\subsection*{Concurrency}
+
+\begin{itemize}
+
+\item Send and Sync
+
+\item atomics
+
+\item mutexes
+
+\item channels
+
+\item scoped threads
+
+\item async/await
+
+\item futures
+
+\end{itemize}
+
+\subsection*{Unsafe Rust}
+
+\begin{itemize}
+
+\item raw pointer invariants
+
+\item aliasing
+
+\item UnsafeCell
+
+\item uninitialized memory
+
+\item FFI boundaries
+
+\item unsafe traits
+
+\item safe abstractions over unsafe implementations
+
+\end{itemize}
+
+\subsection*{Projects}
+
+\subsubsection*{Rust systems port}
+
+Reimplement one nontrivial component from your C++ systems lab idiomatically in Rust. Document where Rust changes the architecture.
+
+\subsubsection*{Binary protocol service}
+
+Implement a zero-copy-oriented binary protocol service. Investigate buffer ownership, parser APIs, error handling, and allocation behavior.
+
+\subsubsection*{Concurrent subsystem}
+
+Implement a substantial concurrent component. Stress test it and use property-based testing, concurrency tests, and fault injection.
+
+\subsection*{Stage 1 exit gate}
+
+\begin{itemize}
+
+\item work comfortably in a large Cargo workspace
+
+\item diagnose borrow/lifetime problems instead of randomly appeasing the compiler
+
+\item design ownership intentionally
+
+\item reason about Send and Sync
+
+\item write asynchronous services
+
+\item interface Rust with C
+
+\item review unsafe Rust
+
+\item profile Rust applications
+
+\item explain where Rust safety guarantees stop
+
+\end{itemize}
+
+\section{Stage 2 - illumos, Helios, DTrace and MDB}\label{sec:6}
+
+\label{stage:2}
+
+Stop thinking only in Linux. Oxide's host operating system is Helios, built from illumos. This stage establishes serious operational and debugging fluency in that environment.
+
+\subsection*{Build an illumos laboratory}
+
+Create a dedicated VM or physical system. Install an illumos-derived environment and eventually run Helios itself.
+
+\begin{itemize}
+
+\item processes and threads
+
+\item zones
+
+\item SMF
+
+\item ZFS
+
+\item device trees
+
+\item /dev
+
+\item illumos observability facilities
+
+\end{itemize}
+
+Compare each with the Linux equivalents you already know.
+
+\subsection*{DTrace}
+
+\begin{itemize}
+
+\item probes and providers
+
+\item predicates
+
+\item aggregations
+
+\item stack traces
+
+\item syscall tracing
+
+\item scheduler tracing
+
+\item I/O tracing
+
+\item network tracing
+
+\item latency distributions
+
+\end{itemize}
+
+Add your own instrumentation to a program. Your target skill is: something strange happened; you do not know why; you can instrument the running system until you know.
+
+\subsection*{MDB}
+
+\begin{itemize}
+
+\item process inspection
+
+\item kernel inspection
+
+\item stack examination
+
+\item structures
+
+\item postmortem analysis
+
+\item crash dumps
+
+\end{itemize}
+
+\subsection*{Stage project - Mystery Pathology}
+
+Create several intentional bugs, randomize which one is active, and diagnose the problem without looking at the implementation first.
+
+\begin{itemize}
+
+\item CPU saturation
+
+\item lock contention
+
+\item memory leak
+
+\item blocked I/O
+
+\item network latency
+
+\item runaway syscall rate
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+Deliverable: a postmortem for each pathology. These become early analysis-sample candidates.
+\end{quote}
+
+\section{Stage 3 - Kernel engineering and the hardware boundary}\label{sec:7}
+
+\label{stage:3}
+
+This stage transforms you from someone who understands an OS into someone who has modified one.
+
+\subsection*{Operating-system implementation}
+
+\begin{itemize}
+
+\item syscall implementation
+
+\item virtual memory and page tables
+
+\item scheduling
+
+\item synchronization
+
+\item kernel allocators
+
+\item interrupts and timers
+
+\item device discovery
+
+\item driver architecture
+
+\item kernel/user transitions
+
+\item IPC
+
+\item filesystems
+
+\item security boundaries
+
+\end{itemize}
+
+Read kernel source. Trace actual execution paths.
+
+\subsection*{x86-64 / AMD64}
+
+Learn enough assembly to follow calling conventions, register use, stack frames, traps, interrupts, and context switching.
+
+\begin{itemize}
+
+\item page-table translation
+
+\item TLBs
+
+\item MSRs
+
+\item APIC
+
+\item privilege rings
+
+\item exceptions
+
+\item atomic instructions
+
+\item memory ordering
+
+\end{itemize}
+
+Use processor manuals selectively. The skill is learning to navigate imperfect hardware documentation when a real question appears.
+
+\subsection*{Hardware interfaces}
+
+\begin{itemize}
+
+\item PCIe
+
+\item MMIO
+
+\item DMA
+
+\item IOMMU
+
+\item device registers
+
+\item interrupts / MSI-X
+
+\item firmware
+
+\item device discovery
+
+\item NIC queues
+
+\item NVMe architecture
+
+\end{itemize}
+
+\subsection*{Kernel project}
+
+\begin{enumerate}
+
+\item Implement a simple loadable module.
+
+\item Build a character or pseudo device.
+
+\item Expose kernel state through an appropriate interface.
+
+\item Add statistics.
+
+\item Add DTrace instrumentation.
+
+\item Write MDB support or a debugging guide.
+
+\end{enumerate}
+
+\begin{quote}\raggedright\itshape
+The artifact is source + tests + instrumentation + design document + debugging guide + failure analysis.
+\end{quote}
+
+\subsection*{Stage 3 exit gate}
+
+You should be able to follow application -> syscall -> kernel -> driver -> device and explain where time, state, and failure can arise at each layer.
+
+\section{Stage 4 - Virtualization and VMM engineering}\label{sec:8}
+
+\label{stage:4}
+
+\subsection*{Concepts}
+
+\begin{itemize}
+
+\item privileged execution
+
+\item VM exits
+
+\item hardware virtualization
+
+\item guest/host transitions
+
+\item nested page tables
+
+\item virtual interrupts
+
+\item vCPUs
+
+\item device emulation
+
+\item paravirtualization
+
+\item virtio
+
+\item IOMMUs
+
+\item memory ballooning conceptually
+
+\item VM lifecycle
+
+\item live migration
+
+\item time virtualization
+
+\end{itemize}
+
+\subsection*{Practical progression}
+
+Start with KVM if it gives you the fastest experimentation environment. Then move to bhyve, Propolis, and Helios.
+
+\subsection*{Virtual-device project}
+
+Implement a virtual device such as a simple virtio device, entropy device, virtual serial device, synthetic block device, or telemetry device.
+
+\begin{itemize}
+
+\item design specification
+
+\item implementation
+
+\item guest interaction
+
+\item tracing
+
+\item tests
+
+\item failure behavior
+
+\item benchmark
+
+\item debugging guide
+
+\end{itemize}
+
+Instrument the complete path: guest -> virtual device -> VMM -> host. Measure it. Explain every boundary crossing.
+
+\subsection*{Advanced project}
+
+Modify or extend an existing open-source VMM. The contribution itself can be modest; the important evidence is that you can understand an unfamiliar VMM, trace a feature through it, change it safely, test it, and defend the design.
+
+\section{Stage 5 - Networking from wire to control plane}\label{sec:9}
+
+\label{stage:5}
+
+The trading curriculum already established sockets, TCP/UDP, multicast and performance networking. This stage starts both below and above that layer.
+
+\subsection*{Host networking}
+
+\begin{itemize}
+
+\item NIC descriptors
+
+\item RX/TX rings
+
+\item DMA
+
+\item checksumming
+
+\item TSO/GSO concepts
+
+\item RSS
+
+\item interrupt moderation
+
+\item packet steering
+
+\item hardware offloads
+
+\item driver interaction
+
+\end{itemize}
+
+Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket -> application, then reverse the path.
+
+\subsection*{Routing and network architecture}
+
+\begin{itemize}
+
+\item longest-prefix matching
+
+\item ARP / NDP
+
+\item IPv4 / IPv6
+
+\item routing tables
+
+\item ECMP
+
+\item BGP
+
+\item route advertisement
+
+\item convergence
+
+\item overlays
+
+\item tunneling
+
+\item NAT
+
+\item firewalls
+
+\item load balancing
+
+\item VXLAN-style overlays
+
+\item underlay vs overlay
+
+\item virtual networking
+
+\item east-west traffic
+
+\end{itemize}
+
+\subsection*{IPsec}
+
+\begin{itemize}
+
+\item ESP
+
+\item security associations
+
+\item key-management concepts
+
+\item tunnel vs transport mode
+
+\item replay protection
+
+\item performance implications
+
+\end{itemize}
+
+\subsection*{Software-defined networking}
+
+Study packet pipelines and learn basic P4. The goal is not mastery of switch silicon; it is comfort reasoning across host software, programmable datapaths, NICs, and switching hardware.
+
+\subsection*{Networking flagship subsystem}
+
+Build a Rust network dataplane with:
+
+\begin{itemize}
+
+\item L2/L3 forwarding
+
+\item routing table
+
+\item ACL/firewall rules
+
+\item NAT
+
+\item simple overlay
+
+\item metrics
+
+\item packet tracing
+
+\end{itemize}
+
+Add a small control plane. Eventually add dynamic routing - preferably BGP - plus failure injection and convergence measurements. Make it correct first; then profile the forwarding path.
+
+\subsection*{Networking analysis sample}
+
+Create and investigate a pathological scenario such as asymmetric routing, route flap, MTU mismatch, packet loss, head-of-line blocking, bad offload interaction, or reordering. Produce a rigorous root-cause report.
+
+\section{Stage 6 - Storage systems}\label{sec:10}
+
+\label{stage:6}
+
+Even if no storage-specific opening exists when you apply, storage is central to the machine.
+
+\subsection*{Foundations}
+
+\begin{itemize}
+
+\item block devices
+
+\item sectors and alignment
+
+\item NVMe
+
+\item queues
+
+\item fsync / flush semantics
+
+\item write ordering
+
+\item durability
+
+\item checksums
+
+\item crash consistency
+
+\item snapshots
+
+\item copy-on-write
+
+\end{itemize}
+
+\subsection*{ZFS}
+
+\begin{itemize}
+
+\item pools
+
+\item vdevs
+
+\item ARC
+
+\item transaction groups
+
+\item checksums
+
+\item copy-on-write
+
+\item snapshots
+
+\end{itemize}
+
+\subsection*{Distributed storage}
+
+\begin{itemize}
+
+\item replication
+
+\item quorum concepts
+
+\item ordering
+
+\item degraded operation
+
+\item repair
+
+\item reconciliation
+
+\item split brain
+
+\item failure detection
+
+\item durability vs availability
+
+\item consistency
+
+\end{itemize}
+
+\subsection*{Storage project}
+
+Build a miniature replicated block device in Rust: client -> three replicas. Support read, write, and flush. Then add replica failure, restart, repair, checksums, corruption detection, metrics, and tracing.
+
+\subsection*{Failure laboratory}
+
+Test process crash during write, replica timeout, stale replica, corrupted block, partial write, and network partition. For each:
+
+\begin{enumerate}
+
+\item Predict behavior.
+
+\item Run the failure.
+
+\item Observe behavior.
+
+\item Determine whether your prediction was correct.
+
+\item Fix incorrect assumptions.
+
+\end{enumerate}
+
+\section{Stage 7 - Control-plane and distributed-system engineering}\label{sec:11}
+
+\label{stage:7}
+
+This stage builds directly on your backend/distributed-systems experience and should therefore be relatively focused.
+
+\subsection*{Focus areas}
+
+\begin{itemize}
+
+\item reconciliation
+
+\item desired vs observed state
+
+\item state machines
+
+\item sagas/workflows
+
+\item idempotency
+
+\item rolling software update
+
+\item schema evolution
+
+\item partial failure
+
+\item distributed debugging
+
+\item API evolution
+
+\item resource allocation
+
+\item inventory
+
+\item authentication/attestation concepts
+
+\end{itemize}
+
+\subsection*{Property-based testing}
+
+Use property-based testing aggressively, particularly for state machines, resource lifecycle, network configuration, and storage operations. Generate adversarial event sequences.
+
+\subsection*{Control-plane project}
+
+Build a Rust controller for the systems developed elsewhere in the course. Maintain desired state for compute instances, virtual networks, and storage volumes. Reconcile actual state toward desired state.
+
+Then deliberately kill agents, restart controllers, reorder events, replay messages, and disconnect nodes. Prove that the system converges.
+
+\section{Stage 8 - Embedded systems and hardware/software co-design}\label{sec:12}
+
+\label{stage:8}
+
+You do not need to become an electrical engineer. You do need to understand that the computer continues below the host CPU.
+
+\subsection*{Embedded foundations}
+
+\begin{itemize}
+
+\item microcontrollers
+
+\item memory-mapped peripherals
+
+\item interrupts
+
+\item GPIO
+
+\item SPI
+
+\item I2C
+
+\item UART
+
+\item timers
+
+\item watchdogs
+
+\item firmware updates
+
+\item bootloaders
+
+\end{itemize}
+
+Use Rust.
+
+\subsection*{Hardware lab}
+
+Purchase an inexpensive supported development board. Implement a sensor or peripheral driver, asynchronous event handling, watchdog, telemetry, and fault recovery.
+
+Then deliberately violate assumptions: peripheral disappears, invalid value appears, bus times out. Design recovery.
+
+\subsection*{Firmware artifact}
+
+Produce one small embedded project of unusually high quality, including reference documentation, Rust firmware, protocol description, host-side tooling, fault-handling strategy, test strategy, and analysis.
+
+\section{Stage 9 - Cross-stack performance and pathology}\label{sec:13}
+
+\label{stage:9}
+
+The quant curriculum gave you a performance-engineering advantage. This stage turns that into cross-stack diagnosis.
+
+\subsection*{Performance investigations}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Layer} & \textbf{Example concerns} \\
+\midrule
+CPU & cache misses, branch behavior, contention, instruction count \\
+Kernel & scheduling, interrupts, system calls, memory pressure \\
+Virtualization & VM exits, virtual I/O, scheduling \\
+Networking & packet path, drops, queueing, offload behavior \\
+Storage & queue depth, flush latency, replication latency \\
+Distributed system & request fan-out, tail latency, retry storms, lockstep behavior \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Rule}
+
+\begin{quote}\raggedright\itshape
+Do not merely create benchmarks. Create mysteries.
+\end{quote}
+
+Example: p99 VM disk latency unexpectedly increases 8x under a particular network load. Investigate until you know why.
+
+A high-quality report contains symptom, initial hypotheses, instrumentation, measurements, eliminated hypotheses, root cause, fix, validation, and remaining uncertainty.
+
+\subsection*{Tool-building requirement}
+
+Encounter at least one problem where existing tooling is inadequate, then build the missing tool - for example a DTrace script, Rust diagnostic utility, packet analyzer, visualization helper, profiler helper, or crash-inspection utility.
+
+\section{Stage 10 - Flagship project: Minirack}\label{sec:14}
+
+\label{stage:10}
+
+This becomes the centerpiece of your Oxide portfolio. Do not build an "Oxide clone." Build a small system inspired by the same category of engineering problems.
+
+\begin{quote}\raggedright\itshape
+Minirack: a miniature open-source cloud-computer laboratory.
+\end{quote}
+
+\subsection*{Architecture}
+
+At completion: Rust API/control plane -> node agent -> VM manager -> virtual networking -> replicated block storage, with telemetry, failure injection, reconciliation, and debug tooling.
+
+\subsection*{Compute}
+
+\begin{itemize}
+
+\item manage VM lifecycle
+
+\item create
+
+\item start
+
+\item stop
+
+\item destroy
+
+\item query
+
+\end{itemize}
+
+Initially use an existing hypervisor. Later integrate your virtualization work where appropriate.
+
+\subsection*{Storage}
+
+\begin{itemize}
+
+\item create volume
+
+\item attach
+
+\item detach
+
+\item failure/recovery
+
+\end{itemize}
+
+\subsection*{Networking}
+
+\begin{itemize}
+
+\item isolated virtual networks
+
+\item addressing
+
+\item routing
+
+\item firewalling
+
+\item overlay networking
+
+\end{itemize}
+
+\subsection*{Control plane}
+
+Expose a clean API. Maintain desired state versus observed state. Recover from agent restarts, stale state, partial operations, and node loss.
+
+\subsection*{Observability}
+
+Every subsystem should expose structured logs, metrics, and traces, plus diagnostic commands.
+
+\subsection*{Failure injection}
+
+\begin{itemize}
+
+\item kill storage replica
+
+\item kill VM agent
+
+\item drop packets
+
+\item delay packets
+
+\item corrupt a disk block
+
+\item crash during resource creation
+
+\end{itemize}
+
+Your system should fail visibly rather than mysteriously.
+
+\subsection*{Upgrade experiment}
+
+Implement at least one rolling software update where different component versions temporarily coexist. Document compatibility strategy.
+
+\subsection*{Physical deployment}
+
+Eventually run Minirack on multiple physical machines. Three inexpensive x86 machines are enough. Real hardware exposes NIC behavior, boot issues, storage behavior, firmware, topology, and failure modes that simulations hide.
+
+\subsection*{Minirack documentation}
+
+\begin{itemize}
+
+\item architecture - what exists and why
+
+\item failure model - what can fail
+
+\item consistency model - what guarantees exist
+
+\item security boundaries - who trusts whom
+
+\item update model - how software changes
+
+\item performance model - expected bottlenecks
+
+\item debugging guide - how failures are investigated
+
+\item RFD history - major architectural decisions
+
+\end{itemize}
+
+\begin{quote}\raggedright\itshape
+The repository should sustain an hour of serious technical discussion with an Oxide engineer.
+\end{quote}
+
+\section{Stage 11 - Open-source engineering}\label{sec:15}
+
+\label{stage:11}
+
+Open-source work is mandatory, but do not contribute performatively to Oxide repositories merely to get noticed. Respect maintainer capacity and project guidance.
+
+\subsection*{Contribution targets}
+
+\begin{itemize}
+
+\item illumos
+
+\item rust-vmm
+
+\item Rust systems libraries
+
+\item networking tools
+
+\item DTrace ecosystem
+
+\item virtualization tools
+
+\item storage tools
+
+\item selected Oxide projects where contribution guidance permits
+
+\end{itemize}
+
+\subsection*{Contribution progression}
+
+\begin{enumerate}
+
+\item Small but real defect; include a test.
+
+\item More substantial bug or feature; participate actively in review.
+
+\item Performance, concurrency, OS or protocol work; write an accompanying technical explanation.
+
+\end{enumerate}
+
+\begin{quote}\raggedright\itshape
+The target is evidence that experienced systems maintainers trusted your reasoning enough to merge your work.
+\end{quote}
+
+\subsection*{Upstreaming mindset}
+
+\begin{itemize}
+
+\item identify maintainer priorities
+
+\item reproduce bugs rigorously
+
+\item reduce test cases
+
+\item write useful commit messages
+
+\item accept review
+
+\item revise designs
+
+\item avoid unnecessary cleverness
+
+\item support your changes
+
+\end{itemize}
+
+\section{Stage 12 - Build the Oxide application before applying}\label{sec:16}
+
+\label{stage:12}
+
+For Oxide, application material is a central engineering artifact. This course intentionally produces work samples, writing samples, and analysis samples rather than treating them as an afterthought.
+
+\subsection*{Work samples}
+
+\subsubsection*{Work Sample A - Minirack}
+
+Shows Rust, distributed systems, virtualization, networking, storage, integration, failure handling, and architecture.
+
+\subsubsection*{Work Sample B - Deep low-level subsystem}
+
+For example: kernel component, VMM feature, networking dataplane, or driver. Shows genuine depth.
+
+\subsubsection*{Work Sample C - Open-source contribution}
+
+Shows unfamiliar-codebase navigation, collaboration, code review, and production constraints.
+
+\subsection*{Analysis samples}
+
+\begin{itemize}
+
+\item cross-stack performance pathology
+
+\item kernel or VMM failure investigation
+
+\item networking pathology or storage corruption/recovery analysis
+
+\end{itemize}
+
+These should read like engineering investigations, not school reports.
+
+\subsection*{Writing sample}
+
+Produce one serious RFD-style document. Good topics include live migration for Minirack, network configuration reconciliation, or crash-consistent replicated volume metadata.
+
+\begin{itemize}
+
+\item problem definition
+
+\item constraints
+
+\item alternatives
+
+\item tradeoffs
+
+\item decision
+
+\item unresolved questions
+
+\end{itemize}
+
+\section{Portfolio structure}\label{sec:17}
+
+Do not create 40 toy repositories. Aim for:
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Artifact} & \textbf{Purpose} \\
+\midrule
+minirack & Integrated flagship system. \\
+systems-lab & Kernel, virtualization, embedded and diagnostic experiments. \\
+one deep subsystem & Networking dataplane, VMM work, or kernel project. \\
+open-source work & External contributions with review history. \\
+engineering notebook/site & Polished technical investigations and RFD-style writing. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Areas of depth}\label{sec:18}
+
+\subsubsection*{Operating systems / virtualization}
+
+You must have modified real kernel or VMM-level software - not merely read about it.
+
+\subsubsection*{Networking}
+
+You must understand both packet mechanics and network architecture: NIC/driver concepts through BGP/overlay systems.
+
+\subsubsection*{Performance}
+
+You must have conducted several investigations where the answer was not known before measurement.
+
+These three become your signature. Storage, embedded and control-plane knowledge ensure breadth across the rest of the stack.
+
+\section{Application gates}\label{sec:19}
+
+\subsection*{First application gate}
+
+Do not apply simply because you have read all the material. For Oxide, wait until the evidence is unusually strong.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Area} & \textbf{Minimum application threshold} \\
+\midrule
+Rust & Ship and debug significant Rust systems code. \\
+illumos & Comfortable working in an illumos environment. \\
+DTrace/MDB & Use them for real investigations. \\
+Kernel & Have modified kernel-level software. \\
+Hardware & Reason about PCIe, MMIO, DMA, interrupts, and device behavior. \\
+Virtualization & Understand hardware virtualization and have modified or implemented VMM/device-emulation code. \\
+Networking & Understand networking from NICs through BGP/overlays and have built substantial networking software. \\
+Storage & Understand block storage and distributed replication. \\
+Control plane & Design reconciliation and failure recovery. \\
+Performance & At least three serious measured investigations. \\
+Minirack & A substantial portion works. \\
+Open source & Meaningful third-party-reviewed systems work. \\
+Writing & At least one excellent design document. \\
+Analysis & At least one excellent technical investigation suitable for submission. \\
+Oxide knowledge & Intelligently discuss Helios, Propolis, Omicron, Crucible, Hubris, networking architecture, and architectural choices. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+At this point: apply. Do not wait until you become a kernel veteran; that is not an objective gate.
+\end{quote}
+
+\subsection*{Exceptional-candidate gate}
+
+\begin{itemize}
+
+\item multiple nontrivial open-source contributions
+
+\item deep Rust competence
+
+\item substantial real illumos experience
+
+\item a functioning kernel or driver artifact
+
+\item a meaningful virtualization artifact
+
+\item substantial networking software
+
+\item three-node Minirack deployment
+
+\item rigorous failure testing
+
+\item custom diagnostic tooling
+
+\item multiple performance analyses
+
+\item RFD-quality writing
+
+\item repository history showing months of disciplined engineering
+
+\item ability to explain failures as clearly as successes
+
+\end{itemize}
+
+At this point your narrative becomes: "I deliberately spent years becoming a whole-system engineer, and here is the evidence."
+
+\section{Asynchronous study loop}\label{sec:20}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Step} & \textbf{Action} \\
+\midrule
+Study & Learn enough theory to form a model. \\
+Close the material & Remove the reference. \\
+Reconstruct from memory & Explain the system yourself. \\
+Implement & Turn the model into code. \\
+Instrument & Make behavior observable. \\
+Break & Create failure intentionally. \\
+Debug & Find the real cause. \\
+Explain & Write down the reasoning. \\
+Revisit later & Recover the model after time has passed. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+The most powerful retrieval question in systems work is often: "What do I predict the machine will do?" Make the prediction, run the experiment, then explain why you were wrong.
+\end{quote}
+
+\section{Failure-driven learning}\label{sec:21}
+
+Most students build projects whose happy path works. This course should deliberately build systems whose unhappy paths are understood.
+
+\begin{itemize}
+
+\item process crash
+
+\item power-loss approximation
+
+\item packet loss
+
+\item corruption
+
+\item latency
+
+\item partial state
+
+\item version mismatch
+
+\item stale data
+
+\item overload
+
+\item concurrent operations
+
+\end{itemize}
+
+Senior systems engineers possess enormous stores of failure experience. You cannot reproduce their years, but you can deliberately accumulate far more failure experience than the average engineer at your career stage.
+
+\section{Technical writing track}\label{sec:22}
+
+Writing is not a final polish step. Every major system should produce:
+
+\begin{itemize}
+
+\item design note - before implementation
+
+\item decision record - when architecture changes
+
+\item debugging note - when something surprising happens
+
+\item postmortem - after a serious failure
+
+\item performance analysis - after optimization
+
+\item final architecture document - when complete
+
+\end{itemize}
+
+Over time, delete weak writing and polish the best work. Your archive becomes application inventory.
+
+\section{Reading Oxide effectively}\label{sec:23}
+
+Do not read every RFD, listen to every podcast episode, or memorize company trivia. Use public material when you reach the relevant technical area.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{When studying...} & \textbf{Use...} \\
+\midrule
+Virtualization & RFD 26 and Propolis material \\
+Storage & RFD 60 and RFD 177 \\
+Networking & RFD 63 \\
+Performance mysteries & Relevant Oxide performance investigations \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+The goal is to become an engineer comparing architectural decisions with your own experience - not a fan studying a company.
+\end{quote}
+
+\section{Anti-rabbit-hole rules}\label{sec:24}
+
+\begin{enumerate}
+
+\item Never implement an entire technology when modifying a real implementation teaches the same lesson.
+
+\item A textbook chapter should usually lead to source code within days, not months.
+
+\item Prefer debugging a real system over building another toy.
+
+\item One excellent failure analysis is worth more than ten shallow projects.
+
+\item Do not optimize before measurement.
+
+\item Do not contribute to open source merely for resume optics.
+
+\item Do not wait until Minirack is "finished." Infrastructure software is never finished.
+
+\item Do not compare your breadth directly with a twenty-year kernel engineer; compare the quality of evidence you can produce today.
+
+\item If a topic does not improve your code, analysis, writing, debugging ability, or application evidence, defer it.
+
+\end{enumerate}
+
+\subsection*{Things deliberately not required}
+
+Do not delay applying because you have not:
+
+\begin{itemize}
+
+\item written a complete kernel
+
+\item written a complete hypervisor
+
+\item designed a CPU
+
+\item become an electrical engineer
+
+\item designed a motherboard
+
+\item mastered every network protocol
+
+\item implemented BGP from scratch
+
+\item implemented a production filesystem
+
+\item learned all of illumos
+
+\item learned every Rust feature
+
+\item read every Oxide RFD
+
+\item contributed directly to Oxide
+
+\item built an actual rack-scale computer
+
+\end{itemize}
+
+These are rabbit holes. The goal is credible direct experience with the important problems.
+
+\section{Recommended resource stack}\label{sec:25}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Area} & \textbf{Core resources} \\
+\midrule
+Rust & Programming Rust; official Rust docs; Rustonomicon when required; existing Rust systems code. \\
+Operating systems & Operating Systems: Three Easy Pieces; selected CS:APP material; illumos source/docs; Helios source. \\
+Observability & DTrace docs; MDB docs; Brendan Gregg systems- performance material. \\
+Hardware & AMD/Intel architecture manuals as references; PCIe/NVMe docs when projects require them. \\
+Virtualization & bhyve; Propolis; rust-vmm ecosystem; processor virtualization docs. \\
+Networking & TCP/IP Illustrated selectively; relevant RFCs; real implementations; Oxide RFD 63. \\
+Storage & ZFS docs; Oxide RFD 60; RFD 177; Crucible source. \\
+Embedded & Embedded Rust material; Hubris docs/source. \\
+Distributed systems & Use Omicron architecture as the primary learning object rather than restarting a generic textbook. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Definition of done}\label{sec:26}
+
+The ultimate output of this course is not knowledge. It is a body of evidence.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
+\toprule
+\textbf{Claim} & \textbf{Evidence} \\
+\midrule
+I understand Rust. & Here is the code. \\
+I understand operating systems. & Here is the kernel work. \\
+I understand virtualization. & Here is the VMM work. \\
+I understand networking. & Here is the dataplane and its failure analysis. \\
+I understand storage. & Here is the replicated block system. \\
+I understand distributed systems. & Here is Minirack's control plane. \\
+I understand hardware. & Here is the driver/embedded work. \\
+I understand performance. & Here are the investigations. \\
+I can debug. & Here are the postmortems. \\
+I can communicate. & Here are the design documents. \\
+I can work with other engineers. & Here are the upstream contributions and review discussions. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{quote}\raggedright\itshape
+You cannot manufacture someone else's years. You can build an unusually dense body of serious engineering work. That is what this curriculum is designed to do.
+\end{quote}
+
+\section{Selected references}\label{sec:27}
+
+Careers: \url{https://oxide.computer/careers}
+
+Performance Engineer: \url{https://oxide.computer/careers/performance-engineer}
+
+OS Kernel Engineer: \url{https://oxide.computer/careers/os-kernel}
+
+Virtualization Engineer: \url{https://oxide.computer/careers/sw-host-virt}
+
+Networking Software Engineer: \url{https://oxide.computer/careers/sw-networking}
+
+Control Plane Engineer: \url{https://oxide.computer/careers/sw-control-plane}
+
+RFD 3 - Hiring Process: \url{https://rfd.shared.oxide.computer/rfd/0003}
+
+RFD 26 - Host OS \& Hypervisor: \url{https://rfd.shared.oxide.computer/rfd/0026}
+
+RFD 60 - Storage Architecture: \url{https://rfd.shared.oxide.computer/rfd/0060}
+
+RFD 63 - Network Architecture: \url{https://rfd.shared.oxide.computer/rfd/0063}
+
+RFD 177 - Crucible: \url{https://rfd.shared.oxide.computer/rfd/0177}
+
+Helios: \url{https://github.com/oxidecomputer/helios}
+
+Crucible: \url{https://github.com/oxidecomputer/crucible}
+
+Omicron: \url{https://github.com/oxidecomputer/omicron}
+
+Hubris: \url{https://github.com/oxidecomputer/hubris}
+
+\end{document}

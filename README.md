@@ -14,8 +14,7 @@ make build
 ```
 
 The build produces `bin/course`, which Git ignores.
-The first build downloads the exact PDF reader revision recorded in `go.mod` and `go.sum`.
-The executable includes time-zone data and performs course operations without downloading dependencies.
+The executable uses the Go standard library and includes time-zone data.
 After pulling infrastructure changes, run `make build` again.
 
 Open Codex in the selected course folder.
@@ -70,9 +69,17 @@ The helper preserves elapsed active time across pauses and machine handoffs.
 It does not send deadline alerts.
 
 `context`, `plan`, and hooks do not write records or start timers.
+`context` and both hooks include the saved teaching contract during ordinary study.
+Assessment context omits the contract and task guidance to preserve unaided attempts.
 `init` creates a missing course record without starting study.
 `start` also creates a missing record when study begins.
 Only Algorithms defines timed assessments. Its local instructions explain the limits.
+
+During practice, the tutor gives the task and waits for the learner to choose an approach.
+The tutor answers questions narrowly and leaves claim selection and repairs to the learner.
+A requested or agreed professor block explains choices through a worked example.
+The tutor role resumes after that example.
+Supported practice makes help available without revealing it before an attempt.
 
 ## Progress across machines
 
@@ -94,31 +101,44 @@ The migration imports the existing Algorithms record and converts its repository
 The old `~/.local/state/learn/courses/algorithms/state.json` remains a backup and is no longer read by this tool.
 The separate general learning-mode deck remains outside this repository.
 
-## Guide maintenance
+## Curriculum PDFs
 
-The PDFs remain the curriculum sources.
-Each derived guide contains page text, external link destinations, and a SHA256 fingerprint of its PDF.
-After a PDF changes, regenerate its guide from the repository root:
+Each course's `.tex` file contains its editable curriculum, tables, and links.
+The tutor reads this LaTeX source directly.
+The adjacent PDF is the compiled version for viewing.
+The three courses share the layout in `latex/course.sty`.
+
+Use TeX Live 2026 with pdfTeX 3.141592653-2.6-1.40.29 and latexmk 4.88.
+The build requires Inter, Latin Modern, geometry, xcolor, microtype, enumitem, titlesec, booktabs, array, fancyhdr, and hyperref.
+From the repository root, compile all three curricula:
 
 ```sh
-bash scripts/course sync-guide --course algorithms
-bash scripts/course sync-guide --course algorithms --check
+make pdfs
 ```
 
-Replace `algorithms` with the selected course identifier.
+Compile one curriculum with its PDF path:
+
+```sh
+make algorithms/Algorithms_Mastery_Course.pdf
+```
+
+The build replaces each course PDF only after its LaTeX compilation succeeds.
+Contents pages and curriculum-map page references update during compilation.
+Intermediate files stay in the ignored `build/pdf/` directory.
+Use `make clean-pdfs` to remove those files while preserving the viewing PDFs.
+The PDFs under `algorithms/sessions/` are outside this build.
 Keep related instructions and course configuration consistent with curriculum changes.
-Render and inspect edited PDFs before delivery.
-The Go tool uses the pinned [PDF reader](https://github.com/ledongthuc/pdf/tree/5e46805f718e722f9c806c4a944e932e6aaaa9f1) for text and annotation access.
+Render and inspect compiled PDFs before delivery.
 
 ## Add a course
 
-Create its folder and add the source guide.
-Add a `course.json` with `id`, `name`, `source`, `guide`, `language`, `unit`, and `next_task`.
+Create its folder and add the LaTeX source.
+Add a `course.json` with `id`, `name`, `source`, `language`, `unit`, and `next_task`.
 Set `id` to the course folder name.
-Keep source and derived guide paths relative to that folder.
+Set `source` to the `.tex` path relative to that folder.
 Use an existing course file as the format reference.
 Add `AGENTS.md` for subject-specific rules and exceptions to shared defaults.
-Generate its derived guide with `sync-guide --course COURSE`.
+Add the course folder to `TEX_SOURCES` in the root `Makefile`.
 
 Optional `weekday_work` contains seven entries, starting with Monday.
 Optional `assessment` defines allowed durations, feedback minutes, and durations that permit session boundaries.

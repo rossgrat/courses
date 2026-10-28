@@ -1,13 +1,18 @@
 # Algorithms course
 
-`Algorithms_Mastery_Course.pdf` defines the curriculum.
-`docs/course-guide.txt` contains its derived text and links.
+`Algorithms_Mastery_Course.tex` defines the curriculum and contains its text and links.
+`Algorithms_Mastery_Course.pdf` is the compiled version for viewing.
 `AGENTS.md` adds algorithm-specific teaching and assessment rules to the shared parent instructions.
 `state.json` stores current progress, reviews, and session history in Git.
 
 Follow the [shared setup and handoff instructions](../README.md) before starting on a new machine.
 Open Codex in this folder and give the tutor your available active study minutes.
 Go is the starting language. Section 24 defines the C++ and Rust progression.
+
+During practice, choose your own supporting claims and write an argument before requesting help.
+The tutor answers your questions narrowly and leaves the repair to you after feedback.
+Request a professor block when you want an explanation or a worked example.
+The tutor role resumes after the example.
 
 ## Commands
 
@@ -37,11 +42,10 @@ Use `--infrastructure-failure --reason DESCRIPTION` for an infrastructure pause.
 
 ## Course files
 
-After a curriculum change, regenerate and compare the guide from this folder:
+Edit the LaTeX source, then compile the PDF from the repository root:
 
 ```sh
-bash scripts/course sync-guide
-bash scripts/course sync-guide --check
+make algorithms/Algorithms_Mastery_Course.pdf
 ```
 
 Preserve the source exercises, links, and assessment standards.

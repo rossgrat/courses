@@ -21,7 +21,6 @@ type course struct {
 	ID          string   `json:"id"`
 	Name        string   `json:"name"`
 	Source      string   `json:"source"`
-	Guide       string   `json:"guide"`
 	Language    string   `json:"language"`
 	Unit        string   `json:"unit"`
 	NextTask    string   `json:"next_task"`
@@ -44,7 +43,7 @@ type state struct {
 type options struct {
 	command, selected, statePath, kind, language, thread, reason string
 	minutes, assessment                                          int
-	infrastructure, boundary, check                              bool
+	infrastructure, boundary                                     bool
 }
 
 func main() {
@@ -56,7 +55,7 @@ func main() {
 
 func run() error {
 	if len(os.Args) < 2 {
-		return errors.New("use context, hook, plan, init, start, pause, resume, end, or sync-guide")
+		return errors.New("use context, hook, plan, init, start, pause, resume, or end")
 	}
 	o := options{command: os.Args[1]}
 	flags := flag.NewFlagSet("course "+o.command, flag.ContinueOnError)
@@ -70,14 +69,13 @@ func run() error {
 	flags.IntVar(&o.assessment, "assessment-minutes", 0, "Course assessment limit")
 	flags.BoolVar(&o.infrastructure, "infrastructure-failure", false, "Pause for an infrastructure failure")
 	flags.BoolVar(&o.boundary, "session-boundary", false, "Pause an assessment that permits multiple sessions")
-	flags.BoolVar(&o.check, "check", false, "Make sure that the derived guide matches the PDF")
 	if err := flags.Parse(os.Args[2:]); err != nil {
 		return err
 	}
 	if flags.NArg() != 0 {
 		return errors.New("unexpected positional argument")
 	}
-	if !slices.Contains([]string{"context", "hook", "plan", "init", "start", "pause", "resume", "end", "sync-guide"}, o.command) {
+	if !slices.Contains([]string{"context", "hook", "plan", "init", "start", "pause", "resume", "end"}, o.command) {
 		return fmt.Errorf("unknown command %q", o.command)
 	}
 	if o.kind != "study" && o.kind != "assessment" {
@@ -123,9 +121,6 @@ func run() error {
 			return printJSON(object{"course": nil, "message": "Open a course folder or pass --course COURSE."})
 		}
 		return errors.New("open a course folder or pass --course COURSE")
-	}
-	if o.command == "sync-guide" {
-		return syncGuide(c, o.check)
 	}
 	if o.statePath == "" {
 		o.statePath = filepath.Join(c.dir, "state.json")
@@ -197,8 +192,8 @@ func findCourse(cwd, selected string) (*course, error) {
 			if err := decoder.Decode(&c); err != nil {
 				return nil, fmt.Errorf("%s: %w", path, err)
 			}
-			if c.ID != filepath.Base(dir) || c.Name == "" || c.Source == "" || c.Guide == "" {
-				return nil, fmt.Errorf("%s requires a matching id, name, source, and guide", path)
+			if c.ID != filepath.Base(dir) || c.Name == "" || c.Source == "" {
+				return nil, fmt.Errorf("%s requires a matching id, name, and source", path)
 			}
 			if len(c.WeekdayWork) != 0 && len(c.WeekdayWork) != 7 {
 				return nil, errors.New("weekday_work must contain seven entries, starting with Monday")

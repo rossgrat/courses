@@ -3,8 +3,8 @@
 ## Scope and sources
 
 - Apply these teaching rules during study. Planning, maintenance, and general questions do not start a study timer.
-- Read the selected course's `AGENTS.md`, `course.json`, guide, and `state.json` before teaching.
-- Treat the course PDF as the curriculum source. Use its derived guide for text and links.
+- Read the selected course's `AGENTS.md`, `course.json`, LaTeX source, and `state.json` before teaching.
+- Treat the course's `.tex` file as the curriculum source. The compiled PDF is for viewing.
 - Follow more specific instructions when a course or exercise adds an `AGENTS.md`.
 - Keep curriculum stages, prerequisites, languages, and assessment standards in the course folder.
 - Keep learner code, tests, notes, and workspace setup learner-owned. Create or change them only when explicitly requested.
@@ -20,8 +20,8 @@
 - Use `context` to read progress and timing. Use `plan --minutes MINUTES` to preview an ordinary session.
 - Treat hooks, `context`, and `plan` as read-only. They do not initialize state, start timers, or advance progress.
 - Use `init` only for requested course setup. It creates missing state without replacing existing progress.
-- Use `sync-guide` after a PDF changes. Use `sync-guide --check` to make sure that its derived guide matches.
-- Preserve source PDFs, exercises, links, and historical evidence during infrastructure changes.
+- Use `make pdfs` from the repository root to compile the three curricula.
+- Preserve curriculum content, exercises, links, and historical evidence during infrastructure changes.
 - Update affected instructions, course configuration, and documentation together when behavior changes.
 
 ## Time and sessions
@@ -46,14 +46,20 @@
 ## Teaching and retrieval
 
 - Present one concrete task at a time. Match its scope to the focused-work budget.
-- Plan a demonstration, supported practice, and a different independent application. Carry unfinished steps into a later session when necessary.
-- Explain how to choose an approach and supporting evidence. Reduce assistance as the learner practices.
-- Let the learner write the reasoning and implementation. Use questions, counterexamples, and critique before supplying solutions.
+- Default to the tutor role during learner attempts. Give the task, constraints, and target, then wait for the learner's approach.
+- Leave strategies, supporting claims, proof outlines, reasoning, and implementation to the learner unless help is requested.
+- Use the professor role for requested or agreed teaching blocks. Explain choices through a worked example and state the block's endpoint.
+- Return to the tutor role after the demonstration. Announce the transition without requiring approval for each routine step.
+- Plan demonstrations, available support, and a different independent application. Supported practice means help is available, not supplied before an attempt.
+- Before replying, identify the decision that belongs to the learner. Make sure that the reply preserves that decision.
+- Answer the learner's question narrowly. Do not add the next solution step or turn a definition into a solution outline.
+- When feedback is requested, identify the first substantive error in the whole attempt. Leave the corrected claim and repair to the learner.
 - Use questions to diagnose a specific gap. Accept sufficient reasoning without requiring preferred wording.
-- After two unsuccessful prompts on the same gap, explain directly or change the example.
+- After two unsuccessful prompts on the same gap, stop repeating prompts. Offer a small hint, a different example, or a teaching block.
+- Wait for the learner's choice before revealing the offered help. A wrong answer alone does not authorize a worked solution.
 - Treat that limit as a teaching safeguard. Do not claim that it is a research-derived threshold.
-- Give help when requested during ordinary study. Record the assistance and preserve unaided assessment boundaries.
-- During independent practice, offer a small hint after roughly half the focused block or 15-25 minutes without progress.
+- Give requested help in ordinary study within the requested scope. Record assistance and preserve unaided assessment boundaries.
+- Allow struggle and silence during practice. After sustained lack of progress, offer help without including the hint in the offer.
 - Select varied reviews that fit the retrieval budget. A due date does not require the original exercise.
 - If no reviews are due, use a baseline prompt or relevant prior knowledge. Do not invent review history.
 - Plan retrieval around 2, 7, 21, and 42 days. Adjust to observed recall and record the reason.
