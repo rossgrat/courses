@@ -1,48 +1,23 @@
 \documentclass[11pt,letterpaper]{article}
 
-\usepackage[margin=0.5in,includefoot,footskip=18pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{XCharter}
-\usepackage{textcomp}
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage[hyphens]{url}
-\usepackage[hidelinks]{hyperref}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
-\setlist{nosep,leftmargin=*}
-\titleformat{\section}{\large\bfseries\scshape}{\thesection}{0.6em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{6pt}{3pt}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\titlespacing*{\paragraph}{0pt}{4pt}{0.75em}
+\usepackage{latex/curriculum}
+\newcommand{\coursename}{Low-Latency Trading Engineering}
+\hypersetup{pdftitle={Low-Latency Trading Engineering Course}}
 
 \begin{document}
 
-\begin{center}
-{\LARGE\bfseries Low-Latency Trading Engineering Course}
-\end{center}
-
-A mastery-gated course plan for breaking into quantitative trading engineering
-
-\paragraph*{Primary path}
-
-Low-latency C++ / execution engineering\par
-
-\paragraph*{Secondary paths}
-
-Trading strategy  |  Infrastructure \& platform  |  Performance  |  Acceleration\par
-
-\paragraph*{Course philosophy}
-
-Build. Measure. Explain. Interview. Iterate.
-
-Prepared October 2026\par
+\coursecover
+  {Low-Latency\\Trading Engineering}
+  {A mastery-gated course plan for breaking into quantitative trading engineering}
+  {Low-latency C++ / execution engineering}
+  {Secondary paths}
+  {Trading strategy | Infrastructure \& platform | Performance | Acceleration}
+  {Build. Measure. Explain. Interview. Iterate.}
+  {Prepared October 2026}
 
 \tableofcontents
+\clearpage
+
 
 \begin{quote} This is not a calendar-based bootcamp. Advance when you can demonstrate the exit criteria. Begin applying before the curriculum is complete.\end{quote}
 
@@ -52,7 +27,7 @@ The primary goal is to become an exceptionally strong candidate for low-latency 
 
 Secondary paths remain deliberately open:
 
-\begin{itemize}
+\begin{topics}
 
 \item Trading strategy engineering
 
@@ -66,7 +41,7 @@ Secondary paths remain deliberately open:
 
 \item Hardware/software acceleration
 
-\end{itemize}
+\end{topics}
 
 The curriculum is asynchronous and mastery-gated. There are no arbitrary week counts. You advance when you can demonstrate the skill.
 
@@ -101,14 +76,15 @@ Every stage combines four forms of work:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Component} & \textbf{Purpose} \\
-\hline
+\midrule
 Knowledge & Understand the underlying systems. \\
 Implementation & Prove you can actually build them. \\
 Measurement & Prove that you understand performance. \\
 Interview practice & Convert knowledge into interview performance. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -123,9 +99,10 @@ Reading about caches is not sufficient; demonstrate cache effects with a benchma
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Stage} & \textbf{Focus} & \textbf{Outcome} \\
-\hline
+\midrule
 Stage 0 & Baseline and environment & Establish tools and starting point \\
 Stage 1 & Modern C++ fluency & Language and resource-management competence \\
 Stage 2 & Concurrency and memory model & Reason correctly across CPU cores \\
@@ -135,7 +112,7 @@ Stage 5 & Low-latency engineering & Build for predictability and latency \\
 Stage 6 & Electronic trading systems & Learn the domain by implementing it \\
 Stage 7 & Mercury flagship project & Integrate the entire skill stack \\
 Stage 8 & Specialization & Execution, strategy, platform or acceleration \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -155,6 +132,8 @@ Throughout the entire program, three tracks continue in parallel:
 The critical path ends before acceleration or FPGA specialization. You should be applying before you have mastered every advanced topic.
 \end{quote}
 
+\clearpage
+
 \section{Stage 0 - Baseline and engineering environment}\label{sec:4}
 
 \label{stage:0}
@@ -169,7 +148,7 @@ Eventually you want access to bare-metal x86-64 Linux. Early exercises can run e
 
 Install and become comfortable with:
 
-\begin{itemize}
+\begin{topics}
 
 \item GCC
 
@@ -201,7 +180,7 @@ Install and become comfortable with:
 
 \item Google Benchmark
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Baseline assessment}
 
@@ -223,7 +202,7 @@ Without substantial preparation, attempt the following. Save the results; this i
 
 \subsubsection*{Algorithms}
 
-\begin{itemize}
+\begin{topics}
 
 \item Graph traversal
 
@@ -237,11 +216,11 @@ Without substantial preparation, attempt the following. Save the results; this i
 
 \item Basic dynamic programming
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Systems}
 
-\begin{itemize}
+\begin{topics}
 
 \item Explain process vs thread
 
@@ -257,7 +236,7 @@ Without substantial preparation, attempt the following. Save the results; this i
 
 \item Explain a race condition
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Performance}
 
@@ -275,7 +254,7 @@ Become comfortable enough with C++ that the language no longer consumes most of 
 
 \subsubsection*{Object lifetime}
 
-\begin{itemize}
+\begin{topics}
 
 \item Automatic and dynamic storage
 
@@ -293,11 +272,11 @@ Become comfortable enough with C++ that the language no longer consumes most of 
 
 \item Initialization
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Value semantics}
 
-\begin{itemize}
+\begin{topics}
 
 \item Copy construction
 
@@ -313,11 +292,11 @@ Become comfortable enough with C++ that the language no longer consumes most of 
 
 \item Rule of Five
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Standard library}
 
-\begin{itemize}
+\begin{topics}
 
 \item vector
 
@@ -345,7 +324,7 @@ Become comfortable enough with C++ that the language no longer consumes most of 
 
 \item Ranges at a practical level
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Templates}
 
@@ -385,7 +364,7 @@ Do not disappear into template metaprogramming.
 
 \subsubsection*{Memory}
 
-\begin{itemize}
+\begin{topics}
 
 \item Stack vs heap
 
@@ -399,7 +378,7 @@ Do not disappear into template metaprogramming.
 
 \item Padding
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Exercises: cpp-systems-lab}
 
@@ -463,7 +442,7 @@ The habit matters more than the number: hypothesis -> measurement -> explanation
 
 \subsection*{Stage 1 exit gate}
 
-\begin{itemize}
+\begin{topics}
 
 \item Implement normal programs without fighting C++
 
@@ -483,7 +462,7 @@ The habit matters more than the number: hypothesis -> measurement -> explanation
 
 \item Read moderately complicated C++ code
 
-\end{itemize}
+\end{topics}
 
 \begin{quote}
 Do not wait until you know every corner of C++. Proceed once the exit gate is solid.
@@ -499,7 +478,7 @@ Move from "I know threads" to "I can reason about communication between CPU core
 
 \subsection*{Ordinary concurrency first}
 
-\begin{itemize}
+\begin{topics}
 
 \item Threads
 
@@ -519,13 +498,13 @@ Move from "I know threads" to "I can reason about communication between CPU core
 
 \item Contention
 
-\end{itemize}
+\end{topics}
 
 Implement conventional synchronization before reaching for atomics.
 
 \subsection*{Atomics and memory ordering}
 
-\begin{itemize}
+\begin{topics}
 
 \item Atomic load/store
 
@@ -549,7 +528,7 @@ Implement conventional synchronization before reaching for atomics.
 
 \item sequential consistency
 
-\end{itemize}
+\end{topics}
 
 \begin{quote}
 Do not memorize the standard. Learn to reason about concrete examples and explain why the ordering is sufficient.
@@ -599,7 +578,7 @@ Do not memorize the standard. Learn to reason about concrete examples and explai
 
 \subsubsection*{Benchmark at minimum:}
 
-\begin{itemize}
+\begin{topics}
 
 \item Mutex queue
 
@@ -613,7 +592,7 @@ Do not memorize the standard. Learn to reason about concrete examples and explai
 
 \item p99 latency
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Then investigate:}
 
@@ -657,7 +636,7 @@ You need to understand the path: C++ source -> compiler -> assembly -> CPU pipel
 
 \subsection*{CPU architecture}
 
-\begin{itemize}
+\begin{topics}
 
 \item Instructions
 
@@ -671,11 +650,11 @@ You need to understand the path: C++ source -> compiler -> assembly -> CPU pipel
 
 \item Branch prediction
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Memory hierarchy}
 
-\begin{itemize}
+\begin{topics}
 
 \item Registers
 
@@ -689,7 +668,7 @@ You need to understand the path: C++ source -> compiler -> assembly -> CPU pipel
 
 \item Why memory latency can dominate arithmetic
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Cache behavior}
 
@@ -721,7 +700,7 @@ You need to understand the path: C++ source -> compiler -> assembly -> CPU pipel
 
 \subsection*{SIMD and compiler behavior}
 
-\begin{itemize}
+\begin{topics}
 
 \item Vector instructions
 
@@ -739,7 +718,7 @@ You need to understand the path: C++ source -> compiler -> assembly -> CPU pipel
 
 \item Loop transformations
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Primary asynchronous course}
 
@@ -769,7 +748,7 @@ Use selected portions of MIT 6.172, Performance Engineering of Software Systems,
 
 Latency numbers are easy to lie with accidentally. Learn to control or at least understand:
 
-\begin{itemize}
+\begin{topics}
 
 \item Warmup
 
@@ -789,7 +768,7 @@ Latency numbers are easy to lie with accidentally. Learn to control or at least 
 
 \item Sample distributions
 
-\end{itemize}
+\end{topics}
 
 Stop reporting only averages. Prefer median, p95, p99, p99.9, and maximum when useful.
 
@@ -825,7 +804,7 @@ Become comfortable reasoning about the machine beneath your process.
 
 \subsection*{Linux}
 
-\begin{itemize}
+\begin{topics}
 
 \item Processes
 
@@ -857,7 +836,7 @@ Become comfortable reasoning about the machine beneath your process.
 
 \item Context switches
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Regularly use:}
 
@@ -891,7 +870,7 @@ Start from sockets and build rather than only reading.
 
 \subsubsection*{Learn:}
 
-\begin{itemize}
+\begin{topics}
 
 \item Sockets
 
@@ -911,7 +890,7 @@ Start from sockets and build rather than only reading.
 
 \item Serialization
 
-\end{itemize}
+\end{topics}
 
 Understand the tradeoff: TCP provides reliability and ordering; UDP minimizes protocol overhead and gives the application more control over recovery.
 
@@ -919,7 +898,7 @@ Understand the tradeoff: TCP provides reliability and ordering; UDP minimizes pr
 
 Publisher emits:
 
-\begin{itemize}
+\begin{topics}
 
 \item Instrument ID
 
@@ -933,7 +912,7 @@ Publisher emits:
 
 \item Timestamp
 
-\end{itemize}
+\end{topics}
 
 Subscriber:
 
@@ -1039,7 +1018,7 @@ Only now introduce significant trading-specific material. You do not need a fina
 
 \subsection*{Market microstructure}
 
-\begin{itemize}
+\begin{topics}
 
 \item Exchanges
 
@@ -1071,11 +1050,11 @@ Only now introduce significant trading-specific material. You do not need a fina
 
 \item Partial fills
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Then understand:}
 
-\begin{itemize}
+\begin{topics}
 
 \item Market data
 
@@ -1091,7 +1070,7 @@ Only now introduce significant trading-specific material. You do not need a fina
 
 \item P\&L
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Order book implementation}
 
@@ -1211,7 +1190,7 @@ Cross-cutting capabilities: telemetry, deterministic replay, tests, and benchmar
 
 \subsection*{Milestone 7 - Hot-path constraints}
 
-\begin{itemize}
+\begin{topics}
 
 \item No dynamic allocations during steady-state processing
 
@@ -1225,7 +1204,7 @@ Cross-cutting capabilities: telemetry, deterministic replay, tests, and benchmar
 
 \item Document each design choice
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Milestone 8 - Benchmarking}
 
@@ -1241,7 +1220,7 @@ Cross-cutting capabilities: telemetry, deterministic replay, tests, and benchmar
 
 \subsection*{Milestone 9 - Profiling}
 
-\begin{itemize}
+\begin{topics}
 
 \item Use perf
 
@@ -1255,7 +1234,7 @@ Cross-cutting capabilities: telemetry, deterministic replay, tests, and benchmar
 
 \item Show before/after optimization results and explanation
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Milestone 10 - Replay}
 
@@ -1301,7 +1280,7 @@ Low-latency execution remains the default branch. Choose additional depth based 
 
 \subsection*{Branch A - Low-latency execution}
 
-\begin{itemize}
+\begin{topics}
 
 \item C++ object layout
 
@@ -1331,13 +1310,13 @@ Low-latency execution remains the default branch. Choose additional depth based 
 
 \item Exchange binary protocols
 
-\end{itemize}
+\end{topics}
 
 Study real high-performance messaging systems such as Aeron and compare their design ideas against your own transport.
 
 \subsection*{Branch B - Trading strategy engineering}
 
-\begin{itemize}
+\begin{topics}
 
 \item Market microstructure
 
@@ -1353,13 +1332,13 @@ Study real high-performance messaging systems such as Aeron and compare their de
 
 \item Strategy evaluation
 
-\end{itemize}
+\end{topics}
 
 Enhance Mercury with historical or synthetic replay, a strategy plug-in interface, and performance analytics. The engineering challenge matters more than inventing alpha.
 
 \subsection*{Branch C - Infrastructure / platform}
 
-\begin{itemize}
+\begin{topics}
 
 \item Distributed systems
 
@@ -1379,7 +1358,7 @@ Enhance Mercury with historical or synthetic replay, a strategy plug-in interfac
 
 \item Deployment
 
-\end{itemize}
+\end{topics}
 
 Enhance Mercury with a persistent event log, distributed replay workers, strategy experiment runner, metrics, tracing, and failure recovery. This path maps especially well to existing backend/distributed-systems experience.
 
@@ -1466,16 +1445,17 @@ The goal is not to collect GitHub activity. The goal is to have another experien
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Project} & \textbf{Why it fits} & \textbf{Difficulty} \\
-\hline
+\midrule
 QuickFIX & Trading-domain C++ code; parsing, sessions, tests, performance & Moderate \\
 Aeron & High-performance messaging and transport & Advanced \\
 Google Benchmark & Directly supports performance engineering & Moderate \\
 Boost.Asio & Networking credibility & Advanced \\
 liburing & Linux async-I/O credibility & Advanced \\
 DPDK & Extremely relevant to packet-path performance & Very advanced \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1543,7 +1523,7 @@ Begin early and increase intensity over time. Do not wait for the course to be f
 
 \subsection*{Algorithm expectations}
 
-\begin{itemize}
+\begin{topics}
 
 \item Arrays
 
@@ -1573,7 +1553,7 @@ Begin early and increase intensity over time. Do not wait for the course to be f
 
 \item Basic dynamic programming
 
-\end{itemize}
+\end{topics}
 
 \begin{quote}
 Do not optimize for solving 500 problems. A stronger target is: given an unfamiliar medium problem, reason toward a correct solution, implement it cleanly in C++, test it, and discuss complexity.
@@ -1583,7 +1563,7 @@ Do not optimize for solving 500 problems. A stronger target is: given an unfamil
 
 Set up a 45-60 minute session, use an unseen problem, record yourself, and speak continuously. Review:
 
-\begin{itemize}
+\begin{topics}
 
 \item Did I clarify the problem?
 
@@ -1597,7 +1577,7 @@ Set up a 45-60 minute session, use an unseen problem, record yourself, and speak
 
 \item Was my C++ clean?
 
-\end{itemize}
+\end{topics}
 
 Do the same for system design. Explain a prompt such as "Design a market-data distribution system" to a camera, then critique yourself. External mock interviews are useful occasionally but the curriculum does not depend on synchronous participation.
 
@@ -1610,9 +1590,10 @@ Start applying once all of the following are true:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Area} & \textbf{Minimum threshold} \\
-\hline
+\midrule
 C++ & Comfortable writing normal C++20 without constant reference lookup \\
 DSA & Most common medium patterns are familiar \\
 Concurrency & Can implement and explain an SPSC queue plus ordinary synchronization \\
@@ -1623,7 +1604,7 @@ Architecture & Understand cache/locality/allocation/false sharing \\
 Trading & Understand order books and basic market structure \\
 Portfolio & Mercury has a working exchange, market data and basic execution \\
 Interviewing & Can complete realistic 45-minute practice interviews \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1637,7 +1618,7 @@ Before heavily targeting the firms and teams you most want, aim for:
 
 \subsubsection*{C++}
 
-\begin{itemize}
+\begin{topics}
 
 \item Lifetime
 
@@ -1655,7 +1636,7 @@ Before heavily targeting the firms and teams you most want, aim for:
 
 \item Concurrency
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Performance}
 
@@ -1691,7 +1672,7 @@ Before heavily targeting the firms and teams you most want, aim for:
 
 \subsubsection*{Portfolio}
 
-\begin{itemize}
+\begin{topics}
 
 \item Realistic architecture
 
@@ -1705,7 +1686,7 @@ Before heavily targeting the firms and teams you most want, aim for:
 
 \item Clear documentation
 
-\end{itemize}
+\end{topics}
 
 \subsubsection*{Open source}
 
@@ -1729,7 +1710,7 @@ Do not divide employers into qualified and unqualified. Apply across several rol
 
 \subsection*{Search titles such as:}
 
-\begin{itemize}
+\begin{topics}
 
 \item Low-Latency Software Engineer
 
@@ -1753,20 +1734,21 @@ Do not divide employers into qualified and unqualified. Apply across several rol
 
 \item Infrastructure Engineer
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Application priority}
 
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Tier} & \textbf{Target} & \textbf{Reason} \\
-\hline
+\midrule
 A & Low-latency C++ / execution & Direct aspiration \\
 B & Trading strategy / market-data engineering & Highly desirable adjacent path \\
 C & Trading infrastructure / platform & Excellent entry path using existing strengths \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1798,7 +1780,7 @@ Getting into a trading firm as a strong platform engineer does not trap you perm
 
 \subsection*{Topics deliberately excluded from the critical path}
 
-\begin{itemize}
+\begin{topics}
 
 \item Stochastic calculus
 
@@ -1824,7 +1806,7 @@ Getting into a trading firm as a strong platform engineer does not trap you perm
 
 \item Advanced networking hardware internals
 
-\end{itemize}
+\end{topics}
 
 These can all become useful later. None should block applications.
 
@@ -1923,9 +1905,10 @@ Use a repeatable learning cycle that produces retrieval, transfer and evidence o
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Step} & \textbf{Action} \\
-\hline
+\midrule
 Discover & Study the concept. \\
 Retrieve & Close the resource and explain it yourself. \\
 Implement & Write something that exercises it. \\
@@ -1933,7 +1916,7 @@ Break & Test edge cases and failure modes. \\
 Measure & Benchmark it where relevant. \\
 Explain & Write a short engineering note. \\
 Revisit & Return later without notes and reconstruct the idea. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1946,13 +1929,14 @@ Do not build dozens of repositories. Aim for approximately:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Artifact} & \textbf{Purpose} \\
-\hline
+\midrule
 cpp-systems-lab & Small performance, concurrency, memory and networking experiments. \\
 mercury & Flagship low-latency trading-system project. \\
 Open-source profile & A small number of real contributions to external systems projects. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 

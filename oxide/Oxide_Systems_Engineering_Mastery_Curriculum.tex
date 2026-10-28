@@ -1,50 +1,23 @@
 \documentclass[11pt,letterpaper]{article}
 
-\usepackage[margin=0.5in,includefoot,footskip=18pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{XCharter}
-\usepackage{textcomp}
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage[hyphens]{url}
-\usepackage[hidelinks]{hyperref}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
-\setlist{nosep,leftmargin=*}
-\titleformat{\section}{\large\bfseries\scshape}{\thesection}{0.6em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{6pt}{3pt}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\titlespacing*{\paragraph}{0pt}{4pt}{0.75em}
+\usepackage{latex/curriculum}
+\newcommand{\coursename}{Oxide Systems Engineering}
+\hypersetup{pdftitle={Oxide Systems Engineering Course}}
 
 \begin{document}
 
-\begin{center}
-{\LARGE\bfseries Oxide Systems Engineering Course}
-\end{center}
-
-A mastery-gated course plan for whole-computer engineering
-
-\paragraph*{Primary path}
-
-Systems engineering at Oxide Computer Company\par
-
-\paragraph*{Core areas}
-
-Operating systems | Virtualization | Networking | Performance\par
-
-\paragraph*{Course philosophy}
-
-Build. Instrument. Break. Debug. Explain.
-
-Course II: From low-latency systems engineer to whole-computer engineer.\par
-
-Prerequisite: complete the Low-Latency Trading Engineering curriculum.\par
+\coursecover
+  {Oxide\\Systems Engineering}
+  {A mastery-gated course plan for whole-computer engineering}
+  {Systems engineering at Oxide Computer Company}
+  {Core areas}
+  {Operating systems | Virtualization | Networking | Performance}
+  {Build. Instrument. Break. Debug. Explain.}
+  {Course II: From low-latency systems engineer to whole-computer engineer.\par Prerequisite: complete the Low-Latency Trading Engineering curriculum.}
 
 \tableofcontents
+\clearpage
+
 
 \section{Mission and target candidate}\label{sec:1}
 
@@ -54,7 +27,7 @@ Assume the Low-Latency Trading Engineering curriculum has been completed in full
 
 You therefore already possess:
 
-\begin{itemize}
+\begin{topics}
 
 \item strong modern C++
 
@@ -80,7 +53,7 @@ You therefore already possess:
 
 \item algorithm/interview preparation
 
-\end{itemize}
+\end{topics}
 
 This course does not repeat those subjects.
 
@@ -125,9 +98,10 @@ There are no calendar deadlines, but there is also no requirement that every top
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.1200\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
-\hline
+\midrule
 0 & Oxide architecture and laboratory & \pageref{stage:0} \\
 1 & Rust systems mastery & \pageref{stage:1} \\
 2 & illumos, Helios, DTrace and MDB & \pageref{stage:2} \\
@@ -141,7 +115,7 @@ There are no calendar deadlines, but there is also no requirement that every top
 10 & Minirack flagship system & \pageref{stage:10} \\
 11 & Open-source engineering & \pageref{stage:11} \\
 12 & Oxide application portfolio & \pageref{stage:12} \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -156,16 +130,17 @@ Build a mental model of Oxide's system before attempting to specialize in it.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Component} & \textbf{Role} \\
-\hline
+\midrule
 Helios & Host operating system built from illumos. \\
 Propolis & Rust userspace VMM built around bhyve. \\
 Omicron & Rust control plane. \\
 Crucible & Distributed network-replicated block storage. \\
 Hubris & Embedded Rust operating environment. \\
 Dendrite / OPTE / networking stack & Rack and host networking components. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -221,7 +196,7 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \subsection*{Core Rust}
 
-\begin{itemize}
+\begin{topics}
 
 \item ownership and borrowing
 
@@ -237,11 +212,11 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \item modules and crates
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Memory and representation}
 
-\begin{itemize}
+\begin{topics}
 
 \item Box, Arc, Rc
 
@@ -255,11 +230,11 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \item raw pointers
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Concurrency}
 
-\begin{itemize}
+\begin{topics}
 
 \item Send and Sync
 
@@ -275,11 +250,11 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \item futures
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Unsafe Rust}
 
-\begin{itemize}
+\begin{topics}
 
 \item raw pointer invariants
 
@@ -295,7 +270,7 @@ C++ is already one of your systems languages. Now Rust must become another. The 
 
 \item safe abstractions over unsafe implementations
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Projects}
 
@@ -345,7 +320,7 @@ Stop thinking only in Linux. Oxide's host operating system is Helios, built from
 
 Create a dedicated VM or physical system. Install an illumos-derived environment and eventually run Helios itself.
 
-\begin{itemize}
+\begin{topics}
 
 \item processes and threads
 
@@ -361,13 +336,13 @@ Create a dedicated VM or physical system. Install an illumos-derived environment
 
 \item illumos observability facilities
 
-\end{itemize}
+\end{topics}
 
 Compare each with the Linux equivalents you already know.
 
 \subsection*{DTrace}
 
-\begin{itemize}
+\begin{topics}
 
 \item probes and providers
 
@@ -387,13 +362,13 @@ Compare each with the Linux equivalents you already know.
 
 \item latency distributions
 
-\end{itemize}
+\end{topics}
 
 Add your own instrumentation to a program. Your target skill is: something strange happened; you do not know why; you can instrument the running system until you know.
 
 \subsection*{MDB}
 
-\begin{itemize}
+\begin{topics}
 
 \item process inspection
 
@@ -407,13 +382,13 @@ Add your own instrumentation to a program. Your target skill is: something stran
 
 \item crash dumps
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Stage project - Mystery Pathology}
 
 Create several intentional bugs, randomize which one is active, and diagnose the problem without looking at the implementation first.
 
-\begin{itemize}
+\begin{topics}
 
 \item CPU saturation
 
@@ -427,7 +402,7 @@ Create several intentional bugs, randomize which one is active, and diagnose the
 
 \item runaway syscall rate
 
-\end{itemize}
+\end{topics}
 
 \begin{quote}
 Deliverable: a postmortem for each pathology. These become early analysis-sample candidates.
@@ -441,7 +416,7 @@ This stage transforms you from someone who understands an OS into someone who ha
 
 \subsection*{Operating-system implementation}
 
-\begin{itemize}
+\begin{topics}
 
 \item syscall implementation
 
@@ -467,7 +442,7 @@ This stage transforms you from someone who understands an OS into someone who ha
 
 \item security boundaries
 
-\end{itemize}
+\end{topics}
 
 Read kernel source. Trace actual execution paths.
 
@@ -475,7 +450,7 @@ Read kernel source. Trace actual execution paths.
 
 Learn enough assembly to follow calling conventions, register use, stack frames, traps, interrupts, and context switching.
 
-\begin{itemize}
+\begin{topics}
 
 \item page-table translation
 
@@ -493,13 +468,13 @@ Learn enough assembly to follow calling conventions, register use, stack frames,
 
 \item memory ordering
 
-\end{itemize}
+\end{topics}
 
 Use processor manuals selectively. The skill is learning to navigate imperfect hardware documentation when a real question appears.
 
 \subsection*{Hardware interfaces}
 
-\begin{itemize}
+\begin{topics}
 
 \item PCIe
 
@@ -521,7 +496,7 @@ Use processor manuals selectively. The skill is learning to navigate imperfect h
 
 \item NVMe architecture
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Kernel project}
 
@@ -555,7 +530,7 @@ You should be able to follow application -> syscall -> kernel -> driver -> devic
 
 \subsection*{Concepts}
 
-\begin{itemize}
+\begin{topics}
 
 \item privileged execution
 
@@ -587,7 +562,7 @@ You should be able to follow application -> syscall -> kernel -> driver -> devic
 
 \item time virtualization
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Practical progression}
 
@@ -597,7 +572,7 @@ Start with KVM if it gives you the fastest experimentation environment. Then mov
 
 Implement a virtual device such as a simple virtio device, entropy device, virtual serial device, synthetic block device, or telemetry device.
 
-\begin{itemize}
+\begin{topics}
 
 \item design specification
 
@@ -615,7 +590,7 @@ Implement a virtual device such as a simple virtio device, entropy device, virtu
 
 \item debugging guide
 
-\end{itemize}
+\end{topics}
 
 Instrument the complete path: guest -> virtual device -> VMM -> host. Measure it. Explain every boundary crossing.
 
@@ -631,7 +606,7 @@ The trading curriculum already established sockets, TCP/UDP, multicast and perfo
 
 \subsection*{Host networking}
 
-\begin{itemize}
+\begin{topics}
 
 \item NIC descriptors
 
@@ -653,13 +628,13 @@ The trading curriculum already established sockets, TCP/UDP, multicast and perfo
 
 \item driver interaction
 
-\end{itemize}
+\end{topics}
 
 Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket -> application, then reverse the path.
 
 \subsection*{Routing and network architecture}
 
-\begin{itemize}
+\begin{topics}
 
 \item longest-prefix matching
 
@@ -695,11 +670,11 @@ Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket
 
 \item east-west traffic
 
-\end{itemize}
+\end{topics}
 
 \subsection*{IPsec}
 
-\begin{itemize}
+\begin{topics}
 
 \item ESP
 
@@ -713,7 +688,7 @@ Trace an incoming packet: wire -> NIC -> DMA -> driver -> kernel stack -> socket
 
 \item performance implications
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Software-defined networking}
 
@@ -723,7 +698,7 @@ Study packet pipelines and learn basic P4. The goal is not mastery of switch sil
 
 Build a Rust network dataplane with:
 
-\begin{itemize}
+\begin{topics}
 
 \item L2/L3 forwarding
 
@@ -739,7 +714,7 @@ Build a Rust network dataplane with:
 
 \item packet tracing
 
-\end{itemize}
+\end{topics}
 
 Add a small control plane. Eventually add dynamic routing - preferably BGP - plus failure injection and convergence measurements. Make it correct first; then profile the forwarding path.
 
@@ -755,7 +730,7 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \subsection*{Foundations}
 
-\begin{itemize}
+\begin{topics}
 
 \item block devices
 
@@ -779,11 +754,11 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \item copy-on-write
 
-\end{itemize}
+\end{topics}
 
 \subsection*{ZFS}
 
-\begin{itemize}
+\begin{topics}
 
 \item pools
 
@@ -799,11 +774,11 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \item snapshots
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Distributed storage}
 
-\begin{itemize}
+\begin{topics}
 
 \item replication
 
@@ -825,7 +800,7 @@ Even if no storage-specific opening exists when you apply, storage is central to
 
 \item consistency
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Storage project}
 
@@ -857,7 +832,7 @@ This stage builds directly on your backend/distributed-systems experience and sh
 
 \subsection*{Focus areas}
 
-\begin{itemize}
+\begin{topics}
 
 \item reconciliation
 
@@ -885,7 +860,7 @@ This stage builds directly on your backend/distributed-systems experience and sh
 
 \item authentication/attestation concepts
 
-\end{itemize}
+\end{topics}
 
 \subsection*{Property-based testing}
 
@@ -905,7 +880,7 @@ You do not need to become an electrical engineer. You do need to understand that
 
 \subsection*{Embedded foundations}
 
-\begin{itemize}
+\begin{topics}
 
 \item microcontrollers
 
@@ -929,7 +904,7 @@ You do not need to become an electrical engineer. You do need to understand that
 
 \item bootloaders
 
-\end{itemize}
+\end{topics}
 
 Use Rust.
 
@@ -954,16 +929,17 @@ The quant curriculum gave you a performance-engineering advantage. This stage tu
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Layer} & \textbf{Example concerns} \\
-\hline
+\midrule
 CPU & cache misses, branch behavior, contention, instruction count \\
 Kernel & scheduling, interrupts, system calls, memory pressure \\
 Virtualization & VM exits, virtual I/O, scheduling \\
 Networking & packet path, drops, queueing, offload behavior \\
 Storage & queue depth, flush latency, replication latency \\
 Distributed system & request fan-out, tail latency, retry storms, lockstep behavior \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -997,7 +973,7 @@ At completion: Rust API/control plane -> node agent -> VM manager -> virtual net
 
 \subsection*{Compute}
 
-\begin{itemize}
+\begin{topics}
 
 \item manage VM lifecycle
 
@@ -1011,7 +987,7 @@ At completion: Rust API/control plane -> node agent -> VM manager -> virtual net
 
 \item query
 
-\end{itemize}
+\end{topics}
 
 Initially use an existing hypervisor. Later integrate your virtualization work where appropriate.
 
@@ -1055,7 +1031,7 @@ Every subsystem should expose structured logs, metrics, and traces, plus diagnos
 
 \subsection*{Failure injection}
 
-\begin{itemize}
+\begin{topics}
 
 \item kill storage replica
 
@@ -1069,7 +1045,7 @@ Every subsystem should expose structured logs, metrics, and traces, plus diagnos
 
 \item crash during resource creation
 
-\end{itemize}
+\end{topics}
 
 Your system should fail visibly rather than mysteriously.
 
@@ -1083,7 +1059,7 @@ Eventually run Minirack on multiple physical machines. Three inexpensive x86 mac
 
 \subsection*{Minirack documentation}
 
-\begin{itemize}
+\begin{topics}
 
 \item architecture - what exists and why
 
@@ -1101,7 +1077,7 @@ Eventually run Minirack on multiple physical machines. Three inexpensive x86 mac
 
 \item RFD history - major architectural decisions
 
-\end{itemize}
+\end{topics}
 
 \begin{quote}
 The repository should sustain an hour of serious technical discussion with an Oxide engineer.
@@ -1153,7 +1129,7 @@ The target is evidence that experienced systems maintainers trusted your reasoni
 
 \subsection*{Upstreaming mindset}
 
-\begin{itemize}
+\begin{topics}
 
 \item identify maintainer priorities
 
@@ -1171,7 +1147,7 @@ The target is evidence that experienced systems maintainers trusted your reasoni
 
 \item support your changes
 
-\end{itemize}
+\end{topics}
 
 \section{Stage 12 - Build the Oxide application before applying}\label{sec:16}
 
@@ -1211,7 +1187,7 @@ These should read like engineering investigations, not school reports.
 
 Produce one serious RFD-style document. Good topics include live migration for Minirack, network configuration reconciliation, or crash-consistent replicated volume metadata.
 
-\begin{itemize}
+\begin{topics}
 
 \item problem definition
 
@@ -1225,7 +1201,7 @@ Produce one serious RFD-style document. Good topics include live migration for M
 
 \item unresolved questions
 
-\end{itemize}
+\end{topics}
 
 \section{Portfolio structure}\label{sec:17}
 
@@ -1234,15 +1210,16 @@ Do not create 40 toy repositories. Aim for:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Artifact} & \textbf{Purpose} \\
-\hline
+\midrule
 minirack & Integrated flagship system. \\
 systems-lab & Kernel, virtualization, embedded and diagnostic experiments. \\
 one deep subsystem & Networking dataplane, VMM work, or kernel project. \\
 open-source work & External contributions with review history. \\
 engineering notebook/site & Polished technical investigations and RFD-style writing. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1254,7 +1231,7 @@ You must have modified real kernel or VMM-level software - not merely read about
 
 \subsubsection*{Networking}
 
-You must understand both packet mechanics and network architecture: NIC/driver concepts through BGP/overlay systems.
+You must understand both packet mechanics and network architecture: NIC/\allowbreak driver concepts through BGP/\allowbreak overlay systems.
 
 \subsubsection*{Performance}
 
@@ -1271,9 +1248,10 @@ Do not apply simply because you have read all the material. For Oxide, wait unti
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Area} & \textbf{Minimum application threshold} \\
-\hline
+\midrule
 Rust & Ship and debug significant Rust systems code. \\
 illumos & Comfortable working in an illumos environment. \\
 DTrace/MDB & Use them for real investigations. \\
@@ -1289,7 +1267,7 @@ Open source & Meaningful third-party-reviewed systems work. \\
 Writing & At least one excellent design document. \\
 Analysis & At least one excellent technical investigation suitable for submission. \\
 Oxide knowledge & Intelligently discuss Helios, Propolis, Omicron, Crucible, Hubris, networking architecture, and architectural choices. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1336,9 +1314,10 @@ At this point your narrative becomes: "I deliberately spent years becoming a who
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Step} & \textbf{Action} \\
-\hline
+\midrule
 Study & Learn enough theory to form a model. \\
 Close the material & Remove the reference. \\
 Reconstruct from memory & Explain the system yourself. \\
@@ -1348,7 +1327,7 @@ Break & Create failure intentionally. \\
 Debug & Find the real cause. \\
 Explain & Write down the reasoning. \\
 Revisit later & Recover the model after time has passed. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1360,7 +1339,7 @@ The most powerful retrieval question in systems work is often: "What do I predic
 
 Most students build projects whose happy path works. This course should deliberately build systems whose unhappy paths are understood.
 
-\begin{itemize}
+\begin{topics}
 
 \item process crash
 
@@ -1382,7 +1361,7 @@ Most students build projects whose happy path works. This course should delibera
 
 \item concurrent operations
 
-\end{itemize}
+\end{topics}
 
 Senior systems engineers possess enormous stores of failure experience. You cannot reproduce their years, but you can deliberately accumulate far more failure experience than the average engineer at your career stage.
 
@@ -1390,7 +1369,7 @@ Senior systems engineers possess enormous stores of failure experience. You cann
 
 Writing is not a final polish step. Every major system should produce:
 
-\begin{itemize}
+\begin{topics}
 
 \item design note - before implementation
 
@@ -1404,7 +1383,7 @@ Writing is not a final polish step. Every major system should produce:
 
 \item final architecture document - when complete
 
-\end{itemize}
+\end{topics}
 
 Over time, delete weak writing and polish the best work. Your archive becomes application inventory.
 
@@ -1415,14 +1394,15 @@ Do not read every RFD, listen to every podcast episode, or memorize company triv
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{When studying...} & \textbf{Use...} \\
-\hline
+\midrule
 Virtualization & RFD 26 and Propolis material \\
 Storage & RFD 60 and RFD 177 \\
 Networking & RFD 63 \\
 Performance mysteries & Relevant Oxide performance investigations \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1458,7 +1438,7 @@ The goal is to become an engineer comparing architectural decisions with your ow
 
 Do not delay applying because you have not:
 
-\begin{itemize}
+\begin{topics}
 
 \item written a complete kernel
 
@@ -1486,7 +1466,7 @@ Do not delay applying because you have not:
 
 \item built an actual rack-scale computer
 
-\end{itemize}
+\end{topics}
 
 These are rabbit holes. The goal is credible direct experience with the important problems.
 
@@ -1495,9 +1475,10 @@ These are rabbit holes. The goal is credible direct experience with the importan
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Area} & \textbf{Core resources} \\
-\hline
+\midrule
 Rust & Programming Rust; official Rust docs; Rustonomicon when required; existing Rust systems code. \\
 Operating systems & Operating Systems: Three Easy Pieces; selected CS:APP material; illumos source/docs; Helios source. \\
 Observability & DTrace docs; MDB docs; Brendan Gregg systems- performance material. \\
@@ -1507,7 +1488,7 @@ Networking & TCP/IP Illustrated selectively; relevant RFCs; real implementations
 Storage & ZFS docs; Oxide RFD 60; RFD 177; Crucible source. \\
 Embedded & Embedded Rust material; Hubris docs/source. \\
 Distributed systems & Use Omicron architecture as the primary learning object rather than restarting a generic textbook. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1518,9 +1499,10 @@ The ultimate output of this course is not knowledge. It is a body of evidence.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Claim} & \textbf{Evidence} \\
-\hline
+\midrule
 I understand Rust. & Here is the code. \\
 I understand operating systems. & Here is the kernel work. \\
 I understand virtualization. & Here is the VMM work. \\
@@ -1532,13 +1514,15 @@ I understand performance. & Here are the investigations. \\
 I can debug. & Here are the postmortems. \\
 I can communicate. & Here are the design documents. \\
 I can work with other engineers. & Here are the upstream contributions and review discussions. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
 \begin{quote}
 You cannot manufacture someone else's years. You can build an unusually dense body of serious engineering work. That is what this curriculum is designed to do.
 \end{quote}
+
+\clearpage
 
 \section{Selected references}\label{sec:27}
 

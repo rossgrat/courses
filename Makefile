@@ -19,7 +19,7 @@ check-tex:
 	@test "$$(latexmk -v | sed -n 's/.*Version //p')" = '$(LATEXMK_VERSION)' || { printf '%s\n' 'Install latexmk $(LATEXMK_VERSION) before compiling PDFs.' >&2; exit 1; }
 	@pdflatex --version | head -n 1 | grep -Fxq 'pdfTeX $(PDFTEX_VERSION)' || { printf '%s\n' 'Install pdfTeX $(PDFTEX_VERSION) before compiling PDFs.' >&2; exit 1; }
 
-%.pdf: %.tex Makefile | check-tex
+%.pdf: %.tex latex/curriculum.sty Makefile | check-tex
 	mkdir -p build/pdf/$(*D)
 	latexmk -norc -pdf -interaction=nonstopmode -halt-on-error -outdir=build/pdf/$(*D) $<
 	cp build/pdf/$*.pdf $@

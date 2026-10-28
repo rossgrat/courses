@@ -1,48 +1,23 @@
 \documentclass[11pt,letterpaper]{article}
 
-\usepackage[margin=0.5in,includefoot,footskip=18pt]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage{XCharter}
-\usepackage{textcomp}
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage[hyphens]{url}
-\usepackage[hidelinks]{hyperref}
-
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{4pt}
-\setlist{nosep,leftmargin=*}
-\titleformat{\section}{\large\bfseries\scshape}{\thesection}{0.6em}{}[\titlerule]
-\titlespacing*{\section}{0pt}{6pt}{3pt}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
-\titlespacing*{\subsection}{0pt}{6pt}{2pt}
-\titlespacing*{\paragraph}{0pt}{4pt}{0.75em}
+\usepackage{latex/curriculum}
+\newcommand{\coursename}{Algorithms Mastery}
+\hypersetup{pdftitle={Algorithms Mastery Course}}
 
 \begin{document}
 
-\begin{center}
-{\LARGE\bfseries Algorithms Mastery Course}
-\end{center}
-
-A self-paced course for algorithmic reasoning and implementation
-
-\paragraph*{Primary path}
-
-Reason, implement, and solve unfamiliar problems\par
-
-\paragraph*{Language practice}
-
-Go first | Selected C++ and Rust practice\par
-
-\paragraph*{Course philosophy}
-
-Model. Derive. Implement. Test. Explain.
-
-Advance by demonstrated skill, without stage deadlines.\par
+\coursecover
+  {Algorithms\\Mastery}
+  {A self-paced course for algorithmic reasoning and implementation}
+  {Reason, implement, and solve unfamiliar problems}
+  {Language practice}
+  {Go first | Selected C++ and Rust practice}
+  {Model. Derive. Implement. Test. Explain.}
+  {Advance by demonstrated skill, without stage deadlines.}
 
 \tableofcontents
+\clearpage
+
 
 \section{Mission and target learner}\label{sec:1}
 
@@ -59,15 +34,16 @@ Tell the tutor your available study minutes before each session. The tutor asks 
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3202\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6798\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Day} & \textbf{Main work} \\
-\hline
+\midrule
 Monday & Study one small idea and explain a worked example. \\
 Tuesday & Close the resource; reconstruct, implement and test. \\
 Wednesday & Solve a related problem with help only when needed. \\
 Thursday & Change a constraint or solve another application. \\
 Friday & Revisit older material and attempt mixed, unlabeled problems. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -104,14 +80,15 @@ After each major block, send code, reasoning and test evidence to an experienced
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Return after} & \textbf{Retrieve without notes} \\
-\hline
+\midrule
 About 2 days & State the invariant or recurrence; trace a new example. \\
 About 1 week & Reimplement the idea or solve a related problem. \\
 About 3 weeks & Solve a new application without its topic label. \\
 About 6 weeks & Include it in mixed, timed practice. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -128,9 +105,10 @@ The learning loop uses worked examples, retrieval, spacing, interleaving and fee
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.1200\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
-\hline
+\midrule
 0 & Baseline and setup & \pageref{stage:0} \\
 1 & Reasoning, complexity and correctness & \pageref{stage:1} \\
 2 & Arrays, hashing and prefix information & \pageref{stage:2} \\
@@ -149,7 +127,7 @@ The learning loop uses worked examples, retrieval, spacing, interleaving and fee
 15 & Advanced graph structure and reductions & \pageref{stage:15} \\
 16 & Counting, number theory and geometry & \pageref{stage:16} \\
 17 & Composition and the expanding frontier & \pageref{stage:17} \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -190,15 +168,16 @@ For selected exercises, compare the efficient algorithm against a simple brute-f
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Observed gap} & \textbf{Response} \\
-\hline
+\midrule
 Syntax or standard-library friction & Use drills in the exercise language before adding a new algorithm. \\
 Cannot justify correctness & Start Stage 1; practice invariants and induction. \\
 Understands solutions but cannot choose & Practice modeling and mixed, unlabeled tasks. \\
 Finds the idea but code fails & Build smaller pieces; test boundaries and compare with brute force. \\
 Correct but slow & Separate modeling, coding and debugging time; work on the bottleneck. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -995,14 +974,15 @@ A 90-minute task can span planned study sessions. Count total active time and do
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3850\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3850\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Dimension} & \textbf{2 - Sound} & \textbf{3 - Strong} \\
-\hline
+\midrule
 Model and approach & Finds a valid approach independently. & Chooses an efficient approach; explains alternatives. \\
 Correctness & Gives a coherent invariant, induction or case argument. & Handles assumptions and difficult boundaries convincingly. \\
 Implementation & Working code with minor self-corrected issues. & Correct code, useful tests, no unresolved defects. \\
 Complexity and limits & Correct time/space bounds and key assumptions. & Accounts for hidden work, expanded state and tradeoffs. \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1037,15 +1017,16 @@ Have a reviewer or selector choose published Hard problems you have never attemp
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Families 1-5} & \textbf{Families 6-10} \\
-\hline
+\midrule
 Arrays / windows & Graph structure / reductions \\
 Search / greedy & Basic / sequence DP \\
 Stacks / heaps & Advanced DP \\
 Trees & Strings \\
 Graph paths / traversal & Range queries / counting / math / geometry \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
@@ -1116,16 +1097,17 @@ Retrieval means recalling prior learning without notes. Reserve one-sixth each f
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3000\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2500\linewidth-2\tabcolsep\relax}}
-\hline
+\toprule
+\rowcolor{pale}
 \textbf{Available} & \textbf{Retrieval} & \textbf{Focused work} & \textbf{Feedback} \\
-\hline
+\midrule
 20 min & 3 min & 14 min & 3 min \\
 30 min & 5 min & 20 min & 5 min \\
 45 min & 8 min & 29 min & 8 min \\
 60 min & 10 min & 40 min & 10 min \\
 90 min & 15 min & 60 min & 15 min \\
 120 min & 20 min & 80 min & 20 min \\
-\hline
+\bottomrule
 \end{tabular}
 \end{center}
 
