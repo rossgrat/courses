@@ -106,10 +106,10 @@ The separate general learning-mode deck remains outside this repository.
 Each course's `.tex` file contains its editable curriculum, tables, and links.
 The tutor reads this LaTeX source directly.
 The adjacent PDF is the compiled version for viewing.
-The three courses share the layout in `latex/course.sty`.
+The three courses use the standard LaTeX `article` layout.
 
 Use TeX Live 2026 with pdfTeX 3.141592653-2.6-1.40.29 and latexmk 4.88.
-The build requires Inter, Latin Modern, geometry, xcolor, microtype, enumitem, titlesec, booktabs, array, fancyhdr, and hyperref.
+The build requires Latin Modern, fontenc, array, url, and hyperref for fonts, tables, and links.
 From the repository root, compile all three curricula:
 
 ```sh

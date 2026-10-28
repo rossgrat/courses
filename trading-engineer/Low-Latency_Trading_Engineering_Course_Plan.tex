@@ -1,50 +1,38 @@
 \documentclass[10pt,letterpaper]{article}
 
-\usepackage{latex/course}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
 
-\newcommand{\coursename}{Low-Latency Trading Engineering Course}
-
-\hypersetup{pdftitle={Low-Latency Trading Engineering Course}}
+\title{Low-Latency Trading Engineering Course}
+\author{}
+\date{}
 
 \begin{document}
+\sloppy
+\maketitle
 
-\vspace*{1.2in}
+A mastery-gated course plan for breaking into quantitative trading engineering
 
-{\color{navy}\fontsize{30}{38}\selectfont\bfseries LOW-LATENCY\\TRADING ENGINEERING\par}
-
-\medskip
-{\color{muted}\fontsize{15}{20}\selectfont A mastery-gated course plan for breaking into quantitative trading engineering\par}
-
-\bigskip
-
-{\color{accent}\bfseries Primary path\par}
+\paragraph*{Primary path}
 
 Low-latency C++ / execution engineering\par
 
-\bigskip
-
-{\color{accent}\bfseries Secondary paths\par}
+\paragraph*{Secondary paths}
 
 Trading strategy  |  Infrastructure \& platform  |  Performance  |  Acceleration\par
 
-\bigskip
+\paragraph*{Course philosophy}
 
-{\color{accent}\bfseries COURSE PHILOSOPHY\par}
-
-\medskip
-{\color{navy}\fontsize{16}{20}\selectfont \bfseries Build. Measure. Explain. Interview. Iterate.\par}
-
-\bigskip
+Build. Measure. Explain. Interview. Iterate.
 
 Prepared October 2026\par
 
-\clearpage
+\tableofcontents
 
-{\setlength{\parskip}{0pt}\small\tableofcontents}
-
-\begin{quote}\itshape This is not a calendar-based bootcamp. Advance when you can demonstrate the exit criteria. Begin applying before the curriculum is complete.\end{quote}
-
-\clearpage
+\begin{quote} This is not a calendar-based bootcamp. Advance when you can demonstrate the exit criteria. Begin applying before the curriculum is complete.\end{quote}
 
 \section{Mission and target candidate}\label{sec:1}
 
@@ -70,7 +58,7 @@ Secondary paths remain deliberately open:
 
 The curriculum is asynchronous and mastery-gated. There are no arbitrary week counts. You advance when you can demonstrate the skill.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The course also contains explicit application gates so studying cannot expand indefinitely and prevent you from actually interviewing.
 \end{quote}
 
@@ -78,19 +66,19 @@ The course also contains explicit application gates so studying cannot expand in
 
 At the end, your profile should read approximately like this:
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Senior backend/distributed-systems engineer with strong C++ systems-programming skills, practical knowledge of Linux internals, networking, concurrency and computer architecture, and demonstrated ability to measure and optimize latency-sensitive systems. Built a realistic electronic-trading system in C++ and contributed to production-quality open-source systems software.
 \end{quote}
 
 That is much stronger than:
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Backend engineer who studied some C++ and did LeetCode.
 \end{quote}
 
 You do not need to pretend you already have professional HFT experience. A credible story is:
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 I have spent my career building backend and distributed systems. I became increasingly interested in performance-sensitive systems, so I deliberately developed much deeper C++/Linux/performance expertise and built real systems demonstrating it.
 \end{quote}
 
@@ -101,18 +89,18 @@ Every stage combines four forms of work:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Component} & \textbf{Purpose} \\
-\midrule
+\hline
 Knowledge & Understand the underlying systems. \\
 Implementation & Prove you can actually build them. \\
 Measurement & Prove that you understand performance. \\
 Interview practice & Convert knowledge into interview performance. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 For every major concept you study, produce something executable, measurable, explainable, or interviewable.
 \end{quote}
 
@@ -123,9 +111,9 @@ Reading about caches is not sufficient; demonstrate cache effects with a benchma
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Stage} & \textbf{Focus} & \textbf{Outcome} \\
-\midrule
+\hline
 Stage 0 & Baseline and environment & Establish tools and starting point \\
 Stage 1 & Modern C++ fluency & Language and resource-management competence \\
 Stage 2 & Concurrency and memory model & Reason correctly across CPU cores \\
@@ -135,7 +123,7 @@ Stage 5 & Low-latency engineering & Build for predictability and latency \\
 Stage 6 & Electronic trading systems & Learn the domain by implementing it \\
 Stage 7 & Mercury flagship project & Integrate the entire skill stack \\
 Stage 8 & Specialization & Execution, strategy, platform or acceleration \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -151,7 +139,7 @@ Throughout the entire program, three tracks continue in parallel:
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The critical path ends before acceleration or FPGA specialization. You should be applying before you have mastered every advanced topic.
 \end{quote}
 
@@ -363,7 +351,7 @@ Become comfortable enough with C++ that the language no longer consumes most of 
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not disappear into template metaprogramming.
 \end{quote}
 
@@ -457,7 +445,7 @@ Build a repository called cpp-systems-lab. Each experiment should include an imp
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The habit matters more than the number: hypothesis -> measurement -> explanation.
 \end{quote}
 
@@ -485,7 +473,7 @@ The habit matters more than the number: hypothesis -> measurement -> explanation
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not wait until you know every corner of C++. Proceed once the exit gate is solid.
 \end{quote}
 
@@ -551,7 +539,7 @@ Implement conventional synchronization before reaching for atomics.
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not memorize the standard. Learn to reason about concrete examples and explain why the ordering is sufficient.
 \end{quote}
 
@@ -811,7 +799,7 @@ Stop reporting only averages. Prefer median, p95, p99, p99.9, and maximum when u
 
 \end{enumerate}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 That workflow is more important than memorizing fast-C++ tricks.
 \end{quote}
 
@@ -1023,7 +1011,7 @@ Organize memory based on how it is accessed, not only object-oriented abstractio
 
 Study DPDK only after normal networking. Understand the architecture and why poll-mode drivers can bypass the traditional kernel networking path. Eventually build a basic DPDK application if the hardware and environment permit.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not make DPDK expertise a prerequisite for applying. Understand why it exists before trying to master it.
 \end{quote}
 
@@ -1097,7 +1085,7 @@ Only now introduce significant trading-specific material. You do not need a fina
 
 Implement one. Represent levels and process add, modify, cancel, and trade messages. Start simple and correct, then benchmark different structures.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 This is a perfect place to demonstrate that the theoretically elegant data structure is not always the fastest structure for the real access pattern.
 \end{quote}
 
@@ -1117,7 +1105,7 @@ This is the most important differentiator in the curriculum. Rather than ten toy
 
 \subsection*{Mercury}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 A simulated low-latency electronic trading platform that looks like something an experienced engineer built, not a bootcamp portfolio project.
 \end{quote}
 
@@ -1433,7 +1421,7 @@ Do this after Stage 5, not before.
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 FPGA competence is a later differentiator, not a prerequisite for applying to C++ roles.
 \end{quote}
 
@@ -1466,16 +1454,16 @@ The goal is not to collect GitHub activity. The goal is to have another experien
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Project} & \textbf{Why it fits} & \textbf{Difficulty} \\
-\midrule
+\hline
 QuickFIX & Trading-domain C++ code; parsing, sessions, tests, performance & Moderate \\
 Aeron & High-performance messaging and transport & Advanced \\
 Google Benchmark & Directly supports performance engineering & Moderate \\
 Boost.Asio & Networking credibility & Advanced \\
 liburing & Linux async-I/O credibility & Advanced \\
 DPDK & Extremely relevant to packet-path performance & Very advanced \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -1575,7 +1563,7 @@ Begin early and increase intensity over time. Do not wait for the course to be f
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not optimize for solving 500 problems. A stronger target is: given an unfamiliar medium problem, reason toward a correct solution, implement it cleanly in C++, test it, and discuss complexity.
 \end{quote}
 
@@ -1610,9 +1598,9 @@ Start applying once all of the following are true:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Area} & \textbf{Minimum threshold} \\
-\midrule
+\hline
 C++ & Comfortable writing normal C++20 without constant reference lookup \\
 DSA & Most common medium patterns are familiar \\
 Concurrency & Can implement and explain an SPSC queue plus ordinary synchronization \\
@@ -1623,11 +1611,11 @@ Architecture & Understand cache/locality/allocation/false sharing \\
 Trading & Understand order books and basic market structure \\
 Portfolio & Mercury has a working exchange, market data and basic execution \\
 Interviewing & Can complete realistic 45-minute practice interviews \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 At this point: START APPLYING. Mercury does not need to be finished. You do not need deep DPDK knowledge. You do not need FPGA. There will still be difficult LeetCode problems you cannot solve.
 \end{quote}
 
@@ -1760,13 +1748,13 @@ Do not divide employers into qualified and unqualified. Apply across several rol
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3332\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3334\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Tier} & \textbf{Target} & \textbf{Reason} \\
-\midrule
+\hline
 A & Low-latency C++ / execution & Direct aspiration \\
 B & Trading strategy / market-data engineering & Highly desirable adjacent path \\
 C & Trading infrastructure / platform & Excellent entry path using existing strengths \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -1923,9 +1911,9 @@ Use a repeatable learning cycle that produces retrieval, transfer and evidence o
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Step} & \textbf{Action} \\
-\midrule
+\hline
 Discover & Study the concept. \\
 Retrieve & Close the resource and explain it yourself. \\
 Implement & Write something that exercises it. \\
@@ -1933,7 +1921,7 @@ Break & Test edge cases and failure modes. \\
 Measure & Benchmark it where relevant. \\
 Explain & Write a short engineering note. \\
 Revisit & Return later without notes and reconstruct the idea. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -1946,17 +1934,17 @@ Do not build dozens of repositories. Aim for approximately:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4999\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5001\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Artifact} & \textbf{Purpose} \\
-\midrule
+\hline
 cpp-systems-lab & Small performance, concurrency, memory and networking experiments. \\
 mercury & Flagship low-latency trading-system project. \\
 Open-source profile & A small number of real contributions to external systems projects. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Quality and technical depth matter dramatically more than repository count.
 \end{quote}
 
@@ -1964,7 +1952,7 @@ Quality and technical depth matter dramatically more than repository count.
 
 You will not differentiate yourself merely because you know C++ syntax.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The differentiator is: I can explain what the hardware is doing, write the C++ that interacts with it, measure the resulting system, identify the bottleneck, improve it, and defend the tradeoffs.
 \end{quote}
 
@@ -2002,13 +1990,13 @@ There is intentionally no final point where you "know low latency." The course s
 
 {\ttfamily\raggedright study -> build -> apply -> interview -> identify weakness -> study -> improve -> interview again\par}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 That is the intended steady state.
 \end{quote}
 
-\clearpage
-
 \section{Selected references}\label{sec:23}
+
+\begin{flushleft}
 
 \textbf{C++ Core Guidelines:}\newline \url{https://github.com/isocpp/CppCoreGuidelines}
 
@@ -2035,5 +2023,7 @@ That is the intended steady state.
 \subsection*{Reference note}
 
 The resources above are intentionally selective. The course is designed to prevent resource sprawl: use the smallest set that supports the current mastery gate, project milestone, interview weakness, or open-source contribution.
+
+\end{flushleft}
 
 \end{document}

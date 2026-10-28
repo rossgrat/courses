@@ -1,54 +1,38 @@
 \documentclass[10pt,letterpaper]{article}
 
-\usepackage{latex/course}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{array}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks]{hyperref}
 
-\newcommand{\coursename}{Oxide Systems Engineering Course}
-
-\hypersetup{pdftitle={Oxide Systems Engineering Course}}
+\title{Oxide Systems Engineering Course}
+\author{}
+\date{}
 
 \begin{document}
+\sloppy
+\maketitle
 
-\vspace*{1.2in}
+A mastery-gated course plan for whole-computer engineering
 
-{\color{navy}\fontsize{30}{38}\selectfont\bfseries OXIDE\\SYSTEMS ENGINEERING\par}
-
-\medskip
-{\color{muted}\fontsize{15}{20}\selectfont A mastery-gated course plan for whole-computer engineering\par}
-
-\bigskip
-
-{\color{accent}\bfseries Primary path\par}
+\paragraph*{Primary path}
 
 Systems engineering at Oxide Computer Company\par
 
-\bigskip
-
-{\color{accent}\bfseries Core areas\par}
-
-\bigskip
+\paragraph*{Core areas}
 
 Operating systems | Virtualization | Networking | Performance\par
 
-\bigskip
+\paragraph*{Course philosophy}
 
-{\color{accent}\bfseries COURSE PHILOSOPHY\par}
-
-\medskip
-{\color{navy}\fontsize{16}{20}\selectfont \bfseries Build. Instrument. Break. Debug. Explain.\par}
-
-\bigskip
+Build. Instrument. Break. Debug. Explain.
 
 Course II: From low-latency systems engineer to whole-computer engineer.\par
 
-\bigskip
-
 Prerequisite: complete the Low-Latency Trading Engineering curriculum.\par
 
-\clearpage
-
-{\setlength{\parskip}{0pt}\small\tableofcontents}
-
-\clearpage
+\tableofcontents
 
 \section{Mission and target candidate}\label{sec:1}
 
@@ -88,7 +72,7 @@ You therefore already possess:
 
 This course does not repeat those subjects.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Primary goal: become an unusually compelling candidate for systems engineering at Oxide Computer Company, with enough breadth to credibly pursue operating-system, virtualization, networking, performance, and control-plane work - and enough public technical work to offset a relatively short professional career.
 \end{quote}
 
@@ -100,7 +84,7 @@ The target is: "This engineer is early in their career, but they have built, deb
 
 Oxide's current software roles point toward an unusually broad whole-system engineering profile. Kernel engineers work in C, Rust, and sometimes assembly and interact directly with processors and hardware. Virtualization engineers work across the illumos kernel, bhyve, Rust-based Propolis, virtual hardware, processors, and firmware. Networking engineers span Rust, C, P4, host networking, NICs, switches, drivers, BGP, overlays, IPsec, load balancing, and diagnosis. Performance engineers investigate from hardware through kernel and hypervisor into guests and applications, often creating new observability tooling. Control-plane engineers build distributed Rust systems connecting compute, storage, networking, telemetry, updates, and debugging infrastructure.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Central principle: learn to understand a computer vertically, not merely one software layer horizontally.
 \end{quote}
 
@@ -108,13 +92,13 @@ Central principle: learn to understand a computer vertically, not merely one sof
 
 At completion, your profile should approximately read:
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Systems engineer experienced in high-performance software, Rust and C/C++, operating systems, virtualization, networking, distributed systems, and computer architecture. Has built an integrated miniature cloud-computing platform, implemented low-level OS/network/VMM components, conducted rigorous cross-stack performance investigations, and made meaningful contributions to production open-source systems projects. Strong technical writer comfortable documenting architecture, experiments, failures, and design decisions.
 \end{quote}
 
 Your distinguishing characteristic should become:
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 You build the thing, instrument the thing, break the thing, understand why it broke, fix it, and write down what you learned.
 \end{quote}
 
@@ -128,10 +112,10 @@ There are no calendar deadlines, but there is also no requirement that every top
 
 \begin{center}
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1100\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.8100\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.0800\linewidth-2\tabcolsep\relax}}
-\toprule
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.1400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.1200\linewidth-2\tabcolsep\relax}}
+\hline
 \textbf{Stage} & \textbf{Focus} & \textbf{Page} \\
-\midrule
+\hline
 0 & Oxide architecture and laboratory & \pageref{stage:0} \\
 1 & Rust systems mastery & \pageref{stage:1} \\
 2 & illumos, Helios, DTrace and MDB & \pageref{stage:2} \\
@@ -145,7 +129,7 @@ There are no calendar deadlines, but there is also no requirement that every top
 10 & Minirack flagship system & \pageref{stage:10} \\
 11 & Open-source engineering & \pageref{stage:11} \\
 12 & Oxide application portfolio & \pageref{stage:12} \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -160,16 +144,16 @@ Build a mental model of Oxide's system before attempting to specialize in it.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Component} & \textbf{Role} \\
-\midrule
+\hline
 Helios & Host operating system built from illumos. \\
 Propolis & Rust userspace VMM built around bhyve. \\
 Omicron & Rust control plane. \\
 Crucible & Distributed network-replicated block storage. \\
 Hubris & Embedded Rust operating environment. \\
 Dendrite / OPTE / networking stack & Rack and host networking components. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -213,7 +197,7 @@ Clone and explore Helios, Propolis, Crucible, Omicron, and Hubris. Do not try to
 
 \end{enumerate}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Deliverable: a concise architecture map of the Oxide software stack.
 \end{quote}
 
@@ -433,7 +417,7 @@ Create several intentional bugs, randomize which one is active, and diagnose the
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Deliverable: a postmortem for each pathology. These become early analysis-sample candidates.
 \end{quote}
 
@@ -545,7 +529,7 @@ Use processor manuals selectively. The skill is learning to navigate imperfect h
 
 \end{enumerate}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The artifact is source + tests + instrumentation + design document + debugging guide + failure analysis.
 \end{quote}
 
@@ -958,22 +942,22 @@ The quant curriculum gave you a performance-engineering advantage. This stage tu
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Layer} & \textbf{Example concerns} \\
-\midrule
+\hline
 CPU & cache misses, branch behavior, contention, instruction count \\
 Kernel & scheduling, interrupts, system calls, memory pressure \\
 Virtualization & VM exits, virtual I/O, scheduling \\
 Networking & packet path, drops, queueing, offload behavior \\
 Storage & queue depth, flush latency, replication latency \\
 Distributed system & request fan-out, tail latency, retry storms, lockstep behavior \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
 \subsection*{Rule}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Do not merely create benchmarks. Create mysteries.
 \end{quote}
 
@@ -991,7 +975,7 @@ Encounter at least one problem where existing tooling is inadequate, then build 
 
 This becomes the centerpiece of your Oxide portfolio. Do not build an "Oxide clone." Build a small system inspired by the same category of engineering problems.
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 Minirack: a miniature open-source cloud-computer laboratory.
 \end{quote}
 
@@ -1107,7 +1091,7 @@ Eventually run Minirack on multiple physical machines. Three inexpensive x86 mac
 
 \end{itemize}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The repository should sustain an hour of serious technical discussion with an Oxide engineer.
 \end{quote}
 
@@ -1151,7 +1135,7 @@ Open-source work is mandatory, but do not contribute performatively to Oxide rep
 
 \end{enumerate}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The target is evidence that experienced systems maintainers trusted your reasoning enough to merge your work.
 \end{quote}
 
@@ -1238,15 +1222,15 @@ Do not create 40 toy repositories. Aim for:
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Artifact} & \textbf{Purpose} \\
-\midrule
+\hline
 minirack & Integrated flagship system. \\
 systems-lab & Kernel, virtualization, embedded and diagnostic experiments. \\
 one deep subsystem & Networking dataplane, VMM work, or kernel project. \\
 open-source work & External contributions with review history. \\
 engineering notebook/site & Polished technical investigations and RFD-style writing. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -1275,9 +1259,9 @@ Do not apply simply because you have read all the material. For Oxide, wait unti
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Area} & \textbf{Minimum application threshold} \\
-\midrule
+\hline
 Rust & Ship and debug significant Rust systems code. \\
 illumos & Comfortable working in an illumos environment. \\
 DTrace/MDB & Use them for real investigations. \\
@@ -1293,11 +1277,11 @@ Open source & Meaningful third-party-reviewed systems work. \\
 Writing & At least one excellent design document. \\
 Analysis & At least one excellent technical investigation suitable for submission. \\
 Oxide knowledge & Intelligently discuss Helios, Propolis, Omicron, Crucible, Hubris, networking architecture, and architectural choices. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 At this point: apply. Do not wait until you become a kernel veteran; that is not an objective gate.
 \end{quote}
 
@@ -1340,9 +1324,9 @@ At this point your narrative becomes: "I deliberately spent years becoming a who
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Step} & \textbf{Action} \\
-\midrule
+\hline
 Study & Learn enough theory to form a model. \\
 Close the material & Remove the reference. \\
 Reconstruct from memory & Explain the system yourself. \\
@@ -1352,11 +1336,11 @@ Break & Create failure intentionally. \\
 Debug & Find the real cause. \\
 Explain & Write down the reasoning. \\
 Revisit later & Recover the model after time has passed. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The most powerful retrieval question in systems work is often: "What do I predict the machine will do?" Make the prediction, run the experiment, then explain why you were wrong.
 \end{quote}
 
@@ -1419,18 +1403,18 @@ Do not read every RFD, listen to every podcast episode, or memorize company triv
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{When studying...} & \textbf{Use...} \\
-\midrule
+\hline
 Virtualization & RFD 26 and Propolis material \\
 Storage & RFD 60 and RFD 177 \\
 Networking & RFD 63 \\
 Performance mysteries & Relevant Oxide performance investigations \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 The goal is to become an engineer comparing architectural decisions with your own experience - not a fan studying a company.
 \end{quote}
 
@@ -1499,9 +1483,9 @@ These are rabbit holes. The goal is credible direct experience with the importan
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Area} & \textbf{Core resources} \\
-\midrule
+\hline
 Rust & Programming Rust; official Rust docs; Rustonomicon when required; existing Rust systems code. \\
 Operating systems & Operating Systems: Three Easy Pieces; selected CS:APP material; illumos source/docs; Helios source. \\
 Observability & DTrace docs; MDB docs; Brendan Gregg systems- performance material. \\
@@ -1511,7 +1495,7 @@ Networking & TCP/IP Illustrated selectively; relevant RFCs; real implementations
 Storage & ZFS docs; Oxide RFD 60; RFD 177; Crucible source. \\
 Embedded & Embedded Rust material; Hubris docs/source. \\
 Distributed systems & Use Omicron architecture as the primary learning object rather than restarting a generic textbook. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
@@ -1522,9 +1506,9 @@ The ultimate output of this course is not knowledge. It is a body of evidence.
 \begin{center}
 \small
 \begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3200\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6800\linewidth-2\tabcolsep\relax}}
-\toprule
+\hline
 \textbf{Claim} & \textbf{Evidence} \\
-\midrule
+\hline
 I understand Rust. & Here is the code. \\
 I understand operating systems. & Here is the kernel work. \\
 I understand virtualization. & Here is the VMM work. \\
@@ -1536,15 +1520,17 @@ I understand performance. & Here are the investigations. \\
 I can debug. & Here are the postmortems. \\
 I can communicate. & Here are the design documents. \\
 I can work with other engineers. & Here are the upstream contributions and review discussions. \\
-\bottomrule
+\hline
 \end{tabular}
 \end{center}
 
-\begin{quote}\raggedright\itshape
+\begin{quote}
 You cannot manufacture someone else's years. You can build an unusually dense body of serious engineering work. That is what this curriculum is designed to do.
 \end{quote}
 
 \section{Selected references}\label{sec:27}
+
+\begin{flushleft}
 
 Careers: \url{https://oxide.computer/careers}
 
@@ -1575,5 +1561,7 @@ Crucible: \url{https://github.com/oxidecomputer/crucible}
 Omicron: \url{https://github.com/oxidecomputer/omicron}
 
 Hubris: \url{https://github.com/oxidecomputer/hubris}
+
+\end{flushleft}
 
 \end{document}
