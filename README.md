@@ -106,10 +106,10 @@ The separate general learning-mode deck remains outside this repository.
 Each course's `.tex` file contains its editable curriculum, tables, and links.
 The tutor reads this LaTeX source directly.
 The adjacent PDF is the compiled version for viewing.
-The three courses use the standard LaTeX `article` layout.
+The three courses use 11-point XCharter, half-inch margins, and compact headings with horizontal rules.
 
 Use TeX Live 2026 with pdfTeX 3.141592653-2.6-1.40.29 and latexmk 4.88.
-The build requires Latin Modern, fontenc, array, url, and hyperref for fonts, tables, and links.
+The build requires XCharter, Latin Modern, geometry, fontenc, textcomp, array, enumitem, titlesec, url, and hyperref.
 From the repository root, compile all three curricula:
 
 ```sh

@@ -1,18 +1,30 @@
-\documentclass[10pt,letterpaper]{article}
+\documentclass[11pt,letterpaper]{article}
 
+\usepackage[margin=0.5in,includefoot,footskip=18pt]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{XCharter}
+\usepackage{textcomp}
 \usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
 \usepackage[hyphens]{url}
 \usepackage[hidelinks]{hyperref}
 
-\title{Algorithms Mastery Course}
-\author{}
-\date{}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist{nosep,leftmargin=*}
+\titleformat{\section}{\large\bfseries\scshape}{\thesection}{0.6em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+\titlespacing*{\paragraph}{0pt}{4pt}{0.75em}
 
 \begin{document}
-\sloppy
-\maketitle
+
+\begin{center}
+{\LARGE\bfseries Algorithms Mastery Course}
+\end{center}
 
 A self-paced course for algorithmic reasoning and implementation
 
@@ -163,7 +175,7 @@ For selected exercises, compare the efficient algorithm against a simple brute-f
 
 \begin{enumerate}
 
-\item Attempt selected \href{https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/assignments/}{MIT 6.006 Problem Set 0} questions before reading solutions. Separate unfamiliar Python/notation from conceptual gaps; translate programming tasks into Go.
+\item Attempt selected \href{https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/pages/assignments/}{MIT 6.006 Problem Set 0} questions before reading solutions. Separate unfamiliar Python/\allowbreak notation from conceptual gaps; translate programming tasks into Go.
 
 \item Analyze three loop/recursion snippets and explain why binary search terminates.
 
