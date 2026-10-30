@@ -1,8 +1,0 @@
-{
-  "id": "trading-engineer",
-  "name": "Low-Latency Trading Engineering",
-  "source": "Low-Latency_Trading_Engineering_Course_Plan.tex",
-  "language": "C++",
-  "unit": "Baseline and engineering environment",
-  "next_task": "Select one bounded baseline task from section 4 and record the observed starting point."
-}

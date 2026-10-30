@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "id": "algorithms",
+  "name": "Algorithms Mastery",
+  "sources": [
+    {
+      "path": "curriculum/Algorithms_Mastery_Course.tex",
+      "format": "latex"
+    }
+  ],
+  "learning": {
+    "driver": "curriculum",
+    "agent_role": "tutor",
+    "explanations": "on_request",
+    "implementation": "on_request",
+    "guidance": [
+      "system/guidance/tutor.md"
+    ]
+  },
+  "session": {
+    "timing": "budgeted",
+    "split": {
+      "retrieval": 1,
+      "focused_work": 4,
+      "feedback": 1
+    }
+  },
+  "reviews": {
+    "interval_days": [
+      2,
+      7,
+      21,
+      42
+    ],
+    "weekdays_only": true
+  },
+  "initial": {
+    "stage": 0,
+    "language": "Go",
+    "unit": "Baseline and setup",
+    "next_task": "Attempt selected MIT 6.006 Problem Set 0 questions before solutions."
+  },
+  "weekday_work": [
+    "Study one small idea and explain a worked example",
+    "Reconstruct, implement, and test without the resource",
+    "Solve a related problem with help only when needed",
+    "Change a constraint or solve another application",
+    "Review older material and solve mixed, unlabeled problems",
+    "No scheduled session",
+    "No scheduled session"
+  ],
+  "assessment": {
+    "minutes": [
+      45,
+      60,
+      90
+    ],
+    "feedback": 15,
+    "split_minutes": [
+      90
+    ]
+  }
+}

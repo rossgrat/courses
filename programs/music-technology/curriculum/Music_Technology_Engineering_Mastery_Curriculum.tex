@@ -1,0 +1,930 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Music Technology Engineering}
+\hypersetup{pdftitle={Music Technology Engineering Mastery}}
+
+\begin{document}
+
+\coursecover
+  {Music Technology Engineering Mastery}
+  {Course III - An asynchronous, project-driven engineering curriculum}
+  {Build working musical products that musicians enjoy using.}
+  {Three pillars}
+  {Music software | Physical instruments | Audio systems and infrastructure}
+  {Learn. Retrieve. Predict. Build. Measure and listen. Review. Revisit.}
+  {Trading Engineering and Oxide Systems Engineering are not prerequisites.}
+
+\tableofcontents
+\clearpage
+
+\section{Mission}\label{mission}
+
+Become an exceptionally compelling engineer for companies that build musical instruments, synthesizers, DJ equipment, digital audio workstations (DAWs), audio plugins, professional audio systems, and music software.
+
+This curriculum covers \textbf{all nine engineering disciplines} identified in the career survey:
+
+\begin{enumerate}
+\item Embedded firmware for music equipment
+\item Audio infrastructure and drivers
+\item DAW and DJ application engineering
+\item Digital signal processing (DSP)
+\item Audio plugin development
+\item Electronics and musical hardware engineering
+\item Music software backends and platforms
+\item Music AI and audio analysis
+\item Professional audio and live-sound systems
+\end{enumerate}
+
+The aim is not merely to learn the technology, but to \textbf{build working musical products} that musicians enjoy using.
+
+This course builds on existing experience in Go, C, backend systems, and embedded systems. A completed low-latency trading or Oxide systems curriculum would provide additional strength in C++, performance, concurrency, operating systems, and networking, but \textbf{neither is a prerequisite}. Reuse already-mastered material rather than repeating it.
+
+\section{1. Philosophy and learning model}\label{philosophy-and-learning-model}
+
+The target is a broadly capable music-technology engineer with \textbf{demonstrable depth}, not someone who has superficially sampled every discipline.
+
+\subsection*{Three pillars}\label{three-pillars}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2800\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7200\linewidth-2\tabcolsep\relax}}
+\textbf{Pillar} & \textbf{Scope} \\
+\textbf{A. Music software} & C++, real-time audio engines, DSP, synthesis, sampling, effects, plugins, DAWs, DJ software, desktop interfaces, music AI \\
+\textbf{B. Physical instruments} & Embedded firmware, analog/digital electronics, MIDI, USB, controls, audio interfaces, sensors, PCBs, hardware/software integration \\
+\textbf{C. Audio systems and infrastructure} & Drivers, operating-system audio, audio networking, synchronization, cloud services, collaboration, reliability, and product delivery \\
+\end{tabular}
+\end{center}
+
+\subsection*{Required learning cycle}\label{required-learning-cycle}
+
+Each major topic should follow this cycle:
+
+\begin{enumerate}
+\item \textbf{Learn:} Read or watch one focused explanation.
+\item \textbf{Retrieve:} Close the material and explain the idea from memory.
+\item \textbf{Predict:} State what an experiment should demonstrate.
+\item \textbf{Build:} Implement the smallest meaningful example.
+\item \textbf{Measure and listen:} Test the result technically and musically.
+\item \textbf{Review:} Explain failures, surprises, and corrections.
+\item \textbf{Revisit:} Repeat or extend the work later without relying on notes.
+\end{enumerate}
+
+Use retrieval practice, spaced repetition, interleaving, and repeated reconstruction. Avoid passive video/course consumption without implementation.
+
+\subsection*{Progression rules}\label{progression-rules}
+
+\begin{itemize}
+\item \textbf{No fixed deadlines.} Each stage ends at an explicit mastery gate.
+\item \textbf{Do not wait for perfect theory.} Start producing sounds and building usable tools early.
+\item \textbf{Do not equate scope with excellence.} A small, excellent synth is better than an unfinished DAW clone.
+\item \textbf{Don't postpone job applications} until all nine disciplines are mastered.
+\item \textbf{Keep playing and making music.} Musical usefulness and tactile ergonomics are engineering requirements.
+\end{itemize}
+
+\section{2. Curriculum roadmap}\label{curriculum-roadmap}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.0700\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.4300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5000\linewidth-2\tabcolsep\relax}}
+\textbf{Stage} & \textbf{Topic} & \textbf{Primary deliverable} \\
+0 & Music technology and product anatomy & Architecture breakdowns of three products \\
+1 & Sound, music, mathematics, and digital audio & Audio signal and analysis experiments \\
+2 & Real-time audio programming & \texttt{audio-engine} C++ playback/mixing engine \\
+3 & DSP, synthesis, sampling, and effects & \texttt{synth-core} reusable DSP library \\
+4 & Audio plugins and instrument applications & Polished VST3/AU software synthesizer \\
+5 & DAW and DJ software engineering & \texttt{decklab} two-deck DJ application \\
+6 & MIDI, controllers, and communication & Custom performance MIDI controller \\
+7 & Embedded musical instruments & Standalone hardware synth/groovebox \\
+8 & Audio electronics and hardware design & Custom, tested audio/control PCB \\
+9 & Audio drivers and professional audio & \texttt{audio-transport-lab} and latency investigation \\
+10 & Music platforms and cloud engineering & \texttt{sound-library} backend and synchronization \\
+11 & Machine learning for musical applications & \texttt{music-assistant} evaluated intelligent features \\
+12 & Integrated flagship product and open source & Finished public products and contributions \\
+13 & Music-tech job preparation & Portfolio, demonstrations, and role-specific interview readiness \\
+\end{tabular}
+\end{center}
+
+\textbf{Important:} This order is a learning dependency map, not a rule that you must finish everything before applying. Audio fundamentals and real-time programming come early; interview practice, documentation, user testing, and open source run alongside the main program.
+
+\clearpage
+
+\section{Stage 0 - Music technology and product anatomy}\label{stage-0-music-technology-and-product-anatomy}
+
+\subsection*{Objective}\label{objective}
+
+Understand how real music products are assembled from software, firmware, electronics, controls, audio processing, and user experience.
+
+\subsection*{Study}\label{study}
+
+Dissect the architecture of representative products:
+
+\begin{itemize}
+\item An Ableton-style DAW
+\item A Pioneer DJ-style deck
+\item A standalone groovebox
+\item A digital hardware synthesizer
+\item A MIDI controller
+\item An audio interface
+\item A software synth/plugin
+\end{itemize}
+
+For each, trace the \textbf{audio signal path}, the \textbf{control/data path}, and the \textbf{storage/preset path}. Identify which subsystems are application code, embedded firmware, DSP, device drivers, or electrical hardware.
+
+\subsection*{Assignment}\label{assignment}
+
+Produce \textbf{three product architecture breakdowns}, each containing:
+
+\begin{itemize}
+\item A subsystem diagram
+\item The path from physical/user input to audible output
+\item A description of hardware and software boundaries
+\item Real-time requirements and likely failure modes
+\item What you would prototype first if building a smaller version
+\end{itemize}
+
+\subsection*{Mastery gate}\label{mastery-gate}
+
+You can explain the major subsystems of each product and why its design demands particular combinations of firmware, DSP, application software, and electronics.
+
+\clearpage
+
+\section{Stage 1 - Sound, music, mathematics, and digital audio}\label{stage-1-sound-music-mathematics-and-digital-audio}
+
+\subsection*{Objective}\label{objective-1}
+
+Develop an engineering understanding of how sound is represented, analyzed, generated, and manipulated.
+
+\subsection*{Core topics}\label{core-topics}
+
+\textbf{Physical and perceptual sound}
+
+\begin{itemize}
+\item Waveforms, frequency, amplitude, phase, and timbre
+\item Harmonics and overtones
+\item Loudness and decibels
+\item Hearing and perceptual tradeoffs
+\end{itemize}
+
+\textbf{Digital audio}
+
+\begin{itemize}
+\item Sampling and the Nyquist principle
+\item Quantization, bit depth, and sample formats
+\item Aliasing and anti-aliasing
+\item PCM, encoding, and digital audio files
+\item Buffers and time-domain representation
+\end{itemize}
+
+\textbf{Mathematics for DSP}
+
+\begin{itemize}
+\item Sinusoids and complex numbers
+\item Discrete-time signals
+\item Convolution
+\item Fourier transform and FFT
+\item Frequency-domain representations
+\item Basic difference equations and filter behavior
+\end{itemize}
+
+\textbf{Music fundamentals relevant to engineering}
+
+\begin{itemize}
+\item Intervals, scales, and chords
+\item Tempo, meter, and rhythm
+\item Envelopes, oscillators, filters, and modulation
+\item Synthesis and sampling vocabulary
+\end{itemize}
+
+\subsection*{Experiments}\label{experiments}
+
+\begin{enumerate}
+\item Generate sine, square, sawtooth, and noise signals with code.
+\item Build a waveform and spectrum viewer.
+\item Demonstrate aliasing and quantization and listen to the artifacts.
+\item Implement a simple low-pass filter.
+\item Compare signals with the same fundamental frequency but different harmonic content.
+\end{enumerate}
+
+\subsection*{Mastery gate}\label{mastery-gate-1}
+
+Given a common audible phenomenon, explain it in both time and frequency domains, recreate it in code, and test whether your explanation predicts the result.
+
+\textbf{Anti-rabbit-hole boundary:} Learn derivations as needed to build and reason correctly. Do not defer implementation until you have completed an entire mathematics sequence.
+
+\clearpage
+
+\section{Stage 2 - Real-time audio programming}\label{stage-2-real-time-audio-programming}
+
+\subsection*{Objective}\label{objective-2}
+
+Write reliable C++ software that meets audio callback deadlines under real operating-system load.
+
+\subsection*{Core topics}\label{core-topics-1}
+
+\begin{itemize}
+\item Audio blocks, buffers, sample rates, and channel layouts
+\item Callback execution and deadlines
+\item Audio thread versus UI/background threads
+\item Buffer underflow/overflow, clicks, dropouts, and jitter
+\item Priority inversion and thread coordination
+\item Allocation avoidance and bounded work on the critical path
+\item Lock-free or wait-free communication where justified
+\item Parameter smoothing and denormal behavior
+\item Core Audio and the architecture of ALSA, JACK/PipeWire, WASAPI, and ASIO
+\item Instrumentation for missed audio deadlines
+\end{itemize}
+
+\subsection*{Project - \texttt{audio-engine}}\label{project-audio-engine}
+
+Build a C++ engine that can:
+
+\begin{itemize}
+\item Play and mix samples
+\item Route audio through processing nodes
+\item Change parameters while audio is running
+\item Handle start/stop and lifecycle changes
+\item Expose audio diagnostics
+\item Run under controlled artificial CPU/disk/UI load
+\end{itemize}
+
+Test callback behavior and missed deadlines, rather than merely measuring average throughput.
+
+\subsection*{Mastery gate}\label{mastery-gate-2}
+
+Your engine plays reliably while unrelated system activity occurs. You can explain how its threading and buffering prevent glitches, and you can measure the remaining limits.
+
+\clearpage
+
+\section{Stage 3 - DSP, synthesis, sampling, and effects}\label{stage-3-dsp-synthesis-sampling-and-effects}
+
+\subsection*{Objective}\label{objective-3}
+
+Design and implement the core sound-generation and sound-processing algorithms used in musical instruments.
+
+\subsection*{Topic map}\label{topic-map}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3000\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3400\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.3600\linewidth-2\tabcolsep\relax}}
+\textbf{Synthesis} & \textbf{Effects} & \textbf{Analysis} \\
+Subtractive & EQ and filters & FFT and spectrograms \\
+Wavetable & Delay and reverb & Envelope detection \\
+FM & Chorus and flanger & Pitch detection \\
+Additive & Distortion and saturation & Transient/onset detection \\
+Sampling & Compression and limiting & Tempo and rhythm analysis \\
+\end{tabular}
+\end{center}
+
+Additionally study:
+
+\begin{itemize}
+\item Polyphony and voice allocation
+\item Modulation matrices and parameter routing
+\item Envelope generation and interpolation
+\item Filter stability and frequency response
+\item Oversampling and antialiasing
+\item Numerical stability
+\item SIMD and real-time DSP optimization when justified
+\end{itemize}
+
+\subsection*{Project - \texttt{synth-core}}\label{project-synth-core}
+
+Create a reusable C++ synthesis/DSP library containing:
+
+\begin{itemize}
+\item Oscillators and noise sources
+\item ADSR envelopes
+\item Filters
+\item Modulation
+\item Polyphonic voice management
+\item Basic sample playback
+\item Delay and at least one other effect
+\item Numerical tests and audio examples
+\end{itemize}
+
+Listen critically to the results. A numerically valid algorithm is not necessarily a musically useful one.
+
+\subsection*{Mastery gate}\label{mastery-gate-3}
+
+You can implement, test, profile, and explain common synthesis/effects algorithms. You can identify audible artifacts and propose defensible improvements.
+
+\textbf{Optional tool:} \href{https://faust.grame.fr/}{Faust} for experimenting with DSP descriptions and generating implementations.
+
+\clearpage
+
+\section{Stage 4 - Audio plugins and instrument applications}\label{stage-4-audio-plugins-and-instrument-applications}
+
+\subsection*{Objective}\label{objective-4}
+
+Transform DSP code into a musician-facing product that works inside major DAWs.
+
+\subsection*{Study}\label{study-1}
+
+\begin{itemize}
+\item Plugin lifecycles and host integration
+\item VST3 and Audio Units; CLAP later
+\item Host-to-plugin parameters and automation
+\item MIDI event handling
+\item Preset and project state persistence
+\item Real-time-safe communication between UI and audio processing
+\item C++ UI frameworks, especially JUCE
+\item Cross-platform builds, packaging, versioning, and regression testing
+\item Plugin validation and host compatibility
+\end{itemize}
+
+\subsection*{Flagship project A - Professional-quality software synthesizer}\label{flagship-project-a-professional-quality-software-synthesizer}
+
+Build a complete, playable VST3/AU instrument using \texttt{synth-core}.
+
+Required features:
+
+\begin{itemize}
+\item Oscillators, filters, envelopes, and modulation
+\item Polyphony and velocity response
+\item A coherent, responsive graphical UI
+\item Preset management
+\item Parameter automation
+\item Reliable save/reopen behavior in a DAW
+\item A stable, glitch-resistant audio path
+\item Installation instructions and a short product demonstration
+\end{itemize}
+
+Validate in real hosts; use tools such as \href{https://github.com/Tracktion/pluginval}{pluginval}.
+
+\subsection*{Mastery gate}\label{mastery-gate-4}
+
+A musician can install the plugin, open it in Ableton, produce a useful sound, automate it, save the project, reopen it, and hear the same result reliably.
+
+\textbf{Application milestone:} This is the first major readiness point for audio-plugin, software-instrument, and some audio-engine positions.
+
+\textbf{Primary resources:} \href{https://juce.com/learn/course/}{JUCE course} and \href{https://steinbergmedia.github.io/vst3_dev_portal/}{VST3 Developer Portal}.
+
+\clearpage
+
+\section{Stage 5 - DAW and DJ software engineering}\label{stage-5-daw-and-dj-software-engineering}
+
+\subsection*{Objective}\label{objective-5}
+
+Understand the architecture behind timeline-based creative tools and DJ applications.
+
+\subsection*{Study}\label{study-2}
+
+\textbf{DAW/app architecture}
+
+\begin{itemize}
+\item Audio routing graphs and buses
+\item Multitrack mixing and sample-accurate scheduling
+\item Timelines, sequencing, and playback state
+\item Non-destructive editing, undo/redo, and persistence
+\item Plugin hosting
+\item Waveform visualization and desktop UI architecture
+\end{itemize}
+
+\textbf{DJ-specific systems}
+
+\begin{itemize}
+\item Beat grids, BPM analysis, cue points, and looping
+\item Pitch shifting and time stretching
+\item Tempo sync and beat alignment
+\item Jog-wheel and physical-controller behavior
+\item DJ library metadata and browsing
+\item Real-time FX chains
+\end{itemize}
+
+\subsection*{Project - \texttt{decklab}}\label{project-decklab}
+
+Build a compact two-deck DJ application with:
+
+\begin{itemize}
+\item Playback, cueing, looping, and mixing
+\item Tempo and pitch controls
+\item Waveform visualization
+\item Track library/metadata
+\item MIDI mapping
+\item A basic effects chain
+\item Basic beat synchronization
+\end{itemize}
+
+Test with physical DJ hardware when feasible. Study the architecture and contribution process of \href{https://github.com/mixxxdj/mixxx}{Mixxx}.
+
+\subsection*{Mastery gate}\label{mastery-gate-5}
+
+Perform a short real DJ mix with the application. Explain its playback architecture, synchronization behavior, and important limitations compared with commercial products.
+
+\textbf{Scope control:} Do not attempt to clone every feature in Ableton Live or rekordbox.
+
+\clearpage
+
+\section{Stage 6 - MIDI, controllers, and musical communication}\label{stage-6-midi-controllers-and-musical-communication}
+
+\subsection*{Objective}\label{objective-6}
+
+Create expressive physical controls and reliable communication between musical devices and applications.
+
+\subsection*{Study}\label{study-3}
+
+\begin{itemize}
+\item MIDI 1.0 notes, velocity, CC, pitch bend, clock, and SysEx
+\item MIDI over USB
+\item MIDI 2.0 and Universal MIDI Packets
+\item Device discovery and mappings
+\item Timing, synchronization, and jitter
+\item OSC
+\item BLE MIDI concepts
+\item Ableton Link and network synchronization
+\item Encoders, buttons, potentiometers, pads, and LED feedback
+\item Human factors and physical interaction design
+\end{itemize}
+
+\subsection*{Project - Custom performance MIDI controller}\label{project-custom-performance-midi-controller}
+
+Build a hardware controller with physical controls, firmware, persistent mapping, and feedback.
+
+Integrate it with your software synthesizer and DJ application. Consider a small display, LED rings, and remappable controls if they improve real musical use.
+
+\subsection*{Mastery gate}\label{mastery-gate-6}
+
+The device works predictably during performance, persists mappings, communicates with software reliably, and can be used without detailed firmware knowledge.
+
+\textbf{Reference:} \href{https://midi.org/midi-2-0}{MIDI Association} and \href{https://www.ableton.com/en/link/}{Ableton Link}.
+
+\clearpage
+
+\section{Stage 7 - Embedded musical instruments}\label{stage-7-embedded-musical-instruments}
+
+\subsection*{Objective}\label{objective-7}
+
+Create a standalone digital instrument that makes sound without a host computer.
+
+\subsection*{Study}\label{study-4}
+
+\begin{itemize}
+\item Embedded C/C++ audio architectures
+\item Microcontroller, DSP, and SoC tradeoffs
+\item Audio codecs, ADC/DAC, and audio output
+\item I\textsuperscript{2}S/SAI interfaces
+\item DMA and interrupt-driven sample processing
+\item Fixed-size audio buffers and real-time scheduling
+\item MCU RAM/flash limitations
+\item Preset storage, boot behavior, watchdogs, and firmware updates
+\item Portable DSP versus platform-specific optimizations
+\end{itemize}
+
+Use a practical audio development platform, such as \href{https://docs.daisy.audio/}{Electrosmith Daisy} or \href{https://learn.bela.io/tutorials/}{Bela}.
+
+\subsection*{Flagship project B - Standalone hardware instrument}\label{flagship-project-b-standalone-hardware-instrument}
+
+Port suitable pieces of \texttt{synth-core} and implement:
+
+\begin{itemize}
+\item Audio generation or sample playback
+\item Physical inputs and an understandable UI
+\item Preset storage
+\item MIDI support
+\item Basic sequencing
+\item Reliable startup, recovery, and firmware updates
+\item Measurement of audio latency and resource use
+\end{itemize}
+
+The hardware can be a compact synth, sampler, or groovebox. Its precise form should follow what you most enjoy making music with.
+
+\subsection*{Mastery gate}\label{mastery-gate-7}
+
+The instrument boots reliably, operates over extended sessions, responds expressively, preserves settings, and has a documented timing/resource profile.
+
+\textbf{Application milestone:} With Stage 6 and some hands-on hardware debugging, this is a strong foundation for embedded musical-hardware firmware applications.
+
+\clearpage
+
+\section{Stage 8 - Audio electronics and hardware design}\label{stage-8-audio-electronics-and-hardware-design}
+
+\subsection*{Objective}\label{objective-8}
+
+Become capable of designing and debugging the analog/digital electronics surrounding audio software.
+
+\subsection*{Study}\label{study-5}
+
+\begin{itemize}
+\item Voltage, current, impedance, and signal levels
+\item Op-amps and analog filter circuits
+\item Grounding, shielding, and noise
+\item ADC/DAC fundamentals
+\item Clocking and converter behavior
+\item Power regulation and analog/digital isolation concepts
+\item Connectors and protection
+\item PCB schematics, layout, manufacturing files, and bring-up
+\item Measurement with multimeters, oscilloscopes, and audio test signals
+\item Electromagnetic compatibility at a practical level
+\end{itemize}
+
+\subsection*{Project - Custom audio/control PCB}\label{project-custom-audiocontrol-pcb}
+
+Use \href{https://www.kicad.org/}{KiCad} to design a low-voltage PCB for your instrument.
+
+Start with a simple control/interface board, then increase complexity only when justified. Deliver:
+
+\begin{itemize}
+\item Schematic and PCB layout
+\item Bill of materials
+\item Assembly and bring-up instructions
+\item Test plan and test results
+\item Measured electrical behavior
+\item Diagnosis of at least one real fault or design revision
+\end{itemize}
+
+\subsection*{Mastery gate}\label{mastery-gate-8}
+
+You can read component datasheets, trace analog/digital signal paths, debug board-level issues, and bring up a manufactured PCB.
+
+\textbf{Safety:} Begin with low-voltage, USB-powered systems. Avoid mains-powered circuit design without appropriate expertise and safety controls.
+
+\textbf{Career qualification:} This gives meaningful hardware/product fluency; it does not substitute for deep EE experience in specialist analog/RF hardware design.
+
+\clearpage
+
+\section{Stage 9 - Audio interfaces, drivers, and professional audio}\label{stage-9-audio-interfaces-drivers-and-professional-audio}
+
+\subsection*{Objective}\label{objective-9}
+
+Understand audio from software callback to operating system, interface hardware, and professional audio network.
+
+\subsection*{Study}\label{study-6}
+
+\begin{itemize}
+\item OS audio I/O stacks and device enumeration
+\item USB Audio Class concepts
+\item Sample-rate conversion and clock-domain crossings
+\item Buffering, latency compensation, and device synchronization
+\item Drivers and firmware/host interfaces
+\item Multichannel routing and digital mixers
+\item Networked audio and audio-over-IP
+\item Packet timing, jitter buffers, dropped packets, and recovery
+\item AES67 concepts and professional network synchronization
+\item Redundancy, monitoring, and failure diagnosis
+\end{itemize}
+
+\subsection*{Project - \texttt{audio-transport-lab}}\label{project-audio-transport-lab}
+
+Stream low-latency multichannel audio between two computers.
+
+Implement and analyze:
+
+\begin{itemize}
+\item Capture and playback
+\item Packetization and transport
+\item Jitter buffering and clock drift
+\item Packet loss/disconnection recovery
+\item Measurements of end-to-end latency and audio quality
+\item Diagnostic tools/logs for identifying glitches
+\end{itemize}
+
+\subsection*{Mastery gate}\label{mastery-gate-9}
+
+You can isolate and explain timing failures across application, driver, network, and device boundaries, with supporting measurements.
+
+\clearpage
+
+\section{Stage 10 - Music platforms and cloud engineering}\label{stage-10-music-platforms-and-cloud-engineering}
+
+\subsection*{Objective}\label{objective-10}
+
+Apply existing backend and distributed-systems strengths to cloud capabilities used by music creators and connected devices.
+
+\subsection*{Study}\label{study-7}
+
+\begin{itemize}
+\item Preset libraries and sample catalogs
+\item Search and metadata models
+\item Cloud storage and asset lifecycle
+\item User accounts, permissions, licensing, and entitlements
+\item Cross-device synchronization and conflict resolution
+\item Collaboration and sharing
+\item Device configuration and update services
+\item Event-driven workflows and observability
+\item Music-product UX implications for sync and offline operation
+\end{itemize}
+
+\subsection*{Project - \texttt{sound-library}}\label{project-sound-library}
+
+Build a backend for:
+
+\begin{itemize}
+\item Preset/sample metadata
+\item Search and user collections
+\item Synchronization between plugin, controller, and instrument
+\item Versioned presets and schema evolution
+\item Sharing/collaboration where useful
+\item Secure APIs and offline-recovery behavior
+\end{itemize}
+
+Use Go unless a different language provides a clear technical benefit.
+
+\subsection*{Mastery gate}\label{mastery-gate-10}
+
+Changes propagate predictably across applications/devices, conflicts are resolved deliberately, and tests demonstrate recovery under failure.
+
+\textbf{Application milestone:} Existing backend experience may already qualify you for music-platform positions. Do not postpone these applications for the DSP/hardware curriculum.
+
+\clearpage
+
+\section{Stage 11 - Machine learning for musical applications}\label{stage-11-machine-learning-for-musical-applications}
+
+\subsection*{Objective}\label{objective-11}
+
+Implement, evaluate, and productize useful intelligent music features.
+
+\subsection*{Study}\label{study-8}
+
+\begin{itemize}
+\item Onset, beat, tempo, and key estimation
+\item Pitch and harmonic analysis
+\item Timbre and audio embeddings
+\item Musical similarity and retrieval
+\item Source separation and transcription concepts
+\item Conventional DSP versus ML approaches
+\item Inference latency and resource limits
+\item Model evaluation and dataset quality
+\item Copyright, licensing, provenance, and responsible model use
+\end{itemize}
+
+Begin with classical DSP and audio analysis. Use Python for experimentation, and integrate mature libraries/models when appropriate rather than treating foundation-model training as a prerequisite.
+
+\subsection*{Project - \texttt{music-assistant}}\label{project-music-assistant}
+
+Implement \textbf{at least two} features, such as:
+
+\begin{itemize}
+\item BPM/key estimation for \texttt{decklab}
+\item Similar-sound sample search
+\item Section/transient detection
+\item Stem separation using an existing model
+\item Preset or instrument recommendations
+\end{itemize}
+
+Create reproducible evaluation data. Compare predicted versus measured behavior and include bad cases, latency, and limits.
+
+\subsection*{Mastery gate}\label{mastery-gate-11}
+
+You can defend the algorithm, evaluation methodology, resource costs, and practical musical value of each feature.
+
+\textbf{Career qualification:} Deep audio-ML research would require an additional advanced specialization; the present gate targets solid audio-ML software engineering.
+
+\textbf{Resources:} \href{https://librosa.org/doc/latest/auto_tutorials/}{librosa tutorials} and \href{https://essentia.upf.edu/}{Essentia}.
+
+\clearpage
+
+\section{Stage 12 - Integrated flagship products and open source}\label{stage-12-integrated-flagship-products-and-open-source}
+
+\subsection*{Objective}\label{objective-12}
+
+Turn the course's projects into an unusually convincing public body of music-technology engineering work.
+
+\subsection*{Preferred integration architecture}\label{preferred-integration-architecture}
+
+{\footnotesize
+\begin{verbatim}
+Physical MIDI controller
+          |
+          v
++-------------------------+
+| Software synth / plugin |<---- shared DSP concepts ----> Hardware synth
++-------------------------+
+          |
+          v
+     DJ app / mixer
+          |
+          v
+Preset library / sync / metadata
+          |
+          v
+Audio analysis and smart features
+\end{verbatim}
+}
+
+Keep components modular. They do not need to become one huge monolithic product.
+
+\subsection*{Four flagship portfolio artifacts}\label{four-flagship-portfolio-artifacts}
+
+\textbf{1. A polished synthesizer plugin}
+
+Demonstrates C++, DSP, real-time programming, plugins, desktop UX, and musical judgment.
+
+\textbf{2. A standalone groovebox/synth}
+
+Demonstrates embedded firmware, audio interfaces, MIDI, electrical design, and physical interaction.
+
+\textbf{3. A DJ application with controller integration}
+
+Demonstrates real-time desktop software, playback architecture, synchronization, and creative workflows.
+
+\textbf{4. An audio-systems/music-platform laboratory}
+
+Demonstrates backend systems, device sync, audio networking, reliability, and music analysis.
+
+\subsection*{Quality expectations}\label{quality-expectations}
+
+For each flagship artifact, publish:
+
+\begin{itemize}
+\item Working code and an understandable build/install procedure
+\item Automated tests and realistic manual tests
+\item Architecture diagrams and major design decisions
+\item Measurements where relevant
+\item A short video or audio demonstration
+\item Limitations and known failures
+\item User feedback and improvements
+\end{itemize}
+
+\clearpage
+\subsection*{Open-source contribution track}\label{open-source-contribution-track}
+
+Study and contribute to real music/audio codebases when useful:
+
+\begin{itemize}
+\item \href{https://github.com/mixxxdj/mixxx}{Mixxx}
+\item \href{https://github.com/surge-synthesizer/surge}{Surge XT}
+\item \href{https://github.com/Chowdhury-DSP}{ChowDSP}
+\item \href{https://github.com/Tracktion/pluginval}{pluginval}
+\item \href{https://github.com/MTG/essentia}{Essentia}
+\end{itemize}
+
+Start by building a project, running tests, understanding a subsystem, reproducing a bug, and submitting a tested change. Respond to review thoughtfully.
+
+\textbf{Mastery gate:} You have multiple polished public artifacts, a technical narrative you can defend, and ideally at least one substantive externally reviewed contribution.
+
+\clearpage
+
+\section{Stage 13 - Music-technology interviewing and career preparation}\label{stage-13-music-technology-interviewing-and-career-preparation}
+
+\subsection*{Objective}\label{objective-13}
+
+Translate your technical and musical work into credible applications and realistic interview performance.
+
+\subsection*{Interview preparation by role}\label{interview-preparation-by-role}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.2700\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.7300\linewidth-2\tabcolsep\relax}}
+\textbf{Role} & \textbf{Emphasize} \\
+Audio DSP & Filters, DSP math, sampling, FFT, numerical stability, C++ \\
+Plugin/DAW engineer & C++, audio threading, plugin APIs, GUI/audio synchronization, architecture \\
+Embedded firmware & C/C++, interrupts, DMA, I\textsuperscript{2}S, device debugging, deterministic timing \\
+Hardware engineer & Circuit analysis, test equipment, PCB design, audio signal integrity \\
+Professional audio & Drivers, audio I/O, networking, clocks, fault tolerance \\
+Backend/platform & Distributed systems, API/data design, reliability, scalability \\
+Music AI & Signal analysis, evaluation, inference, ML tradeoffs \\
+\end{tabular}
+\end{center}
+
+\subsection*{Practice formats}\label{practice-formats}
+
+\begin{itemize}
+\item Timed coding exercises
+\item Short DSP implementation challenges
+\item Recorded design explanations
+\item Debugging sessions with deliberate faults
+\item Product walkthroughs
+\item Async code reviews from experienced engineers
+\item Occasional external mock interviews, without making scheduling a learning dependency
+\end{itemize}
+
+\subsection*{Portfolio demonstration standard}\label{portfolio-demonstration-standard}
+
+For every substantial project, prepare to show:
+
+\begin{enumerate}
+\item A concise demonstration of its musical use
+\item The architecture
+\item One difficult engineering problem
+\item A bug or failure investigation
+\item A measurable tradeoff or improvement
+\item What you would change in a production version
+\end{enumerate}
+
+\subsection*{Mastery gate}\label{mastery-gate-12}
+
+You can interview credibly for at least one chosen specialty and present compelling, technically defensible examples of your work.
+
+\clearpage
+
+\section{3. Application gates: do not wait for the whole course}\label{application-gates-do-not-wait-for-the-whole-course}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3600\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.6400\linewidth-2\tabcolsep\relax}}
+\textbf{Target} & \textbf{Reasonable point to begin applying} \\
+Music backend/platform & Potentially now, with targeted domain preparation \\
+Audio engine/DSP/plugin & After Stages 1-4, with a polished plugin \\
+DAW/DJ application engineer & After Stages 1-5, with \texttt{decklab} \\
+MIDI/controller firmware & After Stages 6-7, supported by real-time audio basics \\
+Instrument firmware & After Stage 7 and hands-on hardware debugging \\
+Hardware engineer & After Stage 8 and a functioning PCB; deeper EE may still be required \\
+Professional audio systems & After Stage 9, with networking and diagnostics evidence \\
+Music AI engineer & After Stage 11 and a reproducible evaluated ML project \\
+Cross-disciplinary product engineer & After multiple finished, integrated portfolio projects \\
+\end{tabular}
+\end{center}
+
+These are \textbf{learning milestones}, not guarantees that a particular employer will consider you qualified.
+
+\subsection*{Three completion levels}\label{three-completion-levels}
+
+\textbf{Level 1 - Employable specialty candidate}
+
+A relevant functioning project, knowledge of the role's core engineering, and credible interview readiness.
+
+\textbf{Level 2 - Strong cross-disciplinary engineer}
+
+Meaningful software, embedded, DSP, electronics, and audio-system experience with well-documented public work.
+
+\textbf{Level 3 - Exceptionally compelling specialist with broad product fluency}
+
+One or more musically polished products, unusual depth in selected disciplines, external reviews/contributions, and ability to defend architectural choices throughout the audio stack.
+
+Level 3 is the ambitious target. It does \textbf{not} mean being simultaneously equivalent to a lifelong analog-circuit specialist, senior DSP researcher, embedded architect, and principal cloud engineer.
+
+\section{4. Product testing is part of the curriculum}\label{product-testing-is-part-of-the-curriculum}
+
+Music technology is not judged only by benchmarks or test suites. Continue DJing, producing music, and experimenting with instruments during the entire course.
+
+For each major project:
+
+\begin{itemize}
+\item Use it in a real session, not only a scripted demo.
+\item Ask another musician to try it without guidance.
+\item Note confusing controls, poor ergonomics, sound-quality weaknesses, and workflow friction.
+\item Treat artistic and usability feedback as inputs to the engineering backlog.
+\end{itemize}
+
+A perfectly stable plugin that musicians find frustrating is not an exceptional product. A controller with excellent firmware and poor tactile usability is similarly incomplete.
+
+\clearpage
+\section{5. Resource stack}\label{resource-stack}
+
+Use a limited set of primary resources and add specialized materials only as they become necessary.
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.4800\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.5200\linewidth-2\tabcolsep\relax}}
+\textbf{Subject} & \textbf{Starting resource} \\
+Audio plugin/real-time C++ & \href{https://juce.com/learn/course/}{JUCE course} \\
+DSP and synthesis experimentation & \href{https://faustdoc.grame.fr/}{Faust documentation} \\
+Embedded audio & \href{https://learn.bela.io/tutorials/}{Bela tutorials} \\
+Hardware synth firmware & \href{https://docs.daisy.audio/}{Daisy documentation} \\
+MIDI & \href{https://midi.org/midi-2-0}{MIDI Association} \\
+VST3 & \href{https://steinbergmedia.github.io/vst3_dev_portal/}{Steinberg Developer Portal} \\
+PCB design & \href{https://www.kicad.org/help/learning-resources/}{KiCad resources} \\
+Music and audio analysis & \href{https://librosa.org/doc/latest/auto_tutorials/}{librosa tutorials} \\
+Real DJ application source & \href{https://github.com/mixxxdj/mixxx}{Mixxx} \\
+Real synthesizer source & \href{https://github.com/surge-synthesizer/surge}{Surge XT} \\
+Plugin validation & \href{https://github.com/Tracktion/pluginval}{pluginval} \\
+Audio-information retrieval & \href{https://essentia.upf.edu/}{Essentia} \\
+\end{tabular}
+\end{center}
+
+\section{6. Anti-rabbit-hole rules}\label{anti-rabbit-hole-rules}
+
+\begin{enumerate}[leftmargin=*,widest=10]
+\item \textbf{Don't clone a commercial product.} Build a narrowly scoped instrument or creative tool that works well.
+\item \textbf{Don't separate theory from sound.} A math concept should lead quickly to audible implementation.
+\item \textbf{Don't design custom boards too early.} Prototype on desktop and inexpensive development hardware first.
+\item \textbf{Don't chase exotic DSP before the basics sound good.} Musical quality and robustness matter.
+\item \textbf{Don't reimplement standards and drivers unnecessarily.} Use established interfaces where possible.
+\item \textbf{Don't confuse technical success with product usefulness.} Incorporate musician feedback.
+\item \textbf{Don't let breadth block applications.} Apply when a specialty-specific gate is satisfied.
+\item \textbf{Don't collect repositories.} Polish the strongest products and make them easy to inspect.
+\item \textbf{Don't optimize without a measurement or audible reason.} Preserve correctness and sound quality.
+\item \textbf{Don't buy expensive hardware without a validated need.} Start with simulation and affordable development boards.
+\end{enumerate}
+
+\section{7. Relationship to the quant and Oxide courses}\label{relationship-to-the-quant-and-oxide-courses}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.3100\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.2300\linewidth-2\tabcolsep\relax}}
+\textbf{Capability} & \textbf{Quant trading} & \textbf{Oxide systems} & \textbf{Music technology} \\
+C++ systems programming & Essential & Useful & Essential \\
+Performance engineering & Essential & Essential & Essential \\
+Concurrency / real time & Essential & Essential & Essential \\
+Operating systems & Important & Essential & Important \\
+Networking & Important & Essential & Important \\
+Embedded systems & Occasional & Important & Essential for physical products \\
+DSP & Limited & Specialized & Essential \\
+Electronics & Limited & Important & Essential for hardware roles \\
+Cloud/distributed systems & Important & Essential & Useful \\
+Technical product design & Useful & Important & Essential \\
+\end{tabular}
+\end{center}
+
+These curricula share a strong systems-programming foundation. This third course adds a new domain: \textbf{the physics, mathematics, perception, and interaction design of sound and musical instruments}.
+
+\section{8. Recommended first move}\label{recommended-first-move}
+
+\textbf{Build a small but polished software synthesizer plugin first.}
+
+It is inexpensive to develop, immediately useful in Ableton, and introduces the key audio/DSP/real-time skills without buying or designing hardware. Later, porting the same synthesis concepts to a standalone embedded instrument creates a natural bridge to MIDI controllers, circuit design, and physical musical products.
+
+The long-term goal is broad capability. The near-term goal is to \textbf{finish one excellent thing, learn from using it, and let that success finance the next layer of skill}.
+
+\end{document}

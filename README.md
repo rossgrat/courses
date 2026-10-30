@@ -1,154 +1,175 @@
 # Courses
 
-This repository contains shared study tools and separate curricula for Algorithms, Trading Engineering, and Oxide Systems Engineering.
-The root `AGENTS.md` defines shared tutoring behavior.
-Each course adds its curriculum rules through its own `AGENTS.md` and `course.json`.
+This repository holds learning programs with separate sources, agent roles, and progress records.
+The current programs are Algorithms, Trading Engineering, Oxide Systems Engineering, and Music Technology Engineering.
+
+## Layout
+
+- `programs/<id>/` contains each program's configuration, instructions, sources, learner work, and optional state.
+- `system/cli/` contains the shared Go command and its pinned toolchain version.
+- `system/guidance/` contains teaching guidance selected by course configuration.
+- `system/latex/` contains the shared curriculum style.
+- `system/docs/` documents the configuration format.
+- `build/` contains ignored binaries and temporary PDF build files.
+
+The root `course` file launches `build/bin/course`.
+The root `AGENTS.md` defines shared ownership, session, and record rules.
+Each program's `course.json` selects its learning policy.
+Each program's `AGENTS.md` adds subject-specific guidance.
 
 ## Setup
 
-Install Go 1.27.3 on each machine.
-From the repository root, build the tool:
+Install Go 1.27.3, as pinned in `system/cli/.go-version`.
+From the repository root, build the command:
 
 ```sh
 make build
 ```
 
-The build produces `bin/course`, which Git ignores.
-The executable uses the Go standard library and includes time-zone data.
+The command uses the Go standard library and includes time-zone data.
 After pulling infrastructure changes, run `make build` again.
 
-Open Codex in the selected course folder.
-Review and trust the two shared definitions through `/hooks`.
-Start a new chat after changing instructions or hook definitions.
-
-Codex loads instructions from the Git root down to the chat's working directory.
-Matching hooks from parent and child sources all run.
-The shared course hook uses the session working directory to select one course.
+Open the selected folder under `programs/` for course study.
+The shared hooks select that program from the working directory, including deeper exercise folders.
+A separate nested Git repository does not inherit course selection.
 Opening the repository root injects no course context.
-Sources: [instructions](https://learn.chatgpt.com/docs/agent-configuration/agents-md) and [hooks](https://learn.chatgpt.com/docs/hooks).
 
-## Study commands
+## Find a program
 
-From any course folder, read its context:
-
-```sh
-bash "$(git rev-parse --show-toplevel)/scripts/course" context
-```
-
-From the repository root, select a course explicitly:
+From the repository root, list programs and validate their configuration:
 
 ```sh
-bash scripts/course context --course algorithms
-bash scripts/course context --course trading-engineer
-bash scripts/course context --course oxide
+bash course list
+bash course validate
 ```
 
-The helper recognizes the enclosing course from deeper exercise folders.
-It stops at the Git root, so a separate nested repository does not inherit course selection.
+Both commands read `programs/*/course.json` without creating state or starting sessions.
+An invalid configuration stops the command with an error.
 
-Preview a 30-minute session from the repository root:
+Read a selected program's policy and progress:
 
 ```sh
-bash scripts/course plan --minutes 30
+bash course context --course algorithms
 ```
 
-The ordinary split reserves one-sixth each for retrieval and feedback, rounded to whole minutes.
-The remaining minutes cover focused work.
-These are planning defaults, not curriculum deadlines or measured optimal learning intervals.
-
-After selecting the duration and task, start from the repository root:
+From any folder inside a program, omit the identifier:
 
 ```sh
-bash scripts/course start --course algorithms --minutes 30 --thread-id THREAD_ID
+bash "$(git rev-parse --show-toplevel)/course" context
 ```
 
-Replace `THREAD_ID` with the conversation identifier in the injected context.
+## Study sessions
+
+The four existing programs use budgeted sessions.
+Their configuration preserves the one-sixth retrieval, four-sixths focused work, and one-sixth feedback split.
+
+From the repository root, preview a session:
+
+```sh
+bash course plan --course algorithms --minutes 30
+```
+
+After agreeing on the task and active minutes, start the session:
+
+```sh
+bash course start --course algorithms --minutes 30 --thread-id THREAD_ID
+```
+
+Replace `THREAD_ID` with the conversation identifier from the injected context.
 Use `pause`, `resume`, and `end` for explicit session changes.
 Pass the current `--thread-id` when resuming in another conversation.
-The helper preserves elapsed active time across pauses and machine handoffs.
-It does not send deadline alerts.
+The helper preserves active time across pauses and machine handoffs.
+It does not send deadline alerts or automatically end sessions.
 
-`context`, `plan`, and hooks do not write records or start timers.
-`context` and both hooks include the saved teaching contract during ordinary study.
-Assessment context omits the contract and task guidance to preserve unaided attempts.
-`init` creates a missing course record without starting study.
-`start` also creates a missing record when study begins.
-Only Algorithms defines timed assessments. Its local instructions explain the limits.
+Programs without a `session` policy use no ordinary session tracking.
+Reading, building, and asking questions require no session or state file.
+The helper rejects ordinary `plan` and `start` commands for those programs.
 
-During practice, the tutor gives the task and waits for the learner to choose an approach.
-The tutor answers questions narrowly and leaves claim selection and repairs to the learner.
-A requested or agreed professor block explains choices through a worked example.
-The tutor role resumes after that example.
-Supported practice makes help available without revealing it before an attempt.
+Programs can explicitly select `session: {"timing": "untimed"}` to record elapsed time without phase budgets.
+For those sessions, omit `--minutes` from `plan` and `start`.
+
+Only Algorithms currently configures timed assessments.
+Its local instructions define allowed tasks, durations, feedback, and pause rules.
+Assessment context omits ordinary teaching guidance and saved task hints.
+
+`context`, `plan`, and hooks do not write records.
+`init` creates missing state when the learner requests saved progress.
+`start` also creates missing state when study begins.
+Neither command replaces existing progress with configuration defaults.
+Context reads do not present initial defaults as recorded progress.
+
+## Independent study
+
+A book or hobby program can contain sources and agent guidance without tracking anything.
+Use the agent when a question, exercise, or review needs help.
+There is no requirement to open Codex whenever you read or practice.
+
+Optional saved progress records the last reported position, questions, or completed work.
+It does not establish the learner's current position after independent study.
+For example, a requested bookmark can say that the learner finished chapter five without creating a timed session.
+The agent records such updates only when requested and distinguishes reported work from assessed understanding.
 
 ## Progress across machines
 
-Each course stores progress, reviews, the current session, and completed history in `<course>/state.json`.
-Git carries that record between machines along with the curriculum and learner artifacts.
-Artifact paths in new records are relative to the repository root.
-Each checkout or worktree has its own record until Git synchronizes changes.
+Programs that save progress use `programs/<id>/state.json`.
+Artifact paths in records are relative to the repository root.
+Keep course work in the main checkout on `main`.
+Never create or use additional worktrees or branches.
 
-Before switching machines, pause or end the session.
-Commit the state changes and push the approved commit.
+Before switching machines, pause or end any open session.
+Commit and push the approved state changes on `main`.
 On the other machine, pull those changes before continuing.
-If a state conflict occurs, resolve it before using the helper.
-Use one working copy at a time for each active course.
+If state conflicts, resolve the conflict before using the helper.
+Use one machine at a time for each active program.
 
-The helper never commits, pushes, merges, or chooses a conflict resolution.
-The repository is public, so pushing a state file publishes its learning records.
-
-The migration imports the existing Algorithms record and converts its repository paths to relative paths.
-The old `~/.local/state/learn/courses/algorithms/state.json` remains a backup and is no longer read by this tool.
-The separate general learning-mode deck remains outside this repository.
+The helper never commits, pushes, merges, or resolves conflicts.
+This repository is public, so pushing state publishes its learning records.
+The general learning-mode deck remains separate.
 
 ## Curriculum PDFs
 
-Each course's `.tex` file contains its editable curriculum, tables, and links.
-The tutor reads this LaTeX source directly.
-The adjacent PDF is the compiled version for viewing.
-The three courses share the layout in `latex/curriculum.sty`: Source Sans text, unnumbered headings, borderless tables, and indented quotations.
+Authored curricula live under `programs/<id>/curriculum/`.
+Each `.tex` file is editable source, with an adjacent PDF for viewing.
+The shared style is `system/latex/curriculum.sty`.
+It uses Source Sans text, unnumbered headings, borderless tables, and indented quotations.
 
 Use TeX Live 2026 with pdfTeX 3.141592653-2.6-1.40.29 and latexmk 4.88.
 The build requires sourcesans 3.0 and Latin Modern fonts.
 It also requires geometry, fontenc, microtype, array, enumitem, titlesec, titletoc, fancyhdr, ragged2e, multicol, url, and hyperref.
-From the repository root, compile all three curricula:
+
+From the repository root, compile configured LaTeX sources:
 
 ```sh
 make pdfs
 ```
 
-Compile one curriculum with its PDF path:
+The command reads the source list from each course configuration.
+Books, Markdown files, and external URLs do not require PDF compilation.
+
+Compile one curriculum by its PDF path:
 
 ```sh
-make algorithms/Algorithms_Mastery_Course.pdf
+make programs/algorithms/curriculum/Algorithms_Mastery_Course.pdf
 ```
 
-The build replaces each course PDF only after its LaTeX compilation succeeds.
-Contents pages and curriculum-map page references update during compilation.
-Intermediate files stay in the ignored `build/pdf/` directory.
-Use `make clean-pdfs` to remove those files while preserving the viewing PDFs.
-The PDFs under `algorithms/sessions/` are outside this build.
-Keep related instructions and course configuration consistent with curriculum changes.
-Render and inspect compiled PDFs before delivery.
+The build replaces a viewing PDF only after compilation succeeds.
+Temporary files stay under `build/pdf/`.
+Use `make clean-pdfs` to remove those files while preserving viewing PDFs.
+Learner PDFs under `sessions/` remain outside the curriculum build.
+Render and inspect PDF changes before delivery.
 
-## Add a course
+## Add a program
 
-Create its folder and add the LaTeX source.
-Add a `course.json` with `id`, `name`, `source`, `language`, `unit`, and `next_task`.
-Set `id` to the course folder name.
-Set `source` to the `.tex` path relative to that folder.
-Use an existing course file as the format reference.
-Add `AGENTS.md` for subject-specific rules and exceptions to shared defaults.
-Add the course folder to `TEX_SOURCES` in the root `Makefile`.
+Read the [configuration reference](system/docs/course-configuration.md).
+Create a folder under `programs/` with `course.json` and `AGENTS.md`.
+Use its folder name as the identifier.
+Keep source paths relative to that folder and guidance paths relative to the repository root.
+Keep learner exercises and their build systems inside the program.
+Run `bash course validate` before using the new program.
+No central course registry or Makefile course list needs updating.
 
-Optional `weekday_work` contains seven entries, starting with Monday.
-Optional `assessment` defines allowed durations, feedback minutes, and durations that permit session boundaries.
-Course-specific tools belong in that course's `scripts/` folder.
-Add local hooks only for distinct tasks. Matching hooks do not override shared hooks.
+## Maintenance
 
-## Infrastructure maintenance
-
-Use `make build` and `make vet` from the repository root.
-Exercise changed commands manually with `--state /absolute/temporary/state.json` to protect actual progress.
+From the repository root, run `make build`, `make vet`, and `bash course validate`.
+Exercise changed session commands with `--state /absolute/temporary/state.json` to protect actual progress.
 Keep infrastructure tests absent and preserve learner-written exercise tests.
-The Algorithms `scripts/course` launcher remains as a compatibility entry point.

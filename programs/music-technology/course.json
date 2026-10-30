@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "music-technology",
+  "name": "Music Technology Engineering Mastery",
+  "sources": [
+    {
+      "path": "curriculum/Music_Technology_Engineering_Mastery_Curriculum.tex",
+      "format": "latex"
+    }
+  ],
+  "learning": {
+    "driver": "curriculum",
+    "agent_role": "tutor",
+    "explanations": "on_request",
+    "implementation": "on_request",
+    "guidance": [
+      "system/guidance/tutor.md"
+    ]
+  },
+  "session": {
+    "timing": "budgeted",
+    "split": {
+      "retrieval": 1,
+      "focused_work": 4,
+      "feedback": 1
+    }
+  },
+  "reviews": {
+    "interval_days": [
+      2,
+      7,
+      21,
+      42
+    ],
+    "weekdays_only": true
+  },
+  "initial": {
+    "stage": 0,
+    "language": "C++",
+    "unit": "Music technology and product anatomy",
+    "next_task": "Choose the first of three music products for Stage 0 and explain its path from user input to audible output. Stop after the first product breakdown for feedback."
+  }
+}

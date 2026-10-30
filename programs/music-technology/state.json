@@ -1,0 +1,12 @@
+{
+  "progress": {
+    "evidence": [],
+    "language": "C++",
+    "next_task": "Choose the first of three music products for Stage 0 and explain its path from user input to audible output. Stop after the first product breakdown for feedback.",
+    "stage": 0,
+    "unit": "Music technology and product anatomy"
+  },
+  "reviews": [],
+  "session": null,
+  "history": []
+}

@@ -1,0 +1,27 @@
+
+In this proof I will show that the canPlaceFlowers funtion always terminates, and always gives the required answer for a valid input.
+
+I will claim the following is true. For some arbitrary spot in the flowerbed, if there is no flower currently in that spot, and there is no flower to the left or right of that spot, we will plant a flower.
+
+We can call these spots, valid spots, and if I can show my claim holds, then we will have planted a flower in every valid spot in a flowerbed.
+
+Consider some arbitrary position k. Looking at the inner loop, we first check if a flower already exists in this spot. If it does, this spot is not valid, and we skip it. Second, we check if we're at the left edge of our flower bed. If we are, this spot might be valid. If we are not at the left edge, we check if there is a flower to our left. If there is not, this spot might be valid. Third, we check if we're at the right edge of our flower bed. If we're not, this spot is valid, if we're not at the right edge, and there is not a flower to our right, this spot is valid.
+
+At any of those checks one, two, or three, or current spot, left of spot, right of spot, we skip any later checks if a given check fails. If all checks pass and our spot is valid, we decrement the number of flows left to plant, and "plant" a flower by adding a 1 at that spot in the flower bed, for checks to reference.
+
+So my first claim holds.
+
+My second claim is that we will plant valid spots in the optimal configuration, maximizing the number of valid spots that we have to plan.
+
+We do this by starting from leftmost side of the flowerbed, then checking each spot. You can see this in the loop logic.
+
+
+So my second claim holds.
+
+We have now show that we have planted as many flowers in as many valid spots as possible
+
+If we have planted a flower, and we have decremented flowers left to plant, we check if we have any more flowers left to plant. If we don't, we return that yes it is true we can plant n flowers in flowerbed.
+
+Our loop rangs over flowerbed, which is guaranteed to be a finite array. If we exit our loop, we must have remaining flowers left to plant, since otherwise we would have returned true within our loop. Exiting the loop with flowers left returns false.
+
+So the target is proven.

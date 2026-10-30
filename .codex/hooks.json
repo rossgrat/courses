@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/bin/sh \"$(git rev-parse --show-toplevel)/scripts/course\" hook",
+            "command": "/bin/sh \"$(git rev-parse --show-toplevel)/course\" hook",
             "timeout": 5
           }
         ]
@@ -16,7 +16,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/bin/sh \"$(git rev-parse --show-toplevel)/scripts/course\" hook",
+            "command": "/bin/sh \"$(git rev-parse --show-toplevel)/course\" hook",
             "timeout": 5
           }
         ]

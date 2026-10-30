@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "id": "trading-engineer",
+  "name": "Low-Latency Trading Engineering",
+  "sources": [
+    {
+      "path": "curriculum/Low-Latency_Trading_Engineering_Course_Plan.tex",
+      "format": "latex"
+    }
+  ],
+  "learning": {
+    "driver": "curriculum",
+    "agent_role": "tutor",
+    "explanations": "on_request",
+    "implementation": "on_request",
+    "guidance": [
+      "system/guidance/tutor.md"
+    ]
+  },
+  "session": {
+    "timing": "budgeted",
+    "split": {
+      "retrieval": 1,
+      "focused_work": 4,
+      "feedback": 1
+    }
+  },
+  "reviews": {
+    "interval_days": [
+      2,
+      7,
+      21,
+      42
+    ],
+    "weekdays_only": true
+  },
+  "initial": {
+    "stage": 0,
+    "language": "C++",
+    "unit": "Baseline and engineering environment",
+    "next_task": "Select one bounded baseline task from section 4 and record the observed starting point."
+  }
+}
