@@ -112,7 +112,7 @@ Existing review records remain preserved.
 
 ## Assessments
 
-Optional `assessment` contains the existing `minutes`, `feedback`, and `split_minutes` fields.
+Optional `assessment` contains `minutes`, `feedback`, and `split_minutes`.
 Allowed durations must be positive and strictly increasing.
 Feedback requires at least one minute.
 Each split duration must appear in the allowed duration list.
@@ -168,7 +168,6 @@ It follows the book, permits requested explanations, and reserves implementation
 }
 ```
 
-The example does not create a Rust program or establish the learner's actual place in the book.
 Use observed progress when migrating an existing program.
 
 ## Validation

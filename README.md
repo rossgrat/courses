@@ -1,7 +1,11 @@
 # Courses
 
 This repository holds learning programs with separate sources, agent roles, and progress records.
-The current programs are Algorithms, Trading Engineering, Oxide Systems Engineering, and Music Technology Engineering.
+
+- [Algorithms](programs/algorithms/)
+- [Trading Engineering](programs/trading-engineer/)
+- [Oxide Systems Engineering](programs/oxide/)
+- [Music Technology Engineering](programs/music-technology/)
 
 ## Layout
 
@@ -20,6 +24,7 @@ Each program's `AGENTS.md` adds subject-specific guidance.
 ## Setup
 
 Install Go 1.27.3, as pinned in `system/cli/.go-version`.
+Select that version in your shell before running Make targets.
 From the repository root, build the command:
 
 ```sh
@@ -60,8 +65,7 @@ bash "$(git rev-parse --show-toplevel)/course" context
 
 ## Study sessions
 
-The four existing programs use budgeted sessions.
-Their configuration preserves the one-sixth retrieval, four-sixths focused work, and one-sixth feedback split.
+The four existing programs configure budgeted sessions in `course.json`.
 
 From the repository root, preview a session:
 
@@ -81,22 +85,16 @@ Pass the current `--thread-id` when resuming in another conversation.
 The helper preserves active time across pauses and machine handoffs.
 It does not send deadline alerts or automatically end sessions.
 
-Programs without a `session` policy use no ordinary session tracking.
-Reading, building, and asking questions require no session or state file.
-The helper rejects ordinary `plan` and `start` commands for those programs.
+For configured untimed sessions, omit `--minutes`.
+Programs without a session policy require no session commands.
+See the [configuration reference](system/docs/course-configuration.md#sessions) for timing, review, and assessment policies.
 
-Programs can explicitly select `session: {"timing": "untimed"}` to record elapsed time without phase budgets.
-For those sessions, omit `--minutes` from `plan` and `start`.
-
-Only Algorithms currently configures timed assessments.
-Its local instructions define allowed tasks, durations, feedback, and pause rules.
-Assessment context omits ordinary teaching guidance and saved task hints.
+For assessments, follow the selected program's `AGENTS.md` and configuration.
 
 `context`, `plan`, and hooks do not write records.
 `init` creates missing state when the learner requests saved progress.
 `start` also creates missing state when study begins.
-Neither command replaces existing progress with configuration defaults.
-Context reads do not present initial defaults as recorded progress.
+Existing progress takes precedence over initialization defaults.
 
 ## Independent study
 
@@ -104,10 +102,9 @@ A book or hobby program can contain sources and agent guidance without tracking 
 Use the agent when a question, exercise, or review needs help.
 There is no requirement to open Codex whenever you read or practice.
 
-Optional saved progress records the last reported position, questions, or completed work.
-It does not establish the learner's current position after independent study.
-For example, a requested bookmark can say that the learner finished chapter five without creating a timed session.
-The agent records such updates only when requested and distinguishes reported work from assessed understanding.
+Optional state records the last reported position and work, which can become outdated after independent study.
+Ask the agent to save a bookmark when useful.
+Reported work does not establish assessed understanding.
 
 ## Progress across machines
 
@@ -131,7 +128,6 @@ The general learning-mode deck remains separate.
 Authored curricula live under `programs/<id>/curriculum/`.
 Each `.tex` file is editable source, with an adjacent PDF for viewing.
 The shared style is `system/latex/curriculum.sty`.
-It uses Source Sans text, unnumbered headings, borderless tables, and indented quotations.
 
 Use TeX Live 2026 with pdfTeX 3.141592653-2.6-1.40.29 and latexmk 4.88.
 The build requires sourcesans 3.0 and Latin Modern fonts.
@@ -172,4 +168,7 @@ No central course registry or Makefile course list needs updating.
 
 From the repository root, run `make build`, `make vet`, and `bash course validate`.
 Exercise changed session commands with `--state /absolute/temporary/state.json` to protect actual progress.
+Use `make clean-pdfs` to remove temporary PDF files after inspection.
+Keep `build/bin/course`, which the shared commands and hooks require.
+Preserve curricula, viewing PDFs, learner work, and progress records during cleanup.
 Keep infrastructure tests absent and preserve learner-written exercise tests.

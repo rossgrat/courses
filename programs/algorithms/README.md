@@ -3,10 +3,11 @@
 `curriculum/Algorithms_Mastery_Course.tex` defines the curriculum and contains its text and links.
 `curriculum/Algorithms_Mastery_Course.pdf` is the compiled version for viewing.
 `AGENTS.md` adds algorithm-specific teaching and assessment rules to the shared parent instructions.
-`state.json` stores current progress, reviews, and session history in Git.
+`state.json` stores saved progress, reviews, and session history in Git.
 
 Follow the [shared setup and handoff instructions](../../README.md) before starting on a new machine.
-Open Codex in this folder and give the tutor your available active study minutes.
+Open this folder for course study.
+Before a planned session, give the tutor your available active study minutes.
 Go is the starting language. Section 24 defines the C++ and Rust progression.
 
 During practice, choose your own supporting claims and write an argument before requesting help.

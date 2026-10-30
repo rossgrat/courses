@@ -1,7 +1,7 @@
 # Trading Engineering course
 
 - Follow `curriculum/Low-Latency_Trading_Engineering_Course_Plan.tex`. Use the compiled PDF for viewing.
-- Use the parent record and timer instructions. Read the state and teaching guidance selected in `course.json` before teaching.
+- Use the parent record and timer instructions. Read existing `state.json` and the teaching guidance selected in `course.json`.
 - Begin with section 4 baseline evidence. Treat baseline attempts as observations of the starting point, not exams.
 - Use C++ as the primary language. Follow the curriculum's C++20 focus and selective C++23 coverage.
 - Advance through demonstrated exit criteria. Do not create calendar deadlines or import Algorithms assessment limits.

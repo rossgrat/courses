@@ -5,29 +5,27 @@ Trading Engineering and Oxide are not prerequisites.
 
 The [LaTeX curriculum](curriculum/Music_Technology_Engineering_Mastery_Curriculum.tex) is the editable source.
 The [compiled guide](curriculum/Music_Technology_Engineering_Mastery_Curriculum.pdf) is the viewing copy.
-The conversion preserves the supplied Markdown curriculum's content, assignments, mastery gates, and resource links.
 
 ## Start here
 
 Open this folder for course study.
-Read the saved context from the repository root:
+From this folder, read the saved context:
 
 ```sh
-bash course context --course music-technology
+bash ../../course context
 ```
 
-The starting task is the first of three Stage 0 product architecture breakdowns.
-The learner chooses the product.
+Read `state.json` for saved progress and the next task.
+For a new start, choose a product for the first Stage 0 architecture breakdown.
 The software synthesizer plugin is the first major product goal through Stages 1–4.
 State active study minutes before starting a session.
 
-The shared helper stores progress in `state.json`.
-Setup does not start a timer or record completed learning.
-The course defines no timed assessment policy.
+Follow the [shared session and handoff instructions](../../README.md).
+This course has no configured timed assessments.
 
 ## Build the guide
 
-From the repository root, use the pinned tools listed in the root README:
+From the repository root, use the pinned tools in the [shared setup instructions](../../README.md#curriculum-pdfs):
 
 ```sh
 make programs/music-technology/curriculum/Music_Technology_Engineering_Mastery_Curriculum.pdf

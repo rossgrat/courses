@@ -1,7 +1,7 @@
 # Music Technology Engineering course
 
 - Follow `curriculum/Music_Technology_Engineering_Mastery_Curriculum.tex`. Use the compiled PDF for viewing.
-- Use the parent record and timer instructions. Read the state and teaching guidance selected in `course.json` before teaching.
+- Use the parent record and timer instructions. Read existing `state.json` and the teaching guidance selected in `course.json`.
 - Trading Engineering and Oxide are not prerequisites. Reuse demonstrated skills without assuming mastery from related experience.
 - Begin with Stage 0 product anatomy. Keep the software synthesizer plugin as the first major product goal through Stages 1–4.
 - Advance through the curriculum's mastery gates. Do not create calendar deadlines or require all nine disciplines before applications.

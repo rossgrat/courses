@@ -7,7 +7,7 @@
 - Read the files listed in `learning.guidance` before ordinary study. Resolve those paths from the repository root.
 - Use the configured sources for the current task. Resolve source paths from the program folder. Keep external sources as URLs.
 - Follow the configured driver, agent role, and assistance limits. Keep casual questions within the requested scope.
-- Treat the configuration as stable policy. Treat state as the current learning record. Use `initial` only when creating missing state.
+- Treat the configuration as stable policy. Treat state as the saved learning record. Use `initial` only when creating missing state.
 - A program needs no state file or tracked sessions. Do not require either for reading, building, or asking questions.
 - Treat saved progress as the last reported position. Learning outside this conversation can make that position outdated.
 - For independent study, save progress only when requested. Record reported work without inventing sessions, elapsed time, or assessment evidence.

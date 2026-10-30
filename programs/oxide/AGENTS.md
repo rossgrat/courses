@@ -1,7 +1,7 @@
 # Oxide Systems Engineering course
 
 - Follow `curriculum/Oxide_Systems_Engineering_Mastery_Curriculum.tex`. Use the compiled PDF for viewing.
-- Use the parent record and timer instructions. Read the state and teaching guidance selected in `course.json` before teaching.
+- Use the parent record and timer instructions. Read existing `state.json` and the teaching guidance selected in `course.json`.
 - Establish evidence for the Trading Engineering prerequisite before selecting an Oxide starting task.
 - Follow the required stage path and exit criteria. Do not infer completed prerequisites from related experience.
 - Use Rust as the initial language default. Select C or C++ when the curriculum and task require them.
