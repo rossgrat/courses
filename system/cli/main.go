@@ -26,6 +26,7 @@ type options struct {
 	command, selected, statePath, kind, language, thread, reason string
 	minutes, assessment                                          int
 	infrastructure, boundary                                     bool
+	untimed, skipFeedback                                        bool
 }
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 
 func run() error {
 	if len(os.Args) < 2 {
-		return errors.New("use list, validate, pdf-sources, context, hook, plan, init, start, pause, resume, or end")
+		return errors.New("use list, validate, pdf-sources, context, hook, plan, init, start, replan, pause, resume, or end")
 	}
 	o := options{command: os.Args[1]}
 	flags := flag.NewFlagSet("course "+o.command, flag.ContinueOnError)
@@ -51,17 +52,22 @@ func run() error {
 	flags.IntVar(&o.assessment, "assessment-minutes", 0, "Course assessment limit")
 	flags.BoolVar(&o.infrastructure, "infrastructure-failure", false, "Pause for an infrastructure failure")
 	flags.BoolVar(&o.boundary, "session-boundary", false, "Pause an assessment that permits multiple sessions")
+	flags.BoolVar(&o.untimed, "untimed", false, "Remove the current study session countdown")
+	flags.BoolVar(&o.skipFeedback, "skip-feedback", false, "Skip the current study session closing feedback block")
 	if err := flags.Parse(os.Args[2:]); err != nil {
 		return err
 	}
 	if flags.NArg() != 0 {
 		return errors.New("unexpected positional argument")
 	}
-	if !slices.Contains([]string{"list", "validate", "pdf-sources", "context", "hook", "plan", "init", "start", "pause", "resume", "end"}, o.command) {
+	if !slices.Contains([]string{"list", "validate", "pdf-sources", "context", "hook", "plan", "init", "start", "replan", "pause", "resume", "end"}, o.command) {
 		return fmt.Errorf("unknown command %q", o.command)
 	}
 	if o.kind != "study" && o.kind != "assessment" {
 		return errors.New("kind must be study or assessment")
+	}
+	if (o.untimed || o.skipFeedback) && o.command != "replan" {
+		return errors.New("--untimed and --skip-feedback require replan")
 	}
 	cwd, err := os.Getwd()
 	if err != nil {
@@ -125,7 +131,7 @@ func run() error {
 	}
 	now := time.Now().UTC()
 	switch o.command {
-	case "start", "pause", "resume", "end":
+	case "start", "replan", "pause", "resume", "end":
 		if err := changeSession(&s, c, o, now); err != nil {
 			return err
 		}

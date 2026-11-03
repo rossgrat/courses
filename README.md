@@ -85,6 +85,16 @@ Pass the current `--thread-id` when resuming in another conversation.
 The helper preserves active time across pauses and machine handoffs.
 It does not send deadline alerts or automatically end sessions.
 
+For an explicit change to the current ordinary session, use `replan`:
+
+```sh
+bash course replan --course algorithms --untimed --skip-feedback --thread-id THREAD_ID --reason "Learner requested open-ended study without closing feedback"
+```
+
+Use either flag alone when only that change is requested.
+The helper preserves the original plan and elapsed time in the session record.
+Context and hooks apply the saved override. Assessment limits and feedback cannot be changed with `replan`.
+
 For configured untimed sessions, omit `--minutes`.
 Programs without a session policy require no session commands.
 See the [configuration reference](system/docs/course-configuration.md#sessions) for timing, review, and assessment policies.

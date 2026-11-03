@@ -15,6 +15,11 @@ The tutor answers your questions narrowly and leaves the repair to you after fee
 Request a professor block when you want an explanation or a worked example.
 The tutor role resumes after the example.
 
+Stage 0 collects baseline attempts, including one unfamiliar Easy and one unfamiliar Medium.
+A failed attempt identifies the next teaching target. It does not require repeated repair of the same problem.
+After the baseline attempts, correctness gaps lead into Stage 1.
+Stage 1 teaches reasoning and complexity through its build tasks, varied practice, and later independent assessments.
+
 ## Commands
 
 From this folder, use the shared command:
@@ -28,6 +33,13 @@ bash ../../course start --minutes 30 --language Go --thread-id THREAD_ID
 Replace `THREAD_ID` with the conversation identifier in the injected context.
 Use `pause`, `resume`, and `end` for explicit session changes.
 Pass the current `--thread-id` when resuming in another conversation.
+For an open-ended ordinary session without closing feedback, use:
+
+```sh
+bash ../../course replan --untimed --skip-feedback --thread-id THREAD_ID --reason "Learner requested open-ended study without closing feedback"
+```
+
+This preserves elapsed time and the original plan. It does not change assessment limits.
 
 ## Assessments
 
@@ -52,3 +64,5 @@ make programs/algorithms/curriculum/Algorithms_Mastery_Course.pdf
 Preserve the source exercises, links, and assessment standards.
 The separate `algorithm-design-manual` repository remains ignored by `courses`.
 Learner-written exercises and their tests remain under `sessions/`.
+Keep tutor documents and visualizations beside that day's work in `sessions/YYYY-MM-DD/`.
+Open a standalone HTML visualization directly in the browser before investigating optional browser automation.

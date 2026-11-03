@@ -14,6 +14,7 @@
 - Keep subject rules, prerequisites, languages, and assessment standards in the program folder.
 - Follow more specific instructions when a program or exercise adds an `AGENTS.md`.
 - Keep learner code, tests, notes, and workspace setup learner-owned. Change them only within the user's explicit authorization and assistance policy.
+- Store study documents and visualizations in the program's `sessions/YYYY-MM-DD/` folder. Do not create a separate output hierarchy.
 - Keep course records separate from the general learning-mode deck. Switch learning mode only when requested.
 - Do all course work in the main checkout on `main`, including timer and progress records.
 - Never create or use additional worktrees or branches. This repository rule overrides general worktree guidance.
@@ -30,6 +31,10 @@
 - If `session` is omitted, do not start ordinary sessions. Explicit `untimed` sessions still record elapsed time.
 - For budgeted sessions, pass `--minutes MINUTES`. For untimed sessions, omit `--minutes`.
 - Treat `list`, `validate`, `pdf-sources`, hooks, `context`, and `plan` as read-only.
+- Deliver the simplest usable result before investigating optional tooling. A local visualization needs an opening command, not browser automation.
+- Apply explicit tool and surface restrictions before selecting a tool. Do not substitute a prohibited tool or move the conversation to another app.
+- Stop repeating a failed probe without new evidence. Separate observed failures, suspected causes, and confirmed limitations.
+- If requested troubleshooting stalls, report the blocker and the usable alternative. Do not make the learner discover the alternative.
 - Use `init` only when the user requests saved progress. It creates missing state without replacing existing progress.
 - Use `make pdfs` from the repository root to compile the configured LaTeX sources.
 - Preserve curriculum content, exercises, links, and historical evidence during infrastructure changes.
@@ -41,7 +46,10 @@
 - Use `America/Chicago` for course dates. Treat injected time as the time at turn start.
 - Refresh with `context` after a long turn. If injected context is missing, run `context` and report the missing injection.
 - Obtain active study minutes before starting a budgeted session. Exclude planned breaks and never assume an hour.
+- Respect saved break preferences. Do not ask about breaks when the learner chooses to initiate them.
 - Use the configured session split. Reserve the displayed retrieval and feedback budgets when those phases are enabled.
+- Honor explicit ordinary-session changes with `replan --untimed` or `replan --skip-feedback`, plus the current `--thread-id` and `--reason`.
+- Use `study_override` from context as the effective ordinary-session instruction. Configuration remains the default. Original saved budgets remain historical.
 - State the objective, independent output, success criteria, and stopping point before starting. Include budgets for timed work.
 - For a configured session, run `start --thread-id THREAD_ID` immediately before its first task. Add `--minutes MINUTES` for budgeted study.
 - Translate explicit pause, resume, and end requests into `pause`, `resume`, and `end`.
@@ -60,13 +68,15 @@
 - Read `programs/<id>/state.json` immediately before every update.
 - Preserve `progress`, `reviews`, `session`, `history`, and existing subject-specific evidence.
 - Read recorded teaching feedback and lesson plans before selecting the next task.
+- Keep one current lesson plan. Archive superseded plans and remove conflicting current tasks, stopping rules, and budget notes.
 - Let the helper manage timer fields. Record learning evidence and feedback without rewriting completed timing.
 - When reviews are configured, record IDs, skills, prompts, sources, languages, learned dates, due dates, attempts, and retirement reasons.
 - Use the configured review intervals and weekday policy. Record the reason for adjustments.
 - Distinguish independent success, assisted practice, and misses. Record observed errors and assistance.
 - Do not infer mastery from generated work, completed reading, prompted agreement, or the existence of an artifact.
+- Record delivery after the artifact exists or the explanation is sent. Distinguish interaction testing, visual inspection, and learner understanding.
 - At session end, run `end` and complete the new history entry with tasks, artifacts, feedback, and unfinished work.
-- Preserve the planned split and elapsed time. Set an exact next task and stopping point.
+- Preserve the original planned split, elapsed time, and explicit session overrides. Set an exact next task and stopping point.
 - Store artifact paths relative to the repository root. Keep machine-local paths out of new progress records.
 - Before switching machines, pause or end any open session. Save existing records through Git on `main` with authorization.
 - Before continuing elsewhere, synchronize committed state and resolve any state conflict before using the helper.

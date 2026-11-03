@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"maps"
 	"path/filepath"
 	"slices"
 	"time"
@@ -135,6 +136,32 @@ func changeSession(s *state, c *course, o options, now time.Time) error {
 	}
 	pauses, _ := s.Session["pauses"].([]any)
 	switch o.command {
+	case "replan":
+		if text(s.Session, "kind") == "assessment" {
+			return errors.New("assessment limits and feedback cannot be changed")
+		}
+		if o.thread != text(s.Session, "thread_id") {
+			return errors.New("replan requires the current session owner's --thread-id")
+		}
+		if (!o.untimed && !o.skipFeedback) || o.minutes != 0 || o.assessment != 0 {
+			return errors.New("replan requires --untimed or --skip-feedback, without minute limits")
+		}
+		if o.reason == "" || o.reason == "User-reported break" {
+			return errors.New("replan requires --reason with the learner's requested change")
+		}
+		override, _ := s.Session["study_override"].(object)
+		if override == nil {
+			override = object{}
+		}
+		if o.untimed {
+			override["timing"] = "untimed"
+		}
+		if o.skipFeedback {
+			override["closing_feedback"] = false
+		}
+		override["changed_at"] = stamp
+		override["reason"] = o.reason
+		s.Session["study_override"] = override
 	case "pause":
 		if paused(s.Session) {
 			return errors.New("the session is already paused")
@@ -228,6 +255,18 @@ func courseContext(s state, c *course, o options, now time.Time, exists bool) (o
 		}
 	} else if plan == nil {
 		plan, _ = studyPlan(c, 60)
+	}
+	if !assessment {
+		override, _ := s.Session["study_override"].(object)
+		if len(override) > 0 {
+			result["study_override"] = override
+			if text(override, "timing") == "untimed" {
+				plan = object{}
+			} else if override["closing_feedback"] == false {
+				plan = maps.Clone(plan)
+				delete(plan, "feedback")
+			}
+		}
 	}
 	if !assessment && len(plan) == 0 {
 		status := "running"

@@ -67,6 +67,8 @@ A working artifact alone does not establish independent understanding.
 Optional `learning.guidance` lists shared Markdown files relative to the repository root.
 Every listed file must exist.
 The four current programs select `system/guidance/tutor.md`.
+Its [closing feedback process](../guidance/tutor.md#closing-feedback) applies to every program that selects it.
+Keep general feedback rules in that shared guidance and subject-specific criteria in each program.
 Course context supplies the selected policy and guidance paths to the agent.
 These fields are instructions for the agent, not file-access controls.
 The helper enforces configuration validity, session budgets, and assessment pause rules.
@@ -97,6 +99,19 @@ The current programs use weights `1`, `4`, and `1`.
 This preserves their existing split and minimum of three active minutes.
 No session starts from a hook, a context read, or a plan preview.
 Changes to policy do not rewrite a session's saved budgets.
+
+An explicit learner request can override the current ordinary session without changing course defaults.
+Use `replan --untimed` to remove its countdown or `replan --skip-feedback` to omit its closing feedback block.
+Both flags can be combined. Supply the current session owner's `--thread-id` and a `--reason` describing the request.
+The command rejects assessments, missing sessions, and minute-limit arguments.
+
+The helper stores the effective change in `session.study_override` with its time and reason.
+It preserves the original `plan_minutes`, start time, and pauses.
+Context and hooks expose `study_override` and apply it to the current session summary.
+An untimed summary has elapsed time but no phase or remaining-time fields.
+Skipping feedback alone removes that phase from the effective plan.
+The override remains with the session when `end` moves it into history.
+Keep the lesson plan aligned with this effective state. Archive superseded plans instead of retaining conflicting current instructions.
 
 ## Reviews
 

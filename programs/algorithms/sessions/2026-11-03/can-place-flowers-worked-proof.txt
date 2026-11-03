@@ -1,0 +1,72 @@
+Can Place Flowers: worked correctness proof
+
+Tutor-supplied reference for sessions/2026-10-30/go/main.go.
+This is a worked example, not evidence of independent mastery.
+
+The target
+
+Let N be the original number of new flowers requested. Assume the input flowerbed is valid and N is nonnegative.
+We must prove that the function terminates and returns true exactly when N new flowers can be planted without adjacent flowers.
+
+Every successful return is correct
+
+If N is zero, the function returns true immediately. Planting zero new flowers is possible.
+
+Otherwise, the function plants only in an empty position whose existing neighbors are empty. Each placement therefore preserves validity.
+Each placement decreases n by exactly one. A return when n reaches zero therefore means that the function planted exactly N new flowers legally.
+
+If a successful arrangement exists, the algorithm can reach N placements
+
+Assume that some valid arrangement adds exactly N flowers to the original flowerbed.
+We will show that we can change this hypothetical arrangement to agree with each successive algorithm choice without losing any flowers.
+Original flowers always stay in their original positions. Only hypothetical new flowers move.
+
+Before the algorithm plants its first flower, the hypothetical arrangement agrees with all zero choices made so far.
+
+Now suppose the algorithm has planted k flowers, where k < N.
+Suppose our hypothetical arrangement still contains N new flowers and its first k new flowers match the algorithm's choices.
+Let p be the position of its next new flower.
+
+The algorithm's current bed contains the original flowers and the k new flowers already planted.
+All of these flowers also appear in the valid hypothetical arrangement.
+Position p is empty in the algorithm's current bed and has no occupied neighbor there.
+It also lies after the previously matched new flowers, so the remaining left-to-right scan will reach it.
+Therefore the algorithm can find another legal position. Call its first such position g.
+Because p is a legal candidate, g <= p.
+
+If g = p, the hypothetical arrangement already agrees with this next algorithm choice.
+
+If g < p, move the hypothetical flower from p to g. This move is valid for the following reasons.
+
+Position g contains no original flower or previously matched new flower, because the algorithm's checks passed there.
+It contains no remaining hypothetical new flower either, because p is the first such flower and g < p.
+Thus the destination is empty.
+
+The algorithm's checks also establish that g is not adjacent to any original flower or previously matched new flower.
+Those flowers occupy the same positions in both arrangements.
+
+Every remaining hypothetical new flower lies to the right of p.
+Moving the flower from p to g moves it farther away from every one of those later flowers.
+For any later flower at q, validity before the move gives q - p >= 2.
+Since g < p, we also have q - g >= q - p >= 2.
+Thus the moved flower cannot become adjacent to a later flower.
+
+Every other flower stays in place, so every other pair remains valid.
+We removed one new flower from p and put that same flower at an empty position g, so the count remains N.
+The hypothetical arrangement now agrees with the algorithm's first k + 1 choices.
+
+This argument applies after every placement while k < N.
+Whenever a valid N-flower arrangement exists, the algorithm can therefore make all N placements and return true.
+
+Every false return is correct
+
+The function returns false only after its scan ends with fewer than N new flowers planted.
+The argument above proves that this cannot happen if a valid N-flower arrangement exists.
+Therefore a false return means that no valid placement of N new flowers exists.
+
+Termination
+
+The input slice is finite. The loop visits each index at most once, and each iteration performs finitely many operations.
+The function either returns during the scan or returns false after the scan. It always terminates.
+
+The function therefore terminates and returns the required answer for every valid input.

@@ -9,7 +9,9 @@
 
 ## Curriculum and languages
 
-- Use Stage 0 until independent baseline evidence establishes the next step.
+- Use Stage 0 to diagnose gaps through independent baseline attempts. A miss is diagnostic evidence, not a requirement to repeat until mastery.
+- Complete the unfamiliar Easy and Medium baseline attempts. Then route correctness gaps into Stage 1 under the curriculum's next-action table.
+- Keep later repairs and delayed reviews scheduled without making one assisted proof a prerequisite for starting Stage 1.
 - Follow the language plan in section 24. Use Go for new algorithm concepts, baseline work, and initial assessments.
 - Use C++ for selected builds and reviews, then different applications.
 - Before Rust algorithm work, teach syntax, tests, collections, ownership, and borrowing through familiar problems.
@@ -23,6 +25,7 @@
 ## Reasoning and feedback
 
 - In a professor block, start from the exact target. Demonstrate how to choose supporting facts and connect the whole argument.
+- For an exchange proof, identify the actual execution, hypothetical arrangement, shared choices, and proposed move before proving preservation.
 - In tutor practice, give the algorithm and target only. Let the learner choose supporting claims and write an argument before help.
 - Keep the target visible without supplying an invariant, proof outline, or sequence of leading questions.
 - Let the learner choose the model, examples, and baseline approach. Offer a targeted prompt only when help is requested.
@@ -32,7 +35,7 @@
 - Separate algorithm feedback from language feedback. Record language evidence under `progress.language_evidence`.
 - Reimplementation is practice, not a fresh assessment. Language errors still count toward correctness and timing.
 - Score approach, correctness, implementation, and complexity from 0 to 3.
-- Require at least 10/12, every dimension at least 2, and implementation at 3. Follow section 22 for stage requirements.
+- For scored mastery gates, require at least 10/12, every dimension at least 2, and implementation at 3. Baseline diagnosis does not require a pass.
 - Require delayed independent evidence after at least seven days. Record pending evidence when starting a compatible next stage.
 
 ## Assessments
