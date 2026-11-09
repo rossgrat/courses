@@ -1,0 +1,16 @@
+=== Complexity ===
+
+The complexity of this program is O(N) in the worst case, where N is the size of arr. This is because if there is no target value in the array, we iterate over every object in the array.
+
+Space complexity is O(1). We store i and val. Both of these are fixed integers that do not add elements with N. The value of the integer grows, but stays bounded within its allocated storage.
+
+
+=== Correctness ===
+
+I will prove that my program finds the input value in some array at the earliest index it exists at in the array if it exists, and returns -1 if the value does not exist, assuming that that value is within the bounds of a 64 bit integer.
+
+First I will claim that, if the value exists in the array at least once, the target will return earliest index. I can show this by examining the loop in the function. The loop steps over each value of the array one at a time, starting from the leftmost array. This means that index 0 is examined before index 1, index k is examined before index k+1. Looking at the logical comparison condition within the loop, if the value is found at the currently examined index, the progrma returns the current index. This means that we will not examine later indices for the value, even if they contain it. The first time we see the value, we return the index of the value.
+
+So we have established that if the value exists in the array, the loop will return the earliest index of that value.
+
+It the follows that if the loop completes, the value does not exist in the array, and so we can return -1. The program will always terminate because the input loop is of a finite size.

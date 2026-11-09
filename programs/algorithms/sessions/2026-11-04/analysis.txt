@@ -1,0 +1,20 @@
+=== Complexity ===
+
+Let's assume N = trips. We'll start with runtime.
+Our longest loop is when we range over trips and create our maps. This loop is of size N. The second loop of potential stops is at most 1000, which is constant, so we can say that our total time complexity is O(N), or O(1000 + N), if maybe we care about a small N.
+
+Our space complexity is a little trickier. If we say there are X distinct pickup spots, and Y distinct dropoff spots, our space complexity is O(X + Y). I'm not quite sure how to tie this into N, since one or more entries in trips could have the same start or end position, for example we might have [1,1,2], [1,1,3] [1,1,4], where three people get picked up at spot 1, but dropped off at spots 2,3,4. So in this case X=1, Y=3. These do grow with N, not linearly in step.
+
+=== Correctness ===
+
+We will prove the correctness of this algorithm. Our target is: our function always returns false if at some point we would be required to pickup passengers at a stop beyond the capacity of our train, and always returns true if we can successfully pickup and dropoff all passengers at all stops without going over our train capacity.
+
+First I'll claim that we always pickup and dropoff the correct number of passengers at each stop. This is shown in the first loop. We start with an empty map for pickup, and an empty map for dropoff. These maps map stop number to passengers at that stop for the required action. In the loop iteration, we first read the number of passengers, start stop, and end stop from a trips iteration. Once we have these values stored, we enter the first logical statement. This statement either assigns the stop number the number of passengers to pickup, or adds to the existing number of passengers at the stop. We do the same thing for the dropoff spot and passengers. So for some arbitrary iteration k of this loop, we will have the total number of passengers to be picked up and dropped off at a given spot up until and at the end of the loop including trip k.
+
+So we know that we have the correct number of passengers to pickup and dropoff at each stop.
+
+My second claim will be that, if we have already dropped off passengers at a stop, and the remaining passengers waiting to board exceeds the capacity of the train, we will return false. This can be proven by examining the second loop. We iterate over all 1000 stops, as defined by the problem criteria. In the first logical condition, we check if there is a dropoff group for the stop. If there is, we substract that value from our passengers. In the second logical condition, we first check if the number of passengers waiting to board and the current passengers on the train exceeds the capacity of the train. If this summation does exceed the capacity of the train, we return false. We do not need to continue on to other stops, because we have found a failing case where the capacity is exceeded. If we can add the waiting passengers to the train, we increment the passenger count and continue. So for some arbitrary stop j, we can see that we will always first dropoff as many passengers as we can, and then attempt to pickup the other passengers if possible. And if not possible we return false.
+
+It follows then at the end of the loop that we have successfully picked up ad dropped off all passengers at all stops, and so we can return true. We know that our function will always terminate, because both trips and the 1000 stop count are finite.
+
+And so the target is proven.
