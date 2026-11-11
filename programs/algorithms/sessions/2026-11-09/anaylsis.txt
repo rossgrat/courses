@@ -1,0 +1,18 @@
+=== Complexity ===
+
+== Time ==
+The deepest we go into recursion is log_2(N) steps, because we repeatedly call mergeSort on an input that has been cut in half.
+
+So for our time complexity we have log_(N) recursive calls, since the number of recursive calls increases with N logarithmically.
+
+
+For some given k length array, we have log_2(k) recursive calls, and we iterate over at most k elements when we sort left and right into combined.
+
+O(log_2(N) + N)
+
+
+== Space ==
+We store the log_2(k) function calls, each, of those function calls stores two new arrays with a total size of k., we also then store two sorted arrays of size k/2, so 2k extra space, then we store a combined sorted array of size k, so 3k extra space in one function call.
+
+
+=== Correctness ===

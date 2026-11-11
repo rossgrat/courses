@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func mergeSort(arr []int) []int {
 	if len(arr) == 0 {
 		return []int{}
@@ -9,7 +11,7 @@ func mergeSort(arr []int) []int {
 	}
 
 	// Divide array in top and bottom half
-	mid := (len(arr) / 2) + 1
+	mid := (len(arr) / 2)
 
 	left := arr[:mid]
 	right := arr[mid:]
@@ -23,27 +25,27 @@ func mergeSort(arr []int) []int {
 	leftIter := 0
 	rightIter := 0
 
-	appendRest := func(rest []int) {
-		for _, val := range rest {
-			combinedSorted = append(combinedSorted, val)
+	appendRest := func(rest []int, start int) {
+		for i := start; i < len(rest); i++ {
+			combinedSorted = append(combinedSorted, rest[i])
 		}
 	}
 
 	for {
 		// Left iter over range
 		if leftIter >= len(leftSorted) {
-			appendRest(rightSorted)
+			appendRest(rightSorted, rightIter)
 			break
 		}
 
 		// Right iter over range
 		if rightIter >= len(rightSorted) {
-			appendRest(leftSorted)
+			appendRest(leftSorted, leftIter)
 			break
 		}
 
 		// Iters both still in range
-		if len(leftSorted) < leftIter && len(rightSorted) < rightIter {
+		if leftIter < len(leftSorted) && rightIter < len(rightSorted) {
 			leftVal := leftSorted[leftIter]
 			rightVal := rightSorted[rightIter]
 			if leftVal <= rightVal {
@@ -51,12 +53,13 @@ func mergeSort(arr []int) []int {
 				leftIter++
 			} else {
 				combinedSorted = append(combinedSorted, rightVal)
-				rightVal++
+				rightIter++
 			}
+
 		}
 
 	}
 
+	fmt.Println("combined", combinedSorted)
 	return combinedSorted
-
 }
