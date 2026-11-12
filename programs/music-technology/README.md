@@ -25,7 +25,7 @@ This course has no configured timed assessments.
 
 ## Build the guide
 
-From the repository root, use the pinned tools in the [shared setup instructions](../../README.md#curriculum-pdfs):
+From the repository root, use the pinned tools in the [shared setup instructions](../../system/docs/curriculum-builds.md):
 
 ```sh
 make programs/music-technology/curriculum/Music_Technology_Engineering_Mastery_Curriculum.pdf

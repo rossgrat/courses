@@ -1,68 +1,23 @@
-# Algorithms course
+# Algorithms
 
-`curriculum/Algorithms_Mastery_Course.tex` defines the curriculum and contains its text and links.
-`curriculum/Algorithms_Mastery_Course.pdf` is the compiled version for viewing.
-`AGENTS.md` adds algorithm-specific teaching and assessment rules to the shared parent instructions.
-`state.json` stores saved progress, reviews, and session history in Git.
+Start with the [curriculum PDF](curriculum/Algorithms_Mastery_Course.pdf).
+Its [LaTeX source](curriculum/Algorithms_Mastery_Course.tex) defines the course; [AGENTS.md](AGENTS.md) defines teaching and assessment rules.
+Go is the starting language. Section 24 defines the later C++ and Rust progression.
 
-Follow the [shared setup and handoff instructions](../../README.md) before starting on a new machine.
-Open this folder for course study.
-Before a planned session, give the tutor your available active study minutes.
-Go is the starting language. Section 24 defines the C++ and Rust progression.
-
-During practice, choose your own supporting claims and write an argument before requesting help.
-The tutor answers your questions narrowly and leaves the repair to you after feedback.
-Request a professor block when you want an explanation or a worked example.
-The tutor role resumes after the example.
-
-Stage 0 collects baseline attempts, including one unfamiliar Easy and one unfamiliar Medium.
-A failed attempt identifies the next teaching target. It does not require repeated repair of the same problem.
-After the baseline attempts, correctness gaps lead into Stage 1.
-Stage 1 teaches reasoning and complexity through its build tasks, varied practice, and later independent assessments.
-
-## Commands
-
-From this folder, use the shared command:
+Open this folder and read saved context:
 
 ```sh
 bash ../../course context
-bash ../../course plan --minutes 30
-bash ../../course start --minutes 30 --language Go --thread-id THREAD_ID
 ```
 
-Replace `THREAD_ID` with the conversation identifier in the injected context.
-Use `pause`, `resume`, and `end` for explicit session changes.
-Pass the current `--thread-id` when resuming in another conversation.
-For an open-ended ordinary session without closing feedback, use:
+Before a planned session, agree on the task and active minutes.
+Use the [shared study commands](../../system/docs/study.md), adding `--language Go` when starting Algorithms work.
+Stage 0 records independent baseline attempts; misses identify teaching targets rather than requiring repeated repair.
+During tutor practice, choose your own supporting claims and write the argument before requesting help.
+Request a professor block for explanations or worked examples.
 
-```sh
-bash ../../course replan --untimed --skip-feedback --thread-id THREAD_ID --reason "Learner requested open-ended study without closing feedback"
-```
-
-This preserves elapsed time and the original plan. It does not change assessment limits.
-
-## Assessments
-
-Use `start --kind assessment` for a 45-minute benchmark plus 15 minutes of feedback.
-Use `--assessment-minutes 60` or `90` for the stage tasks specified in section 22.
-Do not pass `--minutes` for assessments.
-The assessment limit includes implementation, explanation, debugging, and resubmissions.
-
-A 90-minute stage task can span agreed sessions.
-Use `pause --session-boundary --reason DESCRIPTION` at the boundary.
-Give no feedback or solution study before the attempt ends.
-Use `--infrastructure-failure --reason DESCRIPTION` for an infrastructure pause.
-
-## Course files
-
-Edit the LaTeX source, then compile the PDF from the repository root:
-
-```sh
-make programs/algorithms/curriculum/Algorithms_Mastery_Course.pdf
-```
-
-Preserve the source exercises, links, and assessment standards.
-The separate `algorithm-design-manual` repository remains ignored by `courses`.
-Learner-written exercises and their tests remain under `sessions/`.
-Keep tutor documents and visualizations beside that day's work in `sessions/YYYY-MM-DD/`.
-Open a standalone HTML visualization directly in the browser before investigating optional browser automation.
+Follow [AGENTS.md](AGENTS.md#assessments) for assessment durations, boundaries, and pauses.
+Keep learner exercises, tests, and tutor artifacts in `sessions/YYYY-MM-DD/`.
+Open standalone HTML visualizations directly in the browser before investigating optional browser automation.
+Preserve the separate `algorithm-design-manual` repository.
+See [curriculum builds](../../system/docs/curriculum-builds.md) for PDF changes.
