@@ -31,9 +31,9 @@ type learningPolicy struct {
 type sessionPolicy struct {
 	Timing string `json:"timing"`
 	Split  struct {
-		Retrieval   int `json:"retrieval"`
-		FocusedWork int `json:"focused_work"`
-		Feedback    int `json:"feedback"`
+		Retrieval       int `json:"retrieval"`
+		FocusedWork     int `json:"focused_work"`
+		FeedbackMinutes int `json:"feedback_minutes"`
 	} `json:"split,omitempty"`
 }
 
@@ -180,13 +180,13 @@ func (c *course) validate() error {
 		if !slices.Contains([]string{"budgeted", "untimed"}, s.Timing) {
 			return errors.New("session.timing must be budgeted or untimed")
 		}
-		if s.Split.Retrieval < 0 || s.Split.Feedback < 0 || s.Split.FocusedWork < 0 {
-			return errors.New("session split weights cannot be negative")
+		if s.Split.Retrieval < 0 || s.Split.FeedbackMinutes < 0 || s.Split.FocusedWork < 0 {
+			return errors.New("session split weights and feedback_minutes cannot be negative")
 		}
 		if s.Timing == "budgeted" && s.Split.FocusedWork == 0 {
 			return errors.New("budgeted sessions require a positive focused_work weight")
 		}
-		if s.Timing == "untimed" && s.Split.Retrieval+s.Split.Feedback+s.Split.FocusedWork != 0 {
+		if s.Timing == "untimed" && (s.Split.Retrieval != 0 || s.Split.FocusedWork != 0 || s.Split.FeedbackMinutes != 0) {
 			return errors.New("untimed sessions cannot define a split")
 		}
 	}

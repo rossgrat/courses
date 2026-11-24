@@ -13,6 +13,10 @@ bash course context --course algorithms
 bash course plan --course algorithms --minutes 30
 ```
 
+A 30-minute session gives you 5 minutes of retrieval, 22 minutes of focused work, and 3 minutes of feedback.
+The tutor reviews your work against the goal and gives one next action.
+See the [shared feedback process](../guidance/tutor.md#closing-feedback).
+
 After agreeing on the task and active minutes, start with the conversation identifier from the injected context:
 
 ```sh

@@ -85,18 +85,19 @@ Untimed study rejects `--minutes` and records elapsed time without a countdown.
 Its `plan` result is an empty object.
 
 A budgeted policy requires `timing: "budgeted"` and a `split` object.
-The split contains nonnegative integer weights for `retrieval`, `focused_work`, and `feedback`.
+The split contains integer weights for `retrieval` and `focused_work`, plus a fixed `feedback_minutes` budget.
 The focused-work weight must be positive.
-Zero retrieval or feedback weights disable those phases.
+A zero retrieval weight or a zero feedback budget disables that phase.
 
-The helper divides active minutes using the weights.
-It rounds retrieval and feedback to the nearest whole minute, with halves rounded up.
-Each enabled phase receives at least one minute.
-Focused work receives the remaining minutes.
-A duration that leaves no focused-work minute fails before state changes.
+The helper uses the two weights to calculate the share of active minutes for retrieval.
+It rounds retrieval to the nearest minute, with halves rounded up.
+If retrieval is enabled, it receives at least one minute.
+The helper reserves the fixed feedback budget and gives the remaining minutes to focused work.
+If the plan leaves no time for focused work, the command fails before it changes state.
 
-The current programs use weights `1`, `4`, and `1`.
-This preserves their existing split and minimum of three active minutes.
+The current programs use weights `1` and `5` and reserve three minutes for ordinary feedback.
+This gives retrieval one-sixth of the total time before rounding.
+With these settings, a session needs at least five active minutes.
 No session starts from a hook, a context read, or a plan preview.
 Changes to policy do not rewrite a session's saved budgets.
 

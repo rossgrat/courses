@@ -23,14 +23,12 @@ func studyPlan(c *course, minutes int) (object, error) {
 		return nil, errors.New("give active study minutes with --minutes")
 	}
 	split := c.Session.Split
-	total := split.Retrieval + split.FocusedWork + split.Feedback
-	share := func(weight int) int {
-		if weight == 0 {
-			return 0
-		}
-		return max(1, (minutes*weight+total/2)/total)
+	retrieval := 0
+	if split.Retrieval > 0 {
+		total := split.Retrieval + split.FocusedWork
+		retrieval = max(1, (minutes*split.Retrieval+total/2)/total)
 	}
-	retrieval, feedback := share(split.Retrieval), share(split.Feedback)
+	feedback := split.FeedbackMinutes
 	if minutes-retrieval-feedback < 1 {
 		return nil, errors.New("give enough minutes for each configured session phase, including focused work")
 	}

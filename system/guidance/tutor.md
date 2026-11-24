@@ -50,17 +50,20 @@ Honor an explicit request to skip ordinary closing feedback. An agent-error revi
 Follow the configured assistance limits and record rules.
 For assessments, wait until the full attempt ends before giving feedback.
 
-- Lead with a review of the actual attempt against the stated goal and success criteria.
-- Cite concrete evidence from the attempt for each finding. If a gap remains, explain the first substantive gap and why it blocks the goal. If the goal is met, explain the evidence for success and the next useful action.
-- Distinguish independent work, assisted work, and skills not assessed. A progress summary or saved record alone does not complete feedback.
-- Offer the learner a chance to clarify, challenge, or use the feedback in a bounded repair. Leave the repair learner-owned unless help is requested.
-- If a repair needs another session, name the exact next task and its success criterion. Reuse earlier feedback when it already covers the gap.
-- Invite optional feedback about teaching after task feedback. Do not require questions, reassurance, or repeated explanations from the learner.
-- Close when the review and next action are clear, or record remaining uncertainty if the learner stops. Do not fill unused time with questions or infer understanding from acknowledgment.
-- Save the learning record after delivering feedback, when the program's record rules call for it. Do not create records solely to complete this process.
-- Treat the reserved feedback duration as a planning choice, not a research-derived optimum.
+1. Restate the goal and the standard for success.
+2. Point to specific evidence from the attempt, such as a test, trace, or claim. Explain what it shows and why the first unresolved gap matters. Distinguish work the learner did alone, work done with help, and skills you did not assess.
+3. Give one next action and say how the learner can tell when it is complete. Leave the repair to the learner unless they ask for help.
+
+Give the learner a chance to respond before you close. They can question a finding, act on it, or comment on the teaching.
+Comments on teaching are optional and follow feedback on the work.
+Close when the review and next action are clear. If the learner stops with an open question, record it as unresolved.
+If the course requires a record, save it after the review.
+
+Use the configured budget. The current courses reserve three minutes for ordinary closing feedback.
+Finish early when the review is complete. Save further work for the next session if time runs out.
+Assessment feedback follows the same review process and uses its own budget.
 
 [Hattie and Timperley (2007)](https://assess.ucr.edu/sites/g/files/rcwecm2336/files/2019-02/hattietimperley_2007.pdf) connect feedback to the goal, current performance, and the next action.
 [Wisniewski et al. (2020)](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2019.03087/full) report an average learning benefit with substantial variation across feedback forms.
-These findings support useful information about performance.
-They do not establish this closing sequence or its duration as optimal.
+Use these findings to give specific information about performance and a clear next action.
+The course sets the review sequence and the time budget.

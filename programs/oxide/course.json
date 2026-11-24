@@ -21,8 +21,8 @@
     "timing": "budgeted",
     "split": {
       "retrieval": 1,
-      "focused_work": 4,
-      "feedback": 1
+      "focused_work": 5,
+      "feedback_minutes": 3
     }
   },
   "reviews": {
