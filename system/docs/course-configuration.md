@@ -66,7 +66,7 @@ A working artifact alone does not establish independent understanding.
 
 Optional `learning.guidance` lists shared Markdown files relative to the repository root.
 Every listed file must exist.
-The four current programs select `system/guidance/tutor.md`.
+The current programs select `system/guidance/tutor.md`.
 Its [closing feedback process](../guidance/tutor.md#closing-feedback) applies to every program that selects it.
 Keep general feedback rules in that shared guidance and subject-specific criteria in each program.
 Course context supplies the selected policy and guidance paths to the agent.
@@ -133,8 +133,8 @@ Allowed durations must be positive and strictly increasing.
 Feedback requires at least one minute.
 Each split duration must appear in the allowed duration list.
 
-Only Algorithms currently defines timed assessments: 45, 60, or 90 minutes, plus 15 feedback minutes.
-Only its 90-minute assessment permits an agreed session boundary.
+Algorithms and Algorithms Fun define timed assessments of 45, 60, or 90 minutes, plus 15 feedback minutes.
+In both programs, only a 90-minute assessment permits an agreed session boundary.
 Infrastructure failures remain a separate allowed pause reason.
 Ordinary session timing does not change assessment limits.
 

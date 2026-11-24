@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "id": "algorithms-fun",
+  "name": "Algorithms Fun",
+  "sources": [
+    {
+      "path": "curriculum/Algorithms_Fun_Course.tex",
+      "format": "latex"
+    }
+  ],
+  "learning": {
+    "driver": "curriculum",
+    "agent_role": "tutor",
+    "explanations": "on_request",
+    "implementation": "on_request",
+    "guidance": [
+      "system/guidance/tutor.md"
+    ]
+  },
+  "session": {
+    "timing": "budgeted",
+    "split": {
+      "retrieval": 1,
+      "focused_work": 5,
+      "feedback_minutes": 3
+    }
+  },
+  "reviews": {
+    "interval_days": [2, 7, 21, 42],
+    "weekdays_only": true
+  },
+  "initial": {
+    "stage": 1,
+    "language": "Go",
+    "unit": "Festival Replay: Reasoning, complexity and correctness",
+    "next_task": "Stage 1: Read the sample gate log and build the first event lookup. Stop after demonstrating a hit and a missing ID."
+  },
+  "weekday_work": [
+    "Read one short example for the next feature",
+    "Reconstruct one piece from memory and test it",
+    "Build a feature or solve a related practice problem",
+    "Change one rule and see what breaks",
+    "Retrieve older work and solve mixed, unlabeled problems",
+    "No scheduled session",
+    "No scheduled session"
+  ],
+  "assessment": {
+    "minutes": [45, 60, 90],
+    "feedback": 15,
+    "split_minutes": [90]
+  }
+}

@@ -3,6 +3,7 @@
 Personal learning programs with their own sources, teaching rules, and optional progress records:
 
 - [Algorithms](programs/algorithms/)
+- [Algorithms Fun](programs/algorithms-fun/)
 - [Trading Engineering](programs/trading-engineer/)
 - [Oxide Systems Engineering](programs/oxide/)
 - [Music Technology Engineering](programs/music-technology/)
