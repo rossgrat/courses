@@ -1,0 +1,18 @@
+WIRE ab1 cam edit 3
+CONNECT cam mux
+WIRE ab2 cam edit 6
+WIRE bc edit mux 2
+WIRE cd mux wall 4
+CONNECT cam wall
+WIRING
+CUTS
+INSPECT edit
+ARROW cam edit
+ARROW edit cam
+ARROW edit mux
+ARROW mux wall
+GROUPS
+CHILD cam edit
+CHILD edit mux
+CHILD cam wall
+ANCESTOR mux wall

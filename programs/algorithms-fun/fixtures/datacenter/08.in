@@ -1,0 +1,9 @@
+CAP S H 4
+CAP S J 2
+CAP H T 2
+CAP H J 1
+CAP J T 3
+FLOW S T
+FIT build W1 W2
+FIT test W1
+ASSIGN

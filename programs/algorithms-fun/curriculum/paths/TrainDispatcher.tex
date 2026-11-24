@@ -1,0 +1,612 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Train Dispatcher}
+\hypersetup{pdftitle={Train Dispatcher}}
+\begin{document}
+\coursecover
+  {Train Dispatcher}
+  {Algorithms Fun, Path 2 of 5}
+  {Run a fictional elevated line through one messy morning.}
+  {First demo}
+  {Correct the first departures on the board.}
+  {A timetable is a promise. The dispatcher has to keep as many as it can.}
+  {At the end, close a track and compare two ways to get trains moving.}
+\tableofcontents
+\clearpage
+\section{Before the first run}
+The Loop branch shares a short track with trains going to the yard. There is room for one train at a time. You inherit a departure board first, then the map, then the job of keeping the line moving through a closure. Use integer ticks for the toy timetable and draw the map in the terminal.
+
+Each milestone is several short work blocks. Pick one numbered step for today's block. When it works, keep the working version and change one rule. Set aside the named case for a fresh check later.
+
+Use a small Go workspace with this path's own files. Use standard input and output for the supplied cases. Each case names an input and an expected output in \texttt{fixtures/trains}.
+
+From your project workspace, set the fixture directory to its absolute path in this repository. Capture output before comparing it. The comparison reports the first lines that differ.
+\begin{samepage}
+\small
+\begin{verbatim}
+go run . < "$fixture_dir/01a.in" > actual.txt &&
+diff -u "$fixture_dir/01a.out" actual.txt
+\end{verbatim}
+\end{samepage}
+
+If you need a workspace, create a Go module in an empty folder and add a main package. The program reads one command per line. Start with the command in the first numbered step. A silent diff means the outputs match.
+
+Build the commands in each milestone in the order shown. A case can use features from earlier milestones in this path. Treat each case as a fresh run unless the milestone says otherwise. Follow the input rules and exact output spellings in the case. Setup commands are silent. A query uses only setup rows above it.
+
+A small direct reference is a second way to answer a question on a tiny input. Use it to look for disagreements. When two answers differ, shrink the input until you can explain the difference. Keep a short note for each milestone with the demo, the strongest check, and what limits the build.
+
+The final demo belongs to this path. Finish it before you start another path. Your tutor can review a short unfamiliar case after a milestone or after a delay. The next path starts from its own first fixture.
+
+\clearpage
+
+\section{Repair the departure board}\label{trains:01}
+
+Three departures get entered in the wrong order. Two have the same departure time. Before the next train leaves, riders need a lookup that actually agrees with the board.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read TRAIN records with a nonnegative tick, unique ID, and destination. FIND ID prints tick, ID, and destination, or missing followed by the ID. Start with that one query.
+\item Add BOARD. Print all train IDs by tick, then ID. Keep the original records and fields. Treat equal ticks as separate trains.
+\item Keep two small inputs. Use one to compare what a scan reads. Use the other to count how much work it takes to produce the same board after a shuffle.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{01a.in} and \texttt{01a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAIN 8 d3 West
+TRAIN 2 d2 Yard
+TRAIN 2 d1 Loop
+FIND d2
+FIND d9
+
+Expected output
+2 d2 Yard
+missing d9
+\end{verbatim}
+\end{samepage}
+
+Use \texttt{01.in} and \texttt{01.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAIN 8 d3 West
+TRAIN 2 d2 Yard
+TRAIN 2 d1 Loop
+FIND d1
+BOARD
+
+Expected output
+2 d1 Loop
+d1 d2 d3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Test the first line, last line, missing ID, no departures, and ties. Verify the sorted board contains each ID once. Change the tie direction and keep the records consistent.
+
+Count lookups and reorder work separately. Add a test for a bracketed announcement label. A sequence that closes a different type of bracket should fail even when counts balance.
+
+\subsection*{Stop here}
+
+Print a hit, a miss, and exactly one board for the shuffled three-train case.
+
+\clearpage
+
+\section{Find when the platform filled}\label{trains:02}
+
+The crowd report lists passengers entering and leaving. The afternoon operator wants the span that explains the change and the shortest stretch that includes the required scanner badges.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item DELTA supplies signed changes at successive positions. SUM i j reports the total on the half-open span. TARGET t reports the number of nonempty spans totaling t. Start by checking every candidate on tiny input.
+\item SCAN supplies badge IDs. LONGEST finds the longest span with all different badges. COVER gives the required badge IDs with repeats and asks for a shortest containing span. Use earlier start for ties and none for no answer.
+\item Add a fixed-width demand reading and an index for counts by badge. Compare two sorted lists of badge IDs and return their common IDs.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{02.in} and \texttt{02.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+DELTA 2 -1 0 1
+SCAN A B A C B
+SUM 1 4
+TARGET 1
+LONGEST
+COVER A A C
+
+Expected output
+0
+4
+[1,4)
+[0,4)
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Change TARGET from existence to count to positions and show which indexes are still useful. Test a signed case where a naive moving range misses a valid result. Try a cap on badge repeats and an exact-count query.
+
+Deliberately repeat a badge and test smallest unused positive badge numbers. Compare with sorting a copy for small inputs. Account for stored keys, repeated totals, and index work.
+
+\subsection*{Stop here}
+
+Show one span a platform manager can check against the original records. Explain why passengers leaving do not break it.
+
+\clearpage
+
+\section{Open the gates without loading the city}\label{trains:03}
+
+At rush hour, every station sends a departure stream. The board must show ties correctly, and the staff need a bound on group size before opening the gates.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TIMES supplies sorted departure ticks. AT t gives the half-open position bounds of tick t. For GROUPS, return the minimum capacity to serve positive group sizes in at most two contiguous batches.
+\item FEED provides tick:ID pairs already sorted by tick and ID. MERGE shows the final ID order while keeping just the next record from each feed. Start with one feed, then add a second with a tie.
+\item DEMAND provides successive crowd readings. PEAK w prints the maximum in each full width-w window. Do the same for the median after each arrival as a separate command.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{03.in} and \texttt{03.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TIMES 2 2 5 9
+AT 2
+GROUPS 3 1 4 2
+FEED east 2:a 9:d
+FEED west 2:b 5:c
+MERGE
+DEMAND 4 1 7 2
+PEAK 2
+
+Expected output
+[0,2)
+capacity 6
+a b c d
+4 7 7
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Check boundaries before the first tick and after the last. Enumerate all group splits on the sample and prove your fixed-capacity check. Change the booking rule so one formerly valid capacity no longer implies that larger ones are valid.
+
+Compare merge with the board sort. Count queue entries as the feeds grow. Check rolling maxima and medians against direct scans. On readings [2,1,2], find the largest rectangular occupancy block, area 3. Check a signed-span target with a negative in the middle.
+
+\subsection*{Stop here}
+
+Merge two feeds with bounded retained records and explain which checks need the full history.
+
+\clearpage
+
+\section{Get the crew through a locked station}\label{trains:04}
+
+A blocked corridor makes the simple walking route useless. The crew also needs to know which readiness jobs can run before the doors open.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item ROOM records a numeric label and left and right child, with a dash for an empty child. Save a tree and load it again. ORDER prints its preorder. ANCESTOR returns the closest common ancestor. Add a best-scoring path with numeric labels as scores.
+\item MAP gives three grid rows. S is the start, G is the goal, and a hash blocks walking. Move in four directions. WALK prints the shortest route as lowercase direction words and the move count.
+\item AFTER a b says a must finish before b. READY prints any valid order or cycle. Keep the map and prerequisite graph separate.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{04.in} and \texttt{04.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+ROOM 6 2 9
+ROOM 2 - 4
+ROOM 4 - -
+ROOM 9 - -
+ORDER 6
+ANCESTOR 4 9
+MAP S.. ##. G..
+WALK
+AFTER power signal
+AFTER signal door
+READY
+
+Expected output
+6 2 4 9
+6
+right right down down left left
+6
+power signal door
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Round-trip a missing child and compare recursive and explicit-stack traversals. Test an all-negative path and an ordered tree that violates its bound deep below the root. Compare a skewed tree with a balanced tree.
+
+Mark disconnected walkable regions. Close the last corridor and report no route. Add a pass that can open one blocked link. Explain which state must accompany a location. Add a prerequisite cycle and show its witness.
+
+\subsection*{Stop here}
+
+Draw a legal shortest route and a valid crew order from the fixtures. Then show both failure modes.
+
+\clearpage
+
+\section{Decide who gets the single track}\label{trains:05}
+
+A fast transfer can change the best route. On the single-track section, one optimistic reservation can block two short trains. Build the routing and reservation decisions as separate modes.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item EDGE supplies a directed link and integer minutes. FAST prints minimum minutes and the route. LIMIT adds a maximum edge count. Start with nonnegative costs, then test zero-one links, signed credits, and a directed acyclic map.
+\item REQUEST gives ID and half-open start/end ticks. SELECT returns a maximum-count feasible set for one track. PEAK reports the largest number of simultaneous requests before admission.
+\item Assign numbers to train value and test a case where the most reservations has lower total value. Compare a minimum-cost route with a minimum-cost network connecting all stations.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{05.in} and \texttt{05.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EDGE S P 4
+EDGE S Q 2
+EDGE Q P 1
+EDGE P T 2
+EDGE Q T 7
+FAST S T
+LIMIT S T 2
+REQUEST A 0 2
+REQUEST B 2 5
+REQUEST C 1 4
+SELECT
+PEAK
+
+Expected output
+5 S Q P T
+6 S P T
+A B
+2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Compare route results with enumerated paths on a tiny graph. Add a one-use discount and a case where the upper limit still matters. Test a reachable improving cycle in the signed model. Record what changes in the allowed state.
+
+Check SELECT against every subset and explain why your chosen ordering works. Two reservations can touch at a tick. Set scores A=2, B=3, C=6. The best value is 6 with C.
+
+\subsection*{Stop here}
+
+Show one query where the edge limit changes the path and one where end/start ties keep both reservations.
+
+\clearpage
+
+\section{Fit maintenance into the night}\label{trains:06}
+
+Work trains have two hours and more jobs than they can finish. You want an exact answer on a small yard before you try it on a big one.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Enumerate service orders with eligibility and a simple precedence constraint. Check every small order and show the number of distinct results. Change whether two trains count as interchangeable.
+\item JOB gives ID, cost, and payoff for one optional job. BUDGET returns the best payoff and its selected IDs. COUNT returns the number of distinct choices with exact cost. Keep an exhaustive checker for tiny sets.
+\item JOIN gives lengths of adjacent work blocks. A join costs the combined length. Return the least total joining cost. DEPOTS gives a line of stations one unit apart and asks for the sum of distances from each possible depot.
+\item Add a subset route that must visit specified stations. Try a branching station tree and weighted edges. Derive each state and compare direct results before removing stored values.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{06.in} and \texttt{06.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+JOB A 2 4
+JOB B 3 5
+JOB C 5 8
+BUDGET 5
+COUNT 5
+JOIN 2 4 5
+DEPOTS A B C D
+
+Expected output
+9 A B
+2
+17
+6 4 4 6
+\end{verbatim}
+\end{samepage}
+
+For a later block, use TRAVEL for a two-way link and VISIT to find the cheapest route that starts at the first named place and visits each other named place once. Finish anywhere. GAIN gives a score for one step. NEXT gives a directed link in a cycle-free workflow. CHAIN returns the largest total score on a path from the named start to finish. RISE returns the length of a strictly increasing subsequence. Use one command at a time and compare with enumeration before handling every command in the case.
+
+Use \texttt{06a.in} and \texttt{06a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAVEL yard elm 3
+TRAVEL yard lake 9
+TRAVEL elm lake 2
+VISIT yard elm lake
+GAIN power 3
+GAIN signal 4
+GAIN clean 1
+GAIN open 2
+NEXT power signal
+NEXT signal open
+NEXT power clean
+NEXT clean open
+CHAIN power open
+RISE 3 1 2 5 4
+
+Expected output
+5 yard elm lake
+9
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Give an example where a locally cheap maintenance join leads to a larger bill. Compare recursion with saved results and dependency-order evaluation. Return the chosen jobs even if you reduce the working table.
+
+Finish weighted track reservations. Add a small increasing sequence of departure readings, a best value along a prerequisite chain, and a digit constraint on service IDs. Check each with direct enumeration before trying more efficient states.
+
+\subsection*{Stop here}
+
+Print a maintenance plan, a defensible price, and two candidate depots you can verify by walking the four-stop line.
+
+\clearpage
+
+\section{Answer the radio and correct the counter}\label{trains:07}
+
+The controller hears the same code twice with overlapping calls. A corrected passenger count should immediately change what the system reports about that part of the day.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TAG supplies a station name. COMPLETE prefix prints matching names in lexical order. RADIO supplies a single string. HEAR phrase lists all zero-based offsets, including overlaps. Decide what unit an offset uses.
+\item COUNTS gives one reading per tick from zero. SUM i j totals [i,j). SET i value replaces a reading. RAISE i j amount adds to [i,j), and MIN reports the least reading in a nonempty range.
+\item Run small cases with direct matching and a plain array. Test processing a batch of questions after reordering them. Find the k-th occupied tick and compare static minimum queries.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{07.in} and \texttt{07.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TAG north
+TAG north-yard
+TAG west
+COMPLETE north
+RADIO ABABABA
+HEAR ABA
+COUNTS 4 2 5
+SUM 0 2
+SET 1 3
+SUM 0 2
+RAISE 1 3 2
+MIN 1 3
+
+Expected output
+north north-yard
+0 2 4
+6
+7
+5
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Cover a repeated prefix, a miss, the empty phrase, and a cue palindrome by prepending the fewest letters. Find a fingerprint collision and state the equality check that settles it.
+
+Use nonconsecutive timestamps in a second run. Preserve order when compressing ticks. Compare online updates, an offline sweep, and a static block index against the same small array.
+
+\subsection*{Stop here}
+
+Fix one count and show the changed aggregate. Find all overlapping radio hits without losing the second call.
+
+\clearpage
+
+\section{Find the switch that can strand the line}\label{trains:08}
+
+An inspection worker says one switch matters. The control room asks whether another track with the same endpoints changes that answer. It also needs a credible flow limit and platform assignment.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Add identified undirected track links. Query connectivity as links open. Choose a minimum-cost connected set of tracks. Find bridges and produce a trail using each track ID once where possible.
+\item Use a separate one-way map to group mutually reachable stations and build the condensed map. Add fast ancestor queries to the station tree.
+\item CAP gives a directed capacity. THROUGHPUT gives the most flow from a source to a sink in one interval. FIT lists which platform each train can occupy. ASSIGN reports the maximum count with one train per platform.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{08.in} and \texttt{08.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CAP S A 3
+CAP S B 2
+CAP A T 2
+CAP A B 1
+CAP B T 3
+THROUGHPUT S T
+FIT X P1 P2
+FIT Y P1
+ASSIGN
+
+Expected output
+5
+2
+\end{verbatim}
+\end{samepage}
+
+Start with the physical map. WIRE adds an edge with an ID, its endpoints, and its cost. CONNECT asks whether two named vertices are linked through open edges at that point in the input. If a name has not appeared in a wire row, report false. WIRING prints the cheapest total connecting cost. CUTS lists bridge IDs in lexical order. INSPECT starts at the named vertex and uses each edge once. Use the lexically smallest valid edge-ID sequence. ARROW belongs to a separate directed map. GROUPS lists groups in order of their smallest member, with members in lexical order. CHILD gives a parent-child pair in a separate tree. ANCESTOR gives the lowest common ancestor. Add capacity and staffing only after these map checks work.
+
+Use \texttt{08a.in} and \texttt{08a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WIRE ab1 loop north 2
+CONNECT loop spur
+WIRE ab2 loop north 5
+WIRE bc north spur 1
+WIRE cd spur yard 4
+CONNECT loop yard
+WIRING
+CUTS
+INSPECT north
+ARROW loop north
+ARROW north loop
+ARROW north spur
+ARROW spur yard
+GROUPS
+CHILD loop north
+CHILD north spur
+CHILD loop yard
+ANCESTOR spur yard
+
+Expected output
+false
+true
+7
+bc cd
+ab1 ab2 bc cd
+loop,north | spur | yard
+loop
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Remove each individual edge in a tiny reference graph. With two A--B links and one B--C link, only B--C is a bridge. B,A,B,C is a trail using all three. On A->B, B->A, B->C, the groups are \{A,B\} and \{C\}.
+
+Supply a flow and a cut of value 5. Enumerate tiny platform assignments. Define why an eligible graph match corresponds exactly to a feasible assignment.
+
+\subsection*{Stop here}
+
+Explain the switch failure in terms of edge IDs and show a case where a parallel track changes the answer.
+
+\clearpage
+
+\section{Check the map at midnight}\label{trains:09}
+
+Drawing a crossing does not prove two tracks touch. Meanwhile, the overnight service has repeating gaps and an ID convention. Give both operations exact answers.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item CROSS gives two integer-coordinate segments. Print their intersection as reduced coordinates for the nonparallel single-point case. Add explicit behavior for no intersection and for overlapping collinear segments.
+\item SYNC gives two periods starting from tick zero. Return the first positive tick when both reset. INV asks for the inverse stride modulo a cycle. DIGITS counts IDs 1 through a limit containing a digit.
+\item Compare the ID count with direct enumeration. Change the base, count two overlapping rules, and use a bit representation for service flags. Test greatest common divisor and modular exponentiation.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{09.in} and \texttt{09.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CROSS 0 0 10 5 0 5 10 0
+SYNC 8 12
+INV 3 8
+DIGITS 25 2
+
+Expected output
+5 5/2
+24
+3
+8
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Count the IDs 1 through 24 divisible by 3 or 4. Include endpoint contact, vertical and duplicate points in the map. Show where there is no modular inverse.
+
+Normalize a slope and explain how you avoid comparing rounded coordinates for equality. Set a coordinate bound and account for intermediate products.
+
+\subsection*{Stop here}
+
+Print the exact crossing and recurring service tick. Use one map or schedule case that made your first approach lie.
+
+\clearpage
+
+\section{Close the track during rush hour}\label{trains:10}
+
+At tick 2 the track is closed until tick 4. The first train is too long to clear the line before the closure. A shorter train arrives while it is waiting. Decide what your dispatcher can do.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item ARRIVAL gives ID, arrival tick, and travel duration. CLOSE blocks the half-open interval. For FIFO, process trains in arrival order and place each at its earliest feasible time after the previous reservation.
+\item For BACKFILL, allow a later-arriving train to take a gap before the first planned reservation if it fits without delaying that reservation. For the fixture, print the ID and interval in start order, then the total wait. Wait is departure minus arrival.
+\item Combine route availability with reservation events on a small map. In an extension, compare paths after a detour, or add fast range queries over a tree of stations. Run a direct checker on tiny inputs.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{10.in} and \texttt{10.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+ARRIVAL X 0 4
+ARRIVAL Y 1 1
+CLOSE 2 4
+FIFO
+BACKFILL
+
+Expected output
+X [4,8) Y [8,9) wait 11
+Y [1,2) X [4,8) wait 4
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Prove every reported interval respects arrival, closure, and single-track occupancy. Include an end at closure start and a start at closure end. Compare waiting totals on the same arrivals.
+
+Run a larger synthetic rush hour. Demonstrate a case where the policies agree and one where they differ. Explain what your chosen dispatch objective measures. Record one unsolved limitation of the policy.
+
+\subsection*{Stop here}
+
+Replay the two policies on the same closure and give the controller a concrete recommendation for the toy line. Finish the path before opening the Visuals Engine.
+
+\end{document}

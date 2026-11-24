@@ -1,0 +1,11 @@
+ROOM 6 2 9
+ROOM 2 - 4
+ROOM 4 - -
+ROOM 9 - -
+ORDER 6
+ANCESTOR 4 9
+MAP S.. ##. G..
+WALK
+AFTER power signal
+AFTER signal door
+READY

@@ -1,0 +1,607 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Groovebox}
+\hypersetup{pdftitle={Groovebox}}
+\begin{document}
+\coursecover
+  {Groovebox}
+  {Algorithms Fun, Path 1 of 5}
+  {Build a small instrument that plays a beat you would keep.}
+  {First demo}
+  {Get an eight-step beat into the right order.}
+  {Give the machine rules. Listen to what those rules make.}
+  {Finish with a 32-bar arrangement and a fill worth saving.}
+\tableofcontents
+\clearpage
+\section{Before the first run}
+A friend sends you an eight-step loop. It looks right in the notebook and plays the snare before the kick. The first build is a way to see what the instrument thinks it received. By the end, the same program will generate a fill and play it into a 32-bar arrangement.
+
+Each milestone is several short work blocks. Pick one numbered step for today's block. When it works, keep the working version and change one rule. Set aside the named case for a fresh check later.
+
+Use a small Go workspace with this path's own files. Use standard input and output for the supplied cases. Each case names an input and an expected output in \texttt{fixtures/groovebox}.
+
+From your project workspace, set the fixture directory to its absolute path in this repository. Capture output before comparing it. The comparison reports the first lines that differ.
+\begin{samepage}
+\small
+\begin{verbatim}
+go run . < "$fixture_dir/01a.in" > actual.txt &&
+diff -u "$fixture_dir/01a.out" actual.txt
+\end{verbatim}
+\end{samepage}
+
+If you need a workspace, create a Go module in an empty folder and add a main package. The program reads one command per line. Start with the command in the first numbered step. A silent diff means the outputs match.
+
+Build the commands in each milestone in the order shown. A case can use features from earlier milestones in this path. Treat each case as a fresh run unless the milestone says otherwise. Follow the input rules and exact output spellings in the case. Setup commands are silent. A query uses only setup rows above it.
+
+A small direct reference is a second way to answer a question on a tiny input. Use it to look for disagreements. When two answers differ, shrink the input until you can explain the difference. Keep a short note for each milestone with the demo, the strongest check, and what limits the build.
+
+The final demo belongs to this path. Finish it before you start another path. Your tutor can review a short unfamiliar case after a milestone or after a delay. The next path starts from its own first fixture.
+
+\clearpage
+
+\section{The beat that arrived backward}\label{groovebox:01}
+
+The snare and kick land on the same tick. The notes came from two takes, and the file keeps the order they arrived. Build a tiny player you can question before you trust it.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read HIT records with a tick, unique ID, instrument, and velocity. Ticks are 0 through 7. Velocity is an integer from 1 to 127. In the first block, implement FIND. Print the record without HIT, or print missing followed by the ID.
+\item In the next block add ORDER. Print the IDs by ascending tick, then ascending ID for ties. Preserve every field. Keep the original input order available for inspection.
+\item Add GRID lane. Print eight characters for that instrument, with x at every occupied tick and a dot elsewhere. Try the grid with one sound you already use. A text preview is enough for the fixture.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{01a.in} and \texttt{01a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+HIT 7 h4 hat 55
+HIT 0 h2 snare 90
+HIT 0 h1 kick 110
+HIT 4 h3 kick 100
+FIND h2
+FIND h9
+
+Expected output
+0 h2 snare 90
+missing h9
+\end{verbatim}
+\end{samepage}
+
+Use \texttt{01.in} and \texttt{01.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+HIT 7 h4 hat 55
+HIT 0 h2 snare 90
+HIT 0 h1 kick 110
+HIT 4 h3 kick 100
+ORDER
+GRID kick
+
+Expected output
+h1 h2 h3 h4
+x...x...
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Shuffle the four records and run ORDER again. Test an empty pattern and two hits from the same lane at one tick. The grid marks the tick once. The ordered event list keeps both hits.
+
+Predict how many records FIND reads when the ID is first, last, or missing. Count comparisons on a small ordered run. Explain why each hit appears exactly once.
+
+\subsection*{Stop here}
+
+Show the two FIND results first. End this milestone when someone else can shuffle the input and still get the same beat.
+
+\clearpage
+
+\section{Find the part that makes the fill work}\label{groovebox:02}
+
+The drummer likes the fill but cannot point to its exact boundary. Give the arranger a way to ask for a short stretch with the sounds it needs.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read CHANGE followed by signed changes in intensity and LANES followed by sound names. Each sequence has its own positions. A span [i,j) starts at i and ends before j. SUM i j returns the signed total.
+\item MATCHSUM target lists all nonempty spans with that total, in order of start and then end. Start with direct enumeration, then build a version that can count matches without listing them. Count sounds or hits by label when you add an index.
+\item UNIQUE returns the longest nonempty span with no repeated sound. COVER lists a required set of sounds with repeats and returns the shortest satisfying span. Break ties by earlier start. Return none if no span qualifies.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{02.in} and \texttt{02.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CHANGE 3 -2 0 2
+LANES kick hat kick clap ride kick
+SUM 1 4
+MATCHSUM 1
+UNIQUE
+COVER kick kick clap
+
+Expected output
+0
+2 [0,2) [0,3)
+[1,5)
+[0,4)
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Check repeated totals, zeros, and a negative value that makes a shrinking-sum rule fail. Change MATCHSUM to answer existence, then count, then positions. Explain which stored information each question needs.
+
+Ask for two hats when there is one. Add a fixed-width intensity query and a repeat limit per sound. Try the exact-count variant after comparing at-most counts. In a tiny sample-bank test with occupied slots 1, 3, 4, find the first unused positive slot without a second array. The answer is 2.
+
+\subsection*{Stop here}
+
+Print the two candidate spans you would listen to. Show a direct check for the case that would have fooled your first attempt.
+
+\clearpage
+
+\section{Keep the downbeat under load}\label{groovebox:03}
+
+A usable loop becomes eight separate instrument lanes. Loading the full take stalls the preview. Get the playback order and basic diagnostics while reading one lane at a time.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TICKS supplies an already ordered list of event ticks. AT tick prints the half-open position range for that tick. Test a tick that appears at both an end and a tie. For WORK, find the minimum capacity for at most two contiguous batches of nonnegative preparation costs.
+\item LANE supplies one ordered input stream as tick:ID pairs. MERGE prints the combined IDs by tick and ID. Read only the next pending hit from each lane. Record how many candidates remain in memory as input size grows.
+\item LOAD gives successive integer measurements. PEAK width prints the largest reading in each full window. MEDIANS prints the median after each new reading, with a .5 when needed.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{03.in} and \texttt{03.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TICKS 1 4 4 9
+AT 4
+WORK 3 1 4 2
+LANE A 1:a 4:d
+LANE B 2:b 4:c
+MERGE
+LOAD 5 2 7 4
+PEAK 2
+MEDIANS
+
+Expected output
+[1,3)
+capacity 6
+a b c d
+5 7 7
+5 3.5 5 4.5
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Compare AT with a scan on empty and equal inputs. Check capacity by trying each split. Change the job rule so capacity no longer makes feasibility monotone.
+
+Compare MERGE with your earlier sort. Count pushes and removals for PEAK. In a short diagnostic, find the next higher reading and the tallest-area block in [2,1,2]. The block area is 3. Find the shortest span in [2,-1,2] totaling at least 3. Its length is 3.
+
+\subsection*{Stop here}
+
+Stream two separate lanes and prove the preview does not keep the whole take in memory.
+
+\clearpage
+
+\section{Get from the intro to the drop}\label{groovebox:04}
+
+Some scenes share a sound bank. Other changes need a warm-up. The arranger needs a saved snapshot and a route that sounds intentional.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item NODE describes an integer scene score and its left and right children. A dash marks a missing child. Save and reload the hierarchy. PREORDER root prints root, left subtree, right subtree. PATHSCORE root prints the best score on a connected path. Add a common-ancestor query and an ordered lookup.
+\item EDGE describes a directed transition with an integer cost. FEWEST returns a route with the fewest moves. CHEAPEST returns its lowest cost and path for nonnegative costs. Start by drawing the graph and checking one result by hand.
+\item Track prerequisite actions in a separate directed graph. Report an execution order or a cycle. Add a limited-use effect pass or a transition limit. Explain which route history must now be kept.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{04.in} and \texttt{04.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+NODE 6 2 9
+NODE 2 - 4
+NODE 4 - -
+NODE 9 - -
+PREORDER 6
+PATHSCORE 6
+EDGE start lift 4
+EDGE start hats 1
+EDGE hats lift 1
+EDGE lift drop 2
+FEWEST start drop
+CHEAPEST start drop
+
+Expected output
+6 2 4 9
+21
+2 start lift drop
+4 start hats lift drop
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Round-trip an empty and a deep scene. In an all-negative scene, the highest single node must still be a candidate. Explain which path information can extend to a parent.
+
+Try equal costs, costs of zero and one, and a signed transition graph with and without a reachable improving cycle. Use a small independent reference to check route costs. Add an isolated scene and make the dependency order reject a cycle.
+
+\subsection*{Stop here}
+
+Save a scene tree, load it again, and show two routes whose best choice depends on what the listener cares about.
+
+\clearpage
+
+\section{Leave room for the downbeat}\label{groovebox:05}
+
+Two effects fight for the same channel. The fill generator also has a habit of putting every hit next to the next one. Give it rules a musician could actually use.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item REQUEST name start end describes a proposed half-open booking on one effect channel. SELECT prints a feasible set with the most requests. PEAK prints the largest number of overlapping requests before admission.
+\item FILL start end names two distinct sounds. Place them in two distinct integer positions from start through end inclusive. Leave at least one empty position between hits. Return the number of ordered fills. Show that each placement can be generated once.
+\item Add scores to the requests. Find a case where the policy that admits the most requests loses on score. Save this case for the next milestone.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{05.in} and \texttt{05.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+REQUEST wash 0 2
+REQUEST sweep 2 5
+REQUEST glitch 1 4
+SELECT
+PEAK
+FILL 1 4 hat clap
+
+Expected output
+wash sweep
+peak 2
+fills 6
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Compare SELECT with all subsets on small cases. Show why an end at tick 2 and a start at tick 2 can share the channel. Find a sort rule that gives the wrong answer.
+
+Show all six labelled fills once. With two identical hats the count becomes three. Test a window too short for a fill. Count visited branches and outputs separately.
+
+\subsection*{Stop here}
+
+Run a fill with a protected gap and show why the selection rule cannot accidentally book the same channel twice.
+
+\clearpage
+
+\section{Choose what earns a place in the mix}\label{groovebox:06}
+
+The best-sounding effects can exceed the CPU budget. Find an arrangement you can defend, then make a small planner for preparing it.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item HITOPTION ID cost score presents one optional hit. BEST budget returns the highest score and the IDs used. EXACT budget counts distinct subsets with exactly that cost. Compare exhaustive search, saved recursive results, and dependency-order evaluation on small inputs.
+\item MERGECOST gives adjacent render spans. Joining two adjacent spans costs their combined length, and the resulting span can join again. Return the minimum total cost. Think about what a lowest-cost final join has to split.
+\item ROOTS gives a chain of named mix zones. Report, for each possible root, the total distance to the other zones. Extend to a branching tree and avoid repeating every walk.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{06.in} and \texttt{06.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+HITOPTION A 2 4
+HITOPTION B 3 6
+HITOPTION C 4 7
+HITOPTION D 1 1
+BEST 5
+EXACT 5
+MERGECOST 2 4 5
+ROOTS A B C D
+
+Expected output
+10 A B
+2
+17
+6 4 4 6
+\end{verbatim}
+\end{samepage}
+
+For a later block, use TRAVEL for a two-way link and VISIT to find the cheapest route that starts at the first named place and visits each other named place once. Finish anywhere. GAIN gives a score for one step. NEXT gives a directed link in a cycle-free workflow. CHAIN returns the largest total score on a path from the named start to finish. RISE returns the length of a strictly increasing subsequence. Use one command at a time and compare with enumeration before handling every command in the case.
+
+Use \texttt{06a.in} and \texttt{06a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAVEL drum bass 2
+TRAVEL drum hats 7
+TRAVEL bass hats 3
+VISIT drum bass hats
+GAIN load 1
+GAIN kit 4
+GAIN tap 3
+GAIN play 2
+NEXT load kit
+NEXT kit play
+NEXT load tap
+NEXT tap play
+CHAIN load play
+RISE 3 1 2 5 4
+
+Expected output
+5 drum bass hats
+7
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Try a budget large enough that values, not input length, drive the cost of the table. Return an actual set after optimizing score. For the adjacent render case, enumerate both first joins by hand. Revisit the weighted bookings from the preceding milestone.
+
+Add a tiny subset route that visits two sound banks once each. Compare checking every order with keeping a record for each visited set. For short sequences, try an increasing-intensity subsequence, a directed chain of scene prerequisites, and an ID digit rule from milestone 9. Explain what can be discarded when you store less state.
+
+\subsection*{Stop here}
+
+Audition the chosen fill and demonstrate that the shorter or cheaper plan still meets the stated rules.
+
+\clearpage
+
+\section{Find a cue and fix the timeline}\label{groovebox:07}
+
+The cue editor has to find an exact phrase, including overlapping repeats. It also needs to answer how much processing a region needs after you edit one reading.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TAG adds a named preset. COMPLETE prefix lists matching tags in lexical order. TEXT supplies a cue string. MATCH phrase returns all zero-based offsets, including overlaps. State whether offsets are bytes or Unicode code points.
+\item READINGS sets values at consecutive ticks from 0. SUM i j returns the total on [i,j). SET changes one tick. ADD changes all values in a half-open range. MIN reports the smallest value in one nonempty range.
+\item Compare repeat workloads against direct matching and a plain array. Keep separate totals and minima when that makes the update rules easier to defend.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{07.in} and \texttt{07.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TAG beat-dry
+TAG beat-wet
+TAG pad
+COMPLETE beat-
+TEXT ababab
+MATCH aba
+READINGS 2 5 3
+SUM 0 2
+SET 1 1
+SUM 0 2
+ADD 1 3 2
+MIN 1 3
+
+Expected output
+beat-dry beat-wet
+0 2
+7
+3
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Find a failure that restarts partway through a repeated pattern. Check empty-pattern behavior. Make a cue palindrome by adding a prefix. Demonstrate a collision for a small rolling fingerprint and explain the extra check an exact match needs.
+
+Run random edits against a plain array. Try sparse ticks, find the k-th occupied tick, and answer a batch of static minimum questions. State where grouping and overlapping blocks preserve an answer.
+
+\subsection*{Stop here}
+
+Show the cue hits and the corrected load from the same timeline without hand-editing the result.
+
+\clearpage
+
+\section{Get the stems out before the room closes}\label{groovebox:08}
+
+Render workers have limited links and different sound banks. A session can pass through the same rooms repeatedly, but one fragile link can isolate a worker. The tool should tell you what to fix first.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Build a topology mode for links that open over time. Report connected groups and the cheapest set of links that connects the workers. In an undirected map with edge IDs, report bridges and an inspection walk that consumes each edge once.
+\item Use one-way links to find groups that can reach one another. Collapse each group and check the new dependency order. Use a saved tree of mixer buses for a common-ancestor query.
+\item CAP lists directed capacities for a single render window. THROUGHPUT prints a maximum value. FIT lists job-to-worker eligibility. ASSIGN prints a maximum number of jobs, with at most one job per worker.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{08.in} and \texttt{08.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CAP S A 3
+CAP S B 2
+CAP A T 2
+CAP A B 1
+CAP B T 3
+THROUGHPUT S T
+FIT drums W1 W2
+FIT bass W1
+ASSIGN
+
+Expected output
+5
+2
+\end{verbatim}
+\end{samepage}
+
+Start with the physical map. WIRE adds an edge with an ID, its endpoints, and its cost. CONNECT asks whether two named vertices are linked through open edges at that point in the input. If a name has not appeared in a wire row, report false. WIRING prints the cheapest total connecting cost. CUTS lists bridge IDs in lexical order. INSPECT starts at the named vertex and uses each edge once. Use the lexically smallest valid edge-ID sequence. ARROW belongs to a separate directed map. GROUPS lists groups in order of their smallest member, with members in lexical order. CHILD gives a parent-child pair in a separate tree. ANCESTOR gives the lowest common ancestor. Add capacity and staffing only after these map checks work.
+
+Use \texttt{08a.in} and \texttt{08a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WIRE ab1 deck mixer 1
+CONNECT deck rig
+WIRE ab2 deck mixer 3
+WIRE bc mixer rig 2
+WIRE cd rig out 2
+CONNECT deck out
+WIRING
+CUTS
+INSPECT mixer
+ARROW deck mixer
+ARROW mixer deck
+ARROW mixer rig
+ARROW rig out
+GROUPS
+CHILD deck mixer
+CHILD mixer rig
+CHILD deck out
+ANCESTOR rig out
+
+Expected output
+false
+true
+5
+bc cd
+ab1 ab2 bc cd
+deck,mixer | out | rig
+deck
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Give a feasible routing and a cut of capacity 5 on the fixture. Enumerate assignments of two jobs and justify both directions of the compatibility model.
+
+Try two parallel A--B links and one B--C. Only B--C is a bridge. A walk B,A,B,C uses all three edge IDs. In the directed case A->B, B->A, B->C, the groups are \{A,B\} and \{C\}. Compare connectivity and ancestor answers with direct traversal.
+
+\subsection*{Stop here}
+
+Show which link limits throughput and which two job assignments meet the one-worker rule.
+
+\clearpage
+
+\section{Make two clocks agree}\label{groovebox:09}
+
+A percussion lane cycles every twelve ticks and a melody every eighteen. They meet eventually. An automation lane also crosses a marker, and an approximate answer puts the edit one tick off.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item SYNC lists two positive periods that start at tick zero. Report the first positive shared reset. INV asks for the inverse of a stride modulo a cycle length. COUNT top digit counts numbers from 1 through top containing the digit at least once.
+\item CROSS gives two segments as four coordinate pairs. Determine whether they intersect using integer or rational arithmetic. For the supplied case, report the exact intersection as a reduced coordinate pair.
+\item Use an explicit count on small ranges. Then count IDs with a digit rule without visiting each ID. Try a different base, an overlap of two rules, and a rule represented by bit flags.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{09.in} and \texttt{09.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+SYNC 12 18
+INV 5 12
+COUNT 24 2
+CROSS 0 0 8 4 0 4 8 0
+
+Expected output
+36
+5
+7
+4 2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Check greatest common divisors and exponentiation under a modulus. Compare an invertible stride with one that shares a factor with the period. Use inclusion and exclusion to count IDs 1 through 24 divisible by 3 or 4. The count is 12.
+
+Test collinear tracks, vertical slopes, endpoint contact, and duplicate points. Bound the largest intermediate integer in the crossing check.
+
+\subsection*{Stop here}
+
+Show the shared reset and crossing as exact ticks. Pick one counterexample that would have made a floating-point or counting shortcut fail.
+
+\clearpage
+
+\section{Finish a loop worth keeping}\label{groovebox:10}
+
+The loop works in isolation. Now the musician swaps a scene mid-bar, and two active parts can overload the same lane. Predict what the audience would hear before you render it.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Keep the ordered events and fill planner from earlier milestones. A SPAN gives a start tick, end tick, first lane, last excluded lane, and load per lane. SHOW reports peak load, its earliest tick, and the smallest tied lane.
+\item Combine your event timeline with the editable load summaries. Check a tiny run by inspecting every tick and lane. Keep all transitions deterministic when a clip ends at the instant another begins.
+\item Build one deeper feature. One option is to recognize several cue phrases in a single pass across a bar boundary. Compare your result with checking each phrase directly, and report several cues ending at the same instant.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{10.in} and \texttt{10.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+SPAN 0 4 0 2 2
+SPAN 2 6 1 3 3
+SPAN 3 5 0 1 1
+SHOW
+
+Expected output
+5 2 1
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Split one span into two touching spans with the same load. The peak stays the same. Put an end and a start on the same tick and show the first peak by hand.
+
+Export a 32-bar run with a scene change and a generated fill. Include a replay fixture that demonstrates one thing your code used to get wrong. Explain which combined computation fits and which input would exhaust it.
+
+\subsection*{Stop here}
+
+Play or render the arrangement and choose one fill you would keep. Close the path with a fresh short replay and then start the Train Dispatcher from its own files.
+
+\end{document}

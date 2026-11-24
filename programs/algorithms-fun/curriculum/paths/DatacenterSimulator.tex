@@ -1,0 +1,623 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Datacenter Simulator}
+\hypersetup{pdftitle={Datacenter Simulator}}
+\begin{document}
+\coursecover
+  {Datacenter Simulator}
+  {Algorithms Fun, Path 5 of 5}
+  {Run a tiny rack through a bad afternoon.}
+  {First demo}
+  {Look up the job that someone says disappeared.}
+  {A missed deadline should have a replay you can inspect.}
+  {Break one link and compare two policies on the same workload.}
+\tableofcontents
+\clearpage
+\section{Before the first run}
+Your toy rack has a handful of workers, no real infrastructure, and a queue you can pause on any tick. The first report is three lines of worker events. The final report will show why a job waited during a failure and what a different policy could have done.
+
+Each milestone is several short work blocks. Pick one numbered step for today's block. When it works, keep the working version and change one rule. Set aside the named case for a fresh check later.
+
+Use a small Go workspace with this path's own files. Use standard input and output for the supplied cases. Each case names an input and an expected output in \texttt{fixtures/datacenter}.
+
+From your project workspace, set the fixture directory to its absolute path in this repository. Capture output before comparing it. The comparison reports the first lines that differ.
+\begin{samepage}
+\small
+\begin{verbatim}
+go run . < "$fixture_dir/01a.in" > actual.txt &&
+diff -u "$fixture_dir/01a.out" actual.txt
+\end{verbatim}
+\end{samepage}
+
+If you need a workspace, create a Go module in an empty folder and add a main package. The program reads one command per line. Start with the command in the first numbered step. A silent diff means the outputs match.
+
+Build the commands in each milestone in the order shown. A case can use features from earlier milestones in this path. Treat each case as a fresh run unless the milestone says otherwise. Follow the input rules and exact output spellings in the case. Setup commands are silent. A query uses only setup rows above it.
+
+A small direct reference is a second way to answer a question on a tiny input. Use it to look for disagreements. When two answers differ, shrink the input until you can explain the difference. Keep a short note for each milestone with the demo, the strongest check, and what limits the build.
+
+The final demo belongs to this path. Finish it before you start another path. Your tutor can review a short unfamiliar case after a milestone or after a delay. The next path starts from its own first fixture.
+
+\clearpage
+
+\section{Find the job that disappeared}\label{datacenter:01}
+
+The worker says it saw the report job. The trace reader cannot find it. Start by making the source row easy to retrieve and the event order explicit.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read EVENT with a tick, unique event ID, job name, and nonnegative duration. FIND ID prints tick, ID, job, and duration. Print missing and the ID when absent.
+\item Add REPLAY. Sort by tick and ID, print the IDs, and keep the full records available. Test input rows in reverse order.
+\item Count the rows inspected for a hit versus a miss. Use a small expected replay to check that every event occurs exactly once.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{01a.in} and \texttt{01a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EVENT 7 e3 report 8
+EVENT 2 e2 build 4
+EVENT 2 e1 test 2
+FIND e2
+FIND e9
+
+Expected output
+2 e2 build 4
+missing e9
+\end{verbatim}
+\end{samepage}
+
+Use \texttt{01.in} and \texttt{01.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EVENT 7 e3 report 8
+EVENT 2 e2 build 4
+EVENT 2 e1 test 2
+FIND e3
+REPLAY
+
+Expected output
+7 e3 report 8
+e1 e2 e3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Try an empty trace, an event on the last row, and two events that share a tick. Keep the order deterministic when source rows move.
+
+Use brackets in a tiny job label and reject a label whose counts balance in the wrong order. Explain what work grows when the trace doubles.
+
+\subsection*{Stop here}
+
+Point to the original source row for a hit and show the corrected replay independently of record arrival order.
+
+\clearpage
+
+\section{Find the stretch that put the rack under pressure}\label{datacenter:02}
+
+A worker lends memory back, several jobs grab it, and one pressure report stays open too long. Answer a question about the stretch before redesigning the scheduler.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item DELTA supplies signed memory changes by position. SUM prints a half-open total. TARGET counts nonempty spans with the specified net change. Compare with checking every span on tiny input.
+\item WORKERS gives a sequence of worker IDs. UNIQUE returns the longest span with all different IDs. COVER accepts a required list with repeats and returns a shortest span. Use earlier start for ties and none for a miss.
+\item Index counts by worker. Add a fixed-width pressure query and compare two sorted lists for common IDs.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{02.in} and \texttt{02.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+DELTA 5 -3 -2 2
+WORKERS W1 W2 W1 W3 W4 W2
+SUM 1 4
+TARGET 2
+UNIQUE
+COVER W1 W1 W3
+
+Expected output
+-3
+3
+[1,5)
+[0,4)
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Switch from existence to count to returning positions. Include zeros and negative changes. Give a concrete case where a condition no longer supports shrinking from one end.
+
+Add a repeat cap and exactly-k counts. Find a free positive slot in [3,1,4] while reusing the input storage. Explain the expected cost of the worker index.
+
+\subsection*{Stop here}
+
+Give one small pressure trace and its minimal scan span. Show the direct count before timing the faster version.
+
+\clearpage
+
+\section{Merge feeds while the workers are talking}\label{datacenter:03}
+
+One worker sends one record a second, another sends a hundred. A replay should start early, keep ties in order, and still tell you the worst recent load.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TICKS supplies sorted times. AT gives the half-open bounds for a tick. BATCH supplies nonnegative job preparation costs. Find the least capacity for at most two contiguous batches.
+\item STREAM gives ordered tick:ID pairs from one worker. MERGE emits combined IDs by tick and ID. Retain the next candidate per active stream. Measure retained candidates independently of output size.
+\item LOAD supplies readings. PEAK width returns maxima on full windows. MEDIANS returns the median after each arrival.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{03.in} and \texttt{03.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TICKS 3 5 5 7
+AT 5
+BATCH 4 2 2 3
+STREAM W1 3:a 5:c
+STREAM W2 5:b 7:d
+MERGE
+LOAD 5 2 7 4
+PEAK 2
+MEDIANS
+
+Expected output
+[1,3)
+capacity 6
+a b c d
+5 7 7
+5 3.5 5 4.5
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Enumerate batch boundaries and check a capacity just below the answer. Try a rule with no monotone feasible range. Test an empty stream and all-equal ticks.
+
+Compare stream output, window maxima, and medians with direct references. Find a next taller reading and the tallest-area block in [2,1,2]. The area is 3. Try a shortest signed span reaching a resource threshold.
+
+\subsection*{Stop here}
+
+Show that the first output arrives before all input is read. Report the largest number of candidates you hold in the replay.
+
+\clearpage
+
+\section{Find what can start and what is waiting forever}\label{datacenter:04}
+
+A workload comes with a tree of task groups and a directed list of job prerequisites. The operator wants a saved snapshot, a legal startup order, and a route to a worker.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item GROUP describes a numeric score with left and right children. Save the snapshot and read it back. PREORDER visits root, then left, then right. PATHSCORE reports the best sum on a connected path. Add an ordered lookup and a closest shared ancestor query.
+\item DEP adds a directed prerequisite. START lists a valid order, choosing the lexically first available job when several are ready. When no order exists, report cycle and inspect a witness.
+\item LINK describes an undirected connection. ROUTE prints a fewest-edge path and count. Inspect neighbors lexically for ties. Compare with an implicit grid version and report disconnected groups.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{04.in} and \texttt{04.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+GROUP 8 3 12
+GROUP 3 - 7
+GROUP 7 - -
+GROUP 12 - -
+PREORDER 8
+PATHSCORE 8
+DEP fetch build
+DEP fetch scan
+DEP build ship
+DEP scan ship
+START
+LINK A B
+LINK A C
+LINK B D
+LINK C D
+ROUTE A D
+
+Expected output
+8 3 7 12
+30
+fetch build scan ship
+2 A B D
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Test a skewed saved tree, an empty child, and all-negative scores. Find an invalid ordered tree whose child looks valid when compared only with its parent.
+
+Add ship before fetch and report the cycle. Give a job one allowed fallback dependency and explain what the original edges meant. Add a route that can use a bypass at most once and track its state.
+
+\subsection*{Stop here}
+
+Show a saved tree after reloading, a legal launch order, and a path that obeys the route rules.
+
+\clearpage
+
+\section{Pick the cheap link and fit the reservations}\label{datacenter:05}
+
+The link with the lowest transfer time adds another hop. The busiest worker also has overlapping reservations. Give the operator both answers with the rules attached.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item COST adds a directed link time. FAST reports a minimum-cost route from source to target for nonnegative costs. LIMIT adds a maximum edge count. Add a case with one discounted transfer and a separate zero-one model.
+\item RESERVE supplies proposed half-open intervals on one worker. ACCEPT prints a largest compatible set. DEMAND prints the highest active request count before acceptance.
+\item Compare a cheap path with a low-cost connected layout for the whole rack. Save one signed-credit DAG case and one reachable negative-cycle case.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{05.in} and \texttt{05.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+COST S A 6
+COST S B 1
+COST B A 2
+COST A T 3
+COST B T 9
+FAST S T
+LIMIT S T 2
+RESERVE A 0 2
+RESERVE B 2 6
+RESERVE C 1 5
+ACCEPT
+DEMAND
+
+Expected output
+6 S B A T
+9 S A T
+A B
+2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Check tiny route costs with a second method. Include stale candidates, a transfer cap, and a case where two paths arrive at one worker with different remaining options.
+
+Check every subset of reservations. Show why a greedy choice works for count. Give weights A=2, B=3, C=6 and retain the weighted example for the next build.
+
+\subsection*{Stop here}
+
+Reproduce the route that needs the extra hop and name the booking assumption your greedy proof uses.
+
+\clearpage
+
+\section{Run the work that earns its memory}\label{datacenter:06}
+
+The queue has tests, builds, and a report. Memory is tight. Some jobs cannot run after each other. You need both a list of possible launch orders and a defensible best pick.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item JOBS gives distinct queue IDs. BLOCK a b forbids b immediately after a. ORDERS k counts legal orders of k distinct jobs. Generate subsets and permutations, then compare a pruned search with enumeration.
+\item OPTION gives job, memory cost, and value. BEST budget prints the best value and actual jobs. EXACT counts subsets with exactly that memory. Derive the state and compare memoized and bottom-up builds.
+\item JOIN gives adjacent batching costs. Print the least total cost to join them into one. ROOTS gives a unit-edge chain. Return sum of distances to all other nodes from each root.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{06.in} and \texttt{06.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+JOBS A B C
+BLOCK A B
+ORDERS 2
+OPTION A 2 4
+OPTION B 3 6
+OPTION C 5 9
+OPTION D 1 2
+BEST 5
+EXACT 5
+JOIN 4 5 7
+ROOTS A B C D
+
+Expected output
+5
+10 A B
+2
+25
+6 4 4 6
+\end{verbatim}
+\end{samepage}
+
+For a later block, use TRAVEL for a two-way link and VISIT to find the cheapest route that starts at the first named place and visits each other named place once. Finish anywhere. GAIN gives a score for one step. NEXT gives a directed link in a cycle-free workflow. CHAIN returns the largest total score on a path from the named start to finish. RISE returns the length of a strictly increasing subsequence. Use one command at a time and compare with enumeration before handling every command in the case.
+
+Use \texttt{06a.in} and \texttt{06a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAVEL root cpu 5
+TRAVEL root disk 8
+TRAVEL cpu disk 1
+VISIT root cpu disk
+GAIN fetch 3
+GAIN build 4
+GAIN scan 6
+GAIN ship 2
+NEXT fetch build
+NEXT build ship
+NEXT fetch scan
+NEXT scan ship
+CHAIN fetch ship
+RISE 3 1 2 5 4
+
+Expected output
+6 root cpu disk
+11
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Add equal labels and a count-only mode. Verify uniqueness and state restoration. Finish weighted booking and account for the numeric budget. Keep a reconstruction check when compressing how much you store.
+
+Try a visit-once subset task, a best score along a dependency DAG, and a longest increasing sequence of job scores. Extend rerooting off the chain. Revisit the digit constraint in milestone 9.
+
+\subsection*{Stop here}
+
+Produce one legal job order and a best-value set under the memory cap. Record a small case where the best single job loses.
+
+\clearpage
+
+\section{Find the alert and correct yesterday's graph}\label{datacenter:07}
+
+A noisy worker repeats an alert. A later incident correction changes a count in the middle of the replay. Help the operator find the evidence without rerunning every old query.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TAG gives a job or alert label. COMPLETE prefix returns tags in lexical order. TEXT gives the trace phrase. MATCH lists zero-based exact matches, including overlaps. Choose an offset unit.
+\item SAMPLES supplies readings at consecutive integer ticks. SUM totals a half-open span. SET corrects a point. ADD changes all readings in a range, and MIN reports the least in a nonempty range.
+\item Compare with a direct matcher and array. Add sparse ticks, k-th occupied tick, a sorted batch of questions, and a static minimum model.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{07.in} and \texttt{07.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TAG limit-cpu
+TAG limit-io
+TAG queue
+COMPLETE limit-
+TEXT SLOWLOW
+MATCH LOW
+SAMPLES 6 3 4
+SUM 0 2
+SET 1 7
+SUM 0 2
+ADD 1 3 -2
+MIN 1 3
+
+Expected output
+limit-cpu limit-io
+1 4
+9
+13
+2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Try a repeated prefix and an overlapping match. Define empty pattern behavior. Add a shortest front-added palindrome and a tiny rolling-fingerprint collision check.
+
+Run random edits against the array. Test two pending updates to the same range and a sparse timestamp. Explain why order can survive compression while distances change.
+
+\subsection*{Stop here}
+
+Show the warning at both offsets and reproduce the corrected aggregate. Explain how you know the rest of the replay remained valid.
+
+\clearpage
+
+\section{Find the cable that matters and assign the workers}\label{datacenter:08}
+
+Two worker groups can reach each other in the directed map. In the physical map, a single cable still cuts off an entire shelf. Solve those questions and allocate one time slice.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Give physical links distinct IDs. Query connectivity as links open. Produce a cheapest connected cabling plan, find bridges, and print an inspection walk that uses each edge exactly once where possible.
+\item Group mutually reachable vertices in a one-way communication graph and condense them. Check groups against small direct walks. Add faster ancestor queries in the saved job hierarchy.
+\item CAP adds a directed capacity. FLOW reports the maximum flow from a source to a sink. FIT lists compatible workers per job. ASSIGN reports the maximum with at most one job per worker.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{08.in} and \texttt{08.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CAP S H 4
+CAP S J 2
+CAP H T 2
+CAP H J 1
+CAP J T 3
+FLOW S T
+FIT build W1 W2
+FIT test W1
+ASSIGN
+
+Expected output
+5
+2
+\end{verbatim}
+\end{samepage}
+
+Start with the physical map. WIRE adds an edge with an ID, its endpoints, and its cost. CONNECT asks whether two named vertices are linked through open edges at that point in the input. If a name has not appeared in a wire row, report false. WIRING prints the cheapest total connecting cost. CUTS lists bridge IDs in lexical order. INSPECT starts at the named vertex and uses each edge once. Use the lexically smallest valid edge-ID sequence. ARROW belongs to a separate directed map. GROUPS lists groups in order of their smallest member, with members in lexical order. CHILD gives a parent-child pair in a separate tree. ANCESTOR gives the lowest common ancestor. Add capacity and staffing only after these map checks work.
+
+Use \texttt{08a.in} and \texttt{08a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WIRE ab1 core link 2
+CONNECT core rack
+WIRE ab2 core link 5
+WIRE bc link rack 3
+WIRE cd rack worker 1
+CONNECT core worker
+WIRING
+CUTS
+INSPECT link
+ARROW core link
+ARROW link core
+ARROW link rack
+ARROW rack worker
+GROUPS
+CHILD core link
+CHILD link rack
+CHILD core worker
+ANCESTOR rack worker
+
+Expected output
+false
+true
+6
+bc cd
+ab1 ab2 bc cd
+core,link | rack | worker
+core
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Produce a valid flow and a cut of value 5. The source side of one cut is \{S,H\}. Enumerate tiny assignments and justify both directions of the eligibility model.
+
+Remove edges by ID, including parallel cables. Check an inspection trail against the actual edge multiset. Verify a two-worker directed cycle and one outgoing edge condense to two groups.
+
+\subsection*{Stop here}
+
+Show a bridge that disconnects a worker, a matched job list, and the exact capacity that prevents one more unit of work.
+
+\clearpage
+
+\section{Line up maintenance and route exact cable crossings}\label{datacenter:09}
+
+Two worker rotations meet at a later tick. The rack drawing also shows two cables crossing. Put exact answers next to both claims.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item SYNC supplies two positive rotation periods that begin together. Return the first positive common reset. INV supplies a stride and modulus. DIGITS counts positive job IDs up to a given limit containing a digit.
+\item CROSS gives four integer points that define two line segments. Print exact coordinates for a single proper crossing. Handle shared endpoints, parallel lines, duplicates, and collinear overlap in separate checks.
+\item Add modular exponentiation and a bit-flag rule. Count an overlapping pair of conditions by enumeration and an inclusion-exclusion calculation. Change the ID base or limit.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{09.in} and \texttt{09.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+SYNC 12 20
+INV 5 16
+DIGITS 41 4
+CROSS 0 0 8 6 0 6 8 0
+
+Expected output
+60
+13
+6
+4 3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Verify an inverse by multiplication under the modulus and show where none exists. Count labels 1 through 24 divisible by 4 or 6. The result is 8.
+
+Show orientation on a vertical segment and normalize a negative rational slope. Use integer or rational comparisons and bound intermediate products.
+
+\subsection*{Stop here}
+
+Explain what remains exact when you change coordinates or periods. Give one boundary case you can reproduce without a drawing.
+
+\clearpage
+
+\section{Break the rack at the worst time}\label{datacenter:10}
+
+A job becomes ready while its preferred worker is unreachable. The alternate worker's link will go down in two ticks. Your job is to explain the difference between waiting and taking the route that still works.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item JOB gives ID, arrival, run duration, and deadline. FIT orders eligible workers from most to least preferred. DOWN is a half-open interval during which a worker is unreachable. A job must fit entirely in a reachable period.
+\item PREFERRED waits for the first eligible worker. REACHABLE takes the earliest feasible slot across eligible workers, breaking ties in preference order. Print worker, finish tick, and met or missed. A finish at the deadline counts as met. Transfer times are zero here.
+\item Combine the scheduler with a reachability check on a small network. Try one new feature, such as faster path summaries over a tree of workers. Check a tiny replay directly before testing a larger outage.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{10.in} and \texttt{10.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+JOB A 1 2 5
+FIT A W1 W2
+DOWN W1 0 4
+DOWN W2 3 5
+PREFERRED
+REACHABLE
+
+Expected output
+W1 6 missed
+W2 3 met
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+W2's run ends at the instant its link goes down. Check that this is legal. Add an arrival exactly when W1 comes back and inspect the tie behavior.
+
+Replay the same arrivals with a worker and a link failure. Show trace evidence for one missed deadline and which policy emitted it. Check a case where both policies make the same choice.
+
+\subsection*{Stop here}
+
+Deliver a before-and-after replay and an explanation you can verify one tick at a time. Close the last path with a fresh small failure scenario.
+
+\end{document}

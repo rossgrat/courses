@@ -1,0 +1,12 @@
+TAG north
+TAG north-yard
+TAG west
+COMPLETE north
+RADIO ABABABA
+HEAR ABA
+COUNTS 4 2 5
+SUM 0 2
+SET 1 3
+SUM 0 2
+RAISE 1 3 2
+MIN 1 3

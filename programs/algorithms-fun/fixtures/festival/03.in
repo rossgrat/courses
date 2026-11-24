@@ -1,0 +1,9 @@
+TIMES 4 6 6 9
+AT 6
+GROUPS 5 1 4 2
+FEED north 4:a 6:c
+FEED east 6:b 9:d
+MERGE
+LOAD 3 1 4 2
+PEAK 2
+MEDIANS

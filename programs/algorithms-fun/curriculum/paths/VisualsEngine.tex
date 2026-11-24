@@ -1,0 +1,620 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Visuals Engine}
+\hypersetup{pdftitle={Visuals Engine}}
+\begin{document}
+\coursecover
+  {Visuals Engine}
+  {Algorithms Fun, Path 3 of 5}
+  {Make a short show that responds to a mix.}
+  {First demo}
+  {Put a pulse, flash, and fade on the right ticks.}
+  {A cue is only useful if you can predict what the screen will do.}
+  {Finish with a short rendered clip and a repeatable frame-budget check.}
+\tableofcontents
+\clearpage
+\section{Before the first run}
+Pick a short stretch of a mix with an obvious beat. A pulse lands on the wrong frame and a fade stomps on a flash. Build a cue editor and renderer that can tell you why. Start in the terminal. Later, a generated frame can be as simple as a colored rectangle.
+
+Each milestone is several short work blocks. Pick one numbered step for today's block. When it works, keep the working version and change one rule. Set aside the named case for a fresh check later.
+
+Use a small Go workspace with this path's own files. Use standard input and output for the supplied cases. Each case names an input and an expected output in \texttt{fixtures/visuals}.
+
+From your project workspace, set the fixture directory to its absolute path in this repository. Capture output before comparing it. The comparison reports the first lines that differ.
+\begin{samepage}
+\small
+\begin{verbatim}
+go run . < "$fixture_dir/01a.in" > actual.txt &&
+diff -u "$fixture_dir/01a.out" actual.txt
+\end{verbatim}
+\end{samepage}
+
+If you need a workspace, create a Go module in an empty folder and add a main package. The program reads one command per line. Start with the command in the first numbered step. A silent diff means the outputs match.
+
+Build the commands in each milestone in the order shown. A case can use features from earlier milestones in this path. Treat each case as a fresh run unless the milestone says otherwise. Follow the input rules and exact output spellings in the case. Setup commands are silent. A query uses only setup rows above it.
+
+A small direct reference is a second way to answer a question on a tiny input. Use it to look for disagreements. When two answers differ, shrink the input until you can explain the difference. Keep a short note for each milestone with the demo, the strongest check, and what limits the build.
+
+The final demo belongs to this path. Finish it before you start another path. Your tutor can review a short unfamiliar case after a milestone or after a delay. The next path starts from its own first fixture.
+
+\clearpage
+
+\section{Put the flash on the beat}\label{visuals:01}
+
+The render preview says fade, flash, pulse. The set notes say pulse, flash, fade. Find the original clip cue before you touch any drawing code.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read CUE with an integer tick, unique ID, and action. LOOKUP ID prints tick, ID, and action, or missing followed by the ID.
+\item Add ORDER. Sort complete records by tick and then ID. Print their IDs. Leave original input order available for a debugging command.
+\item At first, print the actions at each selected tick. Add a basic frame preview after the order is correct. An effect at tick zero should be visible in the first frame.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{01a.in} and \texttt{01a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CUE 4 c3 fade
+CUE 0 c2 flash
+CUE 0 c1 pulse
+LOOKUP c2
+LOOKUP c8
+
+Expected output
+0 c2 flash
+missing c8
+\end{verbatim}
+\end{samepage}
+
+Use \texttt{01.in} and \texttt{01.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CUE 4 c3 fade
+CUE 0 c2 flash
+CUE 0 c1 pulse
+LOOKUP c1
+ORDER
+
+Expected output
+0 c1 pulse
+c1 c2 c3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Shuffle the cue rows. Ensure ORDER preserves every cue, including both actions on the first tick. Check an empty scene and a miss at any size.
+
+Count the work for one lookup and for making the whole list. Make one invalid bracket label that a count-only check would accept.
+
+\subsection*{Stop here}
+
+Look up a cue and show a frame preview of tick zero. Keep rendering out of the first block until the two lookups work.
+
+\clearpage
+
+\section{Find the smallest clip that explains a glitch}\label{visuals:02}
+
+The flash looks wrong only when two glow cues and a strobe land together. You need the shortest clip that reproduces the glitch and a way to read the cost change over it.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item COST supplies a signed cost change per tick. SUM prints the total on a zero-based half-open range. TARGET counts all nonempty spans with the requested value. Start by enumerating ranges on a tiny clip.
+\item CUES supplies a series of tags. UNIQUE prints the longest span with no repeat. COVER accepts required tags, including repeated tags, and finds the shortest span that satisfies them. Break ties by earlier start and print none for an impossible request.
+\item Build an index for tags and a fixed-width query. Check direct answers and then repeat the same query many times.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{02.in} and \texttt{02.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+COST 5 -4 0 3
+CUES wash glow wash strobe bloom glow
+SUM 1 4
+TARGET 1
+UNIQUE
+COVER glow glow strobe
+
+Expected output
+-1
+2
+[1,5)
+[1,6)
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Add a repeat cap and an exact-count question. Test a required tag that does not exist. Find a negative cost that breaks a sum-based window.
+
+Change TARGET from existence to count and then to positions. Compare sorted tag lists and find their common tags. For effect slots 1, 2, and 4, find the first free positive slot without a second array.
+
+\subsection*{Stop here}
+
+Give a clip that someone can replay without watching the whole set. Explain why its boundaries are minimal.
+
+\clearpage
+
+\section{Preview a set bigger than memory}\label{visuals:03}
+
+Each layer produces its own ordered cue list. Combining them in one giant slice delays the preview. You also need to know which segment fits on two render workers.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TICKS provides sorted cue times. AT tick prints the half-open position bounds. BLOCKS supplies nonnegative costs and asks for the smallest capacity for at most two contiguous batches.
+\item LAYER lists each ordered cue as tick:ID. MERGE prints the combined IDs by tick and ID. Retain the next candidate from each layer while you stream output.
+\item LOAD gives a series of measurements. HIGH width prints the largest of each full window. MEDIANS prints the median of each prefix.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{03.in} and \texttt{03.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TICKS 1 4 4 8
+AT 4
+BLOCKS 2 8 1 1
+LAYER image 1:a 8:d
+LAYER text 4:b 4:c
+MERGE
+LOAD 7 3 5 9
+HIGH 2
+MEDIANS
+
+Expected output
+[1,3)
+capacity 10
+a b c d
+7 5 9
+7 5 5 6
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Compare bounds with a scan on equal and empty lists. Try all splits for the capacity answer. Explain the feasibility rule and change one assumption so the capacity search no longer applies.
+
+Compare the merge with the old sort on cases small enough to load. Count how often you remove a rolling candidate. On readings [2,1,2], find the next higher reading and the largest rectangular area, which is 3. Check a shortest signed span in a separate run.
+
+\subsection*{Stop here}
+
+Start the preview before all input is loaded and show a bound on the number of records the merge retains.
+
+\clearpage
+
+\section{Save a scene and get to the chorus}\label{visuals:04}
+
+Layer names and assets may survive a save while the scene order does not. A cue can also take several legal routes into the chorus. Make the save round-trip and make the route visible.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item NODE supplies a numeric score and two child IDs, with a dash for a missing child. Save and reload. ORDER gives preorder. SCORE gives the best score along a connected path. Add an ancestor query and an ordered lookup exercise.
+\item TRANS adds a directed scene transition. STEPS returns a fewest-edge route, printed as count and scene names. Handle no route and isolated scenes.
+\item DEP adds an asset prerequisite. Detect a cycle and return a valid load order on a directed acyclic input. Compare with the scene-transition graph, which can include a loop.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{04.in} and \texttt{04.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+NODE 8 3 11
+NODE 3 - 6
+NODE 6 - -
+NODE 11 - -
+ORDER 8
+SCORE 8
+TRANS black pulse
+TRANS pulse gold
+TRANS black fx
+TRANS fx pulse
+STEPS black gold
+
+Expected output
+8 3 6 11
+28
+2 black pulse gold
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Round-trip missing and skewed trees. Try an all-negative score and an ordered tree that violates an earlier ancestor's range. Explain why a best path through a node and a path its parent can extend differ.
+
+Use both directed and undirected tiny maps. Add a flash pass you can only spend once. Specify what must be included in a visited state. Test an asset dependency cycle with a saved example.
+
+\subsection*{Stop here}
+
+Load a scene twice and reproduce the same edit and shortest cue route.
+
+\clearpage
+
+\section{Schedule transitions before the frame drops}\label{visuals:05}
+
+The shortest cue path has an expensive flash. Two effect spans want the same render resource. Give the show a way to keep the look without missing the budget.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item EDGE supplies directed transition costs. LOW returns minimum cost and a path. LIMIT adds a maximum number of edges. Compare nonnegative, zero-one, and signed graphs on tiny cases. For signed inputs, report a reachable improving cycle where appropriate.
+\item RESERVE describes a half-open reservation on one resource. FIT selects the largest nonoverlapping set. PEAK prints the maximum active request count before admission.
+\item Add a per-effect value and save a case in which the most reservations does not have the highest value. Compare a cheap cue path with a cheap structure connecting all scenes.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{05.in} and \texttt{05.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EDGE black haze 4
+EDGE black pulse 1
+EDGE pulse haze 1
+EDGE haze gold 2
+EDGE black gold 9
+LOW black gold
+LIMIT black gold 2
+RESERVE A 0 4
+RESERVE B 4 6
+RESERVE C 2 5
+FIT
+PEAK
+
+Expected output
+4 black pulse haze gold
+6 black haze gold
+A B
+2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Try a limited-use cheap transition and a stale candidate in the queue. Check tiny shortest costs with a second method and test a DAG that allows a credit.
+
+Check all booking subsets. Test one end and start at the same tick, and find a rule that picks an overlapping or inferior set. Give a reason the selected unweighted order is safe.
+
+\subsection*{Stop here}
+
+Show a frame sequence where limiting the number of transitions changes the path, then reproduce the two compatible reservations.
+
+\clearpage
+
+\section{Let the tool propose a scene}\label{visuals:06}
+
+You have a handful of cue effects and a clear frame budget. You want to audition legal arrangements and then pick one yourself.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item OPTIONS supplies distinct names. ORDERED k counts ordered selections of k without reuse. BLOCK a b forbids b immediately after a. Generate subsets and orders, and compare pruned search with direct enumeration.
+\item CANDIDATE gives an effect ID, positive cost, and score. BEST budget returns the optimal score and selected IDs. EXACT budget counts distinct subsets with that total cost. Compare direct, memoized, and bottom-up results.
+\item JOIN supplies adjacent clip lengths with cost equal to combined length. Return the minimum total join cost. ROOTS gives a line of positions with unit edges. Report the sum of distances for each possible root.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{06.in} and \texttt{06.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+OPTIONS pulse flash glow
+BLOCK pulse flash
+ORDERED 2
+CANDIDATE blur 2 3
+CANDIDATE glow 3 7
+CANDIDATE ray 5 9
+CANDIDATE grain 1 2
+BEST 5
+EXACT 5
+JOIN 3 4 7
+ROOTS A B C
+
+Expected output
+5
+10 blur glow
+2
+21
+3 2 3
+\end{verbatim}
+\end{samepage}
+
+For a later block, use TRAVEL for a two-way link and VISIT to find the cheapest route that starts at the first named place and visits each other named place once. Finish anywhere. GAIN gives a score for one step. NEXT gives a directed link in a cycle-free workflow. CHAIN returns the largest total score on a path from the named start to finish. RISE returns the length of a strictly increasing subsequence. Use one command at a time and compare with enumeration before handling every command in the case.
+
+Use \texttt{06a.in} and \texttt{06a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAVEL black gold 4
+TRAVEL black pulse 8
+TRAVEL gold pulse 1
+VISIT black gold pulse
+GAIN read 2
+GAIN mask 3
+GAIN light 7
+GAIN draw 1
+NEXT read mask
+NEXT mask draw
+NEXT read light
+NEXT light draw
+CHAIN read draw
+RISE 3 1 2 5 4
+
+Expected output
+5 black gold pulse
+10
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Add repeated labels and decide which arrangements count as distinct. Test symmetry rules with enumeration. Pick a cost that illustrates why the numeric budget can matter more than the number of effects.
+
+Compare all join decompositions on tiny clips and all rerooted distance sums on small trees. Add a visit-once subset tour and a best-scoring path in an asset DAG. On a short cue sequence, compare a direct increasing subsequence search with a smaller stored frontier. Reuse the ID digit rule in milestone 9.
+
+\subsection*{Stop here}
+
+Render a legal candidate under the stated budget and explain one decision it made that you would not have picked by eye.
+
+\clearpage
+
+\section{Find a phrase and repair the load graph}\label{visuals:07}
+
+An effect stopped triggering after an edit. You need to find the cue phrase, then see whether the correction changes the estimated cost later in the clip.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TAG records a cue name. COMPLETE prints names with a prefix in lexical order. TEXT supplies the cue stream. MATCH reports zero-based offsets of every exact match, including overlaps. Define the offset unit.
+\item TICK gives a known timestamp and reading. SUM l r gives the total at timestamps in [l,r). SET i value corrects one timestamp. Use a separate range-update mode with ADD l r delta and MIN l r.
+\item Use a direct matcher and a plain table as small independent checks. Try a static version, a batch of reordered questions, and an order-statistic query for the k-th occupied timestamp.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{07.in} and \texttt{07.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TAG fx-blur
+TAG fx-glow
+TAG pulse
+COMPLETE fx-
+TEXT abababa
+MATCH aba
+TICK 0 2
+TICK 4 5
+TICK 10 3
+SUM 0 5
+SET 4 1
+SUM 0 5
+ADD 4 11 2
+MIN 4 11
+
+Expected output
+fx-blur fx-glow
+0 2 4
+7
+3
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Use an overlapping match and a non-ASCII input to check offset behavior. Add a palindrome by prepending the fewest symbols. Test an exact match against a colliding rolling fingerprint.
+
+Mutate sparse coordinates, including empty boundaries and a query that ends at an occupied tick. Explain which block summaries can overlap. Compare random edits against the plain table.
+
+\subsection*{Stop here}
+
+Find the overlapping trigger and show how one correction changes the total and the range minimum.
+
+\clearpage
+
+\section{Find the fragile route to the screen}\label{visuals:08}
+
+One asset link goes dark. The background layers still render, but the title layer cannot get to the output. Find the fragile links and assign the remaining render jobs.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TRACK gives an undirected link between rig locations and a distinct edge ID. BRIDGES lists edge IDs whose individual removal disconnects their component. Add connectivity as links open and pick a minimum-cost connected set.
+\item Use a separate directed rig for mutually reachable groups and its condensed dependency order. Add fast ancestor queries on a saved scene tree and a walk that inspects each physical edge once.
+\item CAP gives directed capacity. FLOW returns the largest output in one time slice. FIT gives eligible workers per asset. ASSIGN returns the maximum number of distinct asset-worker pairs.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{08.in} and \texttt{08.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRACK ab A B
+TRACK ac A C
+TRACK bc B C
+TRACK cd C D
+BRIDGES
+CAP S A 2
+CAP S B 3
+CAP A T 2
+CAP B T 2
+FLOW S T
+FIT title W1 W2
+FIT video W1
+ASSIGN
+
+Expected output
+cd
+4
+2
+\end{verbatim}
+\end{samepage}
+
+Start with the physical map. WIRE adds an edge with an ID, its endpoints, and its cost. CONNECT asks whether two named vertices are linked through open edges at that point in the input. If a name has not appeared in a wire row, report false. WIRING prints the cheapest total connecting cost. CUTS lists bridge IDs in lexical order. INSPECT starts at the named vertex and uses each edge once. Use the lexically smallest valid edge-ID sequence. ARROW belongs to a separate directed map. GROUPS lists groups in order of their smallest member, with members in lexical order. CHILD gives a parent-child pair in a separate tree. ANCESTOR gives the lowest common ancestor. Add capacity and staffing only after these map checks work.
+
+Use \texttt{08a.in} and \texttt{08a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WIRE ab1 cam edit 3
+CONNECT cam mux
+WIRE ab2 cam edit 6
+WIRE bc edit mux 2
+WIRE cd mux wall 4
+CONNECT cam wall
+WIRING
+CUTS
+INSPECT edit
+ARROW cam edit
+ARROW edit cam
+ARROW edit mux
+ARROW mux wall
+GROUPS
+CHILD cam edit
+CHILD edit mux
+CHILD cam wall
+ANCESTOR mux wall
+
+Expected output
+false
+true
+9
+bc cd
+ab1 ab2 bc cd
+cam,edit | mux | wall
+cam
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Add a parallel copy of cd and check that neither copy is a bridge. Trace C,A,B,C,D in the original graph and account for every edge ID. Enumerate tiny min cuts and show a feasible flow and a cut of value 4.
+
+Find components in A->B, B->A, B->C. Compare the new group order and ancestor answers with direct walks. Enumerate assignments for the fixture and explain the two directions of the compatibility model.
+
+\subsection*{Stop here}
+
+Explain an observed screen outage using a particular link and give the feasible allocation after the failure.
+
+\clearpage
+
+\section{Make the masks meet exactly}\label{visuals:09}
+
+The masks almost touch at one frame. Your renderer says one pixel of overlap, the cue notes say exact contact. Reproduce it on an integer grid and solve the periodic cue labels.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item CROSS supplies two segments on an integer grid. For a single proper intersection, print the exact coordinates. Add none, shared endpoint, and collinear overlap cases with explicit output rules.
+\item SYNC gives two looping cue periods starting together, and asks for the first positive joint reset. INV gives a stride and modulus. DIGITS counts labels from 1 through a limit that contain a given digit.
+\item Check modular power, GCD, and absent inverses. Try a different base and an overlapping digit or divisibility rule. Compare with full enumeration on a tiny range.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{09.in} and \texttt{09.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CROSS 0 0 4 4 0 4 4 0
+SYNC 9 6
+INV 7 12
+DIGITS 35 3
+
+Expected output
+2 2
+18
+7
+9
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Show an orientation sign, a vertical segment, and two duplicate points. Normalize rational slopes and state which products can overflow your coordinate type.
+
+Count labels 1 through 18 divisible by 2 or 3. The count is 12. Try a bit flag rule. Use an exhaustive reference before changing the base or increasing the range.
+
+\subsection*{Stop here}
+
+Point to one exact intersection and one drift-free reset on a frame grid you can draw by hand.
+
+\clearpage
+
+\section{Render a clip and prove it fits}\label{visuals:10}
+
+You are ready to send someone a fifteen-second clip. On the crowded section, a flash and a mask can cost more together than either does alone.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item EFFECT supplies start tick, end tick, first layer, last excluded layer, and cost per active layer. PEAK reports the highest summed cost, its earliest tick, and the smallest tied layer. All spans are half-open.
+\item Combine ordered cue changes with editable layer summaries. Check a small simulation by visiting each tick and layer. Change the effect budget and record which cues remain in the render.
+\item Build one deeper feature, such as matching many cue phrases in one pass to choose triggers. Compare it with matching each phrase independently. Demonstrate a case where several triggers end together.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{10.in} and \texttt{10.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EFFECT 0 3 0 2 2
+EFFECT 1 4 1 3 3
+PEAK
+
+Expected output
+5 1 1
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Make one span end exactly when another begins. Check that the former adds no cost at the latter's first tick. Verify the reported peak against the direct grid.
+
+Render a short clip for a mix and save a before-and-after cue trace. Demonstrate one stress case and explain where your method still runs out of work or memory.
+
+\subsection*{Stop here}
+
+Play or preview the clip, show the peak report, and close the path before opening Festival Control.
+
+\end{document}

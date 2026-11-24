@@ -8,685 +8,167 @@
 
 \coursecover
   {Algorithms Fun}
-  {A project-based course for algorithmic reasoning and implementation}
-  {Festival Replay | Festival Site Planner | Lineup Planner}
-  {Language practice}
-  {Go first | Selected C++ and Rust practice}
-  {Build a feature. Change a rule. Explain what holds.}
-  {Start at Stage 1 with one gate log and two event lookups.}
+  {Five builds, one at a time}
+  {Groovebox, Train Dispatcher, Visuals Engine, Festival Control, Datacenter Simulator}
+  {First run}
+  {Make the groovebox report a hit and a miss.}
+  {Build something you want to run. Keep the fixture that proves it works.}
+  {Start with the Groovebox book and fixture 01a.}
 
-\setcounter{tocdepth}{2}
-\titlecontents{subsection}[1.2em]{\small}{}{}{\titlerule*[0.5em]{.}\contentspage}
 \tableofcontents
 \clearpage
 
+\section{Start with one build}
 
-\section{Start here}\label{start-here}
+The first project is a beat you can play. After it come a train closure, a clip for a mix, a festival incident, and a datacenter outage. Each project has its own book, fixtures, and capstone. Finish the active project before starting the next. Each new path starts with its own first fixture.
 
-Build three command-line tools for a fictional music festival. Start with a gate log and end with a replay that explains where demand peaked. Along the way, find routes around closures, assign crews, and build a lineup that fits a budget.
-
-Start at \hyperref[stage-1-reconstruct-a-gate-incident]{Stage 1}. Read one small log, look up an event, and demonstrate a hit and a missing ID. Use the expected output in the stage notes. Make the next feature a separate work block.
-
-If you need a workspace, use the Go version pinned in \texttt{system/cli/.go-version} and set up one small module with tests.
-
-The long-term goal is to solve unfamiliar LeetCode Hard problems correctly in 45 minutes. Advance by skill and set the length of each study session.
-
-\subsection{Builds}\label{builds}
+Open the project PDFs from the program README. The fixture paths below are relative to the program folder.
 
 \begin{center}
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.24\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.12\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.64\linewidth-2\tabcolsep\relax}}
-\textbf{Build} & \textbf{Stages} & \textbf{Demo} \\
-\hyperref[festival-replay]{Festival Replay} & 1--5 & Reconstruct a gate incident and replay sorted streams with bounded memory. \\
-\hyperref[festival-site-planner]{Festival Site Planner} & 6--9 & Print a route around a closure and find conflicts in the setup schedule. \\
-\hyperref[lineup-planner]{Lineup Planner} & 10--12 & Produce a feasible lineup and show how changes to the budget affect it. \\
-\hyperref[extensions-and-capstone]{Extensions and capstone} & 13--17 & Search and edit replays, find fragile links, assign crew, and report peak demand. \\
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.28\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.25\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.47\linewidth-2\tabcolsep\relax}}
+\textbf{Path} & \textbf{Fixtures} & \textbf{Final demo} \\
+1. Groovebox & \texttt{fixtures/groovebox} & Play an arrangement with a fill you choose to keep. \\
+2. Train Dispatcher & \texttt{fixtures/trains} & Close a track and compare two dispatch policies. \\
+3. Visuals Engine & \texttt{fixtures/visuals} & Render a clip for a mix and show its frame load. \\
+4. Festival Control & \texttt{fixtures/festival} & Reconstruct an incident and defend a crew response. \\
+5. Datacenter Simulator & \texttt{fixtures/datacenter} & Replay a bad afternoon and explain missed deadlines. \\
 \end{tabular}
 \end{center}
 
-Each stage gives you a feature, a small example, a rule change, and a finish criterion. The first example is a fixture, which means a saved input with an expected result. Start with that scope. Add the other stage work in small blocks.
+\subsection*{The first work block}
 
-\subsection{Run a study block}\label{run-a-study-block}
+Use the Groovebox book and \texttt{01a.in}. Build enough to print the two lookup results in \texttt{01a.out}. A hit includes the actual tick, ID, sound, and velocity. A miss prints the requested ID. Save the version that does both. Make the sorted playback list in the next block.
 
-Start with a question the tool can answer. State the inputs and the expected result. Try a small example by hand and choose a simple baseline. A baseline is a direct solution you can compare against.
+\subsection*{Work in short checkpoints}
 
-Write the feature yourself. Test boundaries and compare with an independent solver when small inputs make that practical. Explain why it works, why it finishes, and how time and peak extra storage grow. Count the relevant operations before giving a growth bound.
+Read the scene and pick one numbered step. Use the small example to check your model. Write the feature and run it against the expected output. If the results differ, shrink the input until you can explain the first difference.
 
-Change one rule. Predict which assumptions still hold and which need a repair. During practice, ask for a hint, a worked example, or a review when you want help. Use a different example for a teaching demonstration and write your own argument for the feature.
+When it works, test the changed rule and the boundary cases. Explain why the result follows from the rules. Count relevant work and peak storage on a concrete input before generalizing. Use a second small implementation or a hand trace to check cases you design.
 
-Use the weekday pattern when it fits. Learn one idea, rebuild it from memory, apply it, change a rule, then try mixed problems. Review without notes after about 2, 7, 21, and 42 days. Move weekend reviews to the next weekday. Recall an invariant, reconstruct a feature, transfer it to a different problem, and mix it into timed practice. Keep reviews short and vary prompts that have grown stale.
+Keep code, tests, and decisions in the active project's own workspace. Share which fixture works and the next checkpoint. Use Go first. Rebuild selected familiar features later in C++ or Rust. Learn Rust syntax, tests, collections, ownership, and borrowing before choosing it for new work.
 
-If you track a session, give the available active minutes before you start. Allow one-sixth of the total for retrieval, rounded to the nearest minute with halves rounded up. Allow at least one minute of retrieval and three minutes of closing feedback. Use the rest for the feature. Ordinary sessions need at least five active minutes. A 45-minute session gives you 8 minutes of retrieval, 34 minutes of build time, and 3 minutes of feedback.
+\subsection*{If you use tracked sessions}
 
-At the end, review the output against the intended behavior and identify the first unresolved gap. Ask for an explanation when the evidence is unclear. After a major build, get a review of the code, tests, correctness, and cost. Record what you did independently, what you did with help, and what still needs evidence.
+Give the available active minutes. Reserve one-sixth of the total for retrieval, rounded to the nearest minute with halves rounded up. Allow at least one minute of retrieval and three minutes of closing feedback. Use the remainder for the checkpoint. A 45-minute session gives you 8 minutes of retrieval, 34 minutes of build time, and 3 minutes of feedback.
+
+Use reviews after about 2, 7, 21, and 42 days on weekdays. Ask for a hint or a small worked example when useful. Use different data for the example. Before a block, name where to stop. Close with the goal, strongest evidence, and next action.
+
+\section{Releases and fresh checks}
+
+Each milestone ends at its stated demo. Complete its main fixture and its supporting checks in short blocks. Show one boundary or failing case, explain correctness, and account for the relevant time and storage. Name the assumptions that the feature relies on.
+
+The printed cases are public. For a fresh check, give a short scenario with a new goal or a changed rule. Give the learner the contract and constraints. The learner chooses the approach. The tutor validates a reference before showing an original challenge. Use a direct checker or a published problem with an unseen solution.
+
+Close each path with its capstone and two fresh mini-cases that combine features. Add a specialist extension with a small reference. Change an assumption and test the result. During the path, revisit an earlier milestone after at least seven days. Reconstruct the feature without notes or solve a fresh case before starting the next path.
+
+Formal assessments use the configured limits of 45, 60, or 90 minutes. Reserve 15 minutes afterward for feedback. Count reasoning, implementation, testing, and explanation. Only a 90-minute task can span agreed blocks. Pick the language before seeing the task. Use the editor, compiler, judge or checker, and your own tests. Keep hints, editorials, web search, AI assistance, and solution templates closed.
+
+Score model and approach, correctness, implementation, and complexity from 0 to 3. Pass with at least 10 total, at least 2 in each part, and 3 in implementation. Record independent, assisted, and unassessed work as distinct evidence. If a result misses a requirement, repair the first gap and try a different fresh case after a delay.
 
 \clearpage
 
-\section{Festival Replay}\label{festival-replay}
+\section{Tutor map}
 
-Two scanners report the same incident from different gates. Their records arrive out of order. Build a tool that puts the records in order and helps you find what happened.
+Plan with this map and teach from the project book. Lead with the feature, input, checks, and finish line. Introduce a technique in response to a question or in an agreed teaching block. Leave the approach and supporting claims to the learner.
 
-Use plain text and local files. Keep the replay logic callable from tests. The finish line is a demo that looks up an event, inspects a queue span, and replays several sorted files.
+The columns show milestone numbers. G is Groovebox, T is Train Dispatcher, V is Visuals Engine, F is Festival Control, and D is Datacenter Simulator. Use the active path's case and supporting checks. If a fixture samples only part of a skill, pose a small variant in that project.
 
-\subsection{Stage 1. Reconstruct a gate incident}\label{stage-1-reconstruct-a-gate-incident}
-
-Implement linear search and merge sort. Start with lookup in one unsorted file. Then read two files and emit a single chronological replay.
-
-Each line contains an integer tick, a unique event ID, a gate, and a signed queue change. Order by tick, then by event ID. Preserve each entire record.
-
-Save the first fixture as \texttt{gate-a.txt}.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-30 e3 east -1
-10 e2 north 2
-\end{verbatim}
-\end{samepage}
-
-Look up one event by its ID and report a missing ID.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-lookup e2 -> 10 e2 north 2
-lookup e9 -> no event
-\end{verbatim}
-\end{samepage}
-
-Stop the first block when those two lookups work. For the next block, save this fixture as \texttt{gate-b.txt}.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-10 e1 east 1
-20 e4 north -2
-\end{verbatim}
-\end{samepage}
-
-Replay both files in the order that the contract specifies.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-10 e1 east 1
-10 e2 north 2
-20 e4 north -2
-30 e3 east -1
-\end{verbatim}
-\end{samepage}
-
-For the sort, add empty, singleton, equal-tick, and uneven-size inputs. Compare complete records with a trusted sort.
-
-Run five small cost experiments. Use a scan, a nested pair check, a halving loop, a recursive merge, and buffer growth by doubling. Predict counts on small inputs. Derive a general count or bound before measuring growth.
-
-Distinguish record count from numeric tick size. Explain worst-case and amortized cost. Amortized cost spreads total work across a sequence of operations. Separate total work from peak extra storage.
-
-\textbf{Rule change.} A scanner adds bracketed text to a record. Find a counterexample to checking brackets with counts alone. Explain the information a stack retains.
-
-Finish when both builds work and you can defend correctness, termination, and time and space costs. Use a loop invariant for the scan and an inductive argument for merge sort. A loop invariant is a claim that holds at each iteration boundary. Measurements support the cost argument.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/two-sum/}{Two Sum} \textperiodcentered{} \href{https://leetcode.com/problems/valid-parentheses/}{Valid Parentheses}
-
-\subsection{Stage 2. Index events and count queue changes}\label{stage-2-index-events-and-count-queue-changes}
-
-Complete Stage 1 first.
-
-Use a set of seen IDs to report repeats. Use a map to count input rows per gate. Compare one-off scans with repeated indexed queries. Name the values that occupy space and state the expected cost assumptions for hash tables.
-
-Use prefix sums to answer repeated range totals. A prefix sum is the total before a given position. Add a frequency-based counter for contiguous spans with a target total. Account for earlier equal totals, zeros, and negative changes. Compare with exhaustive enumeration on small inputs.
-
-Use zero-based, half-open intervals throughout the replay. The left endpoint is included and the right endpoint is excluded.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-changes: [2, -1, 0, 1]
-sum [1, 4) -> 0
-count spans totaling 1 -> 4
-spans -> [0, 2), [0, 3), [2, 4), [3, 4)
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Answer existence, then count all spans, then report their positions. Decide whether the same map values suffice. Compare slice views and copies. In a small side exercise, find the first unused positive badge number by rearranging the input array.
-
-Finish when you can derive the index keys and values from each query. Explain update order, duplicate handling, positions versus values, and the space cost.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/group-anagrams/}{Group Anagrams} \textperiodcentered{} \href{https://leetcode.com/problems/subarray-sum-equals-k/}{Subarray Sum Equals K} \textperiodcentered{} \href{https://leetcode.com/problems/first-missing-positive/}{First Missing Positive}
-
-\subsection{Stage 3. Find the span that explains an incident}\label{stage-3-find-the-span-that-explains-an-incident}
-
-Complete Stage 2 first.
-
-Start by finding common IDs in two sorted scanner reports. Then add a fixed-size window query. A window is a contiguous span of input. Compare a direct repeated scan with an incremental update.
-
-Build a variable window for the longest span with no repeated scanner. Build another for the shortest span that covers a requested list of scanners. Count repeats in the request. Use the earliest start to break ties.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-scanners: [A, B, A, C, B]
-longest with no repeats -> [1, 4)
-shortest covering [A, A, C] -> [0, 4)
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Allow at most k appearances per scanner. Derive the count for exactly k distinct scanners from counts with at most k. Find a signed-input case in which a sum-window rule discards a valid answer.
-
-Finish when you can justify each endpoint move and bound touches per element. Include empty inputs, repeated requirements, and impossible requests.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/longest-substring-without-repeating-characters/}{Longest Substring Without Repeating Characters} \textperiodcentered{} \href{https://leetcode.com/problems/minimum-window-substring/}{Minimum Window Substring}
-
-\subsection{Stage 4. Jump to a time and size a replay batch}\label{stage-4-jump-to-a-time-and-size-a-replay-batch}
-
-Complete Stages 1--3 first.
-
-Add a query that returns every event at a tick. Implement lower bound and upper bound from memory. They return the first position at or above a value and the first position above it. Test empty, singleton, duplicate, and all-equal inputs.
-
-Add a capacity command. Given nonnegative work per event, find the smallest per-batch capacity for at most k contiguous batches. A monotone feasibility rule stays true as capacity increases. Prove that the feasibility test gives the right answer at a fixed capacity. Then prove that the search preserves the answer and terminates.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-ticks: [10, 10, 20, 30]
-bounds for 10 -> [0, 2)
-
-work: [2, 5, 1, 3]
-minimum capacity with at most 2 batches -> 7
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Find a modified capacity rule that loses monotonicity. Explain why the same search is unsafe. In a separate lab, partition records around a pivot and revisit the recurrence for merge sort. A recurrence describes the work in terms of smaller inputs.
-
-Finish when both searches agree with direct enumeration on small cases. Include the full cost of the feasibility test in the bound.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/binary-search/}{Binary Search} \textperiodcentered{} \href{https://leetcode.com/problems/search-in-rotated-sorted-array/}{Search in Rotated Sorted Array} \textperiodcentered{} \href{https://leetcode.com/problems/split-array-largest-sum/}{Split Array Largest Sum} \textperiodcentered{} \href{https://leetcode.com/problems/median-of-two-sorted-arrays/}{Median of Two Sorted Arrays} as a later stretch
-
-\subsection{Stage 5. Replay files that exceed memory}\label{stage-5-replay-files-that-exceed-memory}
-
-Complete Stages 2--4 first.
-
-Merge several pre-sorted files. Read only the next candidate from each stream and emit the result as you go. Build a binary heap to select the next record. A heap keeps the next priority item available. After the learning build, use the library heap for later exercises.
-
-Add a running median with two heaps and a rolling maximum with a monotonic deque. A deque allows updates at both ends. A monotonic deque keeps its remaining candidates in value order. Explain both heap invariants and which stale or dominated candidates you remove. A dominated candidate can never beat another remaining candidate.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-sorted streams: [1, 4] and [2, 3]
-merge -> [1, 2, 3, 4]
-
-arrivals: [3, 1, 4, 2]
-running medians -> [3, 2, 3, 2.5]
-rolling max with width 2 -> [3, 4, 4]
-\end{verbatim}
-\end{samepage}
-
-Use a monotonic stack to find the next higher scanner reading and the largest rectangle in a queue histogram. In each build, compare with a direct reference on small data.
-
-\textbf{Rule change.} Find the shortest span whose signed total reaches a threshold. Use the named practice task and explain what the deque retains that the Stage 3 window lost.
-
-Finish when the stream merge agrees with the in-memory replay and you can bound its extra memory. Analyze the running median\textquotesingle s storage separately. Prove linear aggregate deque work by counting pushes and pops.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/daily-temperatures/}{Daily Temperatures} \textperiodcentered{} \href{https://leetcode.com/problems/largest-rectangle-in-histogram/}{Largest Rectangle in Histogram} \textperiodcentered{} \href{https://leetcode.com/problems/sliding-window-maximum/}{Sliding Window Maximum} \textperiodcentered{} \href{https://leetcode.com/problems/merge-k-sorted-lists/}{Merge k Sorted Lists} \textperiodcentered{} \href{https://leetcode.com/problems/find-median-from-data-stream/}{Find Median from Data Stream} \textperiodcentered{} \href{https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/}{Shortest Subarray with Sum at Least K}
-
-\clearpage
-
-\section{Festival Site Planner}\label{festival-site-planner}
-
-The festival crew needs a map and a setup order. A closed path changes one route. A late delivery changes which jobs fit in a room. Build a tool that shows the new route and schedule.
-
-Use small text files for layouts, paths, and bookings. Draw the route in the terminal. The finish line is a reroute and a revised room schedule for the same festival.
-
-\subsection{Stage 6. Save, load, and inspect a venue layout}\label{stage-6-save-load-and-inspect-a-venue-layout}
-
-Complete Stages 1 and 5 first.
-
-Represent nested venue zones as a binary tree. Write recursive traversals and equivalent explicit-stack traversals. State what each recursive call returns. Serialize the tree to text and reconstruct it. Serialization turns the tree into a form you can save.
-
-Find the lowest common ancestor of two zones. Add a binary search tree, or BST, for ordered lookup. Explain its ordering rule. Study the height-balance rule that an AVL tree maintains.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-      15
-     /  \
-    8    22
-     \
-      10
-
-preorder -> [15, 8, 10, 22]
-lowest common ancestor of 10 and 22 -> 15
-maximum path score -> 55
-\end{verbatim}
-\end{samepage}
-
-For the maximum path query, use each node\textquotesingle s value as its score. Distinguish a path that the parent can extend from the best complete path in a subtree. Use round-trip tests for empty, skewed, and repeated-value layouts. Include a separate all-negative path fixture.
-
-\textbf{Rule change.} Sketch what information a child needs from its parent to answer a query for every possible root. Save the sketch for Stage 12.
-
-Finish when the formats round-trip and you can explain traversal space, BST ordering, and the two roles of subtree results.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/validate-binary-search-tree/}{Validate Binary Search Tree} \textperiodcentered{} \href{https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/}{Lowest Common Ancestor of a Binary Tree} \textperiodcentered{} \href{https://leetcode.com/problems/binary-tree-maximum-path-sum/}{Binary Tree Maximum Path Sum} \textperiodcentered{} \href{https://leetcode.com/problems/serialize-and-deserialize-binary-tree/}{Serialize and Deserialize Binary Tree}
-
-\subsection{Stage 7. Route around a closure and order the setup jobs}\label{stage-7-route-around-a-closure-and-order-the-setup-jobs}
-
-Complete Stages 5--6 first.
-
-Find a shortest route on a grid with breadth-first search, or BFS. Recover the route and mark it on the grid. Inspect which cells the search reaches at each distance. Use an adjacency list for paths stored directly. An adjacency list stores the neighbors of each location. Generate grid neighbors as needed.
-
-Use depth-first search, or DFS, to find connected regions in the undirected map. For directed setup dependencies, use DFS colors to track discovery and completion. Return a topological order, which places each job after its prerequisites. Report a cycle if no such order exists.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-S#.
-.#G
-...
-
-route from S to G -> down, down, right, right, up
-distance -> 5 moves
-
-dependencies -> power before lighting, lighting before sound
-order -> power, lighting, sound
-\end{verbatim}
-\end{samepage}
-
-Test isolated locations, unreachable goals, and dependencies that form a cycle. Use four-direction moves and treat \texttt{\#} as blocked in the grid.
-
-\textbf{Rule change.} Add a key, a parity restriction, or a budget for crossing blocked cells. Construct a case that shows whether one visited flag per cell is enough. Count vertices and edges in the model you use.
-
-Finish when you recover valid shortest routes, detect dependency cycles, and account for the cost of generating neighbors.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/number-of-islands/}{Number of Islands} \textperiodcentered{} \href{https://leetcode.com/problems/course-schedule-ii/}{Course Schedule II} \textperiodcentered{} \href{https://leetcode.com/problems/word-ladder/}{Word Ladder}
-
-\subsection{Stage 8. Route with time, cost, and limits}\label{stage-8-route-with-time-cost-and-limits}
-
-Complete Stages 5 and 7 first.
-
-Add Dijkstra with path recovery for nonnegative costs. Relax an edge by testing whether its route improves a known distance. Explain how you handle stale heap entries. Add 0--1 BFS for edges whose costs are zero or one.
-
-Use Bellman--Ford as an independent reference on small random nonnegative graphs. Then try signed costs and a reachable negative cycle. Run a separate path query on a directed acyclic graph, or DAG. State the assumptions for each solver.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-directed edges: S->A 4, S->B 1, B->A 1, A->T 2, B->T 7
-cheapest S to T -> S, B, A, T with cost 4
-cheapest with at most 2 edges -> S, A, T with cost 6
-
-binary costs: S->A 0, A->T 0, S->T 1
-cheapest S to T -> S, A, T with cost 0
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Add a stop limit and then a one-use discount. Show a case in which one stored cost per location loses a feasible answer. Bound the cost of the larger state space.
-
-Compare a cheap trip with a cheap cable plan that connects every site. Describe what a minimum spanning tree minimizes. Build one in Stage 15.
-
-Finish when each solver agrees with its reference on valid inputs. Explain relaxation, stale work, path recovery, and the cost of the chosen state.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/network-delay-time/}{Network Delay Time} \textperiodcentered{} \href{https://leetcode.com/problems/cheapest-flights-within-k-stops/}{Cheapest Flights Within K Stops} \textperiodcentered{} \href{https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/}{Minimum Cost to Make at Least One Valid Path in a Grid}
-
-\clearpage
-
-\subsection{Stage 9. Book a room and find the busiest time}\label{stage-9-book-a-room-and-find-the-busiest-time}
-
-Complete Stages 4--5 first.
-
-Choose the largest set of nonoverlapping bookings for one room. Enumerate all subsets of a small fixture to establish the optimum. Defend your greedy choice with an exchange or staying-ahead argument. An exchange replaces a choice while preserving feasibility and value.
-
-Sweep all start and end events to find peak demand. An event sweep processes changes in order. Use half-open bookings, so a room becomes free at its scheduled end.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-A: [0, 3), value 3
-B: [3, 5), value 3
-C: [1, 4), value 7
-
-maximum booking count -> 2 with A and B
-peak simultaneous demand -> 2
-maximum booking value -> 7 with C
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Add booking weights. Use the example to explain where the unweighted argument fails. Derive the weighted solution in Stage 12. Find a different fixture that breaks an alternative sort order.
-
-Finish when you can defend your actual greedy rule, exhibit a counterexample to a tempting rule, and handle tied start and end events.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/non-overlapping-intervals/}{Non-overlapping Intervals} \textperiodcentered{} \href{https://leetcode.com/problems/gas-station/}{Gas Station} \textperiodcentered{} \href{https://leetcode.com/problems/candy/}{Candy}
-
-\clearpage
-
-\section{Lineup Planner}\label{lineup-planner}
-
-The festival has more acts than it can book. Some acts cannot play together. Some need equipment that exceeds the budget. Build a tool that shows a feasible lineup and explains what it optimizes.
-
-Start with small input lists. The finish line is a demo in which a change to a constraint changes the chosen lineup.
-
-\subsection{Stage 10. Enumerate valid lineups}\label{stage-10-enumerate-valid-lineups}
-
-Complete Stages 1 and 6--7 first.
-
-Write a subset generator and a permutation generator. Then assign acts to ordered slots with constraints on which acts can follow each other. Use each act at most once. Define the choices and the search state before you write the solver.
-
-Draw a small recursion tree. Use a bitmask to represent selected acts in one version. A bitmask uses one bit per membership flag. Record how you undo a choice on return. Compare branch orders and prune branches only when you can rule out a valid completion.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-acts: A, B, C
-slots: 2
-rule: B cannot immediately follow A
-
-solutions -> AC, BA, BC, CA, CB
-\end{verbatim}
-\end{samepage}
-
-Compare with an exhaustive solver on small cases. Count visited nodes and emitted lineups separately.
-
-\textbf{Rule change.} Introduce duplicate labels or return only the number of distinct lineups. Justify which symmetry rules preserve every distinct answer.
-
-Finish when every valid result appears exactly once. Explain state restoration and prove each prune. Bound cost using branching, depth, and output size.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/subsets/}{Subsets} \textperiodcentered{} \href{https://leetcode.com/problems/combination-sum/}{Combination Sum} \textperiodcentered{} \href{https://leetcode.com/problems/n-queens/}{N-Queens} \textperiodcentered{} \href{https://leetcode.com/problems/sudoku-solver/}{Sudoku Solver}
-
-\subsection{Stage 11. Pick a lineup under a budget}\label{stage-11-pick-a-lineup-under-a-budget}
-
-Complete Stages 1, 7, and 10 first.
-
-For this feature, give each act a positive integer cost and a score. Choose each act at most once. Return the maximum score within the budget and the selected acts.
-
-Use dynamic programming, or DP, to reuse solutions to smaller subproblems. Write the state, recurrence, base cases, evaluation order, and cost before coding. Explain what history the state retains. Show how a full optimum can use an optimum for a smaller subproblem.
-
-Implement a memoized version, which saves recursive results. Then implement a bottom-up version, which computes states in dependency order. Compare both with exhaustive search and reconstruct the choices.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-act (cost, score): A (2, 4), B (3, 5), C (5, 8), D (1, 1)
-budget: 5
-
-best score -> 9
-acts -> A, B
-number of distinct subsets with cost exactly 5 -> 2
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Count subsets that use the exact budget. Derive the new base cases. Try another version in which order matters and define which outcomes count as distinct.
-
-Finish when you can derive the recurrence independently. Explain the time and space costs in terms of both the act count and the numeric budget. Explain why this can be more than polynomial in the number of input bits.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/house-robber/}{House Robber} \textperiodcentered{} \href{https://leetcode.com/problems/coin-change/}{Coin Change} \textperiodcentered{} \href{https://leetcode.com/problems/edit-distance/}{Edit Distance} \textperiodcentered{} \href{https://leetcode.com/problems/distinct-subsequences/}{Distinct Subsequences}
-
-\subsection{Stage 12. Change the shape of the planning problem}\label{stage-12-change-the-shape-of-the-planning-problem}
-
-Complete Stages 6 and 8--11 first.
-
-Build three small modes. Start each with a direct solver for tiny inputs. State what one result represents before combining smaller results.
-
-\begin{enumerate}
-\item Merge adjacent rehearsal recordings in the cheapest order. Each merge costs the combined length. Derive an interval recurrence by asking what the last merge could be.
-\item Start at a loading bay and visit each required stage once. Minimize travel cost without returning to the bay. Represent a visited subset with a bitmask.
-\item Place a help desk in a tree of zones. For every possible root, return the sum of distances to all zones. Use the Stage 6 sketch to pass information between roots.
-\end{enumerate}
-
-\begin{samepage}
-\small
-\begin{verbatim}
-recording lengths: [10, 20, 30]
-minimum merge cost -> 90
-
-travel costs: bay-to-X 2, bay-to-Y 5, X-to-Y 1
-minimum route from bay through both stages -> bay, X, Y with cost 3
-
-zone tree: A -- B -- C, edge lengths 1
-distance totals for roots A, B, C -> [3, 2, 3]
-\end{verbatim}
-\end{samepage}
-
-Add three short applications. Find the best score along a setup DAG. Find the longest increasing subsequence of track ratings. Count ticket numbers up to a limit under a digit rule.
-
-\textbf{Rule change.} Complete weighted room booking from Stage 9. Compare the quadratic subsequence solver with the faster version on small inputs. Explain what the frontier means.
-
-Finish when you can derive the interval, subset, and tree state structures. Count states and transitions. Prove which old values are still needed before compressing storage.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/longest-increasing-subsequence/}{Longest Increasing Subsequence} \textperiodcentered{} \href{https://leetcode.com/problems/burst-balloons/}{Burst Balloons} \textperiodcentered{} \href{https://leetcode.com/problems/regular-expression-matching/}{Regular Expression Matching} \textperiodcentered{} \href{https://cses.fi/problemset/task/1653}{Elevator Rides} (CSES)
-
-\clearpage
-
-\section{Extensions and capstone}\label{extensions-and-capstone}
-
-The festival logs grow, readings need corrections, and crews share limited routes. Return to the tools when a new requirement exposes a limit. Finish with a replay that finds the busiest sector and the first tick when it peaks.
-
-\subsection{Stage 13. Search and complete text in Replay}\label{stage-13-search-and-complete-text-in-replay}
-
-Complete Stages 2, 7, and 10--12 first.
-
-Add autocomplete for event tags using a trie. A trie stores common prefixes on shared paths. Add exact message search using KMP and its prefix function, or the Z-function. Return overlapping matches. Compare the result with direct matching on small random strings.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-tags: gate, gate-east, gate-north, radio
-complete gate- -> gate-east, gate-north
-
-text: ABABA
-pattern: ABA
-match positions -> [0, 2]
-\end{verbatim}
-\end{samepage}
-
-Specify whether your offsets count bytes or Unicode code points. Test repeated symbols and your chosen empty-pattern behavior. Trace a match that fails partway through. Explain where the matcher resumes and how it handles overlaps.
-
-Use a small palindrome problem to test representations of reversed text. In a rolling-hash experiment, show how two distinct strings can share a hash. A rolling hash updates a fingerprint as a window moves. Require a collision argument or an exact comparison for an exact-match guarantee.
-
-\textbf{Rule change.} Search for several patterns. Explain which prefix work the trie can share. Revisit this design in the Aho--Corasick option in Stage 17.
-
-Finish when results agree with direct matching and you can account for total work. Explain which state changes during trie traversal and which state you restore.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/implement-trie-prefix-tree/}{Implement Trie (Prefix Tree)} \textperiodcentered{} \href{https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/}{Find the Index of the First Occurrence in a String} with linear-time matching \textperiodcentered{} \href{https://leetcode.com/problems/word-search-ii/}{Word Search II} \textperiodcentered{} \href{https://leetcode.com/problems/shortest-palindrome/}{Shortest Palindrome}
-
-\subsection{Stage 14. Query a replay while readings change}\label{stage-14-query-a-replay-while-readings-change}
-
-Complete Stages 2 and 4--6 first.
-
-Build a Fenwick tree for point corrections and range sums. A Fenwick tree stores sums for selected blocks. Build a segment tree for range summaries. A segment tree combines summaries from smaller ranges.
-
-Use coordinate compression on known timestamps. Coordinate compression replaces values with their sorted ranks. Keep the original timestamps for reporting. Compare random updates and queries with a plain array.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-ticks:     [10, 30, 100]
-readings:  [ 3,  1,   4]
-
-Fenwick demo
-sum [10, 31) -> 4
-set tick 30 to 2
-sum [10, 31) -> 5
-
-segment tree demo, starting from the original readings
-add 2 to [10, 101)
-min [30, 101) -> 3
-\end{verbatim}
-\end{samepage}
-
-Add lazy propagation for the range addition. Lazy propagation delays updates to child segments until needed. In short drills, find a value by its sorted rank and answer a batch of queries with an offline sweep. An offline sweep can order queries before answering them.
-
-\textbf{Rule change.} Move from static data to online updates, or switch sums to minima. Compare the data structures with a sparse table for static minimum queries. A sparse table precomputes summaries for power-of-two blocks. Explain when query blocks can overlap.
-
-Finish when you can prove the query decomposition and define its boundaries. State the merge operation, why grouping is safe, and the identity value that leaves a result unchanged. Explain why compressed ranks preserve order and can change distances.
-
-\textbf{Practice.} \href{https://cses.fi/problemset/task/1646}{Static Range Sum Queries} (CSES) \textperiodcentered{} \href{https://leetcode.com/problems/range-sum-query-mutable/}{Range Sum Query - Mutable} \textperiodcentered{} \href{https://leetcode.com/problems/count-of-smaller-numbers-after-self/}{Count of Smaller Numbers After Self} \textperiodcentered{} \href{https://leetcode.com/problems/count-of-range-sum/}{Count of Range Sum}
-
-\subsection{Stage 15. Stress-test the Site Planner}\label{stage-15-stress-test-the-site-planner}
-
-Complete Stages 6--8 and 12 first.
-
-Build one demo for each part. Make sure that each implementation agrees with a small reference. Explain the invariant and complete a fresh application in each part.
-
-\subsubsection{A. Connect the site}\label{a-connect-the-site}
-
-Use a disjoint-set union structure, or DSU, to track paths that open over time. A DSU stores groups that can merge. Use Kruskal to find a minimum-cost cable layout with the available links. Use binary lifting for ancestor queries in the venue tree. Binary lifting stores ancestors at power-of-two distances.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-open A--B, then B--C
-A connected to C -> false after first open, true after second
-
-cable costs: A--B 2, B--C 1, A--C 5
-cheapest layout -> A--B and B--C with total cost 3
-\end{verbatim}
-\end{samepage}
-
-Compare connectivity and ancestor answers with direct traversal. Test disconnected candidates and state when a spanning tree exists.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/redundant-connection/}{Redundant Connection} \textperiodcentered{} \href{https://cses.fi/problemset/task/1688}{Company Queries II} (CSES)
-
-\subsubsection{B. Find what breaks when a path closes}\label{b-find-what-breaks-when-a-path-closes}
-
-Implement one algorithm for strongly connected components. Within a strongly connected component, every vertex can reach every other. Collapse those components into a DAG. Check small results against direct reachability.
-
-Use DFS discovery times and low-link values to find undirected bridges. A bridge is an edge whose removal increases the component count. A low-link value tracks how far back a DFS subtree can reach. Track particular edges so parallel edges work.
-
-Add an inspection walk that uses each edge once. Such a walk is an Euler trail. Check that the walk uses each edge ID exactly once.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-one-way paths: A->B, B->A, B->C, C->D, D->C
-components -> {A, B}, {C, D}
-condensed edges -> {A, B} to {C, D}
-
-two parallel paths A--B and one path B--C
-bridges -> only B--C
-one inspection trail -> B, A, B, C
-\end{verbatim}
-\end{samepage}
-
-\textbf{Practice.} \href{https://leetcode.com/problems/critical-connections-in-a-network/}{Critical Connections in a Network} \textperiodcentered{} \href{https://leetcode.com/problems/reconstruct-itinerary/}{Reconstruct Itinerary} \textperiodcentered{} \href{https://cses.fi/problemset/task/1686}{Coin Collector} (CSES)
-
-\subsubsection{C. Allocate capacity and crew}\label{c-allocate-capacity-and-crew}
-
-Build a maximum-flow solver that uses a residual network. This network records changes still possible in a flow. Compare small cases with enumeration. Output a feasible flow and a cut of equal value. A cut splits the source and sink into separate sets. Use the pair as a certificate, or independently checkable proof of optimality.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-capacities: S->A 2, S->B 1, A->T 1, A->B 1, B->T 2
-maximum flow -> 3
-one minimum cut -> {S} and {A, B, T}
-
-crew choices: Inez can do lights or sound, Rae can do lights
-maximum assignment -> Inez to sound, Rae to lights
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Reduce the crew assignment to bipartite matching. In bipartite matching, pairs link members of two distinct groups. Prove that every feasible assignment gives a graph solution and that every graph solution yields a valid assignment.
-
-\textbf{Practice.} \href{https://cses.fi/problemset/task/1694}{Download Speed} and \href{https://cses.fi/problemset/task/1696}{School Dance} (CSES)
-
-Finish Stage 15 when all three demos work. Include decomposition and a flow or matching reduction in the stage assessment.
-
-\subsection{Stage 16. Add exact site geometry and ticket rules}\label{stage-16-add-exact-site-geometry-and-ticket-rules}
-
-Complete Stages 1, 4, and 10--12 first.
-
-Build an exact map tool. Use integer orientation to tell which side of a line contains a point. Compute it with a cross product, which gives a signed area test. Normalize rational slopes for collinearity, including vertical lines. Account for duplicate points. Extend the tool to find intersecting segments and test endpoint contact.
-
-Build a small ticket-rule tool. Implement greatest common divisor, or GCD, and modular exponentiation. Compute a modular inverse when it exists. Test a case with no inverse. Use bit operations for ticket flags. Use inclusion--exclusion to count overlapping rules. This method corrects for counting the same item more than once.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-orientation of (0,0), (2,0), (1,1) -> positive
-segments (0,0)--(2,2) and (0,2)--(2,0) -> intersect
-gcd(12, 18) -> 6
-3^4 mod 7 -> 4
-inverse of 3 mod 7 -> 5
-IDs in [1, 12] divisible by 2 or 3 -> 8
-IDs in [1, 20] containing digit 1 -> 11
-\end{verbatim}
-\end{samepage}
-
-\textbf{Rule change.} Revisit digit DP and change a digit, base, or range constraint. Compare the count with enumeration. For geometry, bound intermediate integers and keep exact comparisons in integer or rational form.
-
-Finish when you can derive the counting argument and justify exact geometry on duplicate and boundary cases. Use two subtopics for fresh applications.
-
-\textbf{Practice.} \href{https://leetcode.com/problems/number-of-digit-one/}{Number of Digit One} \textperiodcentered{} \href{https://leetcode.com/problems/max-points-on-a-line/}{Max Points on a Line}
-
-\subsection{Stage 17. Run a festival from a replay}\label{stage-17-run-a-festival-from-a-replay}
-
-Complete Stages 1--16 first.
-
-Take records with a start tick, end tick, range of sectors, and demand per sector. Report the highest simultaneous demand, the first tick it occurs, and a sector where it occurs. Use half-open time and sector ranges. Choose the smallest sector if several tie at the first peak.
-
-\begin{samepage}
-\small
-\begin{verbatim}
-time [0, 4), sectors [0, 2), demand 2
-time [2, 6), sectors [1, 3), demand 3
-time [3, 5), sectors [0, 1), demand 1
-
-peak -> demand 5 at tick 2 in sector 1
-\end{verbatim}
-\end{samepage}
-
-Combine a sweep from Stage 9 with a range structure from Stage 14. Compare the result with direct simulation on tiny fixtures. Explain how you handle events at the same tick. Bound cost by event count, sector count, and any output you produce.
-
-Survey the following directions. Choose one specialist build and state the conditions that make its method work.
-
-\begin{itemize}
-\item Use meet-in-the-middle search for a small set of acts with large budget values. Split the choices and combine the results.
-\item Try a DP optimization on a recurrence that meets its conditions. Compare with the original solver and test a case where a condition fails.
-\item Combine advanced tree and range operations to query or update a path in the venue tree.
-\item Use an Aho--Corasick automaton to search for many alerts. An automaton changes state as it reads input.
-\item Build a suffix structure to find repeated spans in messages. A suffix runs from a given position to the end.
-\item Use game DP to find the best play when two bookers alternate picking slots.
-\end{itemize}
-
-Compare computational limits across the candidates. Pick input sizes that expose which exact methods stop fitting. Test the specialist build with an independent checker.
-
-\textbf{Rule change.} Change a structural assumption in a new task. Explain which part of your method survives and what needs a new solution.
-
-Finish with the combined build, the specialist implementation, two fresh combination problems, and the \hyperref[hard-benchmark]{Hard benchmark}. Return to the frontier when fresh problems expose new gaps.
-
-\textbf{Practice.} \href{https://cses.fi/problemset/}{CSES Advanced Techniques} or \href{https://usaco.guide/}{USACO Guide} modules that address a demonstrated gap
-
-\clearpage
-
-\section{Stage gates}\label{stage-gates}
-
-\begin{enumerate}
-\item Finish the build, its named practice problems, and the rule change. Meet the stage\textquotesingle s exit criteria.
-\item Solve two fresh applications independently. Allow 60 minutes each at an appropriate introductory or Medium level. Stage 1 can use Easy problems.
-\item In Stages 12--16, include a Hard or substantial CSES problem. Allow up to 90 minutes. In Stage 15, solve a fresh problem from each of its three parts. Include decomposition and a flow or matching reduction. Cover two subtopics in Stage 16.
-\item At least seven days later, reconstruct the skill without notes or pass a fresh transfer task. You can start the next compatible stage while this is pending.
-\end{enumerate}
-
-Choose published tasks with unseen solutions for assessments. Keep problem labels, hints, editorials, web search, AI assistance, and solution templates closed. Use the statement, judge, editor, compiler, and your own tests. Ordinary syntax completion is allowed.
-
-Score each part from 0 to 3. Use 0 or 1 for work below the sound standard. Pass with at least 10 of 12 points, at least 2 in each part, and 3 in implementation.
+\subsection*{First builds and load}
 
 \begin{center}
 \small
-\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.20\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.40\linewidth-2\tabcolsep\relax}>{\raggedright\arraybackslash}p{\dimexpr0.40\linewidth-2\tabcolsep\relax}}
-\textbf{Part} & \textbf{2 \textperiodcentered{} Sound} & \textbf{3 \textperiodcentered{} Strong} \\
-Model and approach & Finds a valid approach independently. & Chooses an efficient approach and explains alternatives. \\
-Correctness & Gives a coherent argument. & Handles assumptions and difficult boundaries. \\
-Implementation & Produces working code with minor self-corrected issues. & Produces correct code, useful tests, and resolves defects. \\
-Complexity and limits & Gives correct time and space bounds and assumptions. & Accounts for hidden work, expanded state, and tradeoffs. \\
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.70\linewidth-2\tabcolsep\relax}*{5}{>{\centering\arraybackslash}p{\dimexpr0.06\linewidth-2\tabcolsep\relax}}}
+\textbf{Skill and evidence} & \textbf{G} & \textbf{T} & \textbf{V} & \textbf{F} & \textbf{D} \\
+1. Linear scan and merge sort, invariants, induction, termination, exact counts, peak storage, and typed brackets. & 1 & 1 & 1 & 1 & 1 \\
+2. Arrays, hash sets, frequency maps, prefix sums, signed span counts, and in-place positive placement. Explain update order, duplicates, positions, and expected map costs. & 2 & 2 & 2 & 2 & 2 \\
+3. Sorted scans, fixed and variable windows, longest valid and shortest cover, repeat caps, exactly-k counts, and signed limitations. Justify endpoint moves. & 2 & 2 & 2 & 2 & 2 \\
+4. Lower and upper bounds, half-open intervals, partitioning, divide and conquer, and monotone capacity search with a separate feasibility proof. & 3 & 3 & 3 & 3 & 3 \\
+5. Binary heap before library use, two-heap median, monotonic deque and stack, stale indices, signed shortest span, aggregate work and peak storage. & 3 & 3 & 3 & 3 & 3 \\
 \end{tabular}
 \end{center}
 
-If you miss a gate, identify the gap. Do one targeted repair and an application. After a delay, retry on a different problem. If the gap persists, return to a prerequisite or reduce the difficulty. Record assisted builds and repairs as practice. Record independent mastery when a fresh or delayed check supports it.
+For the first milestone, count a scan, nested pair check, halving query, recursive merge, and writes when a buffer doubles. Use data from the active project. Predict and measure growth. Distinguish numeric values from record count. In milestone 3, add a pivot partition with equal values and compare with a direct reorder.
+
+\subsection*{Maps and plans}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.70\linewidth-2\tabcolsep\relax}*{5}{>{\centering\arraybackslash}p{\dimexpr0.06\linewidth-2\tabcolsep\relax}}}
+\textbf{Skill and evidence} & \textbf{G} & \textbf{T} & \textbf{V} & \textbf{F} & \textbf{D} \\
+6. Recursive and iterative traversals, BST and AVL conditions, ancestors, serialization, and a subtree path contract. Check skewed and all-negative cases. & 4 & 4 & 4 & 4 & 4 \\
+7. BFS layers and path, DFS components and colors, directed order and cycles, implicit neighbors, and expanded visited state. & 4 & 4 & 4 & 4 & 4 \\
+8. Dijkstra with stale entries, Bellman--Ford comparison, 0--1 BFS, signed DAG paths and negative cycles, stop or discount state, and MST contrast. & 4 & 5 & 5 & 5 & 5 \\
+9. Greedy interval selection, exchange or staying-ahead proof, tie handling, event sweep, tiny subset reference, and a counterexample with weights. & 5 & 5 & 5 & 5 & 5 \\
+10. Subsets, permutations, backtracking, state restoration, symmetry, bitmasks, sound pruning, branch order, and output cost. & 5 & 6 & 6 & 6 & 6 \\
+11. DP state, recurrence, bases, evaluation order, reconstruction, memoized and bottom-up versions, counting, and numeric budget cost. & 6 & 6 & 6 & 6 & 6 \\
+12. Interval DP from the last decision, subset DP, tree rerooting, DAG and digit states, subsequences and the LIS frontier, and safe storage compression. & 6, 9 & 6, 9 & 6, 9 & 6, 9 & 6, 9 \\
+\end{tabular}
+\end{center}
+
+Ask two different questions on the same graph. Change the costs or available state before repeating a route. For DP, keep an exhaustive check for small inputs and a witness that verifies reconstruction. Use the join, subset visit, and root-distance checks in the active book.
+
+\subsection*{Search, limits, and the capstone}
+
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{\dimexpr0.70\linewidth-2\tabcolsep\relax}*{5}{>{\centering\arraybackslash}p{\dimexpr0.06\linewidth-2\tabcolsep\relax}}}
+\textbf{Skill and evidence} & \textbf{G} & \textbf{T} & \textbf{V} & \textbf{F} & \textbf{D} \\
+13. Trie, linear KMP or Z matching, overlaps, palindrome, collision handling, and byte or code-point offsets. & 7 & 7 & 7 & 7 & 7 \\
+14. Fenwick and segment trees, point and lazy range updates, compression, associative merge and identity, offline sweep, order statistic, and sparse table. & 7 & 7 & 7 & 7 & 7 \\
+15. DSU and Kruskal, binary lifting, low-link bridges with parallel edges, SCC and condensation, Euler trail, residual flow and cut, and matching reduction. & 8 & 8 & 8 & 8 & 8 \\
+16. GCD, modular powers and inverses, inclusion--exclusion, digit constraints, bit operations, cross products, rational slopes, duplicates, and intersections. & 9 & 9 & 9 & 9 & 9 \\
+17. Combine two techniques, change a structural assumption, implement a new specialist technique with a checker, and solve fresh combined cases. & 10 & 10 & 10 & 10 & 10 \\
+\end{tabular}
+\end{center}
+
+For a fresh advanced check, add a modeling constraint or combine methods at the required difficulty. In the network milestone, use fresh cases for connectivity and ancestors, decomposition, and flow or matching. The math milestone needs fresh evidence from two subtopics. Keep solutions and checks inside the active project.
+
+For specialist work, consider meet in the middle, DP optimization with stated conditions, advanced tree and range operations, multi-pattern automata, suffix structures, and game DP. Compare computational limits. Require one implemented extension with a direct checker, plus two fresh combined cases.
 
 \clearpage
 
-\section{Hard benchmark}\label{hard-benchmark}
+\section{Optional reference problems}
+
+Use these for requested drills or a gap shown by a check. Reveal an assessment problem only when its attempt begins.
+
+\textbf{Topic 1.} \href{https://leetcode.com/problems/two-sum/}{Two Sum} \textperiodcentered{} \href{https://leetcode.com/problems/valid-parentheses/}{Valid Parentheses}
+
+\textbf{Topic 2.} \href{https://leetcode.com/problems/group-anagrams/}{Group Anagrams} \textperiodcentered{} \href{https://leetcode.com/problems/subarray-sum-equals-k/}{Subarray Sum Equals K} \textperiodcentered{} \href{https://leetcode.com/problems/first-missing-positive/}{First Missing Positive}
+
+\textbf{Topic 3.} \href{https://leetcode.com/problems/longest-substring-without-repeating-characters/}{Longest Substring Without Repeating Characters} \textperiodcentered{} \href{https://leetcode.com/problems/minimum-window-substring/}{Minimum Window Substring}
+
+\textbf{Topic 4.} \href{https://leetcode.com/problems/binary-search/}{Binary Search} \textperiodcentered{} \href{https://leetcode.com/problems/search-in-rotated-sorted-array/}{Search in Rotated Sorted Array} \textperiodcentered{} \href{https://leetcode.com/problems/split-array-largest-sum/}{Split Array Largest Sum} \textperiodcentered{} \href{https://leetcode.com/problems/median-of-two-sorted-arrays/}{Median of Two Sorted Arrays} as a later stretch
+
+\textbf{Topic 5.} \href{https://leetcode.com/problems/daily-temperatures/}{Daily Temperatures} \textperiodcentered{} \href{https://leetcode.com/problems/largest-rectangle-in-histogram/}{Largest Rectangle in Histogram} \textperiodcentered{} \href{https://leetcode.com/problems/sliding-window-maximum/}{Sliding Window Maximum} \textperiodcentered{} \href{https://leetcode.com/problems/merge-k-sorted-lists/}{Merge k Sorted Lists} \textperiodcentered{} \href{https://leetcode.com/problems/find-median-from-data-stream/}{Find Median from Data Stream} \textperiodcentered{} \href{https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/}{Shortest Subarray with Sum at Least K}
+
+\textbf{Topic 6.} \href{https://leetcode.com/problems/validate-binary-search-tree/}{Validate Binary Search Tree} \textperiodcentered{} \href{https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/}{Lowest Common Ancestor of a Binary Tree} \textperiodcentered{} \href{https://leetcode.com/problems/binary-tree-maximum-path-sum/}{Binary Tree Maximum Path Sum} \textperiodcentered{} \href{https://leetcode.com/problems/serialize-and-deserialize-binary-tree/}{Serialize and Deserialize Binary Tree}
+
+\textbf{Topic 7.} \href{https://leetcode.com/problems/number-of-islands/}{Number of Islands} \textperiodcentered{} \href{https://leetcode.com/problems/course-schedule-ii/}{Course Schedule II} \textperiodcentered{} \href{https://leetcode.com/problems/word-ladder/}{Word Ladder}
+
+\textbf{Topic 8.} \href{https://leetcode.com/problems/network-delay-time/}{Network Delay Time} \textperiodcentered{} \href{https://leetcode.com/problems/cheapest-flights-within-k-stops/}{Cheapest Flights Within K Stops} \textperiodcentered{} \href{https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/}{Minimum Cost to Make at Least One Valid Path in a Grid}
+
+\textbf{Topic 9.} \href{https://leetcode.com/problems/non-overlapping-intervals/}{Non-overlapping Intervals} \textperiodcentered{} \href{https://leetcode.com/problems/gas-station/}{Gas Station} \textperiodcentered{} \href{https://leetcode.com/problems/candy/}{Candy}
+
+\textbf{Topic 10.} \href{https://leetcode.com/problems/subsets/}{Subsets} \textperiodcentered{} \href{https://leetcode.com/problems/combination-sum/}{Combination Sum} \textperiodcentered{} \href{https://leetcode.com/problems/n-queens/}{N-Queens} \textperiodcentered{} \href{https://leetcode.com/problems/sudoku-solver/}{Sudoku Solver}
+
+\textbf{Topic 11.} \href{https://leetcode.com/problems/house-robber/}{House Robber} \textperiodcentered{} \href{https://leetcode.com/problems/coin-change/}{Coin Change} \textperiodcentered{} \href{https://leetcode.com/problems/edit-distance/}{Edit Distance} \textperiodcentered{} \href{https://leetcode.com/problems/distinct-subsequences/}{Distinct Subsequences}
+
+\textbf{Topic 12.} \href{https://leetcode.com/problems/longest-increasing-subsequence/}{Longest Increasing Subsequence} \textperiodcentered{} \href{https://leetcode.com/problems/burst-balloons/}{Burst Balloons} \textperiodcentered{} \href{https://leetcode.com/problems/regular-expression-matching/}{Regular Expression Matching} \textperiodcentered{} \href{https://cses.fi/problemset/task/1653}{Elevator Rides} (CSES)
+
+\textbf{Topic 13.} \href{https://leetcode.com/problems/implement-trie-prefix-tree/}{Implement Trie (Prefix Tree)} \textperiodcentered{} \href{https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/}{Find the Index of the First Occurrence in a String} with linear-time matching \textperiodcentered{} \href{https://leetcode.com/problems/word-search-ii/}{Word Search II} \textperiodcentered{} \href{https://leetcode.com/problems/shortest-palindrome/}{Shortest Palindrome}
+
+\textbf{Topic 14.} \href{https://cses.fi/problemset/task/1646}{Static Range Sum Queries} (CSES) \textperiodcentered{} \href{https://leetcode.com/problems/range-sum-query-mutable/}{Range Sum Query - Mutable} \textperiodcentered{} \href{https://leetcode.com/problems/count-of-smaller-numbers-after-self/}{Count of Smaller Numbers After Self} \textperiodcentered{} \href{https://leetcode.com/problems/count-of-range-sum/}{Count of Range Sum}
+
+\textbf{Topic 15.} \href{https://leetcode.com/problems/redundant-connection/}{Redundant Connection} \textperiodcentered{} \href{https://cses.fi/problemset/task/1688}{Company Queries II} (CSES) \textperiodcentered{} \href{https://leetcode.com/problems/critical-connections-in-a-network/}{Critical Connections in a Network} \textperiodcentered{} \href{https://leetcode.com/problems/reconstruct-itinerary/}{Reconstruct Itinerary} \textperiodcentered{} \href{https://cses.fi/problemset/task/1686}{Coin Collector} (CSES) \textperiodcentered{} \href{https://cses.fi/problemset/task/1694}{Download Speed} and \href{https://cses.fi/problemset/task/1696}{School Dance} (CSES)
+
+\textbf{Topic 16.} \href{https://leetcode.com/problems/number-of-digit-one/}{Number of Digit One} \textperiodcentered{} \href{https://leetcode.com/problems/max-points-on-a-line/}{Max Points on a Line}
+
+\textbf{Topic 17.} \href{https://cses.fi/problemset/}{CSES Advanced Techniques} or \href{https://usaco.guide/}{USACO Guide} modules that address a demonstrated gap
+
+\clearpage
+
+\section{Optional Hard benchmark}\label{hard-benchmark}
 
 First, build broad coverage and solve at least 8 of 10 fresh mixed Medium problems in 45 minutes each. Get at least one success in each sampled family. Then practice fresh Hard problems with sound reasoning in up to 90 minutes.
 
@@ -712,18 +194,10 @@ Aim for at least 16 of 20 passes and one pass in each family. Repeat on a fresh 
 
 Reserve 15 minutes of feedback after each 45-, 60-, or 90-minute assessment. Only a 90-minute stage task can span agreed study blocks. Count active time across its blocks and wait until the whole attempt ends for feedback or solution study.
 
-\section{Languages}\label{languages}
+\section{References}
 
-Use Go for new concepts and initial timed assessments. Build selected familiar features in C++ after a delay. Before Rust algorithm work, practice syntax, tests, collections, ownership, and borrowing on small familiar tasks.
+Use one explanation source at a time. For foundations, see \href{https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/}{MIT 6.006} and \href{https://algorist.com/}{The Algorithm Design Manual}. For proofs, dynamic programming, and graphs, see \href{https://jeffe.cs.illinois.edu/teaching/algorithms/}{Jeff Erickson's Algorithms}. For implementation details, see the \href{https://cses.fi/book/book.pdf}{Competitive Programmer's Handbook}, \href{https://cp-algorithms.com/}{CP-Algorithms}, and the \href{https://usaco.guide/}{USACO Guide}.
 
-Use one language per exercise. When you reconstruct a feature in another language, close the first implementation and run the same fixtures. Follow with a fresh related problem. Before a timed C++ or Rust assessment, solve and test fresh small problems independently in that language.
-
-Choose the assessment language before seeing the task. Record algorithm and language feedback separately. Language errors still affect implementation and timing. After you build a heap, use the library heap where permitted. \href{https://pkg.go.dev/container/heap}{Go heap} \textperiodcentered{} \href{https://eel.is/c++draft/priority.queue}{C++ priority queue} \textperiodcentered{} \href{https://doc.rust-lang.org/std/collections/struct.BinaryHeap.html}{Rust heap} \textperiodcentered{} \href{https://doc.rust-lang.org/book/}{The Rust Book}
-
-\section{References}\label{references}
-
-Choose one reference for the next feature. For foundations, use \href{https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2020/}{MIT 6.006} or \href{https://algorist.com/}{The Algorithm Design Manual}. For proofs, dynamic programming, and graphs, see \href{https://jeffe.cs.illinois.edu/teaching/algorithms/}{Jeff Erickson\textquotesingle s Algorithms}. For targeted implementation work, see the \href{https://cses.fi/book/book.pdf}{Competitive Programmer\textquotesingle s Handbook}, \href{https://cp-algorithms.com/}{CP-Algorithms}, or the \href{https://usaco.guide/}{USACO Guide}.
-
-Use the linked \href{https://leetcode.com/problemset/}{LeetCode} and \href{https://cses.fi/problemset/}{CSES} tasks during practice. If a judge lacks the exercise language, use local tests with independently established expected results. Keep fresh problems for stage gates. The original course lists research on retrieval, spacing, examples, and feedback in its Selected references section.
+The tutor can use \href{https://leetcode.com/problemset/}{LeetCode} or \href{https://cses.fi/problemset/}{CSES} for a focused drill or a fresh assessment. The Algorithms Mastery curriculum lists research on feedback, retrieval, and spacing in Selected references.
 
 \end{document}

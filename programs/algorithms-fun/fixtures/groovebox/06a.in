@@ -1,0 +1,14 @@
+TRAVEL drum bass 2
+TRAVEL drum hats 7
+TRAVEL bass hats 3
+VISIT drum bass hats
+GAIN load 1
+GAIN kit 4
+GAIN tap 3
+GAIN play 2
+NEXT load kit
+NEXT kit play
+NEXT load tap
+NEXT tap play
+CHAIN load play
+RISE 3 1 2 5 4

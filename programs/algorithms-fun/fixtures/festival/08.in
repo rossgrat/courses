@@ -1,0 +1,9 @@
+CAP S N 4
+CAP S E 2
+CAP N T 3
+CAP N E 1
+CAP E T 3
+FLOW S T
+FIT Inez north east
+FIT Rae north
+ASSIGN

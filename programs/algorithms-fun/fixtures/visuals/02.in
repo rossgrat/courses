@@ -1,0 +1,6 @@
+COST 5 -4 0 3
+CUES wash glow wash strobe bloom glow
+SUM 1 4
+TARGET 1
+UNIQUE
+COVER glow glow strobe

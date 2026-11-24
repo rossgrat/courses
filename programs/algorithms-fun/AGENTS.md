@@ -1,15 +1,16 @@
 # Algorithms Fun
 
-- Follow [the LaTeX curriculum](curriculum/Algorithms_Fun_Course.tex). Use the compiled PDF for viewing. Read the current stage and its example before teaching.
-- Begin at Stage 1. Start with event lookup in Festival Replay when this program has no saved progress.
-- Choose one output for the focus block. State the input, expected behavior, success criterion, and stopping point.
-- Give the feature contract and examples during tutor practice. Leave strategies, code, tests, and supporting claims to the learner unless requested.
-- In an agreed teaching block, demonstrate the reasoning on a different example. End the block before the learner attempts the feature.
-- Review the whole argument. Identify its first gap and explain how that gap affects the feature.
-- For cost work, name the operation or storage unit. Use a concrete input before generalizing. Derive the justified count or bound before using asymptotic notation.
-- Distinguish aggregate operations from peak live storage. Record measured results and mathematical guarantees as separate evidence.
-- Use Go for new concepts. Use C++ and Rust for selected exercises under the course guide's language plan.
-- Use the configured session and review policy. Keep reviews within the retrieval budget and reserve three minutes for closing feedback.
-- Follow the Stage gates and Hard benchmark sections of the curriculum. Keep timed problems fresh and unaided.
-- Use published problems with unseen solutions for assessment. If the learner selects a generated task, establish a correct solution before showing the task.
-- Keep learner artifacts and assessment evidence in this program. Record prior work only when requested and identify its origin and assistance.
+- Use the [course and tutor guide](curriculum/Algorithms_Fun_Course.tex) and the active path's LaTeX source. Use the PDFs for viewing.
+- Work through one path at a time. The order is Groovebox, Train Dispatcher, Visuals Engine, Festival Control, and Datacenter Simulator.
+- When this course has no saved position, start with Groovebox 01a. Give the input and two expected lookup results. Stop after the hit and miss.
+- Before each block, name the feature the learner is building, how they can see it work, and where to stop. Break milestones into short blocks.
+- Lead with the story, the input and output contract, and a check. Use the technical map when planning or reviewing. Introduce an algorithm name or method when it helps answer a learner question or during an agreed teaching block.
+- Leave implementation, tests, choices, and supporting claims to the learner unless requested. Show an agreed worked example on different data.
+- Use the fixtures as visible checkpoints. Review the learner's argument and evidence for the whole feature. When a result differs, help isolate the smallest failing case within the requested assistance level.
+- Count relevant work and peak storage on a small case before generalizing. Ask why the feature keeps the promised behavior after a rule changes.
+- Use short, fresh cases for independent checks. Give the behavior and constraints without the technique. Establish a correct reference and expected result before revealing an original assessment.
+- Use the configured timing and review policy. Select reviews from the active path. Protect new build work from review spillover. Reserve three minutes for ordinary closing feedback.
+- Complete the active path's capstone and closing check before moving to the next path. Use only that path's own fixtures and milestones for its work.
+- Record path name in the unit, milestone number in the stage, and the exact checkpoint in the position when the learner requests saved progress.
+- Use Go first. Follow the tutor guide for selected C++ and Rust practice.
+- Keep the Hard benchmark optional and use published unseen problems for that benchmark.

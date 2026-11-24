@@ -1,0 +1,12 @@
+EDGE black haze 4
+EDGE black pulse 1
+EDGE pulse haze 1
+EDGE haze gold 2
+EDGE black gold 9
+LOW black gold
+LIMIT black gold 2
+RESERVE A 0 4
+RESERVE B 4 6
+RESERVE C 2 5
+FIT
+PEAK

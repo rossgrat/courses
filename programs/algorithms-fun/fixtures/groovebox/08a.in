@@ -1,0 +1,18 @@
+WIRE ab1 deck mixer 1
+CONNECT deck rig
+WIRE ab2 deck mixer 3
+WIRE bc mixer rig 2
+WIRE cd rig out 2
+CONNECT deck out
+WIRING
+CUTS
+INSPECT mixer
+ARROW deck mixer
+ARROW mixer deck
+ARROW mixer rig
+ARROW rig out
+GROUPS
+CHILD deck mixer
+CHILD mixer rig
+CHILD deck out
+ANCESTOR rig out

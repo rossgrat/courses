@@ -1,0 +1,14 @@
+TRAVEL black gold 4
+TRAVEL black pulse 8
+TRAVEL gold pulse 1
+VISIT black gold pulse
+GAIN read 2
+GAIN mask 3
+GAIN light 7
+GAIN draw 1
+NEXT read mask
+NEXT mask draw
+NEXT read light
+NEXT light draw
+CHAIN read draw
+RISE 3 1 2 5 4

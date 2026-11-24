@@ -1,0 +1,14 @@
+TRAVEL desk east 1
+TRAVEL desk north 6
+TRAVEL east north 4
+VISIT desk east north
+GAIN wire 2
+GAIN sound 6
+GAIN sign 4
+GAIN open 1
+NEXT wire sound
+NEXT sound open
+NEXT wire sign
+NEXT sign open
+CHAIN wire open
+RISE 3 1 2 5 4

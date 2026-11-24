@@ -1,0 +1,5 @@
+CUE 4 c3 fade
+CUE 0 c2 flash
+CUE 0 c1 pulse
+LOOKUP c2
+LOOKUP c8

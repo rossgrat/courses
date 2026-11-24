@@ -1,0 +1,11 @@
+OPTIONS pulse flash glow
+BLOCK pulse flash
+ORDERED 2
+CANDIDATE blur 2 3
+CANDIDATE glow 3 7
+CANDIDATE ray 5 9
+CANDIDATE grain 1 2
+BEST 5
+EXACT 5
+JOIN 3 4 7
+ROOTS A B C

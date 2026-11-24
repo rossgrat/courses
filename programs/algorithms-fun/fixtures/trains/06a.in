@@ -1,0 +1,14 @@
+TRAVEL yard elm 3
+TRAVEL yard lake 9
+TRAVEL elm lake 2
+VISIT yard elm lake
+GAIN power 3
+GAIN signal 4
+GAIN clean 1
+GAIN open 2
+NEXT power signal
+NEXT signal open
+NEXT power clean
+NEXT clean open
+CHAIN power open
+RISE 3 1 2 5 4

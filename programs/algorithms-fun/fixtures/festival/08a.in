@@ -1,0 +1,18 @@
+WIRE ab1 east gate 1
+CONNECT east north
+WIRE ab2 east gate 4
+WIRE bc gate north 2
+WIRE cd north stage 3
+CONNECT east stage
+WIRING
+CUTS
+INSPECT gate
+ARROW east gate
+ARROW gate east
+ARROW gate north
+ARROW north stage
+GROUPS
+CHILD east gate
+CHILD gate north
+CHILD east stage
+ANCESTOR north stage

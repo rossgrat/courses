@@ -1,0 +1,11 @@
+ZONE 10 3 12
+ZONE 3 - 5
+ZONE 5 - -
+ZONE 12 - -
+ORDER 10
+BESTPATH 10
+MAP S.. .#. ..G
+WALK
+BEFORE power sound
+BEFORE sound open
+SETUP

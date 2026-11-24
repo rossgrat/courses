@@ -1,0 +1,18 @@
+WIRE ab1 core link 2
+CONNECT core rack
+WIRE ab2 core link 5
+WIRE bc link rack 3
+WIRE cd rack worker 1
+CONNECT core worker
+WIRING
+CUTS
+INSPECT link
+ARROW core link
+ARROW link core
+ARROW link rack
+ARROW rack worker
+GROUPS
+CHILD core link
+CHILD link rack
+CHILD core worker
+ANCESTOR rack worker

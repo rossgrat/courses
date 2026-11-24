@@ -1,0 +1,12 @@
+TAG beat-dry
+TAG beat-wet
+TAG pad
+COMPLETE beat-
+TEXT ababab
+MATCH aba
+READINGS 2 5 3
+SUM 0 2
+SET 1 1
+SUM 0 2
+ADD 1 3 2
+MIN 1 3

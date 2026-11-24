@@ -1,0 +1,617 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{system/latex/curriculum}
+\newcommand{\coursename}{Festival Control}
+\hypersetup{pdftitle={Festival Control}}
+\begin{document}
+\coursecover
+  {Festival Control}
+  {Algorithms Fun, Path 4 of 5}
+  {Reconstruct the busiest shift of a fictional music festival.}
+  {First demo}
+  {Find the gate event everybody is talking about.}
+  {A complete replay can settle an argument the radio cannot.}
+  {Deliver an incident replay, a revised site plan, and a credible crew allocation.}
+\tableofcontents
+\clearpage
+\section{Before the first run}
+The first report says the east gate backed up. The second comes from the north scanner and makes that story look wrong. Build a control-room tool from the evidence you have. It will grow from one gate log into a way to explain a crowd peak and defend the plan for the next show.
+
+Each milestone is several short work blocks. Pick one numbered step for today's block. When it works, keep the working version and change one rule. Set aside the named case for a fresh check later.
+
+Use a small Go workspace with this path's own files. Use standard input and output for the supplied cases. Each case names an input and an expected output in \texttt{fixtures/festival}.
+
+From your project workspace, set the fixture directory to its absolute path in this repository. Capture output before comparing it. The comparison reports the first lines that differ.
+\begin{samepage}
+\small
+\begin{verbatim}
+go run . < "$fixture_dir/01a.in" > actual.txt &&
+diff -u "$fixture_dir/01a.out" actual.txt
+\end{verbatim}
+\end{samepage}
+
+If you need a workspace, create a Go module in an empty folder and add a main package. The program reads one command per line. Start with the command in the first numbered step. A silent diff means the outputs match.
+
+Build the commands in each milestone in the order shown. A case can use features from earlier milestones in this path. Treat each case as a fresh run unless the milestone says otherwise. Follow the input rules and exact output spellings in the case. Setup commands are silent. A query uses only setup rows above it.
+
+A small direct reference is a second way to answer a question on a tiny input. Use it to look for disagreements. When two answers differ, shrink the input until you can explain the difference. Keep a short note for each milestone with the demo, the strongest check, and what limits the build.
+
+The final demo belongs to this path. Finish it before you start another path. Your tutor can review a short unfamiliar case after a milestone or after a delay. The next path starts from its own first fixture.
+
+\clearpage
+
+\section{Who scanned the first wristband}\label{festival:01}
+
+The gate lead asks for event q2. The reports are in arrival order, with ties from different scanners. A wrong answer sends the crew to the wrong corner of the site.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Read LOG with integer tick, unique ID, gate, and signed queue change. FIND ID reports tick, ID, gate, and change. Print missing and the ID when absent.
+\item Build REPLAY. Order records by tick, then ID. Print all IDs in that order. Preserve both the original input and the complete reordered records.
+\item Combine two small files by feeding their rows into the same program. Compare the reported order with a hand-sorted list.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{01a.in} and \texttt{01a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+LOG 20 q4 south -1
+LOG 6 q2 north 2
+LOG 6 q1 east 1
+LOG 18 q3 east -2
+FIND q2
+FIND q9
+
+Expected output
+6 q2 north 2
+missing q9
+\end{verbatim}
+\end{samepage}
+
+Use \texttt{01.in} and \texttt{01.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+LOG 20 q4 south -1
+LOG 6 q2 north 2
+LOG 6 q1 east 1
+LOG 18 q3 east -2
+FIND q1
+REPLAY
+
+Expected output
+6 q1 east 1
+q1 q2 q3 q4
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Shuffle both source files. Test empty and singleton cases, a tied tick, and a missing ID. Count the work for a single lookup and for the combined replay.
+
+Add a balanced-label check before letting stage managers tag a replay. Test a wrong-type close and a leading close. Give one proof that sorting cannot duplicate or lose an event.
+
+\subsection*{Stop here}
+
+Look up one real row from the tiny input and reproduce the same replay after a shuffle. Save the source records for later incidents.
+
+\clearpage
+
+\section{Show the five minutes the crowd lead needs}\label{festival:02}
+
+The crowd lead will watch one short slice of the replay. Pick one that contains the needed scans and separately explain a signed queue change.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item DELTA supplies signed changes at consecutive positions. SUM i j gives the total on a zero-based half-open span. TARGET reports the number of nonempty spans with a given sum. Keep a direct range enumeration for small cases.
+\item BADGES gives a sequence of badge IDs. UNIQUE returns the longest span without repeats. COVER returns the shortest span with every requested ID, including counts. Break ties at earlier starts.
+\item Add a fixed window and a count by badge. Compare two sorted badge lists and return their shared IDs.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{02.in} and \texttt{02.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+DELTA 4 -2 -2 1 1
+BADGES X Y X Z Y W
+SUM 1 5
+TARGET 2
+UNIQUE
+COVER X X Z
+
+Expected output
+-2
+3
+[2,6)
+[0,4)
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Change TARGET from existence to a count to indices. Include equal earlier totals, zeros, and a negative change. Discuss whether your lookup indexes keep enough information.
+
+Add a repeat cap and an exact number of distinct badges. For occupied numeric badges 2, 3, 1, and 5, find the first missing positive number using the input storage. Test a request for a missing badge.
+
+\subsection*{Stop here}
+
+Produce one short clip and its count summary. Show from the source rows that a shorter valid clip does not exist.
+
+\clearpage
+
+\section{Follow gates that talk at the same time}\label{festival:03}
+
+A gate radios late, another radios twice, and the web feed cannot load the entire afternoon. Answer a tick lookup, then make a replay that can start while the files are still arriving.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TIMES lists ordered ticks. AT gives the half-open position range for one tick. GROUPS gives positive sizes through a two-batch entrance and asks for the minimum capacity that can handle contiguous batches.
+\item FEED lists tick:ID pairs sorted by tick and ID. MERGE prints their combined IDs. Keep just the next pending row per open feed and stream the answer.
+\item LOAD gives successive crowd readings. PEAK gives the largest reading per full window. MEDIANS gives the median after each arrival.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{03.in} and \texttt{03.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TIMES 4 6 6 9
+AT 6
+GROUPS 5 1 4 2
+FEED north 4:a 6:c
+FEED east 6:b 9:d
+MERGE
+LOAD 3 1 4 2
+PEAK 2
+MEDIANS
+
+Expected output
+[1,3)
+capacity 6
+a b c d
+3 4 4
+3 2 3 2.5
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Test two empty feeds, one very long feed, and a tick outside the index. Run the new replay against the first milestone. Bound retained records when the replay grows.
+
+Enumerate every split of the four groups. Find a changed rule that breaks the capacity search. On [2,1,2] check the largest crowd rectangle, area 3. On [2,-1,2] find the shortest span reaching 3.
+
+\subsection*{Stop here}
+
+Start streaming a replay, compare it to the saved in-memory run, and report one peak without loading all events at once.
+
+\clearpage
+
+\section{Open the second entrance}\label{festival:04}
+
+The site lead needs a walking route and a set-up order. The map has a fence. The equipment list has dependencies. Solve both before you tell anyone the entrance is ready.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item ZONE gives a score and left and right child labels, with a dash for an empty child. Save and reload the tree. ORDER prints preorder. BESTPATH returns the best connected-path score. Add a common-ancestor query and an ordered index.
+\item MAP lists three equal-width grid rows. S and G mark the start and goal. A hash blocks a cell. Move in four directions. WALK prints one shortest route. Inspect neighbors in right, down, left, up order to break ties.
+\item BEFORE a b means a must finish before b. SETUP returns a legal order or cycle. Find disconnected regions in a separate undirected version of the site map.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{04.in} and \texttt{04.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+ZONE 10 3 12
+ZONE 3 - 5
+ZONE 5 - -
+ZONE 12 - -
+ORDER 10
+BESTPATH 10
+MAP S.. .#. ..G
+WALK
+BEFORE power sound
+BEFORE sound open
+SETUP
+
+Expected output
+10 3 5 12
+30
+right right down down
+power sound open
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Compare saved and reloaded trees, including a missing child and a deep chain. Try a tree with all scores negative. Find an ordered lookup rule that fails deep below an ancestor.
+
+Fence off the goal and add a site pass that opens one gate. Track whether a route already used it. Add open before power and make the dependency solver report a cycle.
+
+\subsection*{Stop here}
+
+Draw the walking route and show which setup jobs must finish before opening. Give one reason each type of failure is detected.
+
+\clearpage
+
+\section{Send a runner and book the rehearsal room}\label{festival:05}
+
+A shortcut saves walking time at the cost of an extra transfer. Meanwhile, the rehearsal room has three requests and can fit two of them. Both teams want to know what their plan optimizes.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item EDGE adds a directed travel time. FAST returns minimum minutes and the path under nonnegative costs. LIMIT adds a maximum number of edges. Try a one-use discount and a map whose edges cost zero or one.
+\item BOOK lists half-open reservations on one room. SELECT returns the largest compatible set. PEAK returns the maximum number of simultaneous requests.
+\item Add booking values and find a case where the optimum changes. Compare a cheap route for one runner with a cheap connected cable map for all areas.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{05.in} and \texttt{05.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+EDGE S P 7
+EDGE S Q 3
+EDGE Q P 1
+EDGE P T 3
+EDGE Q T 9
+FAST S T
+LIMIT S T 2
+BOOK A 0 3
+BOOK B 3 5
+BOOK C 1 4
+SELECT
+PEAK
+
+Expected output
+7 S Q P T
+10 S P T
+A B
+2
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Cross-check routes with a direct tiny reference and a second method on random nonnegative cases. Try signed credits in an acyclic graph, then add a reachable negative cycle. Account for stale route candidates.
+
+Enumerate every booking subset. Show why touching reservations fit. Assign values A=3, B=3, and C=7. The best score is 7 from C. Save the weighted case for the next milestone.
+
+\subsection*{Stop here}
+
+Give two routes with different constraints and show a greedy booking decision you can defend against every alternative on the fixture.
+
+\clearpage
+
+\section{Make a lineup the crew can actually run}\label{festival:06}
+
+The lineup looks good on paper. It has a bad handoff between acts and two pieces of equipment the venue cannot afford at once. Build a small planner and let it explain its picks.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item OPTIONS supplies distinct act IDs. BLOCK a b forbids b immediately after a. COUNTORDERS k counts legal ordered length-k lineups without reuse. Start by listing subsets and permutations. Try repeats and symmetric cases.
+\item ACT gives ID, positive cost, and score. BEST budget returns the score and selected IDs. EXACT budget counts subsets with exactly that budget. Compare direct, saved-recursive, and bottom-up versions.
+\item MERGECOST supplies adjacent recording lengths. Joining costs the combined length, and the result can join again. DESKS gives a chain with unit edges and asks for all possible sums of distances.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{06.in} and \texttt{06.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+OPTIONS A B C
+BLOCK A B
+COUNTORDERS 2
+ACT A 2 5
+ACT B 3 6
+ACT C 5 10
+ACT D 1 1
+BEST 5
+EXACT 5
+MERGECOST 10 20 30
+DESKS A B C D
+
+Expected output
+5
+11 A B
+2
+90
+6 4 4 6
+\end{verbatim}
+\end{samepage}
+
+For a later block, use TRAVEL for a two-way link and VISIT to find the cheapest route that starts at the first named place and visits each other named place once. Finish anywhere. GAIN gives a score for one step. NEXT gives a directed link in a cycle-free workflow. CHAIN returns the largest total score on a path from the named start to finish. RISE returns the length of a strictly increasing subsequence. Use one command at a time and compare with enumeration before handling every command in the case.
+
+Use \texttt{06a.in} and \texttt{06a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TRAVEL desk east 1
+TRAVEL desk north 6
+TRAVEL east north 4
+VISIT desk east north
+GAIN wire 2
+GAIN sound 6
+GAIN sign 4
+GAIN open 1
+NEXT wire sound
+NEXT sound open
+NEXT wire sign
+NEXT sign open
+CHAIN wire open
+RISE 3 1 2 5 4
+
+Expected output
+5 desk east north
+9
+3
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Enumerate all tiny assignments and budgets. Restore state after every choice. Finish the weighted booking case. Show which state preserves optimal choices and why a big numeric budget can make a small input expensive.
+
+Extend the help-desk example to a tree. Add a route through a required subset of venues, a best score along a setup dependency chain, and a short increasing sequence of loudness readings. Use the wristband digit rule later. Check any storage reduction against reconstruction.
+
+\subsection*{Stop here}
+
+Print a legal plan and the actual acts selected under budget. Show a rule change that forces a different plan.
+
+\clearpage
+
+\section{Find the alert and correct a bad count}\label{festival:07}
+
+The incident replay includes repeated alerts and one wrong crowd reading. A correction should show up in the timeline without forcing you to redo every query.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item TAG adds a name. COMPLETE prefix lists names in lexical order. ALERT supplies one string, and MATCH reports every zero-based exact match. Keep overlaps. Define the unit of an offset.
+\item READINGS gives one value per integer tick from zero. SUM uses a half-open range. SET corrects one reading. ADD adds to a range, and MIN gives its smallest value.
+\item Compare direct matching and plain arrays with the new builds. Try sparse ticks, a batch of offline queries, a k-th occupancy query, and static minimum queries.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{07.in} and \texttt{07.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+TAG gate-east
+TAG gate-north
+TAG radio
+COMPLETE gate-
+ALERT aaaaa
+MATCH aaa
+READINGS 2 7 3
+SUM 0 2
+SET 1 4
+SUM 0 2
+ADD 1 3 3
+MIN 1 3
+
+Expected output
+gate-east gate-north
+0 1 2
+9
+6
+6
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Test repeated prefixes and overlapping hits. Register an empty-pattern rule and a byte or code-point convention. Construct a shortest front-added palindrome and verify an exact match even if fingerprints collide.
+
+Compare random edits with the original array. Explain why a rank change does not preserve distances. Check the limits of overlapping static blocks and the order of pending updates.
+
+\subsection*{Stop here}
+
+Give all alert offsets and two totals that differ only because you corrected one source reading.
+
+\clearpage
+
+\section{Keep the site connected when a gate goes dark}\label{festival:08}
+
+The crew is staring at two lines on the map that connect the same zones. Are both critical? After the shutdown, how many workers can still get where they are needed?
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item Use distinct IDs for physical links. Report connectivity as links open and the cheapest cable layout connecting all zones. Identify bridges. Write an inspection walk using each edge once, where possible.
+\item Build a one-way incident map. Group mutually reachable zones and condense the groups. Index ancestors in the saved venue hierarchy and check against direct walks.
+\item CAP gives directed unit capacity per tick. FLOW reports the maximum through one slice. FIT gives eligible stations for a crew member. ASSIGN counts the maximum with one person per station.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{08.in} and \texttt{08.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CAP S N 4
+CAP S E 2
+CAP N T 3
+CAP N E 1
+CAP E T 3
+FLOW S T
+FIT Inez north east
+FIT Rae north
+ASSIGN
+
+Expected output
+6
+2
+\end{verbatim}
+\end{samepage}
+
+Start with the physical map. WIRE adds an edge with an ID, its endpoints, and its cost. CONNECT asks whether two named vertices are linked through open edges at that point in the input. If a name has not appeared in a wire row, report false. WIRING prints the cheapest total connecting cost. CUTS lists bridge IDs in lexical order. INSPECT starts at the named vertex and uses each edge once. Use the lexically smallest valid edge-ID sequence. ARROW belongs to a separate directed map. GROUPS lists groups in order of their smallest member, with members in lexical order. CHILD gives a parent-child pair in a separate tree. ANCESTOR gives the lowest common ancestor. Add capacity and staffing only after these map checks work.
+
+Use \texttt{08a.in} and \texttt{08a.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WIRE ab1 east gate 1
+CONNECT east north
+WIRE ab2 east gate 4
+WIRE bc gate north 2
+WIRE cd north stage 3
+CONNECT east stage
+WIRING
+CUTS
+INSPECT gate
+ARROW east gate
+ARROW gate east
+ARROW gate north
+ARROW north stage
+GROUPS
+CHILD east gate
+CHILD gate north
+CHILD east stage
+ANCESTOR north stage
+
+Expected output
+false
+true
+6
+bc cd
+ab1 ab2 bc cd
+east,gate | north | stage
+east
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Give a valid flow and a cut of value 6. Show a maximum assignment and verify it by trying every choice. Explain how the matching reduction preserves every feasible solution.
+
+Test two parallel links and an isolated bridge. Remove one edge ID at a time in the reference. Collapse a two-zone directed cycle into one group. Verify the inspection walk uses every required edge exactly once.
+
+\subsection*{Stop here}
+
+Demonstrate one fragile physical link, one non-fragile parallel pair, and a feasible crew assignment after a given shutdown.
+
+\clearpage
+
+\section{Check the site drawing and the wristband batch}\label{festival:09}
+
+One staff map shows two queue lines crossing. A volunteer thinks an ID rule was counted twice. Settle both disputes without rounded answers.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item CROSS supplies four integer points defining two segments. Print the exact coordinates of a proper crossing. Add explicit outcomes for none, endpoint contact, and collinear overlap.
+\item SYNC gives two scanner periods starting together. Print their first positive joint reset. INV gives a stride and a modulus. DIGITS counts positive IDs up to a limit containing the supplied digit.
+\item Calculate GCD and modular powers. Compare direct and faster counting for overlapping conditions. Try a different base and flags that mark eligible wristbands.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{09.in} and \texttt{09.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+CROSS 0 0 6 4 0 4 6 0
+SYNC 10 15
+INV 7 10
+DIGITS 32 2
+
+Expected output
+3 2
+30
+3
+13
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Normalize a rational slope and test vertical lines, zero-length segments, and duplicate points. Bound the cross products before choosing an integer type.
+
+Try a stride with no inverse. Count IDs 1 to 18 divisible by 2 or 3. Check the overlap explicitly and compare with a direct count of 12.
+
+\subsection*{Stop here}
+
+Prove the exact crossing and count on paper and reproduce them with the same input in the tool.
+
+\clearpage
+
+\section{Deliver the incident replay before doors open}\label{festival:10}
+
+Tomorrow's crew wants the actual peak, where it happened, and enough evidence to adjust staffing. You have event windows for more than one sector.
+
+\subsection*{Build it in this order}
+
+\begin{enumerate}
+\item WINDOW supplies start tick, end tick, first sector, last excluded sector, and load per sector. PEAK reports the highest total load, earliest tick, and smallest tied sector. Use half-open time and sector ranges.
+\item Combine ordered changes with a range summary. Check every point on a small reference grid. Add one action from your site planner, such as rerouting staff after a closure, and show what evidence prompted it.
+\item Choose a deeper build. One option is to recognize multiple alert phrases in one replay. Compare with independent matching. Another is to query a path in the venue tree after a targeted update.
+\end{enumerate}
+
+\subsection*{Replay a case}
+
+Use \texttt{10.in} and \texttt{10.out}.
+
+\begin{samepage}
+\small
+\begin{verbatim}
+Input
+WINDOW 0 3 0 2 2
+WINDOW 1 4 1 3 4
+WINDOW 3 5 0 1 5
+PEAK
+
+Expected output
+6 1 1
+\end{verbatim}
+\end{samepage}
+
+\subsection*{Checks before you move on}
+
+Test equal-tick openings and closings and a first-peak tie between sectors. Split one window into two touching intervals with equal load, and verify the answer stays the same.
+
+Repeat the replay with a changed input and defend the same peak contract. Show the strongest correctness check and where the new tool still misses a real incident pattern.
+
+\subsection*{Stop here}
+
+Present the incident, its replay, and the crew response. Finish with one fresh miniature incident before beginning the Datacenter Simulator.
+
+\end{document}

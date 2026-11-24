@@ -1,0 +1,18 @@
+WIRE ab1 loop north 2
+CONNECT loop spur
+WIRE ab2 loop north 5
+WIRE bc north spur 1
+WIRE cd spur yard 4
+CONNECT loop yard
+WIRING
+CUTS
+INSPECT north
+ARROW loop north
+ARROW north loop
+ARROW north spur
+ARROW spur yard
+GROUPS
+CHILD loop north
+CHILD north spur
+CHILD loop yard
+ANCESTOR spur yard

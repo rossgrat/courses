@@ -1,0 +1,8 @@
+TIMES 2 2 5 9
+AT 2
+GROUPS 3 1 4 2
+FEED east 2:a 9:d
+FEED west 2:b 5:c
+MERGE
+DEMAND 4 1 7 2
+PEAK 2

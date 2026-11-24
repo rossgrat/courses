@@ -1,0 +1,14 @@
+TRAVEL root cpu 5
+TRAVEL root disk 8
+TRAVEL cpu disk 1
+VISIT root cpu disk
+GAIN fetch 3
+GAIN build 4
+GAIN scan 6
+GAIN ship 2
+NEXT fetch build
+NEXT build ship
+NEXT fetch scan
+NEXT scan ship
+CHAIN fetch ship
+RISE 3 1 2 5 4

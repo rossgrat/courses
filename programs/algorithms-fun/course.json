@@ -6,6 +6,26 @@
     {
       "path": "curriculum/Algorithms_Fun_Course.tex",
       "format": "latex"
+    },
+    {
+      "path": "curriculum/paths/Groovebox.tex",
+      "format": "latex"
+    },
+    {
+      "path": "curriculum/paths/TrainDispatcher.tex",
+      "format": "latex"
+    },
+    {
+      "path": "curriculum/paths/VisualsEngine.tex",
+      "format": "latex"
+    },
+    {
+      "path": "curriculum/paths/FestivalControl.tex",
+      "format": "latex"
+    },
+    {
+      "path": "curriculum/paths/DatacenterSimulator.tex",
+      "format": "latex"
     }
   ],
   "learning": {
@@ -26,27 +46,39 @@
     }
   },
   "reviews": {
-    "interval_days": [2, 7, 21, 42],
+    "interval_days": [
+      2,
+      7,
+      21,
+      42
+    ],
     "weekdays_only": true
   },
   "initial": {
     "stage": 1,
     "language": "Go",
-    "unit": "Festival Replay: Reasoning, complexity and correctness",
-    "next_task": "Stage 1: Read the sample gate log and build the first event lookup. Stop after demonstrating a hit and a missing ID."
+    "unit": "Groovebox",
+    "position": "Groovebox 01a",
+    "next_task": "Build the Groovebox hit lookup for fixture 01a. Stop after demonstrating the hit and the missing ID."
   },
   "weekday_work": [
-    "Read one short example for the next feature",
-    "Reconstruct one piece from memory and test it",
-    "Build a feature or solve a related practice problem",
-    "Change one rule and see what breaks",
-    "Retrieve older work and solve mixed, unlabeled problems",
+    "Read one contract and start a small feature",
+    "Run a fixture and reproduce the result",
+    "Add a feature and check the boundaries",
+    "Change one rule and debug the smallest disagreement",
+    "Replay a fresh case and review an older skill",
     "No scheduled session",
     "No scheduled session"
   ],
   "assessment": {
-    "minutes": [45, 60, 90],
+    "minutes": [
+      45,
+      60,
+      90
+    ],
     "feedback": 15,
-    "split_minutes": [90]
+    "split_minutes": [
+      90
+    ]
   }
 }

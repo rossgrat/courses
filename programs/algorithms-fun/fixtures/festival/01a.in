@@ -1,0 +1,6 @@
+LOG 20 q4 south -1
+LOG 6 q2 north 2
+LOG 6 q1 east 1
+LOG 18 q3 east -2
+FIND q2
+FIND q9

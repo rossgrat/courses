@@ -1,0 +1,12 @@
+NODE 6 2 9
+NODE 2 - 4
+NODE 4 - -
+NODE 9 - -
+PREORDER 6
+PATHSCORE 6
+EDGE start lift 4
+EDGE start hats 1
+EDGE hats lift 1
+EDGE lift drop 2
+FEWEST start drop
+CHEAPEST start drop

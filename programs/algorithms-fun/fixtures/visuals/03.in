@@ -1,0 +1,9 @@
+TICKS 1 4 4 8
+AT 4
+BLOCKS 2 8 1 1
+LAYER image 1:a 8:d
+LAYER text 4:b 4:c
+MERGE
+LOAD 7 3 5 9
+HIGH 2
+MEDIANS

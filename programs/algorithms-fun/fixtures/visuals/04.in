@@ -1,0 +1,11 @@
+NODE 8 3 11
+NODE 3 - 6
+NODE 6 - -
+NODE 11 - -
+ORDER 8
+SCORE 8
+TRANS black pulse
+TRANS pulse gold
+TRANS black fx
+TRANS fx pulse
+STEPS black gold

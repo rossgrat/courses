@@ -1,0 +1,6 @@
+REQUEST wash 0 2
+REQUEST sweep 2 5
+REQUEST glitch 1 4
+SELECT
+PEAK
+FILL 1 4 hat clap

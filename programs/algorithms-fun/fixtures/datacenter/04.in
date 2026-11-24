@@ -1,0 +1,16 @@
+GROUP 8 3 12
+GROUP 3 - 7
+GROUP 7 - -
+GROUP 12 - -
+PREORDER 8
+PATHSCORE 8
+DEP fetch build
+DEP fetch scan
+DEP build ship
+DEP scan ship
+START
+LINK A B
+LINK A C
+LINK B D
+LINK C D
+ROUTE A D

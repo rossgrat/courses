@@ -1,0 +1,5 @@
+TRAIN 8 d3 West
+TRAIN 2 d2 Yard
+TRAIN 2 d1 Loop
+FIND d1
+BOARD

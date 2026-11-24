@@ -1,0 +1,14 @@
+TAG fx-blur
+TAG fx-glow
+TAG pulse
+COMPLETE fx-
+TEXT abababa
+MATCH aba
+TICK 0 2
+TICK 4 5
+TICK 10 3
+SUM 0 5
+SET 4 1
+SUM 0 5
+ADD 4 11 2
+MIN 4 11

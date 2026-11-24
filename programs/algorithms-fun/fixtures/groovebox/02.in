@@ -1,0 +1,6 @@
+CHANGE 3 -2 0 2
+LANES kick hat kick clap ride kick
+SUM 1 4
+MATCHSUM 1
+UNIQUE
+COVER kick kick clap

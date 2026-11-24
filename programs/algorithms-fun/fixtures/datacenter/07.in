@@ -1,0 +1,12 @@
+TAG limit-cpu
+TAG limit-io
+TAG queue
+COMPLETE limit-
+TEXT SLOWLOW
+MATCH LOW
+SAMPLES 6 3 4
+SUM 0 2
+SET 1 7
+SUM 0 2
+ADD 1 3 -2
+MIN 1 3
