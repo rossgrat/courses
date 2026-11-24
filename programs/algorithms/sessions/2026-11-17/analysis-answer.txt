@@ -1,0 +1,95 @@
+Correctness and termination of mergeSort
+
+Implementation: programs/algorithms/sessions/2026-11-16/main.go
+
+1. State the target
+
+For every finite integer slice A of length k, mergeSort(A) terminates and
+returns a slice containing exactly the same elements, including the same
+number of each repeated value, in non-descending order.
+
+2. Prove the first claim: the merge correctly combines two sorted slices
+
+Assume leftSorted and rightSorted are sorted.
+
+While both slices have unconsumed elements, the current element of each
+slice is its smallest remaining element. Therefore, the smaller of those
+two current elements is the smallest remaining element across both slices.
+
+The code appends that element and advances the corresponding iterator.
+Every element appended this way is no larger than anything still waiting
+to be appended. Consequently, the output stays in non-descending order.
+
+When one slice is exhausted, the other slice's remaining elements are
+already sorted. They are also no smaller than the elements previously
+appended. Therefore, appendRest can append that remainder without breaking
+the ordering.
+
+Each iterator starts at zero and advances past an element only when that
+element is appended. appendRest starts at the first unconsumed position.
+Thus, every element from both slices is appended exactly once.
+
+The merge also terminates: every continuing iteration consumes one element,
+and only finitely many elements exist. Once either slice is exhausted,
+appendRest traverses a finite remainder and the loop breaks.
+
+Therefore, the merge terminates and returns exactly the elements of both
+slices in non-descending order. This proves the first claim.
+
+3. Prove the target by induction on input length
+
+We use strong induction: while proving correctness for length k, we assume
+the target holds for every smaller length.
+
+First, establish the base cases.
+
+For k = 0, the function immediately returns an empty slice. It contains
+exactly the input's elements and is sorted.
+
+For k = 1, the function immediately returns the input slice. It contains
+the same single element and is sorted.
+
+Both calls terminate. Therefore, the target holds for lengths zero and one.
+
+Now consider an arbitrary length k >= 2.
+
+Our induction hypothesis is:
+
+    For every input slice of length less than k, mergeSort terminates and
+    returns exactly that input's elements in non-descending order.
+
+The code sets mid to floor(k/2), then splits the input into arr[:mid] and
+arr[mid:].
+
+These slices cover every input position exactly once. Their lengths are
+mid and k - mid. Because k >= 2, both lengths are strictly smaller than k.
+
+We can therefore apply the induction hypothesis to both recursive calls.
+Each call terminates and returns its own input elements in non-descending
+order.
+
+That is where the recursive sorting part of the second claim is justified.
+We can trust those results because their input lengths fall within the
+induction hypothesis.
+
+Now apply the already-proved first claim. The merge terminates and combines
+those two sorted results into one sorted slice containing exactly their
+elements.
+
+The two results together contain exactly the original input's elements.
+Therefore, the combined result contains exactly the original k elements
+in non-descending order.
+
+The current call then returns that result. Thus, the target holds for
+length k.
+
+4. Conclude
+
+The target holds for the base cases. We have also proved that whenever it
+holds for every smaller length, it holds for the current length.
+
+By strong induction, the target holds for every nonnegative input length.
+
+The first claim supplies the merge argument. The second claim's recursive
+sorting portion follows from the induction hypothesis. Together, they
+establish the target for the current call.

@@ -1,0 +1,47 @@
+
+=== Trace ===
+
+Trace the individual elements appended to combinedSort across the entire run
+
+Input
+3,4,5,6, 3,4,5,6, 1,10,11,3, 6,4,33,1
+
+mergeSortLeft(3,4,5,6, 3,4,5,6,)
+mergeSortLeft(3,4,5,6,)
+mergeSortLeft(3,4)
+mergeSortLeft(3) -> Return 3
+mergeSortRight(4) -> Return 4
+append 3
+append 4
+return 3,4
+mergeSortRight(5,6)
+mergeSortLeft(5) return 5
+mergeSortRight(6) return 6
+append 5
+append 6
+return 5,6
+append 3
+append 4
+append 5
+append 6
+return 3,4,5,6
+mergeSortRight(3,4,5,6)
+append x8 again (incl. recursive calls), return 3,4,5,6
+append x8
+return 3,3,4,4,5,5,6,6
+
+So for mergeSort(N=8), we have 24 append calls
+For mergeSort(N=4), we have 8 append calls?
+mergeSort(N=2), we have 2 append calls
+
+So log_2(N) * N total calls when N is a power of 2. What happens when N is not a power of 2?
+
+TODO: Non power of 2 input, general justification
+
+=== Correctness ===
+
+I will prove that for any valid input integer array A of length k, my mergeSort function returns another integer array B of length k, where all the same elements in integer array A are sorted in non-descending order.
+
+I claim that if my split left and right arrays are sorted in non-descending order, then they will be correctly combined into one sorted non-descending array.
+
+I will claim that if I correctly divide the input array in half and call mergeSort on both halves, I will have a sorted left and write half of the input array.

@@ -1548,38 +1548,29 @@
         "verification": "The four artifact paths exist. The tutor did not read or change the implementation or tests, run tests, or diagnose the reported failure at closure."
       },
       {
+        "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
         "date": "2026-11-10",
-        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-        "session_started_at": "2026-11-10T14:49:38.77503Z",
-        "language": "Go",
-        "rubric": null,
+        "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+        "feedback": "Both concrete traces and counts are correct.",
         "id": "stage1-halving-concrete-retrieval-2026-11-10",
-        "review_id": "stage0-halving-loop-logarithms",
-        "task": "Trace repeated integer halving for 16 and 23",
-        "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
-        "source": "Tutor-created Go prompt in this conversation.",
-        "result": "independent",
+        "language": "Go",
         "observed_strengths": [
           "Correct sequences 16, 8, 4, 2, 1, 0 and 23, 11, 5, 2, 1, 0.",
           "Correct return value five and six condition evaluations for both inputs."
         ],
-        "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
-        "feedback": "Both concrete traces and counts are correct.",
+        "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
         "remaining_gap": "Independently derive exact general body and condition counts. General formulas and asymptotic bounds were not assessed today.",
-        "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+        "result": "independent",
+        "review_id": "stage0-halving-loop-logarithms",
+        "rubric": null,
         "schedule_note": "Review on November 12, two days after partial retrieval. General derivation remains pending, so do not advance the whole review interval.",
+        "session_started_at": "2026-11-10T14:49:38.77503Z",
+        "source": "Tutor-created Go prompt in this conversation.",
+        "task": "Trace repeated integer halving for 16 and 23",
+        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
         "timing_note": "The answer arrived during focused-work time. Preserve the original plan and feedback boundary."
       },
       {
-        "date": "2026-11-10",
-        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-        "session_started_at": "2026-11-10T14:49:38.77503Z",
-        "language": "Go",
-        "rubric": null,
-        "id": "stage1-merge-sort-cost-study-2026-11-10",
-        "review_id": "stage1-merge-sort-time-and-live-space",
-        "task": "Resume merge sort and study total merge work and peak required storage",
-        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
         "artifacts": [
           "programs/algorithms/sessions/2026-11-09/main.go",
           "programs/algorithms/sessions/2026-11-09/main_test.go",
@@ -1587,17 +1578,22 @@
           "programs/algorithms/sessions/2026-11-09/go.sum",
           "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
         ],
-        "result": "assisted",
-        "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
-        "component_results": {
-          "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
-          "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction.",
-          "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
-          "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
-          "correctness_and_termination": "No whole learner argument reviewed today.",
-          "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain."
-        },
         "assistance": "Tutor distinguished recursion depth from total calls, selected the concrete merge structure, and supplied local append counts. Tutor explained slice aliasing, selected the storage snapshot, supplied the halving bound, corrected the average shortcut, and taught both cancellation and the storage-budget example.",
+        "component_results": {
+          "correctness_and_termination": "No whole learner argument reviewed today.",
+          "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
+          "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain.",
+          "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
+          "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
+          "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction."
+        },
+        "date": "2026-11-10",
+        "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
+        "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
+        "id": "stage1-merge-sort-cost-study-2026-11-10",
+        "language": "Go",
+        "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
+        "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
         "observed_gaps": [
           "Mixed original input size, local input size, recursion depth, and total call count.",
           "Counted left and right subslices as copied arrays.",
@@ -1606,14 +1602,229 @@
           "Interpreted the correction as saying that uneven terms have no average. The tutor clarified sum divided by term count.",
           "Reported being lost after the subtraction method."
         ],
-        "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k).",
-        "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
-        "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
-        "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
-        "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
         "remaining_gap": "Review the existing code, tests, and analysis. Independently reconstruct total work and peak required storage on a fresh example after a delay.",
+        "result": "assisted",
+        "review_id": "stage1-merge-sort-time-and-live-space",
+        "rubric": null,
         "schedule_note": "Review on November 12 after two days. Later provisional checkpoints are November 17, December 1, and December 22. Adjust to observed recall.",
-        "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration."
+        "session_started_at": "2026-11-10T14:49:38.77503Z",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
+        "task": "Resume merge sort and study total merge work and peak required storage",
+        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
+        "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration.",
+        "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
+        "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k)."
+      },
+      {
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-16/main.go",
+          "programs/algorithms/sessions/2026-11-16/main_test.go",
+          "programs/algorithms/sessions/2026-11-16/analysis.txt"
+        ],
+        "assistance": "Tutor supplied the task and counted operation, accepted the partial trace, confirmed the formula, and identified the inconsistent N=2 count. No counting derivation or corrected count was supplied today.",
+        "component_results": {
+          "concrete_trace": "Independent partial trace; the full 16-element execution was not written and was not required again.",
+          "general_append_count": "Correct stated formula; general justification remains unassessed.",
+          "implementation": "All six learner-written test cases passed under Go 1.27.3, first for November 9 code and at closure for the revised November 16 copy.",
+          "space": "Not attempted or assessed today. Prior November 10 analysis remains assisted."
+        },
+        "date": "2026-11-16",
+        "evidence_boundary": "No complete independent complexity argument, different independent application, seven-day mastery evidence, score, or stage advancement.",
+        "feedback": "The eight-element trace is useful and the stated formula is correct. The N=2 inconsistency was flagged and later corrected. The general justification remains unfinished.",
+        "id": "stage1-merge-sort-partial-cost-retrieval-2026-11-16",
+        "language": "Go",
+        "observed_gaps": [
+          "Initial notes listed four appends for N=2, conflicting with the trace and formula; corrected in the saved notes after feedback.",
+          "The formula is correct, but its general justification is unwritten. The learner explicitly left a TODO for non-power-of-two inputs and general justification."
+        ],
+        "observed_strengths": [
+          "Independently supplied an eight-element subtree trace with 24 individual element appends, and eight appends for a four-element run.",
+          "Stated N*log2(N) for positive power-of-two input sizes before conceptual help in this session.",
+          "At closure, notes corrected the two-element count to two after the tutor flagged its inconsistency without supplying the corrected count."
+        ],
+        "remaining_gap": "General append-count justification, non-power-of-two extension, and independent peak-storage reconstruction.",
+        "result": "partial",
+        "review_id": "stage1-merge-sort-time-and-live-space",
+        "rubric": null,
+        "schedule_note": "Partial review on November 16. Follow up November 18, two days later, without advancing the interval because the whole analysis is incomplete. The existing planned_review_dates retain the original provisional checkpoints.",
+        "session_started_at": "2026-11-16T15:04:23.368427Z",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code and analysis.txt",
+        "task": "Trace append operations on a fresh input and attempt delayed merge-sort cost reconstruction",
+        "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+        "timing_note": "The response arrived during focused-work time. The tutor gave bounded feedback and moved to the planned correctness task without another retrieval prompt.",
+        "verification": "Read the November 16 analysis at submission and closure. The revised source removes a redundant range condition; tests are unchanged. Ran go test -mod=readonly -count=1 -v . with Go 1.27.3 and confirmed Test_Main and all six subtests passed."
+      },
+      {
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-16/analysis.txt",
+          "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt"
+        ],
+        "assistance": "At the learner request, supplied a general checklist covering the contract, backward choice of supporting facts, recursion and loop proof structures, connection to the result, and termination. No merge-sort-specific invariant, supporting argument, or full solution was supplied.",
+        "contract_note": "The draft says new slice. Its allocation meaning has not been reviewed; the singleton branch returns the input slice. Review the stated promise without silently imposing a fresh-allocation requirement.",
+        "date": "2026-11-16",
+        "delivery": "Checklist sent in conversation and found saved by the learner in how-to-write-a-proof.txt. No independent reconstruction or application was observed afterward.",
+        "evidence_boundary": "Guidance delivery and a draft do not establish proof-construction mastery.",
+        "feedback": "The session ended with a contract draft and an unfinished proof. Resume this draft with the requested general checklist available.",
+        "id": "stage1-merge-sort-proof-start-2026-11-16",
+        "language": "Go",
+        "learner_report": "Asked for a correctness-proof cheat sheet because they were staring at a blank page and did not know where to start.",
+        "observed": "At closure, analysis.txt contains a draft promise of returning the same k elements in sorted order and the unfinished sentence: We start from the beginning of the function. If",
+        "remaining_gap": "Complete learner-owned sorting contract and whole correctness and termination argument. No finished proof was submitted or assessed.",
+        "result": "assisted",
+        "rubric": null,
+        "session_started_at": "2026-11-16T15:04:23.368427Z",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; https://www.cs.cornell.edu/courses/cs2112/2019fa/lectures/loopinv/",
+        "task": "Begin a whole correctness and termination argument and request a general proof-writing checklist",
+        "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+        "timing_note": "The learner requested this bounded support during feedback and then explicitly ended the session. No further task or teaching-feedback response was required."
+      },
+      {
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-16/analysis.txt",
+          "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt",
+          "programs/algorithms/sessions/2026-11-17/analysis-answer.txt",
+          "programs/algorithms/sessions/2026-11-17/correctness-proof-answer.txt"
+        ],
+        "assistance": "Sequential tutor questions and general claim-writing guidance; requested induction explanations; complete merge lemma and total-correctness proof supplied on explicit request. Explained and standalone answers saved at learner request. No learner code or draft edited.",
+        "component_results": {
+          "complexity": "Not attempted today. Prior general append justification, non-power-of-two analysis, and independent peak storage remain pending.",
+          "correctness": "Learner contract and claim draft with feedback; complete proof supplied. No independent whole proof.",
+          "implementation": "Source read. No code edits or tests today; prior passing tests remain historical.",
+          "language": "Slice-boundary clarification after prompting; no new implementation evidence."
+        },
+        "date": "2026-11-17",
+        "delivery": "Proof sent in conversation; both requested text artifacts saved and read back. The standalone file is now named correctness-proof-answer.txt.",
+        "evidence_boundary": "Assisted solution study, not independent mastery. No score or stage advancement. No required rewrite of this exact proof.",
+        "feedback": "Contract and claims progressed with feedback. The whole proof was supplied on request, so independent construction remains unestablished. Close this focus attempt as solution study and advance to different practice while retaining bounded reviews.",
+        "id": "stage1-merge-sort-proof-study-2026-11-17",
+        "language": "Go",
+        "learner_feedback": "The complete proof made sense. Lemma-and-theorem presentation helped. The learner identified the backward-discovery versus forward-proof transition as the sticking point and reported understanding after it was explained. Requested ending repeated merge-sort focus work and retaining correctness and complexity for review blocks.",
+        "observed_gaps": [
+          "Did not independently formulate the strong-induction hypothesis or a whole proof.",
+          "Reported confusion about connecting backward claim discovery to forward induction."
+        ],
+        "observed_strengths": [
+          "Wrote the sorting contract and identified recursive correctness and merging as supporting requirements.",
+          "Repaired the contract quantifier and implication direction after feedback.",
+          "Proposed induction on length after questions about base cases; recognized the doubling coverage gap after prompting.",
+          "Self-corrected the exclusive upper slicing boundary after a question."
+        ],
+        "remaining_gap": "Independent proof construction and delayed transfer; pending merge-sort complexity reconstruction.",
+        "result": "assisted",
+        "review_id": "stage1-merge-sort-correctness-and-induction",
+        "rubric": null,
+        "session_started_at": "2026-11-17T14:47:35.144191Z",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go implementation; proof checklist",
+        "task": "Draft correctness claims and study a requested complete merge-sort proof",
+        "teaching_feedback": "Questions became fragmented, shifted between k and k+1, and detoured into slice sizes before explaining the overall proof structure. Repeated abstract descriptions did not resolve confusion. The requested proof and explicit distinction between backward planning and forward presentation helped according to learner report.",
+        "thread_id": "01a1e9f9-50b7-7061-b805-3dcb66dc3f13"
+      },
+      {
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-18/merge-sort-complexity-recall.txt"
+        ],
+        "assistance": "Tutor confirmed the counts, supplied grouping by recursion depth and the 6, 6, 4 regrouping, then supplied the worked per-depth and depth-count argument on request.",
+        "date": "2026-11-18",
+        "evidence_boundary": "Independent concrete count and assisted general bound. No independent demonstration of the general bound or peak storage.",
+        "id": "stage1-merge-sort-uneven-append-retrieval-2026-11-18",
+        "language": "Go",
+        "learner_feedback": "Learner said they were stuck, asked what to think about next time, and then reported understanding and requested moving on.",
+        "observed_gaps": [
+          "Stalled when extending the trace to a general bound. Peak required storage was not attempted."
+        ],
+        "observed_strengths": [
+          "Independently traced 2 appends for size 2, 5 for size 3, and 16 overall for size 6."
+        ],
+        "remaining_gap": "Independently justify the append bound for arbitrary lengths and reconstruct peak required storage. Use one component per bounded review.",
+        "result": "partial",
+        "review_id": "stage1-merge-sort-time-and-live-space",
+        "rubric": null,
+        "schedule_note": "Partial recall on November 18. Revisit November 20 after the configured two-day interval. Keep later checkpoints provisional.",
+        "session_started_at": "2026-11-18T15:20:39.28194Z",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+        "task": "Trace append counts for merge sort on a six-element input and attempt the general bound",
+        "teaching_feedback": "The initial regrouping prompt did not explain why grouping helps. The learner explicitly asked for closure when the tutor tried to switch at the boundary. The tutor then connected disjoint pieces to work per depth and repeated splits to the number of depths.",
+        "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5"
+      },
+      {
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-18/rust/src/main.rs",
+          "programs/algorithms/sessions/2026-11-18/rust/Cargo.toml",
+          "programs/algorithms/sessions/2026-11-18/rust/Cargo.lock"
+        ],
+        "assistance": "Tutor gave only the Two Sum problem and target before submission. Tutor ran the existing tests and provided closing feedback.",
+        "component_results": {
+          "approach": "independent",
+          "complexity": "unassessed",
+          "correctness_and_termination_argument": "unassessed",
+          "implementation": "independent; both submitted assertions passed"
+        },
+        "date": "2026-11-18",
+        "evidence_boundary": "Fresh ordinary practice on the learner's report. Rust implementation evidence only. No scored assessment or stage advancement.",
+        "id": "stage1-two-sum-rust-implementation-2026-11-18",
+        "language": "Rust",
+        "observed_gaps": [
+          "Learner explicitly reported that correctness and complexity work had not been done."
+        ],
+        "observed_strengths": [
+          "Learner reported no prior solution and independently chose and implemented sorting a copy, an inward scan, and an original-index lookup.",
+          "Both learner-written assertions passed and use cases whose answer positions differ from their positions in the sorted copy."
+        ],
+        "result": "partial",
+        "rubric": null,
+        "session_started_at": "2026-11-18T15:20:39.28194Z",
+        "source": "https://leetcode.com/problems/two-sum/description/",
+        "task": "Stage 1 Two Sum practice ladder",
+        "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5",
+        "verification": "Cargo and rustc 1.100.0; cargo test --locked --offline with a temporary target directory found one test function and both learner-written assertions passed."
+      },
+      {
+        "id": "stage1-merge-sort-bound-proof-retrieval-2026-11-20",
+        "review_id": "stage1-merge-sort-time-and-live-space",
+        "date": "2026-11-20",
+        "language": "Go",
+        "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+        "session_started_at": "2026-11-20T14:59:47.848212Z",
+        "task": "Trace merge sort and connect the append count to a general upper bound",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+        "result": "partial",
+        "rubric": null,
+        "observed_strengths": [
+          "Traced new values on a six-element input and counted 16 appends as 6, 6, 4, and 0 by call level.",
+          "Stated N times ceil(log2 N) as a general append bound, then recognized the inductive structure after the explanation."
+        ],
+        "observed_gaps": [
+          "The six-element trace used the same call sizes as the November 18 worked example. The submitted argument did not independently justify the work at an arbitrary level or the number of levels with merges."
+        ],
+        "assistance": "At learner request the tutor connected disjoint pieces to the per-level append bound and demonstrated the depth bound with powers of two and induction on split count.",
+        "evidence_boundary": "Learner-produced trace and stated bound after earlier work on the same six-element call shape. The general proof was assisted. Independent general proof and peak storage remain pending.",
+        "learner_feedback": "The learner said the trace was fairly easy and requested that the next review practice connecting bounds to proof logic.",
+        "remaining_gap": "Independently justify the general append bound for arbitrary input lengths. Keep peak storage for a separate bounded review.",
+        "schedule_note": "Partial retrieval on November 20. The two-day interval falls on Sunday November 22, so move to Monday November 23 under the weekday rule without advancing the interval."
+      },
+      {
+        "id": "stage1-two-sum-rust-proof-and-cost-2026-11-20",
+        "date": "2026-11-20",
+        "language": "Rust",
+        "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+        "session_started_at": "2026-11-20T14:59:47.848212Z",
+        "task": "Analyze the current Rust Two Sum implementation and begin its correctness proof",
+        "source": "https://leetcode.com/problems/two-sum/description/",
+        "artifacts": [
+          "programs/algorithms/sessions/2026-11-20/analysis.txt",
+          "programs/algorithms/sessions/2026-11-20/rust/src/main.rs"
+        ],
+        "rubric": null,
+        "result": "partial",
+        "component_results": {
+          "time": "Independent O(N log N) worst-case bound. Draft gives a candidate worst-case scan input and identifies linear passes, but omits an explicit count and clone cost and incorrectly says the final loop always visits every entry.",
+          "space": "Independent O(N) extra-space bound from the clone. Closing feedback identified the missing linear temporary storage for stable slice sort.",
+          "correctness": "Learner chose the final-loop claim, corrected its implication after feedback, and articulated how it consumes the scan claim's conclusion. The scan proof and the valid-pair guarantee in the final loop remain unfinished.",
+          "termination": "No whole termination argument submitted."
+        },
+        "assistance": "Tutor clarified the direction of the final-loop conditional, gave a requested pointer-move hint, and distinguished input guarantees from conclusions. Learner stated the link between the two claims, which the tutor confirmed. No complete proof was supplied.",
+        "evidence_boundary": "Independent initial complexity draft and assisted proof construction. No scored assessment, test execution, or stage advancement.",
+        "remaining_gap": "Prove that the scan finds a matching pair on all valid inputs and terminates. Then justify returning the two distinct original indices and finish the whole cost argument."
       }
     ],
     "language": "Go",
@@ -1877,12 +2088,6 @@
           "task": "Car Pooling Medium baseline and feedback revision"
         },
         {
-          "date": "2026-11-10",
-          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-          "session_started_at": "2026-11-10T14:49:38.77503Z",
-          "language": "Go",
-          "rubric": null,
-          "task": "Read merge sort and distinguish slice views from copied elements",
           "artifacts": [
             "programs/algorithms/sessions/2026-11-09/main.go",
             "programs/algorithms/sessions/2026-11-09/main_test.go",
@@ -1890,15 +2095,21 @@
             "programs/algorithms/sessions/2026-11-09/go.sum",
             "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
           ],
-          "observed_skills": [
-            "Learner-authored recursive function, append operations, closure, and six table test cases were inspected."
-          ],
+          "assistance": "Tutor explained shared slice storage using Go documentation. No code was supplied.",
+          "date": "2026-11-10",
+          "language": "Go",
           "observed_errors": [
             "Storage reasoning counted subslices as additional copied arrays."
           ],
-          "assistance": "Tutor explained shared slice storage using Go documentation. No code was supplied.",
+          "observed_skills": [
+            "Learner-authored recursive function, append operations, closure, and six table test cases were inspected."
+          ],
           "result": "assisted",
-          "scope": "Static inspection and language explanation only. No compile or test result was established."
+          "rubric": null,
+          "scope": "Static inspection and language explanation only. No compile or test result was established.",
+          "session_started_at": "2026-11-10T14:49:38.77503Z",
+          "task": "Read merge sort and distinguish slice views from copied elements",
+          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f"
         }
       ],
       "Rust": [
@@ -1925,27 +2136,59 @@
           "task": "Linear search on a borrowed integer slice with automatic assertions",
           "thread_id": "01a1b157-e667-7df2-afb9-d91b970e9483",
           "verification": "Rust 1.99.1: cargo test --offline --locked passed before and after the learner revision."
+        },
+        {
+          "artifact": "programs/algorithms/sessions/2026-11-18/rust/src/main.rs",
+          "date": "2026-11-18",
+          "language": "Rust",
+          "observed_errors": [],
+          "observed_skills": [
+            "Cloned a vector, sorted the copy, traversed both vectors by index, and wrote a Rust test with two assertions."
+          ],
+          "result": "independent",
+          "rubric": null,
+          "scope": "Ordinary Rust implementation and automatic test evidence. No independent timed-assessment readiness finding.",
+          "session_started_at": "2026-11-18T15:20:39.28194Z",
+          "task": "Stage 1 Two Sum practice ladder",
+          "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5",
+          "verification": "Cargo and rustc 1.100.0; cargo test --locked --offline with a temporary target directory found one test function and both learner-written assertions passed."
+        },
+        {
+          "artifact": "programs/algorithms/sessions/2026-11-20/rust/src/main.rs",
+          "date": "2026-11-20",
+          "language": "Rust",
+          "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+          "session_started_at": "2026-11-20T14:59:47.848212Z",
+          "task": "Revise the original-index lookup in Rust Two Sum",
+          "observed_skills": [
+            "Used a vector length check and an early break after collecting two indices."
+          ],
+          "observed_errors": [],
+          "result": "independent",
+          "rubric": null,
+          "scope": "Source inspection of ordinary Rust control flow.",
+          "verification": "Read the revised source. No tests run in this session."
         }
       ]
     },
     "lesson_plan": {
-      "planned_on": "2026-11-10",
-      "status": "ready_for_next_study_block",
+      "course_connection": "Stage 1 Two Sum practice ladder",
+      "current_task": "Resume the November 20 Rust Two Sum draft. First write and justify the scan claim so it establishes that the scan finds a matching pair on every valid input and terminates. Then complete the proof that the final loop returns the distinct original indices for that pair. If time remains, count the loop operations on a concrete run and revise the whole cost argument to account for the clone, stable sort's temporary storage, and the early exit in the final loop. Stop at the first unfinished part when feedback starts.",
+      "next_task": "Resume the November 20 Rust Two Sum draft. First write and justify the scan claim so it establishes that the scan finds a matching pair on every valid input and terminates. Then complete the proof that the final loop returns the distinct original indices for that pair. If time remains, count the loop operations on a concrete run and revise the whole cost argument to account for the clone, stable sort's temporary storage, and the early exit in the final loop. Stop at the first unfinished part when feedback starts.",
+      "independent_output": "A whole correctness and termination argument and a revised complexity justification for the existing Rust implementation.",
+      "language": "Rust",
+      "objective": "Connect the scan and final-loop claims to prove the Two Sum contract.",
+      "planned_on": "2026-11-20",
+      "review_plan": [
+        "Next bounded merge-sort review: independently justify the general append-count bound and connect each part to the proof logic. Due November 23 under the weekday policy.",
+        "Review peak merge-sort storage in a separate bounded block and preserve the other due reviews."
+      ],
+      "source": "https://leetcode.com/problems/two-sum/description/",
       "stage": 1,
-      "language": "Go",
-      "objective": "Review the remaining merge-sort artifact and develop independent cost analysis through delayed practice.",
-      "course_connection": "Stage 1 merge-sort build. Linear search remains complete within its agreed scope.",
-      "current_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
-      "next_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
-      "independent_output": "Learner sorting contract and whole correctness and termination argument. Delayed concrete counts and space reasoning before help.",
-      "success_criteria": "Observed tests pass, the whole argument covers permitted inputs and termination, and independent analysis supports the bounds. Record assistance separately.",
-      "teaching_approach": "Default to tutor. Preserve learner choice of claims and counting method. Give requested help and stop repeated prompts after a stall.",
-      "demonstration_if_requested": "Use a small concrete call structure for time and a storage budget for space. Explain which arrays coexist before notation. Return to a different small transfer task when the learner is ready.",
-      "supported_practice": "Use the existing implementation and answer narrow questions. Guided repetition is not independent evidence.",
-      "transfer": "Use a different later recursion or algorithm for independent total-work and storage reasoning. Preserve delayed reviews and the seven-day evidence requirement.",
-      "stopping_rule": "Obtain the next budget, preserve feedback time, and save the first unfinished part. Honor an explicit stop.",
-      "evidence_boundary": "Working code is learner-reported. Both complexity analyses are assisted. Correctness and termination remain unreviewed.",
-      "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5"
+      "status": "ready_for_next_study_block",
+      "stopping_rule": "Reserve closing feedback and stop at the first unfinished part.",
+      "success_criteria": "The argument establishes a matching pair, distinct original indices, and termination on every valid input. Any revised cost argument counts work and extra storage across the whole implementation.",
+      "teaching_approach": "Let the learner write the scan claim and proof. If help is requested, connect each premise to the claim it supports and distinguish the order of discovering the claims from the order of using them."
     },
     "lesson_plan_history": [
       {
@@ -2597,29 +2840,118 @@
         "language": "Go",
         "next_task": "Resume the learner-owned Go merge-sort implementation in programs/algorithms/sessions/2026-11-09/main.go and main_test.go. Begin by reproducing and debugging the learner-reported failing test. Leave diagnosis and repair to the learner unless help is requested. Once the implementation and tests are ready, review the sorting contract, a whole correctness and termination argument, then a concrete trace and justified counts or recurrence before time and extra-space bounds. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
         "objective": "Complete and justify the learner-owned merge-sort implementation.",
+        "outcome": "Learner reports repairing merge sort. Both complexity analyses received assistance. Test execution and whole correctness review remain pending.",
         "planned_on": "2026-11-09",
         "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5",
         "stage": 1,
         "status": "superseded",
         "stopping_rule": "Obtain the next session budget when the learner resumes. Preserve its feedback block. Review the complete artifact or save the first unfinished part at the agreed boundary.",
         "success_criteria": "The implementation meets its stated sorting contract and passes the learner tests. The argument covers all permitted inputs and termination. Counts or a recurrence justify the bounds.",
+        "superseded_on": "2026-11-10",
         "supported_practice": "Offer targeted help on request and follow the saved stall rules.",
         "teaching_approach": "Default to tutor. Present the task, constraints, and target. Leave strategy and supporting claims to the learner. Explain only within requested or agreed teaching blocks.",
-        "transfer": "Use a different later loop or recursion task for independent correctness and cost analysis. Keep delayed reviews.",
-        "superseded_on": "2026-11-10",
-        "outcome": "Learner reports repairing merge sort. Both complexity analyses received assistance. Test execution and whole correctness review remain pending."
+        "transfer": "Use a different later loop or recursion task for independent correctness and cost analysis. Keep delayed reviews."
+      },
+      {
+        "course_connection": "Stage 1 merge-sort build. Linear search remains complete within its agreed scope.",
+        "current_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
+        "demonstration_if_requested": "Use a small concrete call structure for time and a storage budget for space. Explain which arrays coexist before notation. Return to a different small transfer task when the learner is ready.",
+        "evidence_boundary": "Working code is learner-reported. Both complexity analyses are assisted. Correctness and termination remain unreviewed.",
+        "independent_output": "Learner sorting contract and whole correctness and termination argument. Delayed concrete counts and space reasoning before help.",
+        "language": "Go",
+        "next_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
+        "objective": "Review the remaining merge-sort artifact and develop independent cost analysis through delayed practice.",
+        "outcome": "Tests verified, partial append-count retrieval completed, and a correctness draft started with requested general proof guidance.",
+        "planned_on": "2026-11-10",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5",
+        "stage": 1,
+        "status": "superseded",
+        "stopping_rule": "Obtain the next budget, preserve feedback time, and save the first unfinished part. Honor an explicit stop.",
+        "success_criteria": "Observed tests pass, the whole argument covers permitted inputs and termination, and independent analysis supports the bounds. Record assistance separately.",
+        "superseded_on": "2026-11-16",
+        "supported_practice": "Use the existing implementation and answer narrow questions. Guided repetition is not independent evidence.",
+        "teaching_approach": "Default to tutor. Preserve learner choice of claims and counting method. Give requested help and stop repeated prompts after a stall.",
+        "transfer": "Use a different later recursion or algorithm for independent total-work and storage reasoning. Preserve delayed reviews and the seven-day evidence requirement."
+      },
+      {
+        "archive_reason": "Learner requested a complete solution and moving merge sort into reviews after repeated focus lessons.",
+        "archived_on": "2026-11-17",
+        "course_connection": "Stage 1 merge-sort build. Linear search stays complete within the agreed scope.",
+        "current_task": "Resume the learner-owned Go merge-sort artifact in programs/algorithms/sessions/2026-11-16/. Read analysis.txt and how-to-write-a-proof.txt. Begin at the existing sorting-contract sentence and unfinished correctness argument; do not restart the implementation. Review the contract against the implementation, then obtain one whole learner-owned correctness and termination argument. The general proof checklist was requested and supplied on November 16; leave algorithm-specific supporting claims and reasoning to the learner unless help is requested. In a later retrieval block, continue from the correct eight-element append trace: justify the power-of-two formula, consider non-power-of-two inputs, and independently reconstruct peak required storage before help. The general cost justification and independent space analysis remain pending. Protect feedback time and save the first unfinished part at the session boundary. Do not reopen linear search.",
+        "demonstration_if_requested": "Agree on one specific gap and use a separate small worked example before returning to learner-owned work.",
+        "evidence_boundary": "Six learner tests pass. The power-of-two append formula is stated correctly with an independent partial trace, but general justification and independent space reconstruction remain pending. Proof checklist supplied on request; no whole proof reviewed.",
+        "independent_output": "Learner-selected algorithm-specific supporting claims and one whole correctness and termination argument. Later cost reconstruction should precede further help.",
+        "language": "Go",
+        "next_task": "Resume the learner-owned Go merge-sort artifact in programs/algorithms/sessions/2026-11-16/. Read analysis.txt and how-to-write-a-proof.txt. Begin at the existing sorting-contract sentence and unfinished correctness argument; do not restart the implementation. Review the contract against the implementation, then obtain one whole learner-owned correctness and termination argument. The general proof checklist was requested and supplied on November 16; leave algorithm-specific supporting claims and reasoning to the learner unless help is requested. In a later retrieval block, continue from the correct eight-element append trace: justify the power-of-two formula, consider non-power-of-two inputs, and independently reconstruct peak required storage before help. The general cost justification and independent space analysis remain pending. Protect feedback time and save the first unfinished part at the session boundary. Do not reopen linear search.",
+        "objective": "Complete and review the existing merge-sort correctness and termination argument, while preserving unfinished cost reviews.",
+        "planned_on": "2026-11-16",
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5",
+        "stage": 1,
+        "status": "ready_for_next_study_block",
+        "stopping_rule": "Obtain the next available study budget, protect its feedback phase, and save the first unfinished part at the boundary.",
+        "success_criteria": "The contract matches the implementation and a coherent argument covers every promised result property, all permitted inputs, and termination. Record use of the supplied checklist separately from independent algorithm reasoning.",
+        "supported_practice": "Resume the existing draft. Answer narrow questions; do not supply a merging invariant or proof outline without a request.",
+        "teaching_approach": "Use the requested general proof checklist as available support. Preserve algorithm-specific claim selection. Accept sufficient reasoning, identify the first substantive gap, and follow the saved stall rule.",
+        "transfer": "After this artifact, use a different independent whole task and preserve delayed evidence requirements."
+      },
+      {
+        "archive_reason": "Two Sum implemented in Rust; retain the remaining argument and cost analysis as the next focus.",
+        "archived_on": "2026-11-18",
+        "course_connection": "Stage 1 practice ladder: Two Sum. Merge-sort focus attempt closed as assisted solution study.",
+        "current_task": "Next focus block: begin the Stage 1 practice ladder with Two Sum in Go (https://leetcode.com/problems/two-sum/). Check prior familiarity before calling the attempt fresh independent evidence. Give the problem and target only, then let the learner choose an approach, implement and test it, and give a whole correctness and termination argument and justified operation counts and time/space bounds. Help follows a request. Stop at the first unfinished part when feedback begins. Keep merge-sort correctness and complexity in bounded review blocks only; their completion is not a prerequisite for new focus work. Complexity review remains due November 18 and correctness review is due November 19. Do not restart merge sort or reopen linear search.",
+        "demonstration_if_requested": "Agree on one gap and use a separate small worked example before returning to learner-owned work.",
+        "evidence_boundary": "The merge-sort proof is supplied solution study. Independent proof and cost reconstruction remain pending. Stage 1 remains in progress.",
+        "independent_output": "Learner-selected approach, Go code and tests, whole correctness and termination argument, and justified operation counts and time/space bounds.",
+        "language": "Go",
+        "next_task": "Next focus block: begin the Stage 1 practice ladder with Two Sum in Go (https://leetcode.com/problems/two-sum/). Check prior familiarity before calling the attempt fresh independent evidence. Give the problem and target only, then let the learner choose an approach, implement and test it, and give a whole correctness and termination argument and justified operation counts and time/space bounds. Help follows a request. Stop at the first unfinished part when feedback begins. Keep merge-sort correctness and complexity in bounded review blocks only; their completion is not a prerequisite for new focus work. Complexity review remains due November 18 and correctness review is due November 19. Do not restart merge sort or reopen linear search.",
+        "objective": "Advance Stage 1 with a different whole problem while retaining bounded merge-sort reviews.",
+        "planned_on": "2026-11-17",
+        "review_plan": [
+          "November 18: bounded merge-sort complexity retrieval; choose one pending component.",
+          "November 19: bounded merge-sort correctness and induction review after two days.",
+          "Preserve other due reviews and use varied prompts that fit retrieval time."
+        ],
+        "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; https://leetcode.com/problems/two-sum/",
+        "stage": 1,
+        "status": "ready_for_next_study_block",
+        "stopping_rule": "Obtain the next budget, reserve feedback time, and save the first unfinished part. Do not extend merge-sort reviews into focus work.",
+        "success_criteria": "Correct implementation, coherent argument covering the contract and termination, and justified costs. Record assistance honestly.",
+        "supported_practice": "Support is available on request; do not pre-supply strategy, claims, or proof outlines.",
+        "teaching_approach": "Present the task and target and wait for a learner approach. Help follows requests. In requested proof teaching, explain structure before notation and distinguish backward discovery from forward presentation.",
+        "transfer": "Use different applications and preserve delayed independent mastery requirements."
+      },
+      {
+        "course_connection": "Stage 1 Two Sum practice ladder",
+        "current_task": "Resume Two Sum from the November 18 Rust implementation. First write an independent whole argument that it returns the two distinct original indices for every valid input and terminates. Then trace a learner-chosen input, count the relevant operations, and justify time and extra space across the whole implementation. Stop at the first unfinished part when feedback starts. Keep merge-sort correctness and complexity in bounded retrieval blocks only.",
+        "independent_output": "A correctness and termination argument, a concrete trace, operation counts, and justified time and extra space bounds.",
+        "language": "Rust",
+        "next_task": "Resume Two Sum from the November 18 Rust implementation. First write an independent whole argument that it returns the two distinct original indices for every valid input and terminates. Then trace a learner-chosen input, count the relevant operations, and justify time and extra space across the whole implementation. Stop at the first unfinished part when feedback starts. Keep merge-sort correctness and complexity in bounded retrieval blocks only.",
+        "objective": "Explain why the existing Two Sum solution works and what it costs.",
+        "planned_on": "2026-11-18",
+        "review_plan": [
+          "November 19: bounded merge-sort correctness retrieval.",
+          "November 20: bounded merge-sort complexity retrieval. Preserve the other due reviews."
+        ],
+        "source": "https://leetcode.com/problems/two-sum/description/",
+        "stage": 1,
+        "status": "ready_for_next_study_block",
+        "stopping_rule": "Reserve feedback time and stop at the first unfinished component.",
+        "success_criteria": "The argument establishes the full contract for every valid input and termination. The costs account for the whole implementation.",
+        "teaching_approach": "Hands-off tutoring while the learner chooses claims and reasoning. Help on request.",
+        "archived_on": "2026-11-20",
+        "archive_reason": "November 20 analysis and claim construction established the remaining proof and cost gaps."
       }
     ],
-    "next_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
+    "next_task": "Resume the November 20 Rust Two Sum draft. First write and justify the scan claim so it establishes that the scan finds a matching pair on every valid input and terminates. Then complete the proof that the final loop returns the distinct original indices for that pair. If time remains, count the loop operations on a concrete run and revise the whole cost argument to account for the clone, stable sort's temporary storage, and the early exit in the final loop. Stop at the first unfinished part when feedback starts.",
     "roadmap": {
       "current_stage": 1,
       "current_unit": "Reasoning, complexity and correctness",
       "mastery_boundary": "Keep independent application and delayed evidence requirements for later mastery gates. Do not award mastery for tutor-supplied work.",
-      "next_step": "Resume the learner-owned Go merge-sort implementation in programs/algorithms/sessions/2026-11-09/main.go and main_test.go. Begin by reproducing and debugging the learner-reported failing test. Leave diagnosis and repair to the learner unless help is requested. Once the implementation and tests are ready, review the sorting contract, a whole correctness and termination argument, then a concrete trace and justified counts or recurrence before time and extra-space bounds. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
-      "position": "Stage 0 diagnostics are complete. Stage 1 is in progress. Linear search is complete under the agreed scope; merge sort is unfinished with a learner-reported failing test.",
+      "next_step": "Next focus block: begin the Stage 1 practice ladder with Two Sum in Go (https://leetcode.com/problems/two-sum/). Check prior familiarity before calling the attempt fresh independent evidence. Give the problem and target only, then let the learner choose an approach, implement and test it, and give a whole correctness and termination argument and justified operation counts and time/space bounds. Help follows a request. Stop at the first unfinished part when feedback begins. Keep merge-sort correctness and complexity in bounded review blocks only; their completion is not a prerequisite for new focus work. Complexity review remains due November 18 and correctness review is due November 19. Do not restart merge sort or reopen linear search.",
+      "position": "Stage 0 diagnostics complete. Stage 1 in progress. Linear search remains complete within agreed scope. Merge-sort focus work is closed as assisted proof study; correctness and complexity move to reviews. Next focus task: Two Sum in Go.",
       "progression_rule": "Stage 0 diagnoses gaps. The curriculum routes difficulty with correctness arguments into Stage 1. Baseline diagnosis does not require a passing mastery score.",
       "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex sections 4, 5, and 22",
-      "updated_on": "2026-11-09"
+      "updated_on": "2026-11-17"
     },
     "stage": 1,
     "study_preferences": {
@@ -2628,6 +2960,7 @@
       "browser_tools": "For requested browser control, use the ChatGPT browser extension. Do not use Playwright or desktop automation unless the learner changes this restriction.",
       "cost_analysis": "The learner declined a concrete trace and exact operation counts for simple linear search on November 6. Reserve those tasks for more complex programs. Record omitted work as unassessed, not as a demonstrated skill or a miss.",
       "current_feedback": "Closing feedback is skipped for the current ordinary session. This does not change assessment feedback rules.",
+      "focus_progression": "November 17: merge-sort correctness and complexity belong in bounded review blocks. Advance focus work to new Stage 1 material. The requested worked solution closes this exact proof attempt without a rewrite prerequisite.",
       "interface": "Keep the conversation in Codex terminal. Do not redirect it to the desktop app.",
       "visualizations": "Provide a usable local HTML file and its opening command first. Browser automation is optional for viewing that file."
     },
@@ -2747,10 +3080,37 @@
       },
       {
         "date": "2026-11-10",
-        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
         "learner_feedback": "The storage-budget explanation was good, but neither complexity result was obtained independently. The learner doubts being able to reconstruct either analysis alone and requested future review.",
         "teaching_adjustment": "Record both analyses as assisted. Use a delayed fresh example for independent evidence. If teaching is requested, use concrete totals and storage budgets before symbolic cancellation. Positive explanation feedback does not establish mastery.",
+        "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
         "tutor_findings": "The tutor supplied the counting framework and final bounds. The learner combined the supplied time counts correctly. The storage sum needed a worked explanation after repeated confusion."
+      },
+      {
+        "date": "2026-11-16",
+        "learner_feedback": "Requested a reusable correctness-proof cheat sheet because starting from a blank page was difficult. No evaluation of the checklist was reported.",
+        "teaching_adjustment": "Continue from the saved contract draft with the requested general checklist available. Preserve algorithm-specific claims and reasoning; do not infer understanding from saving the checklist.",
+        "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea"
+      },
+      {
+        "date": "2026-11-17",
+        "learner_feedback": "The complete proof made sense. Lemma-and-theorem presentation helped. The learner identified the backward-discovery versus forward-proof transition as the sticking point and reported understanding after it was explained. Requested ending repeated merge-sort focus work and retaining correctness and complexity for review blocks.",
+        "teaching_adjustment": "Explain the overall theorem and supporting lemmas before induction notation. Distinguish backward discovery from forward proof presentation. Keep one current call in view. Use lemma-and-theorem form for requested proofs. Preserve hands-off attempts and move focus work forward.",
+        "thread_id": "01a1e9f9-50b7-7061-b805-3dcb66dc3f13",
+        "tutor_findings": "Questions became fragmented, shifted between k and k+1, and detoured into slice sizes before explaining the overall proof structure. Repeated abstract descriptions did not resolve confusion. The requested proof and explicit distinction between backward planning and forward presentation helped according to learner report."
+      },
+      {
+        "date": "2026-11-18",
+        "learner_feedback": "Learner said they were stuck, asked what to think about next time, and then reported understanding and requested moving on.",
+        "teaching_adjustment": "At a review boundary, explain the missing connection when the learner requests help, then return to the focus task once they are ready.",
+        "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5",
+        "tutor_findings": "The initial regrouping prompt did not explain why grouping helps. The learner explicitly asked for closure when the tutor tried to switch at the boundary. The tutor then connected disjoint pieces to work per depth and repeated splits to the number of depths."
+      },
+      {
+        "date": "2026-11-20",
+        "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+        "learner_feedback": "The learner said tracing merge sort was straightforward and asked to practice connecting a bound to proof logic next time.",
+        "tutor_findings": "The wording about running reasoning forward caused confusion. The learner then articulated that the scan claim's conclusion supplies the final-loop claim's premise, and the tutor confirmed the connection.",
+        "teaching_adjustment": "Keep future merge-sort work in bounded review and focus on proving the two factors of the bound. When discussing proof order, name the actual premise and conclusion and show how they connect."
       }
     ],
     "unit": "Reasoning, complexity and correctness"
@@ -3163,26 +3523,26 @@
           "timing_note": "The learner explicitly chose to finish recall using some focused-work time. Preserve the 8/29/8 plan and the minute-37 feedback boundary."
         },
         {
+          "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
           "date": "2026-11-10",
-          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-          "session_started_at": "2026-11-10T14:49:38.77503Z",
-          "language": "Go",
-          "rubric": null,
+          "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+          "feedback": "Both concrete traces and counts are correct.",
           "id": "stage1-halving-concrete-retrieval-2026-11-10",
-          "review_id": "stage0-halving-loop-logarithms",
-          "task": "Trace repeated integer halving for 16 and 23",
-          "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
-          "source": "Tutor-created Go prompt in this conversation.",
-          "result": "independent",
+          "language": "Go",
           "observed_strengths": [
             "Correct sequences 16, 8, 4, 2, 1, 0 and 23, 11, 5, 2, 1, 0.",
             "Correct return value five and six condition evaluations for both inputs."
           ],
-          "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
-          "feedback": "Both concrete traces and counts are correct.",
+          "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
           "remaining_gap": "Independently derive exact general body and condition counts. General formulas and asymptotic bounds were not assessed today.",
-          "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+          "result": "independent",
+          "review_id": "stage0-halving-loop-logarithms",
+          "rubric": null,
           "schedule_note": "Review on November 12, two days after partial retrieval. General derivation remains pending, so do not advance the whole review interval.",
+          "session_started_at": "2026-11-10T14:49:38.77503Z",
+          "source": "Tutor-created Go prompt in this conversation.",
+          "task": "Trace repeated integer halving for 16 and 23",
+          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
           "timing_note": "The answer arrived during focused-work time. Preserve the original plan and feedback boundary."
         }
       ],
@@ -3197,11 +3557,11 @@
         "2026-11-19"
       ],
       "prompt": "Without notes, trace a fresh repeated-halving Go loop on a small input that is not a power of two. Explain why doubling the input adds only about one iteration, justify the time and extra-space bounds, and distinguish the last body execution from the stop condition. Explain log base 2 as an exponent.",
+      "remaining_gap": "Independently derive exact general body and condition counts. General formulas and asymptotic bounds were not assessed today.",
       "schedule_note": "Two-day review falls on Saturday October 10, so move it to Monday October 12. Keep both loop reviews within the chosen retrieval budget.",
       "scheduling_note": "Review on November 12, two days after partial retrieval. General derivation remains pending, so do not advance the whole review interval. Thursday requires no weekend adjustment. Earlier planned dates remain historical.",
       "skill": "Explain logarithmic iteration counts in repeated integer halving",
-      "source": "Tutor-created Go complexity probe in thread 01a11bba-257d-7de3-af80-2ace47905ebc; docs/course-guide.txt page 3.",
-      "remaining_gap": "Independently derive exact general body and condition counts. General formulas and asymptotic bounds were not assessed today."
+      "source": "Tutor-created Go complexity probe in thread 01a11bba-257d-7de3-af80-2ace47905ebc; docs/course-guide.txt page 3."
     },
     {
       "attempts": [
@@ -4080,7 +4440,8 @@
       "scheduling_note": "Sortedness supported practice and same-session independent lastIndex reasoning are complete. Delayed independent mastery evidence remains pending no earlier than November 5. November 2: exchange reasoning and the revised proof required assistance. Schedule a short continuation review on November 4, two days later. This is assisted practice, not delayed independent evidence. Preserve the separate November 5 earliest date for delayed independent proof evidence. November 3: learner requested the full solution and an end to repeated repair of this proof. Use a different, smaller proof task on November 5, two days later. Do not treat the supplied exchange proof as independent or delayed mastery.",
       "skill": "Choose and assemble supporting claims into a coherent correctness argument",
       "source": "docs/course-guide.txt sections 2, 5, 22, and 25; October 27 graph proof instruction",
-      "status": "active"
+      "status": "active",
+      "teaching_note": "November 17 merge-sort proof supplied on request; independent construction remains pending. Distinguish backward discovery from forward proof presentation. Use different focus tasks and bounded merge-sort reviews."
     },
     {
       "attempts": [
@@ -4144,33 +4505,8 @@
       "status": "active"
     },
     {
-      "id": "stage1-merge-sort-time-and-live-space",
-      "language": "Go",
-      "learned_on": "2026-11-10",
-      "skill": "Separate recursion depth, total work, and peak required storage in merge sort",
-      "due": "2026-11-12",
-      "planned_review_dates": [
-        "2026-11-12",
-        "2026-11-17",
-        "2026-12-01",
-        "2026-12-22"
-      ],
-      "prompt": "Use the existing Go merge sort on a fresh small power-of-two input. Attempt concrete counts without notes, then justify total work and peak required storage. Distinguish slice views from copies and completed results from unfinished calls. Leave the counting method to the learner before help.",
-      "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
-      "schedule_note": "Review on November 12 after two days. Later provisional checkpoints are November 17, December 1, and December 22. Adjust to observed recall. All dates are weekdays. The learned date records assisted instruction, not mastery.",
-      "remaining_gap": "Both analyses need delayed independent reconstruction. A different independent application after at least seven days remains pending.",
-      "teaching_note": "The learner found the storage-budget explanation useful and remained lost with algebraic cancellation. If help is requested, use concrete required storage before algebra. Stop repeated formula prompts after a stall.",
       "attempts": [
         {
-          "date": "2026-11-10",
-          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-          "session_started_at": "2026-11-10T14:49:38.77503Z",
-          "language": "Go",
-          "rubric": null,
-          "id": "stage1-merge-sort-cost-study-2026-11-10",
-          "review_id": "stage1-merge-sort-time-and-live-space",
-          "task": "Resume merge sort and study total merge work and peak required storage",
-          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
           "artifacts": [
             "programs/algorithms/sessions/2026-11-09/main.go",
             "programs/algorithms/sessions/2026-11-09/main_test.go",
@@ -4178,17 +4514,22 @@
             "programs/algorithms/sessions/2026-11-09/go.sum",
             "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
           ],
-          "result": "assisted",
-          "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
-          "component_results": {
-            "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
-            "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction.",
-            "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
-            "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
-            "correctness_and_termination": "No whole learner argument reviewed today.",
-            "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain."
-          },
           "assistance": "Tutor distinguished recursion depth from total calls, selected the concrete merge structure, and supplied local append counts. Tutor explained slice aliasing, selected the storage snapshot, supplied the halving bound, corrected the average shortcut, and taught both cancellation and the storage-budget example.",
+          "component_results": {
+            "correctness_and_termination": "No whole learner argument reviewed today.",
+            "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
+            "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain.",
+            "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
+            "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
+            "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction."
+          },
+          "date": "2026-11-10",
+          "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
+          "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
+          "id": "stage1-merge-sort-cost-study-2026-11-10",
+          "language": "Go",
+          "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
+          "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
           "observed_gaps": [
             "Mixed original input size, local input size, recursion depth, and total call count.",
             "Counted left and right subslices as copied arrays.",
@@ -4197,16 +4538,189 @@
             "Interpreted the correction as saying that uneven terms have no average. The tutor clarified sum divided by term count.",
             "Reported being lost after the subtraction method."
           ],
-          "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k).",
-          "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
-          "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
-          "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
-          "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
           "remaining_gap": "Review the existing code, tests, and analysis. Independently reconstruct total work and peak required storage on a fresh example after a delay.",
+          "result": "assisted",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
           "schedule_note": "Review on November 12 after two days. Later provisional checkpoints are November 17, December 1, and December 22. Adjust to observed recall.",
-          "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration."
+          "session_started_at": "2026-11-10T14:49:38.77503Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
+          "task": "Resume merge sort and study total merge work and peak required storage",
+          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
+          "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration.",
+          "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
+          "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k)."
+        },
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-16/main.go",
+            "programs/algorithms/sessions/2026-11-16/main_test.go",
+            "programs/algorithms/sessions/2026-11-16/analysis.txt"
+          ],
+          "assistance": "Tutor supplied the task and counted operation, accepted the partial trace, confirmed the formula, and identified the inconsistent N=2 count. No counting derivation or corrected count was supplied today.",
+          "component_results": {
+            "concrete_trace": "Independent partial trace; the full 16-element execution was not written and was not required again.",
+            "general_append_count": "Correct stated formula; general justification remains unassessed.",
+            "implementation": "All six learner-written test cases passed under Go 1.27.3, first for November 9 code and at closure for the revised November 16 copy.",
+            "space": "Not attempted or assessed today. Prior November 10 analysis remains assisted."
+          },
+          "date": "2026-11-16",
+          "evidence_boundary": "No complete independent complexity argument, different independent application, seven-day mastery evidence, score, or stage advancement.",
+          "feedback": "The eight-element trace is useful and the stated formula is correct. The N=2 inconsistency was flagged and later corrected. The general justification remains unfinished.",
+          "id": "stage1-merge-sort-partial-cost-retrieval-2026-11-16",
+          "language": "Go",
+          "observed_gaps": [
+            "Initial notes listed four appends for N=2, conflicting with the trace and formula; corrected in the saved notes after feedback.",
+            "The formula is correct, but its general justification is unwritten. The learner explicitly left a TODO for non-power-of-two inputs and general justification."
+          ],
+          "observed_strengths": [
+            "Independently supplied an eight-element subtree trace with 24 individual element appends, and eight appends for a four-element run.",
+            "Stated N*log2(N) for positive power-of-two input sizes before conceptual help in this session.",
+            "At closure, notes corrected the two-element count to two after the tutor flagged its inconsistency without supplying the corrected count."
+          ],
+          "remaining_gap": "General append-count justification, non-power-of-two extension, and independent peak-storage reconstruction.",
+          "result": "partial",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
+          "schedule_note": "Partial review on November 16. Follow up November 18, two days later, without advancing the interval because the whole analysis is incomplete. The existing planned_review_dates retain the original provisional checkpoints.",
+          "session_started_at": "2026-11-16T15:04:23.368427Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code and analysis.txt",
+          "task": "Trace append operations on a fresh input and attempt delayed merge-sort cost reconstruction",
+          "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+          "timing_note": "The response arrived during focused-work time. The tutor gave bounded feedback and moved to the planned correctness task without another retrieval prompt.",
+          "verification": "Read the November 16 analysis at submission and closure. The revised source removes a redundant range condition; tests are unchanged. Ran go test -mod=readonly -count=1 -v . with Go 1.27.3 and confirmed Test_Main and all six subtests passed."
+        },
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-18/merge-sort-complexity-recall.txt"
+          ],
+          "assistance": "Tutor confirmed the counts, supplied grouping by recursion depth and the 6, 6, 4 regrouping, then supplied the worked per-depth and depth-count argument on request.",
+          "date": "2026-11-18",
+          "evidence_boundary": "Independent concrete count and assisted general bound. No independent demonstration of the general bound or peak storage.",
+          "id": "stage1-merge-sort-uneven-append-retrieval-2026-11-18",
+          "language": "Go",
+          "learner_feedback": "Learner said they were stuck, asked what to think about next time, and then reported understanding and requested moving on.",
+          "observed_gaps": [
+            "Stalled when extending the trace to a general bound. Peak required storage was not attempted."
+          ],
+          "observed_strengths": [
+            "Independently traced 2 appends for size 2, 5 for size 3, and 16 overall for size 6."
+          ],
+          "remaining_gap": "Independently justify the append bound for arbitrary lengths and reconstruct peak required storage. Use one component per bounded review.",
+          "result": "partial",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
+          "schedule_note": "Partial recall on November 18. Revisit November 20 after the configured two-day interval. Keep later checkpoints provisional.",
+          "session_started_at": "2026-11-18T15:20:39.28194Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+          "task": "Trace append counts for merge sort on a six-element input and attempt the general bound",
+          "teaching_feedback": "The initial regrouping prompt did not explain why grouping helps. The learner explicitly asked for closure when the tutor tried to switch at the boundary. The tutor then connected disjoint pieces to work per depth and repeated splits to the number of depths.",
+          "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5"
+        },
+        {
+          "id": "stage1-merge-sort-bound-proof-retrieval-2026-11-20",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "date": "2026-11-20",
+          "language": "Go",
+          "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+          "session_started_at": "2026-11-20T14:59:47.848212Z",
+          "task": "Trace merge sort and connect the append count to a general upper bound",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+          "result": "partial",
+          "rubric": null,
+          "observed_strengths": [
+            "Traced new values on a six-element input and counted 16 appends as 6, 6, 4, and 0 by call level.",
+            "Stated N times ceil(log2 N) as a general append bound, then recognized the inductive structure after the explanation."
+          ],
+          "observed_gaps": [
+            "The six-element trace used the same call sizes as the November 18 worked example. The submitted argument did not independently justify the work at an arbitrary level or the number of levels with merges."
+          ],
+          "assistance": "At learner request the tutor connected disjoint pieces to the per-level append bound and demonstrated the depth bound with powers of two and induction on split count.",
+          "evidence_boundary": "Learner-produced trace and stated bound after earlier work on the same six-element call shape. The general proof was assisted. Independent general proof and peak storage remain pending.",
+          "learner_feedback": "The learner said the trace was fairly easy and requested that the next review practice connecting bounds to proof logic.",
+          "remaining_gap": "Independently justify the general append bound for arbitrary input lengths. Keep peak storage for a separate bounded review.",
+          "schedule_note": "Partial retrieval on November 20. The two-day interval falls on Sunday November 22, so move to Monday November 23 under the weekday rule without advancing the interval."
         }
-      ]
+      ],
+      "due": "2026-11-23",
+      "id": "stage1-merge-sort-time-and-live-space",
+      "language": "Go",
+      "learned_on": "2026-11-10",
+      "planned_review_dates": [
+        "2026-11-12",
+        "2026-11-17",
+        "2026-12-01",
+        "2026-12-22"
+      ],
+      "practice_scope": "Bounded review blocks only; not the next focus task or a prerequisite for new material.",
+      "prompt": "Given the append-count bound N times ceil(log2 N), independently justify why it holds for arbitrary input lengths, including uneven splits. Use a fresh trace only if it helps build the proof. Review peak storage separately.",
+      "remaining_gap": "Independently justify the general append bound for arbitrary input lengths. Keep peak storage for a separate bounded review.",
+      "schedule_note": "Partial review on November 16. Follow up November 18, two days later, without advancing the interval because the whole analysis is incomplete. The existing planned_review_dates retain the original provisional checkpoints. November 17: complexity not attempted; preserve November 18 due date. Learner requests review-only placement. Partial recall on November 18. Revisit November 20 after the configured two-day interval. Keep later checkpoints provisional. Partial retrieval on November 20. The two-day interval falls on Sunday November 22, so move to Monday November 23 under the weekday rule without advancing the interval.",
+      "skill": "Separate recursion depth, total work, and peak required storage in merge sort",
+      "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
+      "teaching_note": "The learner found the storage-budget explanation useful and remained lost with algebraic cancellation. If help is requested, use concrete required storage before algebra. Stop repeated formula prompts after a stall."
+    },
+    {
+      "attempts": [
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-16/analysis.txt",
+            "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt",
+            "programs/algorithms/sessions/2026-11-17/analysis-answer.txt",
+            "programs/algorithms/sessions/2026-11-17/correctness-proof-answer.txt"
+          ],
+          "assistance": "Sequential tutor questions and general claim-writing guidance; requested induction explanations; complete merge lemma and total-correctness proof supplied on explicit request. Explained and standalone answers saved at learner request. No learner code or draft edited.",
+          "component_results": {
+            "complexity": "Not attempted today. Prior general append justification, non-power-of-two analysis, and independent peak storage remain pending.",
+            "correctness": "Learner contract and claim draft with feedback; complete proof supplied. No independent whole proof.",
+            "implementation": "Source read. No code edits or tests today; prior passing tests remain historical.",
+            "language": "Slice-boundary clarification after prompting; no new implementation evidence."
+          },
+          "date": "2026-11-17",
+          "delivery": "Proof sent in conversation; both requested text artifacts saved and read back. The standalone file is now named correctness-proof-answer.txt.",
+          "evidence_boundary": "Assisted solution study, not independent mastery. No score or stage advancement. No required rewrite of this exact proof.",
+          "feedback": "Contract and claims progressed with feedback. The whole proof was supplied on request, so independent construction remains unestablished. Close this focus attempt as solution study and advance to different practice while retaining bounded reviews.",
+          "id": "stage1-merge-sort-proof-study-2026-11-17",
+          "language": "Go",
+          "learner_feedback": "The complete proof made sense. Lemma-and-theorem presentation helped. The learner identified the backward-discovery versus forward-proof transition as the sticking point and reported understanding after it was explained. Requested ending repeated merge-sort focus work and retaining correctness and complexity for review blocks.",
+          "observed_gaps": [
+            "Did not independently formulate the strong-induction hypothesis or a whole proof.",
+            "Reported confusion about connecting backward claim discovery to forward induction."
+          ],
+          "observed_strengths": [
+            "Wrote the sorting contract and identified recursive correctness and merging as supporting requirements.",
+            "Repaired the contract quantifier and implication direction after feedback.",
+            "Proposed induction on length after questions about base cases; recognized the doubling coverage gap after prompting.",
+            "Self-corrected the exclusive upper slicing boundary after a question."
+          ],
+          "remaining_gap": "Independent proof construction and delayed transfer; pending merge-sort complexity reconstruction.",
+          "result": "assisted",
+          "review_id": "stage1-merge-sort-correctness-and-induction",
+          "rubric": null,
+          "session_started_at": "2026-11-17T14:47:35.144191Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go implementation; proof checklist",
+          "task": "Draft correctness claims and study a requested complete merge-sort proof",
+          "teaching_feedback": "Questions became fragmented, shifted between k and k+1, and detoured into slice sizes before explaining the overall proof structure. Repeated abstract descriptions did not resolve confusion. The requested proof and explicit distinction between backward planning and forward presentation helped according to learner report.",
+          "thread_id": "01a1e9f9-50b7-7061-b805-3dcb66dc3f13"
+        }
+      ],
+      "due": "2026-11-19",
+      "id": "stage1-merge-sort-correctness-and-induction",
+      "language": "Go",
+      "learned_on": "2026-11-17",
+      "planned_review_dates": [
+        "2026-11-19",
+        "2026-11-24",
+        "2026-12-08",
+        "2026-12-29"
+      ],
+      "prompt": "In a bounded retrieval block, independently reconstruct how a merge lemma and induction establish the merge-sort contract, including termination. Leave claims and reasoning to the learner. Stop at the review boundary; no required rewrite or prerequisite for new focus work.",
+      "remaining_gap": "Independent proof construction and delayed transfer; pending merge-sort complexity reconstruction.",
+      "schedule_note": "First follow-up November 19, two days after assisted study. Later 7/21/42-day checkpoints are provisional and depend on recall. Supplied work does not establish mastery.",
+      "skill": "Connect a merge lemma, strong induction, and termination into a whole correctness proof",
+      "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go implementation; proof checklist",
+      "status": "active",
+      "teaching_note": "Lemma-and-theorem presentation helped; explain backward discovery versus forward presentation before notation when teaching is requested."
     }
   ],
   "session": null,
@@ -6057,10 +6571,24 @@
     },
     {
       "active_seconds": 3625,
+      "artifacts": [
+        "programs/algorithms/sessions/2026-11-09/main.go",
+        "programs/algorithms/sessions/2026-11-09/main_test.go",
+        "programs/algorithms/sessions/2026-11-09/go.mod",
+        "programs/algorithms/sessions/2026-11-09/go.sum",
+        "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
+      ],
       "assessment_minutes": null,
       "ended_at": "2026-11-10T15:50:04.347788Z",
+      "feedback": {
+        "closing": "The learner explicitly stopped. No further quiz, repair, or teaching-feedback response was required.",
+        "learner_feedback": "The final explanation helped. The learner reports no independent derivation of either bound and requests future review.",
+        "merge_sort": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
+        "retrieval": "Both concrete traces and counts are correct."
+      },
       "kind": "study",
       "language": "Go",
+      "next_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
       "outcome": "Ended at learner request. Concrete halving retrieval succeeded independently. Merge sort reportedly works. Both complexity analyses remain assisted.",
       "pauses": [],
       "plan_minutes": {
@@ -6069,41 +6597,31 @@
         "retrieval": 10
       },
       "started_at": "2026-11-10T14:49:38.77503Z",
-      "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
       "tasks": [
         {
+          "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
           "date": "2026-11-10",
-          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-          "session_started_at": "2026-11-10T14:49:38.77503Z",
-          "language": "Go",
-          "rubric": null,
+          "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+          "feedback": "Both concrete traces and counts are correct.",
           "id": "stage1-halving-concrete-retrieval-2026-11-10",
-          "review_id": "stage0-halving-loop-logarithms",
-          "task": "Trace repeated integer halving for 16 and 23",
-          "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
-          "source": "Tutor-created Go prompt in this conversation.",
-          "result": "independent",
+          "language": "Go",
           "observed_strengths": [
             "Correct sequences 16, 8, 4, 2, 1, 0 and 23, 11, 5, 2, 1, 0.",
             "Correct return value five and six condition evaluations for both inputs."
           ],
-          "assistance": "No hints before the response. The tutor clarified that zero is the terminal condition check, not a body entry. Both counts were already correct.",
-          "feedback": "Both concrete traces and counts are correct.",
+          "prompt": "steps starts count at zero, increments it while size > 0, and divides size by two. Give body-entry values, return values, and condition counts.",
           "remaining_gap": "Independently derive exact general body and condition counts. General formulas and asymptotic bounds were not assessed today.",
-          "evidence_boundary": "Independent concrete retrieval only. No mastery gate or stage advancement.",
+          "result": "independent",
+          "review_id": "stage0-halving-loop-logarithms",
+          "rubric": null,
           "schedule_note": "Review on November 12, two days after partial retrieval. General derivation remains pending, so do not advance the whole review interval.",
+          "session_started_at": "2026-11-10T14:49:38.77503Z",
+          "source": "Tutor-created Go prompt in this conversation.",
+          "task": "Trace repeated integer halving for 16 and 23",
+          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
           "timing_note": "The answer arrived during focused-work time. Preserve the original plan and feedback boundary."
         },
         {
-          "date": "2026-11-10",
-          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
-          "session_started_at": "2026-11-10T14:49:38.77503Z",
-          "language": "Go",
-          "rubric": null,
-          "id": "stage1-merge-sort-cost-study-2026-11-10",
-          "review_id": "stage1-merge-sort-time-and-live-space",
-          "task": "Resume merge sort and study total merge work and peak required storage",
-          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
           "artifacts": [
             "programs/algorithms/sessions/2026-11-09/main.go",
             "programs/algorithms/sessions/2026-11-09/main_test.go",
@@ -6111,17 +6629,22 @@
             "programs/algorithms/sessions/2026-11-09/go.sum",
             "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
           ],
-          "result": "assisted",
-          "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
-          "component_results": {
-            "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
-            "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction.",
-            "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
-            "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
-            "correctness_and_termination": "No whole learner argument reviewed today.",
-            "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain."
-          },
           "assistance": "Tutor distinguished recursion depth from total calls, selected the concrete merge structure, and supplied local append counts. Tutor explained slice aliasing, selected the storage snapshot, supplied the halving bound, corrected the average shortcut, and taught both cancellation and the storage-budget example.",
+          "component_results": {
+            "correctness_and_termination": "No whole learner argument reviewed today.",
+            "implementation": "Learner reported repairing the previous failure without tutor debugging or implementation help today. The tutor read the code and six table test cases but did not run tests.",
+            "independent_transfer": "Not assessed. The learner explicitly reports that independent reconstruction remains uncertain.",
+            "space_global": "The tutor supplied the sequential-call storage model and halving sum. The learner confused term count with total storage and tried an invalid endpoint average. Algebraic cancellation did not resolve the confusion. The tutor supplied the storage-budget explanation and O(k) bound.",
+            "space_local": "After the tutor selected two sorted halves and the output, the learner correctly counted 2k element slots, ignoring spare capacity.",
+            "time": "The tutor supplied the call-size structure and m appends per merge. The learner then counted eight appends at each of three levels and derived k*log2(k) for power-of-two k. The tutor supplied O(k log k) under constant average append cost. This is assisted reconstruction."
+          },
+          "date": "2026-11-10",
+          "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
+          "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
+          "id": "stage1-merge-sort-cost-study-2026-11-10",
+          "language": "Go",
+          "learner_report": "Merge sort works. At closure, the learner explicitly said that neither complexity analysis was derived independently and that independent reconstruction remains doubtful.",
+          "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
           "observed_gaps": [
             "Mixed original input size, local input size, recursion depth, and total call count.",
             "Counted left and right subslices as copied arrays.",
@@ -6130,35 +6653,406 @@
             "Interpreted the correction as saying that uneven terms have no average. The tutor clarified sum divided by term count.",
             "Reported being lost after the subtraction method."
           ],
-          "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k).",
-          "model_limits": "Peak required element storage includes the returned output and excludes the original input. The discussion ignores spare capacity and garbage-collection timing. It is not an exact byte count or total-allocation measurement. Exact k*log2(k) appends assumes power-of-two k. Diagnostic printing and slice growth were not separately analyzed.",
-          "feedback": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
-          "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
-          "evidence_boundary": "No verified passing test run, completed proof review, independent complexity mastery, score, or stage advancement.",
           "remaining_gap": "Review the existing code, tests, and analysis. Independently reconstruct total work and peak required storage on a fresh example after a delay.",
+          "result": "assisted",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
           "schedule_note": "Review on November 12 after two days. Later provisional checkpoints are November 17, December 1, and December 22. Adjust to observed recall.",
-          "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration."
+          "session_started_at": "2026-11-10T14:49:38.77503Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code; https://go.dev/blog/slices-intro",
+          "task": "Resume merge sort and study total merge work and peak required storage",
+          "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
+          "timing_note": "The learner explicitly requested finishing the space discussion during feedback. Preserve the original plan and helper duration.",
+          "verification": "main.go and main_test.go were read during study. No tests were run and no learner files were changed. anaylsis.txt appeared in git status at closure and was not read or assessed.",
+          "worked_explanation": "For k=8, start with a 32-slot budget. Allow 16, then 8, then 4, then 2 slots. Each allowance consumes half of the remaining budget. In general the halving sum stays below 4k. Fixed call bookkeeping adds O(log k), so extra space is O(k)."
         }
       ],
-      "artifacts": [
-        "programs/algorithms/sessions/2026-11-09/main.go",
-        "programs/algorithms/sessions/2026-11-09/main_test.go",
-        "programs/algorithms/sessions/2026-11-09/go.mod",
-        "programs/algorithms/sessions/2026-11-09/go.sum",
-        "programs/algorithms/sessions/2026-11-09/anaylsis.txt"
-      ],
-      "feedback": {
-        "retrieval": "Both concrete traces and counts are correct.",
-        "merge_sort": "The guided append counts and local 2k count are correct. Both complete analyses remain assisted. The final explanation received positive feedback, but no independent reconstruction followed.",
-        "learner_feedback": "The final explanation helped. The learner reports no independent derivation of either bound and requests future review.",
-        "closing": "The learner explicitly stopped. No further quiz, repair, or teaching-feedback response was required."
-      },
+      "thread_id": "01a1c5ee-8868-72b3-895e-706a7e780d3f",
+      "timing_note": "Preserve 3625 active seconds and the original 10/40/10 plan. The learner continued space work during feedback and stopped at 09:49:57. The helper ended at 09:50:04. No pause or retroactive timing change was inferred.",
       "unfinished": [
         "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
         "Preserve the November 11 recursion review and other existing reviews."
+      ]
+    },
+    {
+      "active_seconds": 2623,
+      "artifacts": [
+        "programs/algorithms/sessions/2026-11-16/main.go",
+        "programs/algorithms/sessions/2026-11-16/main_test.go",
+        "programs/algorithms/sessions/2026-11-16/analysis.txt",
+        "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt"
       ],
-      "next_task": "Resume the existing Go merge-sort artifact in programs/algorithms/sessions/2026-11-09/. First verify the learner-reported passing tests and read anaylsis.txt. Review the sorting contract and a whole learner-owned correctness and termination argument. Keep the November 12 time and peak-storage review: start with a fresh concrete example and an independent attempt, then offer requested support. Both prior complexity analyses are assisted, and independent reconstruction remains unconfirmed. Use concrete storage budgets before algebra if teaching is requested. Stop after reviewing the complete artifact or save the first unfinished part at the session boundary. Do not restart merge sort or reopen linear search.",
-      "timing_note": "Preserve 3625 active seconds and the original 10/40/10 plan. The learner continued space work during feedback and stopped at 09:49:57. The helper ended at 09:50:04. No pause or retroactive timing change was inferred."
+      "assessment_minutes": null,
+      "ended_at": "2026-11-16T15:48:06.40734Z",
+      "feedback": {
+        "closing": "Acknowledged the explicit stop, reviewed the corrected two-element count and saved contract draft, and identified the unfinished general justification and proof. No further quiz, repair, or optional teaching-feedback response was requested.",
+        "correctness": "The session ended with a contract draft and an unfinished proof. Resume this draft with the requested general checklist available.",
+        "cost_analysis": "The eight-element trace is useful and the stated formula is correct. The N=2 inconsistency was flagged and later corrected. The general justification remains unfinished."
+      },
+      "kind": "study",
+      "language": "Go",
+      "next_task": "Resume the learner-owned Go merge-sort artifact in programs/algorithms/sessions/2026-11-16/. Read analysis.txt and how-to-write-a-proof.txt. Begin at the existing sorting-contract sentence and unfinished correctness argument; do not restart the implementation. Review the contract against the implementation, then obtain one whole learner-owned correctness and termination argument. The general proof checklist was requested and supplied on November 16; leave algorithm-specific supporting claims and reasoning to the learner unless help is requested. In a later retrieval block, continue from the correct eight-element append trace: justify the power-of-two formula, consider non-power-of-two inputs, and independently reconstruct peak required storage before help. The general cost justification and independent space analysis remain pending. Protect feedback time and save the first unfinished part at the session boundary. Do not reopen linear search.",
+      "outcome": "Ended at learner request. Six learner tests pass, a correct partial append trace and stated formula were reviewed, and the correctness proof remains a draft after requested general guidance.",
+      "pauses": [],
+      "plan_minutes": {
+        "feedback": 8,
+        "focused work": 29,
+        "retrieval": 8
+      },
+      "started_at": "2026-11-16T15:04:23.368427Z",
+      "tasks": [
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-16/main.go",
+            "programs/algorithms/sessions/2026-11-16/main_test.go",
+            "programs/algorithms/sessions/2026-11-16/analysis.txt"
+          ],
+          "assistance": "Tutor supplied the task and counted operation, accepted the partial trace, confirmed the formula, and identified the inconsistent N=2 count. No counting derivation or corrected count was supplied today.",
+          "component_results": {
+            "concrete_trace": "Independent partial trace; the full 16-element execution was not written and was not required again.",
+            "general_append_count": "Correct stated formula; general justification remains unassessed.",
+            "implementation": "All six learner-written test cases passed under Go 1.27.3, first for November 9 code and at closure for the revised November 16 copy.",
+            "space": "Not attempted or assessed today. Prior November 10 analysis remains assisted."
+          },
+          "date": "2026-11-16",
+          "evidence_boundary": "No complete independent complexity argument, different independent application, seven-day mastery evidence, score, or stage advancement.",
+          "feedback": "The eight-element trace is useful and the stated formula is correct. The N=2 inconsistency was flagged and later corrected. The general justification remains unfinished.",
+          "id": "stage1-merge-sort-partial-cost-retrieval-2026-11-16",
+          "language": "Go",
+          "observed_gaps": [
+            "Initial notes listed four appends for N=2, conflicting with the trace and formula; corrected in the saved notes after feedback.",
+            "The formula is correct, but its general justification is unwritten. The learner explicitly left a TODO for non-power-of-two inputs and general justification."
+          ],
+          "observed_strengths": [
+            "Independently supplied an eight-element subtree trace with 24 individual element appends, and eight appends for a four-element run.",
+            "Stated N*log2(N) for positive power-of-two input sizes before conceptual help in this session.",
+            "At closure, notes corrected the two-element count to two after the tutor flagged its inconsistency without supplying the corrected count."
+          ],
+          "remaining_gap": "General append-count justification, non-power-of-two extension, and independent peak-storage reconstruction.",
+          "result": "partial",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
+          "schedule_note": "Partial review on November 16. Follow up November 18, two days later, without advancing the interval because the whole analysis is incomplete. The existing planned_review_dates retain the original provisional checkpoints.",
+          "session_started_at": "2026-11-16T15:04:23.368427Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go code and analysis.txt",
+          "task": "Trace append operations on a fresh input and attempt delayed merge-sort cost reconstruction",
+          "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+          "timing_note": "The response arrived during focused-work time. The tutor gave bounded feedback and moved to the planned correctness task without another retrieval prompt.",
+          "verification": "Read the November 16 analysis at submission and closure. The revised source removes a redundant range condition; tests are unchanged. Ran go test -mod=readonly -count=1 -v . with Go 1.27.3 and confirmed Test_Main and all six subtests passed."
+        },
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-16/analysis.txt",
+            "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt"
+          ],
+          "assistance": "At the learner request, supplied a general checklist covering the contract, backward choice of supporting facts, recursion and loop proof structures, connection to the result, and termination. No merge-sort-specific invariant, supporting argument, or full solution was supplied.",
+          "contract_note": "The draft says new slice. Its allocation meaning has not been reviewed; the singleton branch returns the input slice. Review the stated promise without silently imposing a fresh-allocation requirement.",
+          "date": "2026-11-16",
+          "delivery": "Checklist sent in conversation and found saved by the learner in how-to-write-a-proof.txt. No independent reconstruction or application was observed afterward.",
+          "evidence_boundary": "Guidance delivery and a draft do not establish proof-construction mastery.",
+          "feedback": "The session ended with a contract draft and an unfinished proof. Resume this draft with the requested general checklist available.",
+          "id": "stage1-merge-sort-proof-start-2026-11-16",
+          "language": "Go",
+          "learner_report": "Asked for a correctness-proof cheat sheet because they were staring at a blank page and did not know where to start.",
+          "observed": "At closure, analysis.txt contains a draft promise of returning the same k elements in sorted order and the unfinished sentence: We start from the beginning of the function. If",
+          "remaining_gap": "Complete learner-owned sorting contract and whole correctness and termination argument. No finished proof was submitted or assessed.",
+          "result": "assisted",
+          "rubric": null,
+          "session_started_at": "2026-11-16T15:04:23.368427Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; https://www.cs.cornell.edu/courses/cs2112/2019fa/lectures/loopinv/",
+          "task": "Begin a whole correctness and termination argument and request a general proof-writing checklist",
+          "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+          "timing_note": "The learner requested this bounded support during feedback and then explicitly ended the session. No further task or teaching-feedback response was required."
+        }
+      ],
+      "thread_id": "01a1e4e1-e0d6-7fc1-a2e7-2e229d172fea",
+      "timing_note": "Preserve helper-recorded 2623 active seconds, the original 8/29/8 plan, and the exact end timestamp. Silence counted as work. No pause, timer rewrite, or retroactive override was inferred.",
+      "unfinished": [
+        "Complete and review the existing sorting contract and whole correctness and termination argument.",
+        "General append-count justification, non-power-of-two extension, and independent peak-storage reconstruction.",
+        "Preserve all other existing due reviews and independent delayed-evidence requirements."
+      ]
+    },
+    {
+      "active_seconds": 3644,
+      "artifacts": [
+        "programs/algorithms/sessions/2026-11-16/analysis.txt",
+        "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt",
+        "programs/algorithms/sessions/2026-11-17/analysis-answer.txt",
+        "programs/algorithms/sessions/2026-11-17/correctness-proof-answer.txt"
+      ],
+      "assessment_minutes": null,
+      "ended_at": "2026-11-17T15:48:19.753108Z",
+      "feedback": {
+        "closing": "Acknowledged the explicit end and move-on request. No further quiz, rewrite, repair, or teaching-feedback response required.",
+        "correctness": "Contract and claims progressed with feedback. The whole proof was supplied on request, so independent construction remains unestablished. Close this focus attempt as solution study and advance to different practice while retaining bounded reviews.",
+        "learner_feedback": "The complete proof made sense. Lemma-and-theorem presentation helped. The learner identified the backward-discovery versus forward-proof transition as the sticking point and reported understanding after it was explained. Requested ending repeated merge-sort focus work and retaining correctness and complexity for review blocks.",
+        "teaching": "Questions became fragmented, shifted between k and k+1, and detoured into slice sizes before explaining the overall proof structure. Repeated abstract descriptions did not resolve confusion. The requested proof and explicit distinction between backward planning and forward presentation helped according to learner report."
+      },
+      "kind": "study",
+      "language": "Go",
+      "next_task": "Next focus block: begin the Stage 1 practice ladder with Two Sum in Go (https://leetcode.com/problems/two-sum/). Check prior familiarity before calling the attempt fresh independent evidence. Give the problem and target only, then let the learner choose an approach, implement and test it, and give a whole correctness and termination argument and justified operation counts and time/space bounds. Help follows a request. Stop at the first unfinished part when feedback begins. Keep merge-sort correctness and complexity in bounded review blocks only; their completion is not a prerequisite for new focus work. Complexity review remains due November 18 and correctness review is due November 19. Do not restart merge sort or reopen linear search.",
+      "outcome": "Ended at learner request. Contract and claims progressed with feedback; complete correctness and termination proof supplied on request. Merge sort moves to review blocks; next focus task is Two Sum in Go.",
+      "pauses": [],
+      "plan_minutes": {
+        "feedback": 10,
+        "focused work": 41,
+        "retrieval": 10
+      },
+      "started_at": "2026-11-17T14:47:35.144191Z",
+      "tasks": [
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-16/analysis.txt",
+            "programs/algorithms/sessions/2026-11-16/how-to-write-a-proof.txt",
+            "programs/algorithms/sessions/2026-11-17/analysis-answer.txt",
+            "programs/algorithms/sessions/2026-11-17/correctness-proof-answer.txt"
+          ],
+          "assistance": "Sequential tutor questions and general claim-writing guidance; requested induction explanations; complete merge lemma and total-correctness proof supplied on explicit request. Explained and standalone answers saved at learner request. No learner code or draft edited.",
+          "component_results": {
+            "complexity": "Not attempted today. Prior general append justification, non-power-of-two analysis, and independent peak storage remain pending.",
+            "correctness": "Learner contract and claim draft with feedback; complete proof supplied. No independent whole proof.",
+            "implementation": "Source read. No code edits or tests today; prior passing tests remain historical.",
+            "language": "Slice-boundary clarification after prompting; no new implementation evidence."
+          },
+          "date": "2026-11-17",
+          "delivery": "Proof sent in conversation; both requested text artifacts saved and read back. The standalone file is now named correctness-proof-answer.txt.",
+          "evidence_boundary": "Assisted solution study, not independent mastery. No score or stage advancement. No required rewrite of this exact proof.",
+          "feedback": "Contract and claims progressed with feedback. The whole proof was supplied on request, so independent construction remains unestablished. Close this focus attempt as solution study and advance to different practice while retaining bounded reviews.",
+          "id": "stage1-merge-sort-proof-study-2026-11-17",
+          "language": "Go",
+          "learner_feedback": "The complete proof made sense. Lemma-and-theorem presentation helped. The learner identified the backward-discovery versus forward-proof transition as the sticking point and reported understanding after it was explained. Requested ending repeated merge-sort focus work and retaining correctness and complexity for review blocks.",
+          "observed_gaps": [
+            "Did not independently formulate the strong-induction hypothesis or a whole proof.",
+            "Reported confusion about connecting backward claim discovery to forward induction."
+          ],
+          "observed_strengths": [
+            "Wrote the sorting contract and identified recursive correctness and merging as supporting requirements.",
+            "Repaired the contract quantifier and implication direction after feedback.",
+            "Proposed induction on length after questions about base cases; recognized the doubling coverage gap after prompting.",
+            "Self-corrected the exclusive upper slicing boundary after a question."
+          ],
+          "remaining_gap": "Independent proof construction and delayed transfer; pending merge-sort complexity reconstruction.",
+          "result": "assisted",
+          "review_id": "stage1-merge-sort-correctness-and-induction",
+          "rubric": null,
+          "session_started_at": "2026-11-17T14:47:35.144191Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5; learner Go implementation; proof checklist",
+          "task": "Draft correctness claims and study a requested complete merge-sort proof",
+          "teaching_feedback": "Questions became fragmented, shifted between k and k+1, and detoured into slice sizes before explaining the overall proof structure. Repeated abstract descriptions did not resolve confusion. The requested proof and explicit distinction between backward planning and forward presentation helped according to learner report.",
+          "thread_id": "01a1e9f9-50b7-7061-b805-3dcb66dc3f13"
+        }
+      ],
+      "thread_id": "01a1e9f9-50b7-7061-b805-3dcb66dc3f13",
+      "timing_note": "Preserve helper-recorded 3644 active seconds, exact start/end timestamps, and original 10/41/10 plan. Silence counted as work. No pause or retroactive timing rewrite inferred.",
+      "unfinished": [
+        "Merge-sort correctness review November 19: independent reconstruction and delayed transfer pending.",
+        "Merge-sort complexity review November 18: general append justification, non-power-of-two inputs, and independent peak storage pending.",
+        "Preserve other due reviews; next focus block begins Two Sum in Go."
+      ]
+    },
+    {
+      "active_seconds": 3601,
+      "artifacts": [
+        "programs/algorithms/sessions/2026-11-18/merge-sort-complexity-recall.txt",
+        "programs/algorithms/sessions/2026-11-18/rust/src/main.rs",
+        "programs/algorithms/sessions/2026-11-18/rust/Cargo.toml",
+        "programs/algorithms/sessions/2026-11-18/rust/Cargo.lock"
+      ],
+      "assessment_minutes": null,
+      "ended_at": "2026-11-18T16:20:40.845553Z",
+      "feedback": {
+        "complexity": "Unassessed; follow correctness with a concrete trace, operation counts and bounds.",
+        "correctness": "Next, independently justify the contract for all valid inputs and termination.",
+        "implementation": "Both written assertions passed in Rust. They check recovery of original indices after sorting.",
+        "retrieval": "Independent 16-append count; general bound worked through by the tutor after request."
+      },
+      "kind": "study",
+      "language": "Go",
+      "next_task": "Resume Two Sum from the November 18 Rust implementation. First write an independent whole argument that it returns the two distinct original indices for every valid input and terminates. Then trace a learner-chosen input, count the relevant operations, and justify time and extra space across the whole implementation. Stop at the first unfinished part when feedback starts. Keep merge-sort correctness and complexity in bounded retrieval blocks only.",
+      "outcome": "Learner independently implemented Two Sum in Rust and both assertions passed. Correctness and complexity remain. Merge-sort retrieval produced an independent count and an assisted general bound.",
+      "pauses": [],
+      "plan_minutes": {
+        "feedback": 12,
+        "focused work": 45,
+        "retrieval": 12
+      },
+      "started_at": "2026-11-18T15:20:39.28194Z",
+      "tasks": [
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-18/merge-sort-complexity-recall.txt"
+          ],
+          "assistance": "Tutor confirmed the counts, supplied grouping by recursion depth and the 6, 6, 4 regrouping, then supplied the worked per-depth and depth-count argument on request.",
+          "date": "2026-11-18",
+          "evidence_boundary": "Independent concrete count and assisted general bound. No independent demonstration of the general bound or peak storage.",
+          "id": "stage1-merge-sort-uneven-append-retrieval-2026-11-18",
+          "language": "Go",
+          "learner_feedback": "Learner said they were stuck, asked what to think about next time, and then reported understanding and requested moving on.",
+          "observed_gaps": [
+            "Stalled when extending the trace to a general bound. Peak required storage was not attempted."
+          ],
+          "observed_strengths": [
+            "Independently traced 2 appends for size 2, 5 for size 3, and 16 overall for size 6."
+          ],
+          "remaining_gap": "Independently justify the append bound for arbitrary lengths and reconstruct peak required storage. Use one component per bounded review.",
+          "result": "partial",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "rubric": null,
+          "schedule_note": "Partial recall on November 18. Revisit November 20 after the configured two-day interval. Keep later checkpoints provisional.",
+          "session_started_at": "2026-11-18T15:20:39.28194Z",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+          "task": "Trace append counts for merge sort on a six-element input and attempt the general bound",
+          "teaching_feedback": "The initial regrouping prompt did not explain why grouping helps. The learner explicitly asked for closure when the tutor tried to switch at the boundary. The tutor then connected disjoint pieces to work per depth and repeated splits to the number of depths.",
+          "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5"
+        },
+        {
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-18/rust/src/main.rs",
+            "programs/algorithms/sessions/2026-11-18/rust/Cargo.toml",
+            "programs/algorithms/sessions/2026-11-18/rust/Cargo.lock"
+          ],
+          "assistance": "Tutor gave only the Two Sum problem and target before submission. Tutor ran the existing tests and provided closing feedback.",
+          "component_results": {
+            "approach": "independent",
+            "complexity": "unassessed",
+            "correctness_and_termination_argument": "unassessed",
+            "implementation": "independent; both submitted assertions passed"
+          },
+          "date": "2026-11-18",
+          "evidence_boundary": "Fresh ordinary practice on the learner's report. Rust implementation evidence only. No scored assessment or stage advancement.",
+          "id": "stage1-two-sum-rust-implementation-2026-11-18",
+          "language": "Rust",
+          "observed_gaps": [
+            "Learner explicitly reported that correctness and complexity work had not been done."
+          ],
+          "observed_strengths": [
+            "Learner reported no prior solution and independently chose and implemented sorting a copy, an inward scan, and an original-index lookup.",
+            "Both learner-written assertions passed and use cases whose answer positions differ from their positions in the sorted copy."
+          ],
+          "result": "partial",
+          "rubric": null,
+          "session_started_at": "2026-11-18T15:20:39.28194Z",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "task": "Stage 1 Two Sum practice ladder",
+          "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5",
+          "verification": "Cargo and rustc 1.100.0; cargo test --locked --offline with a temporary target directory found one test function and both learner-written assertions passed."
+        }
+      ],
+      "thread_id": "01a1ef3d-b633-7040-a4f2-e7b7ad1ef4c5",
+      "timing_note": "Preserve the helper's timestamps, elapsed time and 12/45/12 split. The timer recorded planned Go; the observed Two Sum artifact was Rust.",
+      "unfinished": [
+        "Two Sum correctness and termination argument",
+        "Two Sum operation counts and time/space bounds",
+        "Bounded merge-sort correctness and complexity reviews"
+      ]
+    },
+    {
+      "active_seconds": 562,
+      "artifacts": [],
+      "assessment_minutes": null,
+      "ended_at": "2026-11-19T15:02:25.964446Z",
+      "feedback": null,
+      "kind": "study",
+      "language": "Rust",
+      "next_task": "Resume Two Sum from the November 18 Rust implementation. First write an independent whole argument that it returns the two distinct original indices for every valid input and terminates. Then trace a learner-chosen input, count the relevant operations, and justify time and extra space across the whole implementation. Stop at the first unfinished part when feedback starts. Keep merge-sort correctness and complexity in bounded retrieval blocks only.",
+      "outcome": "Canceled at learner request before any response to the retrieval prompt. No study evidence recorded.",
+      "pauses": [],
+      "plan_minutes": {
+        "feedback": 3,
+        "focused work": 44,
+        "retrieval": 9
+      },
+      "started_at": "2026-11-19T14:53:03.489607Z",
+      "tasks": [],
+      "thread_id": "01a1f44b-5015-7871-9799-36289c4ecced",
+      "timing_note": "Elapsed timer time is preserved. No completed study work was observed.",
+      "unfinished": [
+        "Merge-sort correctness retrieval",
+        "Rust Two Sum correctness, termination, and complexity"
+      ]
+    },
+    {
+      "active_seconds": 2950,
+      "assessment_minutes": null,
+      "ended_at": "2026-11-20T15:48:58.311833Z",
+      "kind": "study",
+      "language": "Rust",
+      "outcome": "Completed bounded retrieval and drafted Two Sum complexity and correctness. General merge-sort proof was assisted. Two Sum proof remains open.",
+      "pauses": [],
+      "plan_minutes": {
+        "feedback": 3,
+        "focused work": 38,
+        "retrieval": 8
+      },
+      "started_at": "2026-11-20T14:59:47.848212Z",
+      "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+      "tasks": [
+        {
+          "id": "stage1-merge-sort-bound-proof-retrieval-2026-11-20",
+          "review_id": "stage1-merge-sort-time-and-live-space",
+          "date": "2026-11-20",
+          "language": "Go",
+          "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+          "session_started_at": "2026-11-20T14:59:47.848212Z",
+          "task": "Trace merge sort and connect the append count to a general upper bound",
+          "source": "programs/algorithms/curriculum/Algorithms_Mastery_Course.tex section 5 and programs/algorithms/sessions/2026-11-16/main.go",
+          "result": "partial",
+          "rubric": null,
+          "observed_strengths": [
+            "Traced new values on a six-element input and counted 16 appends as 6, 6, 4, and 0 by call level.",
+            "Stated N times ceil(log2 N) as a general append bound, then recognized the inductive structure after the explanation."
+          ],
+          "observed_gaps": [
+            "The six-element trace used the same call sizes as the November 18 worked example. The submitted argument did not independently justify the work at an arbitrary level or the number of levels with merges."
+          ],
+          "assistance": "At learner request the tutor connected disjoint pieces to the per-level append bound and demonstrated the depth bound with powers of two and induction on split count.",
+          "evidence_boundary": "Learner-produced trace and stated bound after earlier work on the same six-element call shape. The general proof was assisted. Independent general proof and peak storage remain pending.",
+          "learner_feedback": "The learner said the trace was fairly easy and requested that the next review practice connecting bounds to proof logic.",
+          "remaining_gap": "Independently justify the general append bound for arbitrary input lengths. Keep peak storage for a separate bounded review.",
+          "schedule_note": "Partial retrieval on November 20. The two-day interval falls on Sunday November 22, so move to Monday November 23 under the weekday rule without advancing the interval."
+        },
+        {
+          "id": "stage1-two-sum-rust-proof-and-cost-2026-11-20",
+          "date": "2026-11-20",
+          "language": "Rust",
+          "thread_id": "01a1f977-8b22-7232-9656-c4c19f400c86",
+          "session_started_at": "2026-11-20T14:59:47.848212Z",
+          "task": "Analyze the current Rust Two Sum implementation and begin its correctness proof",
+          "source": "https://leetcode.com/problems/two-sum/description/",
+          "artifacts": [
+            "programs/algorithms/sessions/2026-11-20/analysis.txt",
+            "programs/algorithms/sessions/2026-11-20/rust/src/main.rs"
+          ],
+          "rubric": null,
+          "result": "partial",
+          "component_results": {
+            "time": "Independent O(N log N) worst-case bound. Draft gives a candidate worst-case scan input and identifies linear passes, but omits an explicit count and clone cost and incorrectly says the final loop always visits every entry.",
+            "space": "Independent O(N) extra-space bound from the clone. Closing feedback identified the missing linear temporary storage for stable slice sort.",
+            "correctness": "Learner chose the final-loop claim, corrected its implication after feedback, and articulated how it consumes the scan claim's conclusion. The scan proof and the valid-pair guarantee in the final loop remain unfinished.",
+            "termination": "No whole termination argument submitted."
+          },
+          "assistance": "Tutor clarified the direction of the final-loop conditional, gave a requested pointer-move hint, and distinguished input guarantees from conclusions. Learner stated the link between the two claims, which the tutor confirmed. No complete proof was supplied.",
+          "evidence_boundary": "Independent initial complexity draft and assisted proof construction. No scored assessment, test execution, or stage advancement.",
+          "remaining_gap": "Prove that the scan finds a matching pair on all valid inputs and terminates. Then justify returning the two distinct original indices and finish the whole cost argument."
+        }
+      ],
+      "artifacts": [
+        "programs/algorithms/sessions/2026-11-20/analysis.txt",
+        "programs/algorithms/sessions/2026-11-20/rust/src/main.rs"
+      ],
+      "feedback": {
+        "correctness": "The final-loop conditional was repaired with help, and the learner identified how the scan claim supplies its premise. First next action is to justify that the scan reaches a matching pair on every valid input and terminates.",
+        "complexity": "Overall O(N log N) time and O(N) extra-space bounds are sound. The final loop can break before the end and the stable sort can use linear temporary storage. Exact counts and a complete accounting remain open.",
+        "retrieval": "16 appends traced and general bound stated. The reasoning behind the two factors was explained at request. Next review focuses on proving the bound."
+      },
+      "next_task": "Resume the November 20 Rust Two Sum draft. First write and justify the scan claim so it establishes that the scan finds a matching pair on every valid input and terminates. Then complete the proof that the final loop returns the distinct original indices for that pair. If time remains, count the loop operations on a concrete run and revise the whole cost argument to account for the clone, stable sort's temporary storage, and the early exit in the final loop. Stop at the first unfinished part when feedback starts.",
+      "unfinished": [
+        "Two Sum scan correctness and termination.",
+        "Two Sum final-loop proof for the two distinct original indices.",
+        "Two Sum operation counts and complete implementation cost justification.",
+        "Independent general merge-sort append proof and separate peak-storage recall."
+      ]
     }
   ]
 }

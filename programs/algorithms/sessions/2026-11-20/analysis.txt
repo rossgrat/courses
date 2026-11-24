@@ -1,0 +1,33 @@
+=== Complexity ===
+Time Complexity:
+
+We start with an array of length N. We then sort that array, with will have an upper complexity bound of O(log_2(N)*N). Next we have out while loop. The while loop uses two iterators. The left iterator starts at index 0, and the right iterator starts at index length - 1. These iterators move towards each other (left iterator moves right, right iterator moves left), comparing their underlying elements until a sum is found that matches the target.
+
+In the worst case scenario, say that the two elements required are right next to each other, ex. 1,10,11,12,13,14,15, target 11. In this scenario, we would have to iterate over every element in the array to find the correct two sum match. This gives a worst case complexity of O(N).
+
+Lastly, the final for loop iterates from 0 to the length of the input array, finding the original index of the sorted values. This loop always runs over the full input of size N. So this loop has complexity O(N).
+
+We add all of these complexities together because they are independent of each other. This gives:
+
+O(log_2(N)*N + N + N). This can be upper bounded at O(logN * N)
+
+Space Complexity:
+We initialize five variables:
+my_nums, this is size N, since it is a copy of the nums input array of size N
+left,right,i, these are integers which have a fixed size in memory
+ret, this is a vector of two integers, and will only ever get to a size of two, since it returns the two indices we use for the returned sum.
+
+So the only variable that changes with N is my_nums, which is O(N). Extra space complexity is O(N)
+
+
+=== Correctness ===
+
+I will show that for every input array where nums has exactly two values that add up to the target input, my solution terminates and returns the original indices of the two values that add up to the target input.
+
+First I will claim that if my code is able to locate the two values that sum to the target, then the final loop returns their original distinct indices.
+
+We can see this in lines 21-28. The return vector starts empty. The loop iterates from 0, to the final index of the input array. At each iteration, it checks to see if either of the two values in the copy array matches the value at the current position of the original array. If there is a match, the index is appended to the return array. If there are two elements in the return array, the loop ends, and the two values in the return array are returned from the function.
+
+Second, I will claim that if a valid pair exists, then my code is able to locate the two values that sum to the target.
+
+TODO

@@ -1,0 +1,71 @@
+Correctness and termination of mergeSort
+
+Lemma. Given two finite integer slices L and R in non-descending order,
+the merge operation terminates and returns a slice in non-descending order
+containing exactly the elements of L and R, with multiplicities preserved.
+
+Proof. Let i and j be the positions of the next unconsumed elements of L
+and R, respectively, and let C be the output slice. At the start of each
+merge-loop iteration, the following properties hold:
+
+    1. C is in non-descending order.
+    2. C contains exactly the elements of L[:i] and R[:j], with
+       multiplicities preserved.
+    3. Every element of C is no greater than any unconsumed element of
+       either input slice.
+
+Initially, i = j = 0 and C is empty, so all three properties hold.
+
+Suppose neither input is exhausted. Since L and R are sorted, L[i] and
+R[j] are the smallest unconsumed elements of their respective slices.
+The smaller of them is therefore the smallest unconsumed element across
+both slices. The operation appends that element and advances its iterator
+by one.
+
+By property 3, the appended element is no smaller than any element already
+in C, so property 1 is preserved. Advancing exactly the iterator belonging
+to the appended element preserves property 2. Since the appended element
+is no greater than any remaining element, property 3 is also preserved.
+
+If either input is exhausted, the operation appends the other input's
+remaining suffix in order. That suffix is sorted and, by property 3, none
+of its elements is smaller than an element already in C. The resulting
+slice is therefore sorted. By property 2 and the copying of exactly the
+unconsumed suffix, it contains every element of L and R exactly once.
+
+Each iteration that continues the merge loop decreases the nonnegative
+integer (len(L) - i) + (len(R) - j) by one. Hence the loop must reach an
+exhausted input. Appending the remaining suffix takes finitely many steps,
+after which the loop exits. Thus the merge terminates and satisfies the
+claimed properties. QED.
+
+
+Theorem. For every finite integer slice A, mergeSort(A) terminates and
+returns a slice in non-descending order containing exactly the elements
+of A, with multiplicities preserved.
+
+Proof. We use strong induction on n = len(A).
+
+If n = 0, the function immediately returns an empty slice. If n = 1, it
+immediately returns A. In either case, the call terminates and returns
+exactly the input elements in non-descending order.
+
+Let n >= 2, and assume that for every integer m with 0 <= m < n and every
+integer slice of length m, mergeSort terminates and returns exactly its
+input elements in non-descending order.
+
+Set mid = floor(n/2). Then 1 <= mid < n. The slices A[:mid] and A[mid:]
+have lengths mid and n - mid, both strictly smaller than n. They partition
+the positions of A, so together they contain exactly its elements, with
+none omitted or counted twice.
+
+By the induction hypothesis, both recursive calls terminate. Their results
+are sorted and contain exactly the elements of their respective input
+slices. By the lemma, merging those results terminates and returns a
+sorted slice containing exactly their combined elements. Those are exactly
+the elements of A, with multiplicities preserved. The current call then
+returns that slice and terminates.
+
+Thus the theorem holds for length n whenever it holds for every smaller
+length. By strong induction, it holds for every nonnegative integer n.
+QED.

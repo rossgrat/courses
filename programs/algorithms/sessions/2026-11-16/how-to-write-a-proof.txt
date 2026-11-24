@@ -1,0 +1,19 @@
+Start with one sentence describing exactly what “correct” means. Plain English is fine:
+
+> For every input satisfying ___, this function terminates and returns ___.
+
+Then use this checklist:
+
+1. State the contract. What inputs are allowed? What must the returned result satisfy? Make each requirement explicit.
+
+2. Work backward from the result. Ask: “What would I need to know just before returning to establish that contract?” Write those supporting claims. For each, explain why it helps reach the target.
+
+Claim: If ___, then ___
+
+3. Justify the repeated work. Choose the structure that fits:
+   - Recursion: prove the base cases. Assume the contract holds for every strictly smaller valid input. Explain why the current call’s operations, using those smaller results, establish its own contract.
+   - Loop: choose a fact that holds whenever the loop condition is checked—an invariant. Show it holds initially, survives an iteration, and establishes the required result when the loop exits. Cornell’s explanation.
+
+4. Connect back to the contract. Explicitly explain why the established facts guarantee every promised property, covering each return path.
+
+5. Prove termination. Identify a nonnegative integer quantity that strictly decreases with each recursive call or continuing loop iteration. Explain why execution stops when it reaches its boundary.
